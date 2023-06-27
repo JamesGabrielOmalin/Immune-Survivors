@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb32b4cd79ca4944bf4242fd0b500c5, type: 3}
+  m_Name: Neutrophil_BasicAttack
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: 
+  <Cooldown>k__BackingField: 0
+  projectilePrefab: {fileID: 8617547465759212648, guid: be254fafa722faa4aa0e329022378398,
+    type: 3}
+  type: 0
