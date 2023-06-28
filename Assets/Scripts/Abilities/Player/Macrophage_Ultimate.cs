@@ -36,7 +36,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
     {
-        return level.Value >= 6f && base.CanActivateAbility();
+        return level.Value >= 5f && base.CanActivateAbility();
     }
 
     public override IEnumerator ActivateAbility()

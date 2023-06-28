@@ -21,6 +21,9 @@ public class HelperTCell : AdaptiveCell
                 Vector3 dir = new(Mathf.Sin(angle), 0f, Mathf.Cos(angle));
 
                 GameObject cytokine = cytokinePool.RequestPoolable(transform.position);
+                
+                if (!cytokine)
+                    continue;
                 cytokine.transform.forward = dir;
 
                 cytokine.GetComponent<Cytokine>().SetType(Type);

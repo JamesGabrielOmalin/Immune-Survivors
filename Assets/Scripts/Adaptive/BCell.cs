@@ -20,7 +20,10 @@ public class BCell : AdaptiveCell
                 float angle = (i * 30f) * Mathf.Deg2Rad;
                 Vector3 dir = new(Mathf.Sin(angle), 0f, Mathf.Cos(angle));
 
-                GameObject antibody = antibodyPool.RequestPoolable(transform.position);
+                GameObject antibody = antibodyPool.RequestPoolable(transform.position); 
+
+                if (!antibody)
+                    continue;
                 antibody.transform.forward = dir;
 
                 antibody.GetComponent<Antibody>().SetType(Type);

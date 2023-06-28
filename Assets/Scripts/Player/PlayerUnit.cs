@@ -22,7 +22,10 @@ public class PlayerUnit : Unit
 
     public void Upgrade()
     {
-        Debug.Log("Upgrade");
+        UpgradeManager.instance.OpenUpgradeScreen(UnitType);
+
+        // Level up
+        attributes.GetAttribute("Level").BaseValue++;
     }
 
     private IEnumerator Attack()

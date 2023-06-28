@@ -104,9 +104,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public GameObject GetActiveUnit()
+    public PlayerUnit GetActiveUnit()
     {
-        return activeUnit.gameObject;
+        return activeUnit;
     }
 
     public void ApplyBuffs(AntigenType type, AttributeModifier mod, float duration)
@@ -128,5 +128,16 @@ public class Player : MonoBehaviour
         n.RemoveModifier(mod);
         m.RemoveModifier(mod);
         d.RemoveModifier(mod);
+    }
+
+    public PlayerUnit GetUnit(PlayerUnitType type)
+    {
+        return type switch
+        {
+            PlayerUnitType.Neutrophil => neutrophil,
+            PlayerUnitType.Macrophage => macrophage,
+            PlayerUnitType.Dendritic => dendritic,
+            _ => null,
+        };
     }
 }
