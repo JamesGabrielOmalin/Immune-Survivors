@@ -42,6 +42,7 @@ public class Enemy : Unit
         OnDeath += delegate
         {
             AntigenManager.instance.SpawnAntigen(transform.position, Type);
+            RecruitManager.instance.AddKillCount();
             //Minimap.Get().Unregister(this.gameObject, MinimapIconType.Enemy);
             this.gameObject.SetActive(false);
         };

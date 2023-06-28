@@ -9,11 +9,30 @@ public class RecruitManager : MonoBehaviour
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
     
-    [Header("Spawning")]
-    [SerializeField] private int initialAmountToSpawn;
-    [SerializeField] private float batchSpawnInterval;
-    [SerializeField] private int amountPerBatch;
+    private enum SpawningType
+    {
+        Timed_Spawning,
+        Threshold_Spawning
+    }
+    [Header("Base Spawning Attributes")]
     [SerializeField] private int maxSpawnDistance;
+    [SerializeField] private int initialAmountToSpawn;
+
+    [SerializeField] private int amountToSpawn;
+
+    [SerializeField] SpawningType spawnType = SpawningType.Timed_Spawning;
+
+    [Header(" Timed Spawning")]
+    [SerializeField] private float spawnInterval;
+
+    [Header(" Threshold Spawning")]
+
+    [SerializeField] private int enemyKillThreshold;
+
+    [SerializeField] private int thresholdMultiplier;
+
+    private int killCount = 0;
+
 
     private void Awake()
     {
@@ -35,16 +54,27 @@ public class RecruitManager : MonoBehaviour
     private void Start()
     {
         SpawnRecruitBatch(initialAmountToSpawn);
-        StartCoroutine(SpawnCoroutine());
+
+        switch (spawnType)
+        {
+            case SpawningType.Timed_Spawning:
+                Debug.Log("[Recruit Manager] :  Batch Spawning");
+                StartCoroutine(SpawnCoroutine());
+                break;
+
+            case SpawningType.Threshold_Spawning:
+                Debug.Log("[Recruit Manager] :  Threshold Spawning");
+                break;
+        }
     }
 
     private IEnumerator SpawnCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(batchSpawnInterval);
+            yield return new WaitForSeconds(amountToSpawn);
 
-            SpawnRecruitBatch(amountPerBatch);
+            SpawnRecruitBatch(amountToSpawn);
         }
     }
 
@@ -94,5 +124,19 @@ public class RecruitManager : MonoBehaviour
         }
 
         activeRecruits.Add(recruit);
+    }
+
+    public void AddKillCount()
+    {
+        killCount++;
+
+        if (killCount >= enemyKillThreshold)
+        {
+            // spawn recruit
+            RecruitManager.instance.SpawnRecruitBatch(amountToSpawn);
+            killCount = 0;
+            // increase kill threshold
+            enemyKillThreshold *= thresholdMultiplier;
+        }
     }
 }
