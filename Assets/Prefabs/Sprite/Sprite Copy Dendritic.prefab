@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 165946539096120152, guid: afeb30f128bc45446982761878088987,
         type: 3}
       propertyPath: m_Name
-      value: Sprite Copy B
+      value: Sprite Copy Dendritic
       objectReference: {fileID: 0}
     - target: {fileID: 980036673634282028, guid: afeb30f128bc45446982761878088987,
         type: 3}
@@ -71,6 +71,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8577aad21fbde8f47b0001f2e32f9df2, type: 2}
+      objectReference: {fileID: 2100000, guid: 1ba949de58a41f44b93d235da3c7cd75, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afeb30f128bc45446982761878088987, type: 3}

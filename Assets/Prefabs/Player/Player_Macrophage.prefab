@@ -75,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.data[3].baseValue
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.data[8].baseValue
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
@@ -158,6 +158,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1017346715513677961, guid: 574ffc334e7afca48b54ede5229de029,
         type: 3}
+    - target: {fileID: 1817928188801238589, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 25ce444c3826abb449158668578d5ba1, type: 2}
+    - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: mobilityAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 71733d880ff81cc49b2bdd5b19aaa581,
+        type: 2}
+    - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: ultimateAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: ad8edc03326df6240a99461fb49cab1f,
+        type: 2}
     - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: basicAttackAbility

@@ -133,6 +133,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1017346715513677961, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
         type: 3}
+    - target: {fileID: 1817928188801238589, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5205e98b56393b34788dd64b121d4eec, type: 2}
+    - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: mobilityAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 164136e9835437246852d9447d388845,
+        type: 2}
+    - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: ultimateAbility
+      value: 
+      objectReference: {fileID: 11400000, guid: 533063910e1df834bbf6107c552b1502,
+        type: 2}
     - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: basicAttackAbility
