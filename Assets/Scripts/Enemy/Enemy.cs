@@ -73,6 +73,24 @@ public class Enemy : Unit
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out Player player))
+        {
+            attackCoroutine = StartCoroutine(Attack());
+            targetPlayer = player;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out Player player))
+        {
+            StopCoroutine(attackCoroutine);
+            targetPlayer = null;
+        }
+    }
+
     // Attack the target player
     private IEnumerator Attack()
     {
@@ -98,10 +116,10 @@ public class Enemy : Unit
         if (stunCoroutine != null)
             StopCoroutine(stunCoroutine);
 
-        stunCoroutine = StartCoroutine(StunCoroutine(duration));
+        stunCoroutine = StartCoroutine(Stun(duration));
     }
 
-    private IEnumerator StunCoroutine(float duration)
+    private IEnumerator Stun(float duration)
     {
         IsStunned = true;
         stunIndicator.SetActive(true);
@@ -123,10 +141,10 @@ public class Enemy : Unit
         if (dotCoroutine != null)
             StopCoroutine(dotCoroutine);
 
-        dotCoroutine = StartCoroutine(DoTCoroutine(damage, duration, tickRate));
+        dotCoroutine = StartCoroutine(DoT(damage, duration, tickRate));
     }
 
-    private IEnumerator DoTCoroutine(float damage, float duration, float tickRate)
+    private IEnumerator DoT(float damage, float duration, float tickRate)
     {
         float t = 0f;
 

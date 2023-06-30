@@ -122,7 +122,8 @@ public class RecruitManager : MonoBehaviour
         if (killCount >= enemyKillThreshold)
         {
             // spawn recruit
-            RecruitManager.instance.SpawnRecruitBatch(amountToSpawn);
+            SpawnRecruitBatch(amountToSpawn);
+
             killCount = 0;
             // increase kill threshold
 
