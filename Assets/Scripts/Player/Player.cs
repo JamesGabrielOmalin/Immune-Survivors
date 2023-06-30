@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
     private PlayerUnit activeUnit;
     private int numRecruit;
 
+    public static PlayerUnitType toSpawn;
+
     private Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
         { PlayerUnitType.Neutrophil, false },
@@ -30,8 +32,21 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         // TODO: Implement character select?
-        RecruitUnit(neutrophil);
-        activeUnit = neutrophil;
+        switch (toSpawn)
+        {
+            case PlayerUnitType.Neutrophil:
+                RecruitUnit(neutrophil);
+                activeUnit = neutrophil;
+                break;
+            case PlayerUnitType.Macrophage:
+                RecruitUnit(macrophage);
+                activeUnit = macrophage;
+                break;
+            case PlayerUnitType.Dendritic:
+                RecruitUnit(dendritic);
+                activeUnit = dendritic;
+                break;
+        }
     }
 
     private void Start()

@@ -2,9 +2,9 @@ Shader "Custom/BillboardSprite"
 {
     Properties
     { 
-        [PerRendererData]_MainTex("Texture", 2D) = "white" {}
-        [PerRendererData]_BumpMap("Normal Map", 2D) = "bump" {}
-        [PerRendererData]_ColorMask("Color Mask", 2D) = "white" {}
+        _MainTex("Texture", 2D) = "white" {}
+        _BumpMap("Normal Map", 2D) = "bump" {}
+        _ColorMask("Color Mask", 2D) = "white" {}
 
         [Header(Alpha)]
         [Toggle(_UseAlphaClipping)]_UseAlphaClipping("UseAlphaClipping", Float) = 0

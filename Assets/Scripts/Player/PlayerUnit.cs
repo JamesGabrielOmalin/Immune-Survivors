@@ -15,6 +15,8 @@ public class PlayerUnit : Unit
 
     [field:SerializeField] public PlayerUnitType UnitType { get; private set; }
 
+    public System.Action OnUnitUpgraded;
+
     private void Start()
     {
         StartCoroutine(Attack());
@@ -22,6 +24,8 @@ public class PlayerUnit : Unit
 
     public void Upgrade()
     {
+        OnUnitUpgraded?.Invoke();
+
         UpgradeManager.instance.OpenUpgradeScreen(UnitType);
 
         // Level up

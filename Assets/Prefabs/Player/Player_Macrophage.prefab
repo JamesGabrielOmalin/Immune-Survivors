@@ -152,6 +152,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Macrophage
       objectReference: {fileID: 0}
+    - target: {fileID: 782363549823891599, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: spriteCopyPrefab
+      value: 
+      objectReference: {fileID: 1017346715513677961, guid: 574ffc334e7afca48b54ede5229de029,
+        type: 3}
     - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: basicAttackAbility
