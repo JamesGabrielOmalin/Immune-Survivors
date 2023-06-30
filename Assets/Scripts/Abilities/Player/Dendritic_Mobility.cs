@@ -22,6 +22,11 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
     }
 
+    private Dendritic_Mobility mobility;
+    private Attribute attackDamage;
+    private Attribute critRate;
+    private Attribute critDMG;
+
     public bool IsDashing { get; private set; } = false;
 
     public override bool CanActivateAbility()
@@ -31,10 +36,6 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        Attribute AttackDamage = owner.GetComponent<AttributeSet>().GetAttribute("Attack Damage");
-
-        var mobility = ability as Dendritic_Mobility;
-
         PlayerMovement movement = owner.GetComponent<PlayerMovement>();
         CharacterController controller = owner.GetComponent<CharacterController>();
         BodyCollider bodyCollider = owner.GetComponent<BodyCollider>();
@@ -57,15 +58,15 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
         owner.transform.position = endPos;
 
-        var hits = Physics.SphereCastAll(startPos, controller.radius, rayDir, rayLength, LayerMask.GetMask("Enemy"));
+        var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, LayerMask.GetMask("Enemy"));
 
-        // Deal damage equal to 150% AD scaling
-        float Damage = AttackDamage.Value * 1.5f;
+        // Guaranteed CRIT
+        float damage = DamageCalculator.CalcDamage(attackDamage.Value, 1f, critDMG.Value);
         foreach (var hit in hits)
         {
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                enemy.TakeDamage(Damage);
+                enemy.TakeDamage(damage);
                 enemy.GetComponent<ImpactReceiver>().AddImpact(rayDir, rayLength * 2f);
             }
         }
@@ -76,11 +77,13 @@ public class Dendritic_MobilitySpec : AbilitySpec
         {
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
+                // Get bonus Antigen
+                AntigenManager.instance.AddAntigen(enemy.Type);
+
                 // If at least 1 enemy was killed, reset cooldown
-                if (enemy.IsDead)
+                if (!resetCD && enemy.IsDead)
                 {
                     resetCD = true;
-                    break;
                 }
             }
         }
@@ -115,8 +118,12 @@ public class Dendritic_MobilitySpec : AbilitySpec
         bodyCollider.enabled = true;
     }
 
-    private void ResetCD()
+    private void Init()
     {
-        CurrentCD = 0f;
+        attackDamage = owner.GetComponent<AttributeSet>().GetAttribute("Attack Damage");
+        critRate = owner.GetComponent<AttributeSet>().GetAttribute("Critical Rate");
+        critDMG = owner.GetComponent<AttributeSet>().GetAttribute("Critical Damage");
+
+        mobility = ability as Dendritic_Mobility;
     }
 }

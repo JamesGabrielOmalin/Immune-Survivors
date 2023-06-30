@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Animator animator;
+    [SerializeField] private List<Animator> animators = new();
     [SerializeField] private CharacterController controller;
     [SerializeField] private Player player;
     [SerializeField] private PlayerInput input;
-    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private List<SpriteRenderer> sprites = new();
 
     private Attribute moveSpeed;
 
@@ -23,10 +22,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
-
         moveSpeed = player.GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Move Speed");
-        sprite = player.GetActiveUnit().GetComponentInChildren<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -39,10 +35,13 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 moveInput = input.MoveInput;
 
-        bool hasInput = moveInput.sqrMagnitude > 0;
+        bool hasInput = moveInput != Vector2.zero;
 
-        if (animator)
-            animator.SetBool(ANIMATOR_ISMOVING, hasInput);
+        foreach (var animator in animators)
+        {
+            if (animator.isActiveAndEnabled)
+                animator.SetBool(ANIMATOR_ISMOVING, hasInput);
+        }
 
         //else if (moveInput.x != 0f)
         //    sprite.flipX = moveInput.x < 0f;
@@ -63,6 +62,12 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(moveDir * (moveSpeed.Value * Time.deltaTime));
     
         if (controller.velocity.x != 0f)
-            sprite.flipX = moveInput.x < 0f;
+        {
+            foreach (var sprite in sprites)
+            {
+                if (sprite.enabled)
+                    sprite.flipX = moveInput.x < 0f;
+            }
+        }
     }
 }

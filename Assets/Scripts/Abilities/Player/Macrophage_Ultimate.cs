@@ -22,16 +22,13 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
     public AttributeSet attributes;
     public Attribute level;
-    public Attribute numProjectiles;
     public Attribute attackDamage;
-    public Attribute criticalChance;
     public Attribute attackSpeed;
     public Attribute attackRange;
     public Attribute knockbackPower;
-    public Attribute pincerSize;
-    public Attribute pincerDelay;
-    public Attribute accuracy;
-    public Attribute damageDelay;
+    public Attribute dotAmount;
+    public Attribute dotDuration;
+    public Attribute dotTickRate;
 
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
@@ -43,22 +40,35 @@ public class Macrophage_UltimateSpec : AbilitySpec
     {
         Macrophage_Ultimate ultimate = ability as Macrophage_Ultimate;
 
-        // 50% increase in attack values
-        AttributeModifier attackMod = new(0.5f, AttributeModifierType.Multiply);
+        var sprite = owner.GetComponentInChildren<SpriteRenderer>();
+        
+        foreach (Transform child in sprite.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        // 100% increase in attack values
+        AttributeModifier attackMod = new(1f, AttributeModifierType.Multiply);
         attackDamage.AddModifier(attackMod);
         attackSpeed.AddModifier(attackMod);
         attackRange.AddModifier(attackMod);
 
-        AttributeModifier critMod = new(0.25f, AttributeModifierType.Add);
-        criticalChance.AddModifier(critMod);
+        AttributeModifier knockbackMod = new(5f, AttributeModifierType.Add);
+        knockbackPower.AddModifier(knockbackMod);
 
-        // 100% increase in size
-        AttributeModifier sizeMod = new(1f, AttributeModifierType.Multiply);
-        pincerSize.AddModifier(sizeMod);
+        // 300% increased DoT
+        AttributeModifier dotMod = new(3f, AttributeModifierType.Multiply);
+        dotAmount.AddModifier(dotMod);
+        dotDuration.AddModifier(dotMod);
 
-        owner.transform.localScale = new(2, 2, 2);
+        owner.transform.localScale = new(2.5f, 2.5f, 2.5f);
 
         yield return new WaitForSeconds(ultimate.Duration);
+
+        foreach (Transform child in sprite.transform)
+        {
+            child.gameObject.SetActive(true);
+        }
 
         owner.transform.localScale = new(1, 1, 1);
 
@@ -66,8 +76,11 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attackDamage.RemoveModifier(attackMod);
         attackSpeed.RemoveModifier(attackMod);
         attackRange.RemoveModifier(attackMod);
-        criticalChance.RemoveModifier(critMod);
-        pincerSize.RemoveModifier(sizeMod);
+
+        knockbackPower.RemoveModifier(knockbackMod);
+
+        dotAmount.RemoveModifier(dotMod);
+        dotDuration.RemoveModifier(dotMod);
 
         CurrentCD = ability.Cooldown;
         owner.StartCoroutine(UpdateCD());
@@ -80,15 +93,12 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attributes = owner.GetComponent<AttributeSet>();
 
         level = attributes.GetAttribute("Level");
-        numProjectiles = attributes.GetAttribute("Num Projectiles");
         attackDamage = attributes.GetAttribute("Attack Damage");
-        criticalChance = attributes.GetAttribute("Critical Chance");
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
         knockbackPower = attributes.GetAttribute("Knockback Power");
-        pincerSize = attributes.GetAttribute("Pincer Size");
-        pincerDelay = attributes.GetAttribute("Pincer Delay");
-        accuracy = attributes.GetAttribute("Accuracy");
-        damageDelay = attributes.GetAttribute("Damage Delay");
+        dotAmount = attributes.GetAttribute("DoT Amount");
+        dotDuration = attributes.GetAttribute("DoT Duration");
+        dotTickRate = attributes.GetAttribute("DoT Tick Rate");
     }
 }

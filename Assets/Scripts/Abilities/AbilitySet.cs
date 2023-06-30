@@ -45,26 +45,18 @@ public class AbilitySet : MonoBehaviour
         }
     }
 
-    //private void FixedUpdate()
-    //{
-    //    if (IsAI)
-    //        return;
+    private void FixedUpdate()
+    {
+        if (Mobility != null && mobilityCDIcon != null)
+        {
+            mobilityCDIcon.fillAmount = Mobility.CurrentCD / mobilityAbility.Cooldown;
+        }
 
-    //    if (BasiC != null && basicAttackCDIcon != null)
-    //    {
-    //        basicAttackCDIcon.fillAmount = basicAttackAbilitySpec.CurrentCD / basicAttackAbility.Cooldown;
-    //    }
-
-    //    if (mobilityAbilitySpec != null && mobilityCDIcon != null)
-    //    {
-    //        mobilityCDIcon.fillAmount = mobilityAbilitySpec.CurrentCD / mobilityAbility.Cooldown;
-    //    }
-
-    //    if (ultimateAbilitySpec != null && ultimateCDIcon != null)
-    //    {
-    //        ultimateCDIcon.fillAmount = ultimateAbilitySpec.CurrentCD / ultimateAbility.Cooldown;
-    //    }
-    //}
+        if (Ultimate != null && ultimateCDIcon != null)
+        {
+            ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
+        }
+    }
 
     //public void Ultimate(InputAction.CallbackContext context)
     //{

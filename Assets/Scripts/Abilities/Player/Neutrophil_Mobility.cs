@@ -19,8 +19,10 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 {
     public Neutrophil_MobilitySpec(Neutrophil_Mobility ability, AbilitySystem owner) : base(ability, owner)
     {
-
+        Init();
     }
+
+    private Attribute moveSpeed;
 
     public bool IsDashing { get; private set; } = false;
 
@@ -38,14 +40,18 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
         var mobility = ability as Neutrophil_Mobility;
         CharacterController controller = owner.GetComponentInParent<CharacterController>();
+
         Vector3 direction = controller.velocity.normalized;
+
+        if (controller.velocity.sqrMagnitude <= 0f)
+            direction = Vector3.right;
 
         IsDashing = true;
 
         while (tick < mobility.MaxDashTime)
         {
             tick += Time.deltaTime;
-            controller.Move(direction * (mobility.DashSpeed * Time.deltaTime));
+            controller.Move(direction * (moveSpeed.Value * mobility.DashSpeed * Time.deltaTime));
             yield return null;
         }
 
@@ -56,5 +62,10 @@ public class Neutrophil_MobilitySpec : AbilitySpec
     {
         IsDashing = false;
         base.EndAbility();
+    }
+
+    private void Init()
+    {
+        moveSpeed = owner.GetComponent<AttributeSet>().GetAttribute("Move Speed");
     }
 }

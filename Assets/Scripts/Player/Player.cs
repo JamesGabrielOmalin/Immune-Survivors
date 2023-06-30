@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerUnit neutrophil;
     [SerializeField] private PlayerUnit macrophage;
     [SerializeField] private PlayerUnit dendritic;
+    [SerializeField] private GameObject neutrophilHUD;
+    [SerializeField] private GameObject macrophageHUD;
+    [SerializeField] private GameObject dendriticHUD;
+
 
     [Header("Slots")]
     [SerializeField] private Transform activeSlot;
@@ -20,7 +24,7 @@ public class Player : MonoBehaviour
     private PlayerUnit activeUnit;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Macrophage;
 
     private Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -37,14 +41,17 @@ public class Player : MonoBehaviour
             case PlayerUnitType.Neutrophil:
                 RecruitUnit(neutrophil);
                 activeUnit = neutrophil;
+                neutrophilHUD.SetActive(true);
                 break;
             case PlayerUnitType.Macrophage:
                 RecruitUnit(macrophage);
                 activeUnit = macrophage;
+                macrophageHUD.SetActive(true);
                 break;
             case PlayerUnitType.Dendritic:
                 RecruitUnit(dendritic);
                 activeUnit = dendritic;
+                dendriticHUD.SetActive(true);
                 break;
         }
     }
