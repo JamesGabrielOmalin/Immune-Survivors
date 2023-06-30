@@ -9,27 +9,21 @@ public class RecruitManager : MonoBehaviour
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
     
-    private enum SpawningType
-    {
-        Timed_Spawning,
-        Threshold_Spawning
-    }
     [Header("Base Spawning Attributes")]
     [SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
 
-    [SerializeField] private int amountToSpawn;
-
-    [SerializeField] SpawningType spawnType = SpawningType.Timed_Spawning;
-
     [Header(" Timed Spawning")]
     [SerializeField] private float spawnInterval;
+    [SerializeField] private int amountToSpawnPerInterval;
+
 
     [Header(" Threshold Spawning")]
-
+    [SerializeField] private bool EnableThresholdSpawning = false;
     [SerializeField] private int enemyKillThreshold;
-
     [SerializeField] private int thresholdMultiplier;
+    [SerializeField] private int amountToSpawn;
+
 
     private int killCount = 0;
 
@@ -54,27 +48,18 @@ public class RecruitManager : MonoBehaviour
     private void Start()
     {
         SpawnRecruitBatch(initialAmountToSpawn);
+        StartCoroutine(SpawnCoroutine());
 
-        switch (spawnType)
-        {
-            case SpawningType.Timed_Spawning:
-                Debug.Log("[Recruit Manager] :  Batch Spawning");
-                StartCoroutine(SpawnCoroutine());
-                break;
 
-            case SpawningType.Threshold_Spawning:
-                Debug.Log("[Recruit Manager] :  Threshold Spawning");
-                break;
-        }
     }
 
     private IEnumerator SpawnCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(amountToSpawn);
+            yield return new WaitForSeconds(amountToSpawnPerInterval);
 
-            SpawnRecruitBatch(amountToSpawn);
+            SpawnRecruitBatch(amountToSpawnPerInterval);
         }
     }
 
@@ -128,6 +113,10 @@ public class RecruitManager : MonoBehaviour
 
     public void AddKillCount()
     {
+        if (!EnableThresholdSpawning)
+        {
+            return;
+        }
         killCount++;
 
         if (killCount >= enemyKillThreshold)
@@ -136,7 +125,11 @@ public class RecruitManager : MonoBehaviour
             RecruitManager.instance.SpawnRecruitBatch(amountToSpawn);
             killCount = 0;
             // increase kill threshold
-            enemyKillThreshold *= thresholdMultiplier;
+
+            if (thresholdMultiplier != 0)
+            {
+                enemyKillThreshold *= thresholdMultiplier;
+            }
         }
     }
 }
