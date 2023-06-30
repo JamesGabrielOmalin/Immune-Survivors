@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private PlayerUnit activeUnit;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Macrophage;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
 
     private Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {

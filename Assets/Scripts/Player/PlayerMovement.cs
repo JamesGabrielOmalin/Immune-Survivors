@@ -18,11 +18,22 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 moveDir = Vector3.right;
     public Vector3 floorNormal = Vector3.up;
     public Vector3 inputDir = Vector3.right;
+    public Vector3 lastInputDir = Vector3.right;
 
     // Start is called before the first frame update
     private void Start()
     {
         moveSpeed = player.GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Move Speed");
+    }
+
+    private void OnEnable()
+    {
+        controller.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        controller.enabled = false;
     }
 
     // Update is called once per frame
@@ -69,5 +80,8 @@ public class PlayerMovement : MonoBehaviour
                     sprite.flipX = moveInput.x < 0f;
             }
         }
+
+        if (hasInput)
+            lastInputDir = inputDir;
     }
 }

@@ -19,12 +19,11 @@ public class Dendritic_MobilitySpec : AbilitySpec
 {
     public Dendritic_MobilitySpec(Dendritic_Mobility ability, AbilitySystem owner) : base(ability, owner)
     {
-
+        Init();
     }
 
     private Dendritic_Mobility mobility;
     private Attribute attackDamage;
-    private Attribute critRate;
     private Attribute critDMG;
 
     public bool IsDashing { get; private set; } = false;
@@ -36,11 +35,10 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        PlayerMovement movement = owner.GetComponent<PlayerMovement>();
-        CharacterController controller = owner.GetComponent<CharacterController>();
-        BodyCollider bodyCollider = owner.GetComponent<BodyCollider>();
+        PlayerMovement movement = owner.GetComponentInParent<PlayerMovement>();
+        Collider collider = owner.GetComponent<Collider>();
 
-        Vector3 direction = movement.inputDir;
+        Vector3 direction = movement.lastInputDir;
         Vector3 startPos = owner.transform.position;
         Vector3 endPos = startPos + (direction * mobility.DashDistance);
 
@@ -49,14 +47,16 @@ public class Dendritic_MobilitySpec : AbilitySpec
         Vector3 rayDir = direction;
         float rayLength = mobility.DashDistance;
 
-        controller.detectCollisions = false;
-        controller.enabled = false;
-        bodyCollider.enabled = false;
+        collider.enabled = false;
+        movement.enabled = false;
 
+        Physics.IgnoreLayerCollision(6, 11, true);
         IsDashing = true;
         yield return new WaitForSeconds(0.25f);
 
-        owner.transform.position = endPos;
+        Physics.IgnoreLayerCollision(6, 11, false);
+
+        movement.transform.position = endPos;
 
         var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, LayerMask.GetMask("Enemy"));
 
@@ -67,7 +67,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
                 enemy.TakeDamage(damage);
-                enemy.GetComponent<ImpactReceiver>().AddImpact(rayDir, rayLength * 2f);
+                enemy.GetComponent<ImpactReceiver>().AddImpact(rayDir, rayLength);
             }
         }
 
@@ -102,6 +102,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
             owner.StartCoroutine(UpdateCD());
         }
 
+        owner.transform.localPosition = Vector3.zero;
         yield break;
     }
 
@@ -110,18 +111,15 @@ public class Dendritic_MobilitySpec : AbilitySpec
         base.EndAbility();
         IsDashing = false;
 
-        CharacterController controller = owner.GetComponent<CharacterController>();
-        BodyCollider bodyCollider = owner.GetComponent<BodyCollider>();
-
-        controller.enabled = true;
-        controller.detectCollisions = true;
-        bodyCollider.enabled = true;
+        PlayerMovement movement = owner.GetComponentInParent<PlayerMovement>();
+        Collider collider = owner.GetComponent<Collider>();
+        collider.enabled = true;
+        movement.enabled = true;
     }
 
     private void Init()
     {
         attackDamage = owner.GetComponent<AttributeSet>().GetAttribute("Attack Damage");
-        critRate = owner.GetComponent<AttributeSet>().GetAttribute("Critical Rate");
         critDMG = owner.GetComponent<AttributeSet>().GetAttribute("Critical Damage");
 
         mobility = ability as Dendritic_Mobility;
