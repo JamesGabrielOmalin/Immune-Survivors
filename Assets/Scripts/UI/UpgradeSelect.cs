@@ -37,6 +37,6 @@ public class UpgradeSelect : MonoBehaviour
         var playerAbilitySystem = GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).GetComponent<AbilitySystem>();
         playerAbilitySystem.ApplyEffectToSelf(buttons[index].Upgrade);
 
-        GameManager.instance.UnpauseGameTime();
+        GameManager.instance.ResumeGameTime();
     }
 }

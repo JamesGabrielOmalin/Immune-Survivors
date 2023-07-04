@@ -38,6 +38,7 @@ public class UpgradeManager : MonoBehaviour
     public void OpenUpgradeScreen(PlayerUnitType type)
     {
         GameManager.instance.PauseGameTime();
+        GameManager.instance.HUD.SetActive(false);
         upgradeScreen.SelectUpgrades(type);
         upgradeScreen.gameObject.SetActive(true);
     }

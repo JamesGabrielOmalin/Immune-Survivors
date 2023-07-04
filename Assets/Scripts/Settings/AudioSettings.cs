@@ -101,4 +101,9 @@ public class AudioSettings : MonoBehaviour
             settings = JsonUtility.FromJson<AudioSettingsData>(json);
         }
     }
+
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
 }

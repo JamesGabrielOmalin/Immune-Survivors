@@ -38,6 +38,11 @@ public class Dendritic_UltimateSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
+        GameManager.instance.HUD.SetActive(false);
+        var player = GameManager.instance.Player.GetComponent<Player>();
+
+        player.EnableHUD(false);
+
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
@@ -47,7 +52,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         GameManager.instance.PauseGameTime();
         // I AM THE STORM THAT IS APPROACHING
         yield return wait;
-        GameManager.instance.UnpauseGameTime();
+        GameManager.instance.ResumeGameTime();
         // PROVOKING
         // BLACK CLOUDS IN ISOLATION
 
@@ -71,6 +76,9 @@ public class Dendritic_UltimateSpec : AbilitySpec
         playable.Stop();
         CurrentCD = ability.Cooldown;
         owner.StartCoroutine(UpdateCD());
+
+        GameManager.instance.HUD.SetActive(true);
+        player.EnableHUD(true);
     }
 
     public override void EndAbility()

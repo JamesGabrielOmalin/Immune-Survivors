@@ -15,13 +15,13 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject macrophageHUD;
     [SerializeField] private GameObject dendriticHUD;
 
-
     [Header("Slots")]
     [SerializeField] private Transform activeSlot;
     [SerializeField] private Transform slot1;
     [SerializeField] private Transform slot2;
 
     private PlayerUnit activeUnit;
+    private GameObject activeHUD;
     private int numRecruit;
 
     public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
@@ -42,16 +42,19 @@ public class Player : MonoBehaviour
                 RecruitUnit(neutrophil);
                 activeUnit = neutrophil;
                 neutrophilHUD.SetActive(true);
+                activeHUD = neutrophilHUD;
                 break;
             case PlayerUnitType.Macrophage:
                 RecruitUnit(macrophage);
                 activeUnit = macrophage;
                 macrophageHUD.SetActive(true);
+                activeHUD = macrophageHUD;
                 break;
             case PlayerUnitType.Dendritic:
                 RecruitUnit(dendritic);
                 activeUnit = dendritic;
                 dendriticHUD.SetActive(true);
+                activeHUD = dendriticHUD;
                 break;
         }
     }
@@ -161,5 +164,10 @@ public class Player : MonoBehaviour
             PlayerUnitType.Dendritic => dendritic,
             _ => null,
         };
+    }
+
+    public void EnableHUD(bool enabled)
+    {
+        activeHUD.SetActive(enabled);
     }
 }

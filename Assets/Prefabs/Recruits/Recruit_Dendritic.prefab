@@ -77,6 +77,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2243477047363325043, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: mobilityAbility
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2243477047363325043, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: ultimateAbility
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7514146600056064292, guid: 39fdfac27ea9c764080e6f908e33311f,
         type: 3}
       propertyPath: m_IsActive

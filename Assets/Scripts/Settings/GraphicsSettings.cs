@@ -156,4 +156,9 @@ public class GraphicsSettings : MonoBehaviour
             settings = JsonUtility.FromJson<GraphicsSettingsData>(json);
         }
     }
+
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
 }
