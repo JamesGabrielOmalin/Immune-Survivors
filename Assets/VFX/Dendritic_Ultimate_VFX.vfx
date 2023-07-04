@@ -945,7 +945,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.005
+      m_SerializableObject: 0.02
     m_Space: 2147483647
   m_Property:
     name: Delay
@@ -2169,7 +2169,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 16
+      m_SerializableObject: 64
     m_Space: 2147483647
   m_Property:
     name: Count
@@ -2203,7 +2203,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.75
+      m_SerializableObject: 1
     m_Space: 2147483647
   m_Property:
     name: Delay
@@ -2715,7 +2715,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615334}
   - {fileID: 8926484042661615510}
   dataType: 0
-  capacity: 16
+  capacity: 64
   stripCapacity: 1
   particlePerStripCount: 128
   needsComputeBounds: 0
@@ -2742,10 +2742,10 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661615302}
   m_OutputSlots: []
-  m_Disabled: 1
+  m_Disabled: 0
   compositionPosition: 0
   compositionDirection: 0
-  positionMode: 0
+  positionMode: 1
   spawnMode: 0
 --- !u!114 &8926484042661615302
 MonoBehaviour:
@@ -2774,7 +2774,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.TArcSphere, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":90.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":5.0},"arc":6.2831854820251469}'
+      m_SerializableObject: '{"sphere":{"transform":{"position":{"x":0.0,"y":0.0,"z":0.0},"angles":{"x":0.0,"y":0.0,"z":90.0},"scale":{"x":1.0,"y":1.0,"z":1.0}},"radius":10.0},"arc":6.283185005187988}'
     m_Space: 0
   m_Property:
     name: arcSphere
@@ -3677,7 +3677,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 15
+      m_SerializableObject: 5
     m_Space: 2147483647
   m_Property:
     name: Size
@@ -3773,7 +3773,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 2.25
+      m_SerializableObject: 2.75
     m_Space: 2147483647
   m_Property:
     name: Lifetime
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661615482}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   compositionPosition: 0
   compositionDirection: 0
   positionMode: 1
