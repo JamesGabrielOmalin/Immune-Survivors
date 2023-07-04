@@ -67,18 +67,17 @@ public class Dendritic_UltimateSpec : AbilitySpec
             enemy.TakeDamage(999999);
         }
 
+        GameManager.instance.HUD.SetActive(true);
+        player.EnableHUD(true);
+
         // I AM RECLAIMER OF MY NAME
         // BORN IN FLAMES
         // I HAVE BEEN BLESSED
         // MY FAMILY CREST IS A DEMON OF DEATH
 
-        yield return new WaitForSeconds(1f);
         playable.Stop();
         CurrentCD = ability.Cooldown;
         owner.StartCoroutine(UpdateCD());
-
-        GameManager.instance.HUD.SetActive(true);
-        player.EnableHUD(true);
     }
 
     public override void EndAbility()
