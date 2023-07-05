@@ -290,7 +290,7 @@ MonoBehaviour:
   - {fileID: 4002297421443341154}
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
-  spawnArea: {fileID: 0}
+  spawnArea: {fileID: 3513502392179373562}
   maxSpawnDistance: 25
   initialAmountToSpawn: 3
   spawnInterval: 60

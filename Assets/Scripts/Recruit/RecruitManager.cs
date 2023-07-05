@@ -71,7 +71,6 @@ public class RecruitManager : MonoBehaviour
         float angle;
         Vector3 dir;
         player = GameManager.instance.Player;
-        Debug.Log(player.transform.position);
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
