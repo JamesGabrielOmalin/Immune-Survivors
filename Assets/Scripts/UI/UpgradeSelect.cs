@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UpgradeManager;
 
 public class UpgradeSelect : MonoBehaviour
 {
     [SerializeField] private List<UpgradeButton> buttons = new();
-    
+    [SerializeField] private List<Effect> bonusEffects = new();
+
     public PlayerUnitType UnitToUpgrade { get; private set; }
 
     // Start is called before the first frame update
@@ -30,6 +32,9 @@ public class UpgradeSelect : MonoBehaviour
         {
             buttons[i].SetUpgrade(effects[i]);
         }
+
+        //Get bonus effects
+        bonusEffects = UpgradeManager.instance.GetBonusUpgrades(UnitToUpgrade);
     }
 
     public void ApplyUpgrade(int index)
@@ -37,6 +42,13 @@ public class UpgradeSelect : MonoBehaviour
         var playerAbilitySystem = GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).GetComponent<AbilitySystem>();
         playerAbilitySystem.ApplyEffectToSelf(buttons[index].Upgrade);
 
+        if (bonusEffects != null)
+        {
+            for (int i = 0; i < bonusEffects.Count; i++)
+            {
+                playerAbilitySystem.ApplyEffectToSelf(bonusEffects[i]);
+            }
+        }
         GameManager.instance.ResumeGameTime();
     }
 }
