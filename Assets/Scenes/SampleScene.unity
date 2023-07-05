@@ -354,33 +354,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
         type: 3}
-      propertyPath: spawnInterval
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
-        type: 3}
-      propertyPath: maxSpawnDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
-        type: 3}
-      propertyPath: enemyKillThreshold
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
-        type: 3}
-      propertyPath: thresholdMultiplier
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
-        type: 3}
-      propertyPath: initialAmountToSpawn
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
-        type: 3}
       propertyPath: EnableThresholdSpawning
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
+        type: 3}
+      propertyPath: amountToSpawnPerInterval
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 738b5a5d052bc46479a8865e9c12d0d4, type: 3}
@@ -1463,53 +1443,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3014bc9a7099f24aafbb60c0485c47b, type: 3}
---- !u!1 &939677785
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 939677786}
-  - component: {fileID: 939677787}
-  m_Layer: 0
-  m_Name: Helper T-Cell Pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &939677786
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939677785}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1068886569}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &939677787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939677785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8129888467831877975, guid: b3b129f271ad6d44784ad01e80d415e1,
-    type: 3}
-  amountToPool: 50
 --- !u!1001 &955074752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1569,8 +1502,173 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
         type: 3}
+      propertyPath: neutrophilUpgrades.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: neutrophilUpgrades.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
       propertyPath: neutrophilBonusUpgrades.Array.size
-      value: 0
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[0].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[1].level
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[2].level
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[3].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[4].level
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[5].level
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[6].level
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[7].level
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[8].level
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[0].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[1].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[2].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[3].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[4].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[5].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[6].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[7].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: dendriticBonusUpgrades.Array.data[8].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[0].level
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[1].level
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[2].level
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[3].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[4].level
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[5].level
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[6].level
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[7].level
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[8].level
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
         type: 3}
@@ -1604,6 +1702,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
         type: 3}
+      propertyPath: neutrophilBonusUpgrades.Array.data[6].level
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: neutrophilBonusUpgrades.Array.data[7].level
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: neutrophilBonusUpgrades.Array.data[8].level
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[0].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[1].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[2].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[3].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[4].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[5].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[6].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[7].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: macrophageBonusUpgrades.Array.data[8].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
       propertyPath: neutrophilBonusUpgrades.Array.data[0].effect
       value: 
       objectReference: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b,
@@ -1612,7 +1779,7 @@ PrefabInstance:
         type: 3}
       propertyPath: neutrophilBonusUpgrades.Array.data[1].effect
       value: 
-      objectReference: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b,
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
         type: 2}
     - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
         type: 3}
@@ -1624,7 +1791,7 @@ PrefabInstance:
         type: 3}
       propertyPath: neutrophilBonusUpgrades.Array.data[3].effect
       value: 
-      objectReference: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b,
+      objectReference: {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c,
         type: 2}
     - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
         type: 3}
@@ -1635,6 +1802,24 @@ PrefabInstance:
     - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
         type: 3}
       propertyPath: neutrophilBonusUpgrades.Array.data[5].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: neutrophilBonusUpgrades.Array.data[6].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: neutrophilBonusUpgrades.Array.data[7].effect
+      value: 
+      objectReference: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008,
+        type: 2}
+    - target: {fileID: 2791951278686124531, guid: fa6784fcb4363994286ee9e71e07c260,
+        type: 3}
+      propertyPath: neutrophilBonusUpgrades.Array.data[8].effect
       value: 
       objectReference: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b,
         type: 2}
@@ -1780,59 +1965,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa6784fcb4363994286ee9e71e07c260, type: 3}
---- !u!1 &1068886567
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1068886569}
-  - component: {fileID: 1068886568}
-  m_Layer: 0
-  m_Name: AdaptiveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1068886568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068886567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20661e28ca1de054191e9a252e385724, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  helperTCellPool: {fileID: 939677787}
-  BCellPool: {fileID: 1717896775}
-  cytokinePool: {fileID: 2069046899}
-  antibodyPool: {fileID: 1621054140}
-  maxSpawnDistance: 50
---- !u!4 &1068886569
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068886567}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 939677786}
-  - {fileID: 1717896774}
-  - {fileID: 2069046898}
-  - {fileID: 1621054139}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1266950974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,53 +2012,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1621054138
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1621054139}
-  - component: {fileID: 1621054140}
-  m_Layer: 0
-  m_Name: Antibody Pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1621054139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621054138}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1068886569}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1621054140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621054138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8617547465759212648, guid: ebbf36cdec29f59468adb96aa502a520,
-    type: 3}
-  amountToPool: 200
 --- !u!1 &1637117211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4782505582870041322, guid: b14db034bf5041e4ea95646289373afb,
@@ -1951,53 +2036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1610add71f017974eb8e3df304d5d7db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1717896773
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1717896774}
-  - component: {fileID: 1717896775}
-  m_Layer: 0
-  m_Name: B-Cell Pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1717896774
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717896773}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1068886569}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1717896775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717896773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToPool: {fileID: 918492881687531126, guid: 3881a649237b1db4cab6d9a3b6cb8209,
-    type: 3}
-  amountToPool: 50
 --- !u!1 &1885406450
 GameObject:
   m_ObjectHideFlags: 0
@@ -2103,53 +2141,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2069046897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2069046898}
-  - component: {fileID: 2069046899}
-  m_Layer: 0
-  m_Name: Cytokine Pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2069046898
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069046897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1068886569}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2069046899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069046897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8617547465759212648, guid: 80730e2d1e5a0f647b105115c6b2a5d2,
-    type: 3}
-  amountToPool: 200
 --- !u!1001 &584201453907741648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3361,6 +3352,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b14db034bf5041e4ea95646289373afb, type: 3}
+--- !u!1001 &6946645628360153016
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528145, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6946645628266528159, guid: b4c857cf42873e04488d2791944a1bfb,
+        type: 3}
+      propertyPath: m_Name
+      value: AdaptiveManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b4c857cf42873e04488d2791944a1bfb, type: 3}
 --- !u!1001 &8277621339131384281
 PrefabInstance:
   m_ObjectHideFlags: 0

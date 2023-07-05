@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Attack Range Up
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Attack Range Up
-  <Description>k__BackingField: Increases attack range by 5%
+  <Description>k__BackingField: Increases attack range by 10%
   <Modifiers>k__BackingField:
   - <Name>k__BackingField: Attack Range
     <Modifier>k__BackingField:
-      <Value>k__BackingField: 0.05
+      <Value>k__BackingField: 0.1
       <Type>k__BackingField: 1
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
