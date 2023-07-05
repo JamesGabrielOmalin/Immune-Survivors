@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2791951278686124530
+--- !u!1 &3979749221571735994
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2791951278686124532}
-  - component: {fileID: 2791951278686124531}
+  - component: {fileID: 3979749221571735996}
+  - component: {fileID: 3979749221571735995}
   m_Layer: 0
   m_Name: UpgradeManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2791951278686124532
+--- !u!4 &3979749221571735996
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2791951278686124530}
+  m_GameObject: {fileID: 3979749221571735994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,36 +32,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2791951278686124531
+--- !u!114 &3979749221571735995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2791951278686124530}
+  m_GameObject: {fileID: 3979749221571735994}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2de072fd4550a744e9aea9b5acec5251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeScreen: {fileID: 0}
+  levelUpgrade: {fileID: 11400000, guid: e56a91cf9d8c7b7468e3ebcd465fe008, type: 2}
   neutrophilUpgrades:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
-  - {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
-  - {fileID: 11400000, guid: 55918d60f87cdee4497353f702d61b29, type: 2}
-  - {fileID: 11400000, guid: d6bb0395c6e9b5242b1e3cdf193d998a, type: 2}
+  neutrophilBonusUpgrades:
+  - level: 1
+    effect: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
+  - level: 2
+    effect: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
+  - level: 3
+    effect: {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
   macrophageUpgrades:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
-  - {fileID: 11400000, guid: c75c8b91edd821942b4872ef50fe4a95, type: 2}
-  - {fileID: 11400000, guid: 0f1fca09c5982db4e845ea8d2a535ec7, type: 2}
-  - {fileID: 11400000, guid: 7d688eb2a69d1f64989b204ee6493de8, type: 2}
+  macrophageBonusUpgrades: []
   dendriticUpgrades:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
-  - {fileID: 11400000, guid: 49dafa52d46139048a58a658cd35fe24, type: 2}
-  - {fileID: 11400000, guid: b744c8d5785e14141ad9bed3113bef2b, type: 2}
+  dendriticBonusUpgrades: []

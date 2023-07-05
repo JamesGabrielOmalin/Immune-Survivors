@@ -8,7 +8,9 @@ public class RecruitManager : MonoBehaviour
 
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
-    
+    GameObject player;
+
+
     [Header("Base Spawning Attributes")]
     [SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
@@ -65,18 +67,19 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
-        GameObject player = GameManager.instance.Player;
+        player = GameManager.instance.Player;
+        Debug.Log(player.transform.position);
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
             float angle = Random.Range(0f, 360f);
             Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
+            Vector3 spawnPoint = player.transform.position + (dir * Random.Range(20f, maxSpawnDistance));
 
-            if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            {
-                spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            }
+            //if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+            //{
+            //    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+            //}
             
             PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
             float rand = Random.value;
