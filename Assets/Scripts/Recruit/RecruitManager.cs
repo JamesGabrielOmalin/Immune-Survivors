@@ -12,6 +12,7 @@ public class RecruitManager : MonoBehaviour
 
 
     [Header("Base Spawning Attributes")]
+    [SerializeField] private BoxCollider spawnArea;
     [SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
 
@@ -67,20 +68,25 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
+        float angle;
+        Vector3 dir;
         player = GameManager.instance.Player;
         Debug.Log(player.transform.position);
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
-            float angle = Random.Range(0f, 360f);
-            Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = player.transform.position + (dir * Random.Range(20f, maxSpawnDistance));
+            angle = Random.Range(0f, 360f);
+
+            dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+
+            spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
 
             //if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
             //{
             //    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
             //}
-            
+
             PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
             float rand = Random.value;
 
@@ -99,6 +105,15 @@ public class RecruitManager : MonoBehaviour
 
             SpawnRecruit(spawnPoint, toSpawn);
         }
+    }
+
+    private Vector3 RandomPointInBounds(Bounds bounds)
+    {
+        return new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y),
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
     }
 
     public void SpawnRecruit(Vector3 position, PlayerUnitType type)
