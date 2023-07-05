@@ -148,6 +148,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1017346715513677961, guid: 655e229485e6cbe4fa52258464f1f262,
         type: 3}
+    - target: {fileID: 1817928188801238589, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 7ab97bad628bdd0409bff8afdd034385, type: 2}
     - target: {fileID: 2060257187554495769, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: mobilityAbility

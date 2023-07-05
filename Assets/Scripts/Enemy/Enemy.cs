@@ -147,12 +147,13 @@ public class Enemy : Unit
     private IEnumerator DoT(float damage, float duration, float tickRate)
     {
         float t = 0f;
+        float tick = 1f / tickRate;
 
         while (t < duration)
         {
             TakeDamage(damage);
-            t += tickRate;
-            yield return new WaitForSeconds(tickRate);
+            t += tick;
+            yield return new WaitForSeconds(tick);
         }
 
         dotCoroutine = null;

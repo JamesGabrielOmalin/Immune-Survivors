@@ -2,8 +2,8 @@ Shader "Custom/BillboardSprite_Unlit"
 {
     Properties
     { 
-        [PerRendererData]_MainTex("Texture", 2D) = "white" {}
-        [PerRendererData]_ColorMask("Color Mask", 2D) = "white" {}
+        _MainTex("Texture", 2D) = "white" {}
+        _ColorMask("Color Mask", 2D) = "white" {}
 
         [Header(Alpha)]
         [Toggle(_UseAlphaClipping)]_UseAlphaClipping("UseAlphaClipping", Float) = 0

@@ -38,6 +38,11 @@ public class Dendritic_UltimateSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
+        GameManager.instance.HUD.SetActive(false);
+        var player = GameManager.instance.Player.GetComponent<Player>();
+
+        player.EnableHUD(false);
+
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
@@ -47,7 +52,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         GameManager.instance.PauseGameTime();
         // I AM THE STORM THAT IS APPROACHING
         yield return wait;
-        GameManager.instance.UnpauseGameTime();
+        GameManager.instance.ResumeGameTime();
         // PROVOKING
         // BLACK CLOUDS IN ISOLATION
 
@@ -62,12 +67,14 @@ public class Dendritic_UltimateSpec : AbilitySpec
             enemy.TakeDamage(999999);
         }
 
+        GameManager.instance.HUD.SetActive(true);
+        player.EnableHUD(true);
+
         // I AM RECLAIMER OF MY NAME
         // BORN IN FLAMES
         // I HAVE BEEN BLESSED
         // MY FAMILY CREST IS A DEMON OF DEATH
 
-        yield return new WaitForSeconds(1f);
         playable.Stop();
         CurrentCD = ability.Cooldown;
         owner.StartCoroutine(UpdateCD());

@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerUnit neutrophil;
     [SerializeField] private PlayerUnit macrophage;
     [SerializeField] private PlayerUnit dendritic;
+    [SerializeField] private GameObject neutrophilHUD;
+    [SerializeField] private GameObject macrophageHUD;
+    [SerializeField] private GameObject dendriticHUD;
 
     [Header("Slots")]
     [SerializeField] private Transform activeSlot;
@@ -18,9 +21,10 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform slot2;
 
     private PlayerUnit activeUnit;
+    private GameObject activeHUD;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
 
     private Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -37,14 +41,20 @@ public class Player : MonoBehaviour
             case PlayerUnitType.Neutrophil:
                 RecruitUnit(neutrophil);
                 activeUnit = neutrophil;
+                neutrophilHUD.SetActive(true);
+                activeHUD = neutrophilHUD;
                 break;
             case PlayerUnitType.Macrophage:
                 RecruitUnit(macrophage);
                 activeUnit = macrophage;
+                macrophageHUD.SetActive(true);
+                activeHUD = macrophageHUD;
                 break;
             case PlayerUnitType.Dendritic:
                 RecruitUnit(dendritic);
                 activeUnit = dendritic;
+                dendriticHUD.SetActive(true);
+                activeHUD = dendriticHUD;
                 break;
         }
     }
@@ -154,5 +164,10 @@ public class Player : MonoBehaviour
             PlayerUnitType.Dendritic => dendritic,
             _ => null,
         };
+    }
+
+    public void EnableHUD(bool enabled)
+    {
+        activeHUD.SetActive(enabled);
     }
 }

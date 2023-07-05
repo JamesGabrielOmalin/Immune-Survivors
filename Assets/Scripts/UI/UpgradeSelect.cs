@@ -5,9 +5,7 @@ using UnityEngine;
 public class UpgradeSelect : MonoBehaviour
 {
     [SerializeField] private List<UpgradeButton> buttons = new();
-    [SerializeField] private List<Effect> bonusEffects = new();
-
-
+    
     public PlayerUnitType UnitToUpgrade { get; private set; }
 
     // Start is called before the first frame update
@@ -32,27 +30,13 @@ public class UpgradeSelect : MonoBehaviour
         {
             buttons[i].SetUpgrade(effects[i]);
         }
-
-        //Get bonus effects
-        bonusEffects = UpgradeManager.instance.GetBonusUpgrades(UnitToUpgrade);
-
     }
 
     public void ApplyUpgrade(int index)
     {
         var playerAbilitySystem = GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).GetComponent<AbilitySystem>();
-
-        // Apply selected Effects
         playerAbilitySystem.ApplyEffectToSelf(buttons[index].Upgrade);
 
-        // Apply Bonus Effects
-        if (bonusEffects != null)
-        {
-            for (int i = 0; i < bonusEffects.Count; i++)
-            {
-                playerAbilitySystem.ApplyEffectToSelf(bonusEffects[i]);
-            }
-        }
-        GameManager.instance.UnpauseGameTime();
+        GameManager.instance.ResumeGameTime();
     }
 }
