@@ -23,8 +23,6 @@ public class GraphicsSettings : MonoBehaviour
     [SerializeField] private TMP_Dropdown fpsDropdown;
     [SerializeField] private TMP_Dropdown vsyncDropdown;
 
-    [SerializeField] private UniversalRenderPipelineAsset asset;
-
     private static GraphicsSettingsData settings = new();
 
     private void Awake()
