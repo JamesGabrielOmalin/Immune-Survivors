@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class DendriticSlash : MonoBehaviour
 {
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private SpriteRenderer sprite;
+    //[SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private VisualEffect vfx;
+
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
@@ -21,11 +24,13 @@ public class DendriticSlash : MonoBehaviour
 
     private IEnumerator Slash()
     {
-        WaitForSeconds wait = new(0.25f / slashCount);
+        WaitForSeconds wait = new(1f / slashCount);
+        vfx.SetInt("Count", slashCount);
+        vfx.Play();
 
         for (int i = 0; i < slashCount; i++)
         {
-            sprite.gameObject.SetActive(false);
+            //sprite.gameObject.SetActive(false);
             float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
             var hits = Physics.OverlapSphere(transform.position, slashSize, layerMask.value);
@@ -39,10 +44,10 @@ public class DendriticSlash : MonoBehaviour
             }
 
             yield return wait;
-            sprite.gameObject.SetActive(true);
-            yield return null;
+            //sprite.gameObject.SetActive(true);
         }
 
+        yield return null;
         Destroy(this.gameObject);
         yield break;
     }
