@@ -19,6 +19,8 @@ public class AbilitySet : MonoBehaviour
     public AbilitySpec Mobility { get; private set; }
     public AbilitySpec Ultimate { get; private set; }
 
+    public bool CanUseBasicAttack { get; private set; } = true;
+
     [Header("UI")]
     [SerializeField] private Image mobilityCDIcon;
     [SerializeField] private Image ultimateCDIcon;
@@ -56,6 +58,11 @@ public class AbilitySet : MonoBehaviour
         {
             ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
         }
+    }
+
+    public void EnableBasicAttack(bool enabled)
+    {
+        CanUseBasicAttack = enabled;
     }
 
     //public void Ultimate(InputAction.CallbackContext context)

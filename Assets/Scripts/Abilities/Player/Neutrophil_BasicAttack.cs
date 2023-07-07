@@ -64,7 +64,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         yield return new WaitForSeconds(1 / attackSpeed.Value);
 
         // start shooting
-        Shoot();
+        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            Shoot();
 
         yield break;
     }
