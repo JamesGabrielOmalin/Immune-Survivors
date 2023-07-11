@@ -49,7 +49,6 @@ public class GraphicsSettings : MonoBehaviour
             resolutions.Add(new($"{res.width} x {res.height}"));
         }
 
-        resolutions.Reverse();
         resolutionDropdown.AddOptions(resolutions);
         resolutionDropdown.value = settings.resolution;
 
@@ -95,9 +94,9 @@ public class GraphicsSettings : MonoBehaviour
     public void SetDisplayMode(int index)
     {
         if (settings.displayMode == 0)
-            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow);
         else
-            Screen.fullScreenMode = FullScreenMode.Windowed;
+            Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.Windowed);
 
         settings.displayMode = index;
     }
