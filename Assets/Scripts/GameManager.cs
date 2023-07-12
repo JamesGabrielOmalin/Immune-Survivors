@@ -74,12 +74,15 @@ public class GameManager : MonoBehaviour
     {
         WaitForSeconds wait = new(1f);
         
-        while (GameTime.TotalSeconds < TimeToWin)
+        while (GameTime.Seconds < TimeToWin)
         {
             yield return wait;
-            GameTime.Add(System.TimeSpan.FromSeconds(1));
+            GameTime = GameTime.Add(System.TimeSpan.FromSeconds(1f));
+            Debug.Log(GameTime.Seconds);
         }
 
+        Debug.Log("Check win");
         //Do win here
+        EnemyManager.instance.OnMinInfectionReached?.Invoke();
     }
 }
