@@ -57,7 +57,8 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         yield return new WaitForSeconds(1 / attackSpeed.Value);
 
         // start consume
-        Consume();
+        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            Consume();
 
         yield return new WaitForSeconds(1f);
 

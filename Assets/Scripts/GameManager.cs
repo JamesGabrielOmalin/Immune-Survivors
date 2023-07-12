@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     public bool GamePaused { get; private set; }
 
+    public System.Action OnGamePaused;
+    public System.Action OnGameResumed;
+
     private void Awake()
     {
         if (instance == null)
@@ -53,6 +56,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         GamePaused = true;
+
+        OnGamePaused?.Invoke();
     }
 
     public void ResumeGame()
@@ -60,6 +65,8 @@ public class GameManager : MonoBehaviour
         if (!GameTimePaused)
             Time.timeScale = 1f;
         GamePaused = false;
+
+        OnGameResumed?.Invoke();
     }
 
     private IEnumerator GameTimer()

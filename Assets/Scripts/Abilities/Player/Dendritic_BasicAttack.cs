@@ -54,7 +54,8 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         yield return new WaitForSeconds(1 / attackSpeed.Value);
 
         // start slashing
-        Slash();
+        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            Slash();
 
         yield break;
     }
