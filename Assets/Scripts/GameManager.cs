@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public GameObject HUD { get; private set; }
 
     public System.TimeSpan GameTime { get; private set; }
+    public float TimeToWin;
 
     public bool GameTimePaused { get; private set; }
 
@@ -73,10 +74,12 @@ public class GameManager : MonoBehaviour
     {
         WaitForSeconds wait = new(1f);
         
-        while (this)
+        while (GameTime.TotalSeconds < TimeToWin)
         {
             yield return wait;
             GameTime.Add(System.TimeSpan.FromSeconds(1));
         }
+
+        //Do win here
     }
 }
