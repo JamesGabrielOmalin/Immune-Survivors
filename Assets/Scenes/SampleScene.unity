@@ -404,6 +404,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
+        type: 3}
+      propertyPath: amountToSpawn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
+        type: 3}
+      propertyPath: enemyKillThreshold
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
+        type: 3}
+      propertyPath: thresholdMultiplier
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 738b5a5d052bc46479a8865e9c12d0d4, type: 3}
 --- !u!1 &564047145 stripped

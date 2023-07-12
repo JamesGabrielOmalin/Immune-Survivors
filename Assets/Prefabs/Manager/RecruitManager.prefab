@@ -281,7 +281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4002297422348402742}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3095878314a635842b1bffe3f4e15280, type: 3}
   m_Name: 
@@ -291,11 +291,11 @@ MonoBehaviour:
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
   spawnArea: {fileID: 3513502392179373562}
-  maxSpawnDistance: 25
   initialAmountToSpawn: 3
+  EnableIntervalSpawning: 0
   spawnInterval: 60
   amountToSpawnPerInterval: 5
   EnableThresholdSpawning: 1
-  enemyKillThreshold: 10
-  thresholdMultiplier: 2
-  amountToSpawn: 5
+  enemyKillThreshold: 3
+  thresholdMultiplier: 1.5
+  amountToSpawn: 3

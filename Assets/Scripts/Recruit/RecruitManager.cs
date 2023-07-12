@@ -13,10 +13,12 @@ public class RecruitManager : MonoBehaviour
 
     [Header("Base Spawning Attributes")]
     [SerializeField] private BoxCollider spawnArea;
-    [SerializeField] private int maxSpawnDistance;
+    //[SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
 
     [Header(" Timed Spawning")]
+    [SerializeField] private bool EnableIntervalSpawning = false;
+
     [SerializeField] private float spawnInterval;
     [SerializeField] private int amountToSpawnPerInterval;
 
@@ -24,7 +26,7 @@ public class RecruitManager : MonoBehaviour
     [Header(" Threshold Spawning")]
     [SerializeField] private bool EnableThresholdSpawning = false;
     [SerializeField] private int enemyKillThreshold;
-    [SerializeField] private int thresholdMultiplier;
+    [SerializeField] private float thresholdMultiplier;
     [SerializeField] private int amountToSpawn;
 
 
@@ -51,8 +53,12 @@ public class RecruitManager : MonoBehaviour
     private void Start()
     {
         SpawnRecruitBatch(initialAmountToSpawn);
-        StartCoroutine(SpawnCoroutine());
 
+        if (EnableIntervalSpawning)
+        {
+            StartCoroutine(SpawnCoroutine());
+
+        }
 
     }
 
@@ -125,6 +131,7 @@ public class RecruitManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Recruit Spawned");
         activeRecruits.Add(recruit);
     }
 
@@ -146,7 +153,9 @@ public class RecruitManager : MonoBehaviour
 
             if (thresholdMultiplier != 0)
             {
-                enemyKillThreshold *= thresholdMultiplier;
+                float newVal = (float)enemyKillThreshold *thresholdMultiplier;
+
+                enemyKillThreshold = (int)newVal;
             }
         }
     }
