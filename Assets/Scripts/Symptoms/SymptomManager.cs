@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SymptomManager : MonoBehaviour
 {
+    public GameObject player;
     public static SymptomManager instance;
+    [SerializeField] private List<Symptom> SymptomList;
 
     private void Awake()
     {
@@ -19,6 +21,14 @@ public class SymptomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ActivateSymptoms();
+    }
+
+    private void ActivateSymptoms()
+    {
+        foreach (Symptom smptm in SymptomList) 
+        {
+            StartCoroutine(smptm.SymptomCoroutine());
+        }
     }
 }
