@@ -54,14 +54,14 @@ public class Symptom : ScriptableObject
             case SymptomEffectType.Knockback:
 
                 Collider[] colliderArray = Physics.OverlapSphere(player.transform.position, SymptomRadius, LayerMask.GetMask("Enemy"));
-                foreach(Collider collider in colliderArray)
+                foreach(GameObject enemy in EnemyManager.instance.activeEnemies)
                 {
                     //Debug.Log(collider.name);
-                    Vector3 dir = collider.transform.position - player.transform.position;
+                    //Vector3 dir = collider.transform.position - player.transform.position;
 
-                    if (collider.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                    if (enemy.TryGetComponent<Rigidbody>(out Rigidbody rb))
                     {
-                        rb.AddForce(dir.normalized * KnockbackIntensity, ForceMode.Impulse);
+                        rb.AddForce(Vector3.right * KnockbackIntensity, ForceMode.Impulse);
                     }
                      
                 }

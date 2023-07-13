@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Cough
   m_EditorClassIdentifier: 
   Name: Cough
-  ActivationDelay: 10
-  ActivationType: 1
   EffectType: 1
   SymptomRadius: 5
+  ActivationDelay: 10
+  ActivationType: 1
+  KnockbackIntensity: 10

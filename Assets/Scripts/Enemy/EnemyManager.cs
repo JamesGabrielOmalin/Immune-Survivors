@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance;
 
     [SerializeField] private List<ObjectPool> enemyPools = new();
-    private readonly List<GameObject> activeEnemies = new();
+    public List<GameObject> activeEnemies = new();
 
     public int InfectionRate => activeEnemies.FindAll(enemy => enemy.activeInHierarchy).Count;
     [field: Header("Infection")]
