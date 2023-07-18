@@ -893,9 +893,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
-  - {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
-  - {fileID: 11400000, guid: 55918d60f87cdee4497353f702d61b29, type: 2}
   - {fileID: 11400000, guid: d6bb0395c6e9b5242b1e3cdf193d998a, type: 2}
+  - {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
   macrophageUpgrades:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}

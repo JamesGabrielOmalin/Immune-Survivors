@@ -199,4 +199,4 @@ MonoBehaviour:
   EnableThresholdSpawning: 1
   enemyKillThreshold: 5
   thresholdMultiplier: 2
-  amountToSpawn: 5
+  amountToSpawn: 1

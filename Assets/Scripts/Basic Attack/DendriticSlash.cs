@@ -13,12 +13,10 @@ public class DendriticSlash : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public int slashCount;
-    [HideInInspector] public float slashSize;
 
     // Start is called before the first frame update
     private void Start()
     {
-        transform.localScale = Vector3.one * slashSize;
         StartCoroutine(Slash());
     }
 
@@ -33,7 +31,7 @@ public class DendriticSlash : MonoBehaviour
             //sprite.gameObject.SetActive(false);
             float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
-            var hits = Physics.OverlapSphere(transform.position, slashSize, layerMask.value);
+            var hits = Physics.OverlapSphere(transform.position, transform.localScale.x, layerMask.value);
 
             foreach (var hit in hits)
             {

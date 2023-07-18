@@ -25,11 +25,11 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     public Attribute attackDamage;
     public Attribute attackSpeed;
     public Attribute attackRange;
+    public Attribute attackCount;
+    public Attribute attackSize;
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
-    public Attribute slashCount;
-    public Attribute slashSize;
     #endregion Attributes
 
     // constructor
@@ -83,12 +83,11 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         DendriticSlash slash = projectile.GetComponent<DendriticSlash>();
 
         // Snapshot attributes
-        projectile.name = projectile.name + "(0)";
         slash.attackDamage = attackDamage.Value;
         slash.critRate = critRate.Value;
         slash.critDMG = critDMG.Value;
-        slash.slashCount = (int)slashCount.Value;
-        slash.slashSize = slashSize.Value;
+        slash.slashCount = (int)attackCount.Value;
+        slash.transform.localScale = Vector3.one * attackSize.Value;
     }
 
     // Cache all attributes required by this ability
@@ -103,8 +102,8 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
         knockbackPower = attributes.GetAttribute("Knockback Power");
-        slashCount = attributes.GetAttribute("Slash Count");
-        slashSize = attributes.GetAttribute("Slash Size");
+        attackCount = attributes.GetAttribute("Attack Count");
+        attackSize = attributes.GetAttribute("Attack Size");
 
         basicAttack = ability as Dendritic_BasicAttack;
     }

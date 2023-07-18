@@ -26,11 +26,14 @@ public class UpgradeManager : MonoBehaviour
 
     public Effect[] GetRandomUpgrades(PlayerUnitType type)
     {
+        Player player = GameManager.instance.Player.GetComponent<Player>();
+        PlayerUnit unit = player.GetUnit(type);
+
         return type switch
         {
-            PlayerUnitType.Neutrophil => neutrophilUpgrades.GenerateRandom(3).ToArray(),
-            PlayerUnitType.Macrophage => macrophageUpgrades.GenerateRandom(3).ToArray(),
-            PlayerUnitType.Dendritic => dendriticUpgrades.GenerateRandom(3).ToArray(),
+            PlayerUnitType.Neutrophil => neutrophilUpgrades.Where(x => (x.EffectType == EffectType.Weapon && player.CanEquipWeapon()) || (x.EffectType == EffectType.Buff && unit.CanBeUpgraded())).ToList().GenerateRandom(3).ToArray(),
+            PlayerUnitType.Macrophage => macrophageUpgrades.Where(x => (x.EffectType == EffectType.Weapon && player.CanEquipWeapon()) || (x.EffectType == EffectType.Buff && unit.CanBeUpgraded())).ToList().GenerateRandom(3).ToArray(),
+            PlayerUnitType.Dendritic => dendriticUpgrades.Where(x => (x.EffectType == EffectType.Weapon && player.CanEquipWeapon()) || (x.EffectType == EffectType.Buff && unit.CanBeUpgraded())).ToList().GenerateRandom(3).ToArray(),
             _ => null,
         };
     }

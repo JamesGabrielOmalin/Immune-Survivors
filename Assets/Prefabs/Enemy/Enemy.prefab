@@ -282,6 +282,9 @@ MonoBehaviour:
   - <Name>k__BackingField: Move Speed
     baseValue: 1
     <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: Armor
+    baseValue: 1
+    <Modifiers>k__BackingField: []
 --- !u!135 &8586607718445055313
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -70,82 +70,37 @@ PrefabInstance:
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.size
-      value: 16
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
-      propertyPath: Attributes.Array.data[3].baseValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[5].baseValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[8].baseValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[10].baseValue
+      propertyPath: Attributes.Array.data[19].baseValue
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
-      propertyPath: Attributes.Array.data[11].baseValue
+      propertyPath: Attributes.Array.data[20].baseValue
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
-      propertyPath: Attributes.Array.data[12].baseValue
+      propertyPath: Attributes.Array.data[21].baseValue
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
-      propertyPath: Attributes.Array.data[13].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[14].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[15].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[10].<Name>k__BackingField
+      propertyPath: Attributes.Array.data[19].<Name>k__BackingField
       value: DoT Amount
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
-      propertyPath: Attributes.Array.data[11].<Name>k__BackingField
+      propertyPath: Attributes.Array.data[20].<Name>k__BackingField
       value: DoT Duration
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
-      propertyPath: Attributes.Array.data[12].<Name>k__BackingField
+      propertyPath: Attributes.Array.data[21].<Name>k__BackingField
       value: DoT Tick Rate
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[13].<Name>k__BackingField
-      value: Type_1 DMG Bonus
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[14].<Name>k__BackingField
-      value: Type_2 DMG Bonus
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[15].<Name>k__BackingField
-      value: Type_3 DMG Bonus
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361875, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}

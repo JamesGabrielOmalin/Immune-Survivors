@@ -7,6 +7,8 @@ public class Enemy : Unit
     private Attribute MaxHP;
     private Attribute HP;
     private Attribute AttackSpeed;
+    private Attribute Armor;
+    private Attribute moveSpeed;
 
     public bool IsDead => HP.Value <= 0f;
 
@@ -35,6 +37,8 @@ public class Enemy : Unit
         MaxHP = attributes.GetAttribute("Max HP");
         HP = attributes.GetAttribute("HP");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
+        Armor = attributes.GetAttribute("Armor");
+        moveSpeed = attributes.GetAttribute("Move Speed");
 
         HP.BaseValue = MaxHP.Value;
 
@@ -63,7 +67,7 @@ public class Enemy : Unit
 
     public void TakeDamage(float amount)
     {
-        HP.BaseValue -= amount;
+        HP.BaseValue -= (amount - Armor.Value);
         //Debug.Log("Damage taken: "+ HP.BaseValue);
 
         if (HP.Value <= 0f)

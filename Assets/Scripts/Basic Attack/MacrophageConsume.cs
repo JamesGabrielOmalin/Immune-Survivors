@@ -8,6 +8,7 @@ public class MacrophageConsume : MonoBehaviour
 
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float attackRange;
+    [HideInInspector] public float attackSize;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public float knockbackPower;
@@ -18,8 +19,6 @@ public class MacrophageConsume : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        transform.localScale = Vector3.one * attackRange;
-
         StartCoroutine(Consume());
     }
 
@@ -27,7 +26,7 @@ public class MacrophageConsume : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        var hits = Physics.OverlapSphere(transform.position, attackRange, layerMask);
+        var hits = Physics.OverlapSphere(transform.position, attackSize, layerMask);
 
         float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 

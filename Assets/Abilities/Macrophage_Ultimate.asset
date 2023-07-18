@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 30
+  <AbilityType>k__BackingField: 2
   <Duration>k__BackingField: 15

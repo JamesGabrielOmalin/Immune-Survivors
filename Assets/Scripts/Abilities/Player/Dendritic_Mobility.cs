@@ -23,8 +23,11 @@ public class Dendritic_MobilitySpec : AbilitySpec
     }
 
     private Dendritic_Mobility mobility;
+
+    private AttributeSet attributes;
     private Attribute attackDamage;
     private Attribute critDMG;
+    private Attribute CDReduction;
 
     public bool IsDashing { get; private set; } = false;
 
@@ -98,7 +101,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
         // If no enemy was killed, do not reset CD
         if (!resetCD)
         {
-            CurrentCD = ability.Cooldown;
+            CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
             owner.StartCoroutine(UpdateCD());
         }
 
@@ -119,8 +122,10 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
     private void Init()
     {
-        attackDamage = owner.GetComponent<AttributeSet>().GetAttribute("Attack Damage");
-        critDMG = owner.GetComponent<AttributeSet>().GetAttribute("Critical Damage");
+        attributes = owner.GetComponent<AttributeSet>();
+        attackDamage = attributes.GetAttribute("Attack Damage");
+        critDMG = attributes.GetAttribute("Critical Damage");
+        CDReduction = attributes.GetAttribute("CD Reduction");
 
         mobility = ability as Dendritic_Mobility;
     }

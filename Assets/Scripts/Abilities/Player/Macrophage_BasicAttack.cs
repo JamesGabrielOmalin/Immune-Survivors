@@ -26,6 +26,8 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
     public Attribute attackDamage;
     public Attribute attackSpeed;
     public Attribute attackRange;
+    public Attribute attackSize;
+    public Attribute attackCount;
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
@@ -88,15 +90,17 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         MacrophageConsume consumeComp = consume.GetComponent<MacrophageConsume>();
 
         // Set attributes
-        consume.name = consumeComp.name + "(0)";
         consumeComp.attackDamage = attackDamage.Value;
         consumeComp.attackRange = attackRange.Value;
+        consumeComp.attackSize = attackSize.Value;
         consumeComp.critRate = critRate.Value;
         consumeComp.critDMG = critDMG.Value;
         consumeComp.knockbackPower = knockbackPower.Value;
         consumeComp.dot = dotAmount.Value;
         consumeComp.duration = dotDuration.Value;
         consumeComp.tickRate = dotTickRate.Value;
+
+        consumeComp.transform.localScale = Vector3.one * attackSize.Value;
     }
 
     // Cache all attributes required by this ability
@@ -110,6 +114,8 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         critDMG = attributes.GetAttribute("Critical Damage");
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
+        attackSize = attributes.GetAttribute("Attack Size");
+        attackCount = attributes.GetAttribute("Attack Count");
         knockbackPower = attributes.GetAttribute("Knockback Power");
         dotAmount = attributes.GetAttribute("DoT Amount");
         dotDuration = attributes.GetAttribute("DoT Duration");

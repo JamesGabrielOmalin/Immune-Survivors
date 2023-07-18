@@ -22,7 +22,9 @@ public class Neutrophil_MobilitySpec : AbilitySpec
         Init();
     }
 
+    private AttributeSet attributes;
     private Attribute moveSpeed;
+    private Attribute CDReduction;
 
     public bool IsDashing { get; private set; } = false;
 
@@ -33,7 +35,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        CurrentCD = ability.Cooldown;
+        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
         owner.StartCoroutine(UpdateCD());
 
         float tick = 0f;
@@ -66,6 +68,8 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
     private void Init()
     {
-        moveSpeed = owner.GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        attributes = owner.GetComponent<AttributeSet>();
+        moveSpeed = attributes.GetAttribute("Move Speed");
+        CDReduction = attributes.GetAttribute("CD Reduction");
     }
 }

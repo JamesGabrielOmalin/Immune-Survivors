@@ -8,9 +8,19 @@ public class AbilitySystem : MonoBehaviour
     public List<EffectSpec> GrantedEffects = new();
     public List<EffectSpec> GrantedEffectsWithDuration = new();
 
+    public List<AbilitySpec> GetAbilitiesOfType(AbilityType type)
+    {
+        return GrantedAbilities.FindAll((abilitySpec) => abilitySpec.ability.AbilityType == type);
+    }
+
     public void GrantAbility(AbilitySpec spec)
     {
         GrantedAbilities.Add(spec);
+    }
+
+    public void RemoveAbility(AbilitySpec spec)
+    {
+        GrantedAbilities.Remove(spec);
     }
 
     public void ApplyEffectToSelf(Effect effect)
