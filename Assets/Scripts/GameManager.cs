@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public System.TimeSpan GameTime { get; private set; }
     public float TimeToWin;
+    public TMP_Text Timer;
 
     public bool GameTimePaused { get; private set; }
 
@@ -78,6 +80,9 @@ public class GameManager : MonoBehaviour
         {
             yield return wait;
             GameTime = GameTime.Add(System.TimeSpan.FromSeconds(1f));
+
+            //Text can only go to 60 minutes iirc. Might have to refactor if we're planning to add an infinite mode.
+            Timer.text = GameTime.ToString(@"mm\:ss");
         }
 
         //Do win here
