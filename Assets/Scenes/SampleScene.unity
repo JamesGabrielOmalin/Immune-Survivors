@@ -2633,6 +2633,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5129527484565684711, guid: b14db034bf5041e4ea95646289373afb,
+        type: 3}
+      propertyPath: Attributes.Array.data[0].<Modifiers>k__BackingField.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b14db034bf5041e4ea95646289373afb, type: 3}
 --- !u!1001 &4828031028795960396

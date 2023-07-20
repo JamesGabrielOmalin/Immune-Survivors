@@ -10,11 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0891c2ce9f6ad4c4b810cb2af5f32699, type: 3}
-  m_Name: Cough
+  m_Name: Fever
   m_EditorClassIdentifier: 
   Name: 
   ActivationDelay: 0
   ActivationType: 0
-  symptomEffects:
-  - {fileID: 11400000, guid: 1bf7b39082f4b734f98fc5d20c493b6b, type: 2}
-  - {fileID: 0}
+  symptomEffects: []

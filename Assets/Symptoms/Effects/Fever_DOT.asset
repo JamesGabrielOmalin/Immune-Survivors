@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0891c2ce9f6ad4c4b810cb2af5f32699, type: 3}
-  m_Name: Cough
+  m_Script: {fileID: 11500000, guid: 7a675bbeb6961ba4aa710b60fc3483dc, type: 3}
+  m_Name: Fever_DOT
   m_EditorClassIdentifier: 
-  Name: 
+  EffectType: 0
   ActivationDelay: 0
   ActivationType: 0
-  symptomEffects:
-  - {fileID: 11400000, guid: 1bf7b39082f4b734f98fc5d20c493b6b, type: 2}
-  - {fileID: 0}
+  KnockbackIntensity: 0
+  DotDamage: 0
+  DotDuration: 0
+  DotTickRate: 0
+  MoveSpeedBuffAmount: 0
+  MoveSpeedBuffDuration: 0

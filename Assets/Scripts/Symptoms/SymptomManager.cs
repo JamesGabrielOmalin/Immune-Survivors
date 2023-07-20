@@ -26,9 +26,12 @@ public class SymptomManager : MonoBehaviour
 
     private void ActivateSymptoms()
     {
-        foreach (Symptom smptm in SymptomList) 
+        foreach (Symptom smp in SymptomList) 
         {
-            StartCoroutine(smptm.SymptomCoroutine());
+            foreach(SymptomEffect se in smp.symptomEffects)
+            {
+                StartCoroutine(se.SymptomCoroutine());
+            }
         }
     }
 }

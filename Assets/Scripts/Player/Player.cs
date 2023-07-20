@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class Player : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private PlayerInput input;
+    [SerializeField] private PlayerMovement playerMovement;
+
     [Header("Units")]
     [SerializeField] private PlayerUnit neutrophil;
     [SerializeField] private PlayerUnit macrophage;
@@ -134,12 +137,12 @@ public class Player : MonoBehaviour
         return activeUnit;
     }
 
-    public void ApplyBuffs(AntigenType type, AttributeModifier mod, float duration)
+    public void ApplyAntigenBuffs(AntigenType type, AttributeModifier mod, float duration)
     {
-        StartCoroutine(BuffCoroutine(type, mod, duration));
+        StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
-    private IEnumerator BuffCoroutine(AntigenType type, AttributeModifier mod, float duration)
+    private IEnumerator AntigenBuffCoroutine(AntigenType type, AttributeModifier mod, float duration)
     {
         var n = neutrophil.attributes.GetAttribute(type.ToString() + " DMG Bonus");
         var m = macrophage.attributes.GetAttribute(type.ToString() + " DMG Bonus");
@@ -153,6 +156,32 @@ public class Player : MonoBehaviour
         n.RemoveModifier(mod);
         m.RemoveModifier(mod);
         d.RemoveModifier(mod);
+    }
+
+    public void ApplyMoveSpeedBuff(AttributeModifier mod, float duration)
+    {
+        StartCoroutine(MoveSpeedBuffCoroutine(mod, duration));
+    }
+
+    private IEnumerator MoveSpeedBuffCoroutine(AttributeModifier mod, float duration)
+    {
+        var n = neutrophil.attributes.GetAttribute("Move Speed");
+        var m = macrophage.attributes.GetAttribute("Move Speed");
+        var d = dendritic.attributes.GetAttribute("Move Speed");
+
+        n.AddModifier(mod);
+        m.AddModifier(mod);
+        d.AddModifier(mod);
+
+        playerMovement.UpdateMoveSpeed();
+
+        yield return new WaitForSeconds(duration);
+
+        n.RemoveModifier(mod);
+        m.RemoveModifier(mod);
+        d.RemoveModifier(mod);
+
+        playerMovement.UpdateMoveSpeed();
     }
 
     public PlayerUnit GetUnit(PlayerUnitType type)
