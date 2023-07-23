@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        weapons.Add(activeUnit.AbilitySet.BasicAttack.ability);
+        //weapons.Add(activeUnit.AbilitySet.BasicAttack.ability);
     }
 
     private void Start()
