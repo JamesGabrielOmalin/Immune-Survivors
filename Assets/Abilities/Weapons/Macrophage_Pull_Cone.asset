@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beee71142d0ae834c881628bd7a2904b, type: 3}
-  m_Name: Neutrophil_Stab
+  m_Script: {fileID: 11500000, guid: 8bf7214cda5149642874d88f6c3df107, type: 3}
+  m_Name: Macrophage_Pull_Cone
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 0
   <AbilityType>k__BackingField: 0
-  <Range>k__BackingField: 2.5
+  <AttackInterval>k__BackingField: 1
+  <KnockbackPower>k__BackingField: 5
+  <PullType>k__BackingField: 1

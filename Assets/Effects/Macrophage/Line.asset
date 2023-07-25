@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
-  m_Name: DoT Tick Rate Up
+  m_Name: Line
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: DoT Tick Rate Up
-  <Description>k__BackingField: Increase DoT tick rate by 10%
-  <Modifiers>k__BackingField:
-  - <Name>k__BackingField: DoT Tick Rate
-    <Modifier>k__BackingField:
-      <Value>k__BackingField: 10
-      <Type>k__BackingField: 1
+  <Name>k__BackingField: Phagocytosis (Line)
+  <Description>k__BackingField: Peforms Phagocytosis in a straight line
+  <EffectType>k__BackingField: 1
+  <Modifiers>k__BackingField: []
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
+  <Abilities>k__BackingField:
+  - {fileID: 11400000, guid: 807535f6b7e14ac4da570b5661f38f4d, type: 2}

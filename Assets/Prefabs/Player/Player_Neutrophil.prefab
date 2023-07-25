@@ -62,21 +62,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[18].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[18].<Name>k__BackingField
-      value: Type_3 DMG Bonus
-      objectReference: {fileID: 0}
     - target: {fileID: 487672917330361875, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_Name

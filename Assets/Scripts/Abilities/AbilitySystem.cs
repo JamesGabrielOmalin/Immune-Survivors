@@ -8,6 +8,16 @@ public class AbilitySystem : MonoBehaviour
     public List<EffectSpec> GrantedEffects = new();
     public List<EffectSpec> GrantedEffectsWithDuration = new();
 
+    public AbilitySpec GetAbility(Ability ability)
+    {
+        return GrantedAbilities.Find((spec) => spec.ability == ability);
+    }
+
+    public bool HasAbility(Ability ability)
+    {
+        return GrantedAbilities.Find((spec) => spec.ability == ability) != null;
+    }
+
     public List<AbilitySpec> GetAbilitiesOfType(AbilityType type)
     {
         return GrantedAbilities.FindAll((abilitySpec) => abilitySpec.ability.AbilityType == type);

@@ -32,6 +32,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GameTimer());
+
+        if (Player)
+        {
+            var input = Player.GetComponent<PlayerInput>();
+            OnGamePaused += input.DisableControls;
+            OnGameResumed += input.EnableControls;
+        }
     }
 
     private void OnDestroy()

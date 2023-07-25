@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
+      propertyPath: Attributes.Array.data[6].baseValue
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
       propertyPath: Attributes.Array.data[19].baseValue
       value: 1
       objectReference: {fileID: 0}
@@ -134,7 +139,7 @@ PrefabInstance:
         type: 3}
       propertyPath: basicAttackAbility
       value: 
-      objectReference: {fileID: 11400000, guid: ebfa3965b8686a847bca929eb0ecc678,
+      objectReference: {fileID: 11400000, guid: 148b92c110d319c4790a27497323ee4c,
         type: 2}
     - target: {fileID: 5939989266211001594, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}

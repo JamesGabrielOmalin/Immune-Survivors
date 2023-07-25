@@ -14,12 +14,17 @@ public class MacrophageConsume : MonoBehaviour
     [HideInInspector] public float knockbackPower;
     [HideInInspector] public float dot;
     [HideInInspector] public float duration;
-    [HideInInspector] public float tickRate;
+    [HideInInspector] public int tickRate;
 
     // Start is called before the first frame update
-    private void Start()
+    private void OnEnable()
     {
         StartCoroutine(Consume());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private IEnumerator Consume()

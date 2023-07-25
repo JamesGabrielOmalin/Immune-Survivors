@@ -32,10 +32,12 @@ public abstract class AbilitySpec
     {
         this.ability = ability;
         this.owner = owner;
+        this.abilityLevel = 1;
     }
 
     public Ability ability;
     protected AbilitySystem owner;
+    public int abilityLevel;
 
     public bool IsActive { get; private set; } = false;
 

@@ -17,11 +17,6 @@ public class NeutrophilGrenade : Projectile
     [HideInInspector] public float critDMG;
     [HideInInspector] public float slowAmount;
 
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-    }
-
     // Update is called once per frame
     protected override void FixedUpdate()
     {
@@ -38,7 +33,7 @@ public class NeutrophilGrenade : Projectile
 
     private IEnumerator ActivateSlowField()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f / projectileSpeed);
 
         var hits = Physics.OverlapSphere(transform.position, attackSize, layerMask.value);
 
@@ -56,7 +51,7 @@ public class NeutrophilGrenade : Projectile
         yield return LifeSpanCoroutine();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
         startPos = transform.position;
         StartCoroutine(ActivateSlowField());

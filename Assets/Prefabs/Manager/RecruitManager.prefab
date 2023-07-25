@@ -47,6 +47,7 @@ MonoBehaviour:
   objectToPool: {fileID: 1279424398825100236, guid: 546d6a6a836a89647ad1d7f3239cdbce,
     type: 3}
   amountToPool: 100
+  addIfNotEnough: 0
 --- !u!1 &4002297421443341165
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   objectToPool: {fileID: 8043878354346428606, guid: 8d850a4b99e6be14abc57d5439e04a23,
     type: 3}
   amountToPool: 100
+  addIfNotEnough: 0
 --- !u!1 &4002297422147529660
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +143,7 @@ MonoBehaviour:
   objectToPool: {fileID: 9076182199751795779, guid: 43c592dbd971bd84bbb56b115a82b551,
     type: 3}
   amountToPool: 100
+  addIfNotEnough: 0
 --- !u!1 &4002297422348402742
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +195,7 @@ MonoBehaviour:
   - {fileID: 4002297421443341154}
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
-  maxSpawnDistance: 10
+  maxSpawnDistance: 50
   initialAmountToSpawn: 10
   spawnInterval: 10
   amountToSpawnPerInterval: 5

@@ -15,6 +15,12 @@ public class CharacterSelect : MonoBehaviour
         sprite.sprite = sprites[character];
     }
 
+    public void SelectCharacter(int select)
+    {
+        character = select;
+        SelectCharacter();
+    }
+
     public void NextCharacter()
     {
         if (character >= 2)

@@ -14,11 +14,6 @@ public class UpgradeSelect : MonoBehaviour
 
         var effects = UpgradeManager.instance.GetRandomUpgrades(UnitToUpgrade);
 
-        foreach (var effect in effects)
-        {
-
-        }
-
         for (int i = 0; i < effects.Length; i++)
         {
             buttons[i].SetUpgrade(effects[i]);
@@ -30,8 +25,10 @@ public class UpgradeSelect : MonoBehaviour
         //var playerAbilitySystem = GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).GetComponent<AbilitySystem>();
         //playerAbilitySystem.ApplyEffectToSelf(buttons[index].Upgrade);
 
-        GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).AddUpgrade(buttons[index].Upgrade);
+        Effect upgrade = buttons[index].Upgrade;
+        UpgradeManager.instance.AddUpgrade(upgrade, UnitToUpgrade);
 
+        GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).AddUpgrade(upgrade);
         GameManager.instance.ResumeGameTime();
     }
 }

@@ -15,7 +15,7 @@ public class NeutrophilStab : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
 
-    protected void Start()
+    protected void OnEnable()
     {
         StartCoroutine(Stab());
     }

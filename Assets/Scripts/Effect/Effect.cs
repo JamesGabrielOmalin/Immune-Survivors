@@ -90,7 +90,10 @@ public class EffectSpec
 
         foreach (var ability in effect.Abilities)
         {
-            target.GrantAbility(ability.CreateSpec(source));
+            if (!target.HasAbility(ability))
+                target.GrantAbility(ability.CreateSpec(source));
+            else
+                target.GetAbility(ability).abilityLevel++;
         }
     }
 
