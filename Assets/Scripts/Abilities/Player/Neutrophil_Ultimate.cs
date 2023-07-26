@@ -58,20 +58,21 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
-        WaitForSeconds attackInterval = new(0.125f);
-
         float ad = attackDamage.Value;
         float aS = attackSpeed.Value;
         float cr = critRate.Value;
         float cd = critDMG.Value;
-        float knockBack = knockbackPower.Value;
+        float knockBack = knockbackPower.Value / 2f;
+
+        WaitForSeconds attackInterval = new(0.1f);
 
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
 
+        float damage = DamageCalculator.CalcDamage(ad * (1f + aS), cr, cd);
         float kbChance = 0.25f;
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 25; i++)
         {
             var hits = Physics.OverlapSphere(owner.transform.position, 5f);
 
@@ -83,10 +84,10 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
                 Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
 
-                enemy.TakeDamage(DamageCalculator.CalcDamage(ad * aS, cr, cd));
+                enemy.TakeDamage(damage);
 
-                // 25% chance to apply knockback every other hits
-                if (i % 2 == 0 && Random.value <= kbChance)
+                // 25% chance to apply knockback every hit
+                if (Random.value <= kbChance)
                     enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
             }
 

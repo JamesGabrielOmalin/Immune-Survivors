@@ -4,8 +4,40 @@ using UnityEngine;
 
 public class CharacterSelect : MonoBehaviour
 {
-    public void SelectCharacter(int type)
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private List<Sprite> sprites = new();
+
+    private int character = 0;
+
+    private void SelectCharacter()
     {
-        Player.toSpawn = (PlayerUnitType)type;
+        Player.toSpawn = (PlayerUnitType)character;
+        sprite.sprite = sprites[character];
+    }
+
+    public void SelectCharacter(int select)
+    {
+        character = select;
+        SelectCharacter();
+    }
+
+    public void NextCharacter()
+    {
+        if (character >= 2)
+            character = 0;
+        else
+            character++;
+
+        SelectCharacter();
+    }
+
+    public void PreviousCharacter()
+    {
+        if (character <= 0)
+            character = 2;
+        else
+            character--;
+
+        SelectCharacter();
     }
 }

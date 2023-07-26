@@ -12,8 +12,6 @@ public enum NeutrophilAttackType
 [CreateAssetMenu(fileName = "Neutrophil_BasicAttack", menuName = "Ability System/Abilities/Neutrophil Basic Attack")]
 public class Neutrophil_BasicAttack : Ability
 {
-    public GameObject projectilePrefab;
-
     public NeutrophilAttackType type = NeutrophilAttackType.Radial;
 
     public override AbilitySpec CreateSpec(AbilitySystem owner)
@@ -35,13 +33,12 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
     public Attribute attackDamage;
     public Attribute attackSpeed;
     public Attribute attackRange;
+    public Attribute attackSize;
+    public Attribute attackCount;
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
-    public Attribute projectileCount;
-    public Attribute projectileSpeed;
-    public Attribute projectileLifespan;
-    public Attribute accuracy;
+
     #endregion Attributes
 
     public Neutrophil_BasicAttackSpec(Neutrophil_BasicAttack ability, AbilitySystem owner) : base(ability, owner)
@@ -98,28 +95,25 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         switch (basicAttack.type)
         {
             case NeutrophilAttackType.Spread:
-                angle = -(projectileCount.Value * spreadFactor)/2;
+                angle = -(attackCount.Value * spreadFactor)/2;
                 angleSteps = spreadFactor;
                 break;
 
             case NeutrophilAttackType.Radial:
                 angle = 0;
-                angleSteps = 360f / projectileCount.Value;
+                angleSteps = 360f / attackCount.Value;
                 break;
         }
 
         Vector3 targetPos = target.transform.position;
 
-        // Calculate accuracy offset
-        float offsetX = Random.Range(-1f, 1f) * (1 - accuracy.Value);
-        float offsetZ = Random.Range(-1f, 1f) * (1 - accuracy.Value);
-        Vector3 accuracyOffset = new Vector3(offsetX, 0f, offsetZ).normalized;
-
         // Apply accuracy Offset
-        Vector3 newTargetPos = targetPos + accuracyOffset;
+        Vector3 newTargetPos = targetPos;
         newTargetPos.y = owner.transform.position.y;
 
-        for (int i = 0; i < projectileCount.Value; i++)
+        int attackCountValue = (int)attackCount.Value;
+
+        for (int i = 0; i < attackCountValue; i++)
         {
             GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
             if (bulletObject == null)
@@ -131,9 +125,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
             bullet.attackDamage = attackDamage.Value;
             bullet.critRate = critRate.Value;
             bullet.critDMG = critDMG.Value;
-            bullet.projectileSpeed = projectileSpeed.Value;
-            bullet.lifeSpan = projectileLifespan.Value;
             bullet.knockbackPower = knockbackPower.Value;
+            bullet.transform.localScale = Vector3.one * attackSize.Value;
 
             // Calculate for the direction 
             Vector3 direction = (newTargetPos - owner.transform.position).normalized;
@@ -165,11 +158,9 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         critDMG = attributes.GetAttribute("Critical Damage");
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
+        attackCount = attributes.GetAttribute("Attack Count");
+        attackSize = attributes.GetAttribute("Attack Size");
         knockbackPower = attributes.GetAttribute("Knockback Power");
-        projectileCount = attributes.GetAttribute("Projectile Count");
-        projectileSpeed = attributes.GetAttribute("Projectile Speed");
-        projectileLifespan = attributes.GetAttribute("Projectile Lifespan");
-        accuracy = attributes.GetAttribute("Accuracy");
 
         basicAttack = ability as Neutrophil_BasicAttack;
         bullets = GameObject.Find("Neutrophil Bullet Pool").GetComponentInChildren<ObjectPool>();

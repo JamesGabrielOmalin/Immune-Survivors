@@ -53,6 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilitySystem: {fileID: 487672917330361869}
   attributes: {fileID: 487672917330361874}
+  player: {fileID: 0}
   <AbilitySet>k__BackingField: {fileID: 2060257187554495769}
   <UnitType>k__BackingField: 0
 --- !u!114 &487672917330361869
@@ -108,6 +109,9 @@ MonoBehaviour:
   - <Name>k__BackingField: HP
     baseValue: 100
     <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: HP Regen
+    baseValue: 1
+    <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Attack Damage
     baseValue: 5
     <Modifiers>k__BackingField: []
@@ -117,6 +121,12 @@ MonoBehaviour:
   - <Name>k__BackingField: Attack Range
     baseValue: 20
     <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: Attack Count
+    baseValue: 1
+    <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: Attack Size
+    baseValue: 1
+    <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Critical Rate
     baseValue: 0.05
     <Modifiers>k__BackingField: []
@@ -124,10 +134,19 @@ MonoBehaviour:
     baseValue: 1.5
     <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Knockback Power
-    baseValue: 5
+    baseValue: 1
+    <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: CD Reduction
+    baseValue: 0
     <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Move Speed
     baseValue: 3.5
+    <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: Armor
+    baseValue: 0
+    <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: Dash Range
+    baseValue: 1
     <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Type_1 DMG Bonus
     baseValue: 1

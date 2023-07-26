@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum AbilityType
+{
+    BasicAttack,
+    Ability,
+    Ultimate
+}
+
 public abstract class Ability : ScriptableObject
 {  
     /// <summary>
@@ -14,6 +21,8 @@ public abstract class Ability : ScriptableObject
     /// </summary>
     [field: SerializeField] public float Cooldown { get; private set; }
 
+    [field: SerializeField] public AbilityType AbilityType { get; private set; }
+
     public abstract AbilitySpec CreateSpec(AbilitySystem owner);
 }
 
@@ -23,10 +32,12 @@ public abstract class AbilitySpec
     {
         this.ability = ability;
         this.owner = owner;
+        this.abilityLevel = 1;
     }
 
-    protected Ability ability;
+    public Ability ability;
     protected AbilitySystem owner;
+    public int abilityLevel;
 
     public bool IsActive { get; private set; } = false;
 

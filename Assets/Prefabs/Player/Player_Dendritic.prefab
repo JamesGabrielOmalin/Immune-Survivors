@@ -501,66 +501,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[5].baseValue
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[10].baseValue
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[11].baseValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[12].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[13].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[14].baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[10].<Name>k__BackingField
-      value: Slash Count
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[11].<Name>k__BackingField
-      value: Slash Size
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[12].<Name>k__BackingField
-      value: Type_1 DMG Bonus
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[13].<Name>k__BackingField
-      value: Type_2 DMG Bonus
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[14].<Name>k__BackingField
-      value: Type_3 DMG Bonus
-      objectReference: {fileID: 0}
     - target: {fileID: 487672917330361875, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_Name
@@ -598,7 +538,7 @@ PrefabInstance:
         type: 3}
       propertyPath: basicAttackAbility
       value: 
-      objectReference: {fileID: 11400000, guid: b7ffe10a6d9e0184183c5321c5399ad2,
+      objectReference: {fileID: 11400000, guid: 8b0047722f9fcf14292fc98f9e89b3d5,
         type: 2}
     - target: {fileID: 5939989266211001594, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}

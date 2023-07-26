@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform slot1;
     [SerializeField] private Transform slot2;
 
+    [SerializeField] private List<Ability> weapons = new();
+
     private PlayerUnit activeUnit;
     private GameObject activeHUD;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
 
     private Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -57,6 +59,8 @@ public class Player : MonoBehaviour
                 activeHUD = dendriticHUD;
                 break;
         }
+
+        //weapons.Add(activeUnit.AbilitySet.BasicAttack.ability);
     }
 
     private void Start()
@@ -169,5 +173,15 @@ public class Player : MonoBehaviour
     public void EnableHUD(bool enabled)
     {
         activeHUD.SetActive(enabled);
+    }
+
+    public void AddWeapon(Effect weapon)
+    {
+        weapons.Add(weapon.Abilities[0]);
+    }
+
+    public bool CanEquipWeapon()
+    {
+        return weapons.Count < 3;
     }
 }

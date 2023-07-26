@@ -24,14 +24,14 @@ public class PlayerInput : MonoBehaviour
         DisableControls();
     }
     
-    private void EnableControls()
+    public void EnableControls()
     {
         if (Controls == null)
             Controls = new();
         Controls.Enable();
     }
 
-    private void DisableControls()
+    public void DisableControls()
     {
         if (Controls == null)
             return;

@@ -29,6 +29,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
     public Attribute dotAmount;
     public Attribute dotDuration;
     public Attribute dotTickRate;
+    public Attribute CDReduction;
 
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
@@ -82,7 +83,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         dotAmount.RemoveModifier(dotMod);
         dotDuration.RemoveModifier(dotMod);
 
-        CurrentCD = ability.Cooldown;
+        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
         owner.StartCoroutine(UpdateCD());
 
         yield break;
@@ -100,5 +101,6 @@ public class Macrophage_UltimateSpec : AbilitySpec
         dotAmount = attributes.GetAttribute("DoT Amount");
         dotDuration = attributes.GetAttribute("DoT Duration");
         dotTickRate = attributes.GetAttribute("DoT Tick Rate");
+        CDReduction = attributes.GetAttribute("CD Reduction");
     }
 }

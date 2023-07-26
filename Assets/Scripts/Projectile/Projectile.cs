@@ -8,17 +8,17 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed;
 
     // Start is called before the first frame update
-    private void Start()
+    protected virtual void OnEnable()
     {
         StartCoroutine(LifeSpanCoroutine());
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         transform.position += transform.forward * (projectileSpeed * Time.fixedDeltaTime);
     }
 
-    private IEnumerator LifeSpanCoroutine()
+    protected IEnumerator LifeSpanCoroutine()
     {
         yield return new WaitForSeconds(lifeSpan);
         this.gameObject.SetActive(false);
