@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 10
+  <AbilityType>k__BackingField: 1
   <MoveSpeedBonus>k__BackingField: 0.5
   <Duration>k__BackingField: 5

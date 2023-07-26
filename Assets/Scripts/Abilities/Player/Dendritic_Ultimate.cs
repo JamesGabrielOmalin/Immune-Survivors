@@ -20,10 +20,11 @@ public class Dendritic_Ultimate : Ability
 
 public class Dendritic_UltimateSpec : AbilitySpec
 {
-    public AttributeSet attributes;
-    public Attribute level;
+    private AttributeSet attributes;
+    private Attribute level;
+    private Attribute CDReduction;
 
-    Dendritic_Ultimate ult;
+    private Dendritic_Ultimate ult;
 
     public Dendritic_UltimateSpec(Dendritic_Ultimate ability, AbilitySystem owner) : base(ability, owner)
     {
@@ -76,7 +77,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         // MY FAMILY CREST IS A DEMON OF DEATH
 
         playable.Stop();
-        CurrentCD = ability.Cooldown;
+        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
         owner.StartCoroutine(UpdateCD());
     }
 
@@ -90,6 +91,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         attributes = owner.GetComponent<AttributeSet>();
 
         level = attributes.GetAttribute("Level");
+        CDReduction = attributes.GetAttribute("CD Reduction");
 
         ult = ability as Dendritic_Ultimate;
     }

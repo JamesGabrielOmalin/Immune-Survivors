@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EffectType
+{
+    Buff,
+    Weapon,
+}
+
 public enum EffectDurationType
 {
     Infinite,
@@ -15,17 +21,20 @@ public class EffectModifier
     [field: SerializeField] public AttributeModifier Modifier { get; private set; }
 }
 
-
 [CreateAssetMenu(fileName = "Effect", menuName = "Ability System/Effect")]
 public class Effect : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
+    [field: SerializeField] public EffectType EffectType { get; private set; }
     [field: SerializeField] public List<EffectModifier> Modifiers { get; private set; }
 
     [field: Header("Duration")]
     [field: SerializeField] public EffectDurationType DurationType { get; private set; }
     [field: SerializeField] public float Duration { get; private set; }
+
+    [field: Header("Ability")]
+    [field: SerializeField] public List<Ability> Abilities { get; private set; }
 
     public EffectSpec CreateSpec(AbilitySystem source, AbilitySystem target)
     {
@@ -42,7 +51,7 @@ public class EffectSpec
         this.source = source;
         this.target = target;
 
-        ApplyModifiers();
+        Apply();
     }
 
     public Effect effect;
@@ -50,7 +59,8 @@ public class EffectSpec
     public AbilitySystem target;
     public float CurrentDuration { get; protected set; }
 
-    private List<EffectModifier> appliedModifiers = new();
+    private readonly List<EffectModifier> appliedModifiers = new();
+    private readonly List<AbilitySpec> grantedAbilities = new();
 
     public virtual void Update()
     {
@@ -63,7 +73,7 @@ public class EffectSpec
             Expire();
     }
 
-    private void ApplyModifiers()
+    private void Apply()
     {
         AttributeSet attributes = target.GetComponent<AttributeSet>();
 
@@ -77,9 +87,17 @@ public class EffectSpec
             attribute.AddModifier(mod.Modifier);
             appliedModifiers.Add(mod);
         }
+
+        foreach (var ability in effect.Abilities)
+        {
+            if (!target.HasAbility(ability))
+                target.GrantAbility(ability.CreateSpec(source));
+            else
+                target.GetAbility(ability).abilityLevel++;
+        }
     }
 
-    private void RemoveModifiers()
+    private void Remove()
     {
         AttributeSet attributes = target.GetComponent<AttributeSet>();
 
@@ -94,10 +112,17 @@ public class EffectSpec
         }
 
         appliedModifiers.Clear();
+
+        foreach (var ability in grantedAbilities)
+        {
+            target.RemoveAbility(ability);
+        }
+
+        grantedAbilities.Clear();
     }
 
     public virtual void Expire()
     {
-        RemoveModifiers();
+        Remove();
     }
 }

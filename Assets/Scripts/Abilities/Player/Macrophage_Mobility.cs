@@ -25,7 +25,9 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
     private Macrophage_Mobility mobility;
 
+    private AttributeSet attributes;
     private Attribute moveSpeed;
+    private Attribute CDReduction;
 
     public override IEnumerator ActivateAbility()
     {
@@ -47,7 +49,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
         sprite.material.renderQueue = 2450;
         sprite.color = Color.white;
 
-        CurrentCD = ability.Cooldown;
+        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
         owner.StartCoroutine(UpdateCD());
     }
 
@@ -59,7 +61,10 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
     private void Init()
     {
-        moveSpeed = owner.GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        attributes = owner.GetComponent<AttributeSet>();
+        moveSpeed = attributes.GetAttribute("Move Speed");
+        CDReduction = attributes.GetAttribute("CD Reduction");
+
         mobility = ability as Macrophage_Mobility;
     }
 }

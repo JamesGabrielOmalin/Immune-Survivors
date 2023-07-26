@@ -8,6 +8,7 @@ public class ObjectPool : MonoBehaviour
     [Header("Pooling")]
     [SerializeField] private GameObject objectToPool;
     [SerializeField] private int amountToPool;
+    [SerializeField] private bool addIfNotEnough;
 
     public readonly List<GameObject> objectPool = new();
 
@@ -16,18 +17,35 @@ public class ObjectPool : MonoBehaviour
         PoolObjects();
     }
 
-    private async void PoolObjects()
+    private void PoolObjects()
+    {
+        for (int i = 0; i < amountToPool; i++)
+        {
+            PoolObject();
+        }
+    }
+
+    private GameObject PoolObject()
+    {
+        GameObject instance = Instantiate(objectToPool, transform);
+        instance.SetActive(false);
+        objectPool.Add(instance);
+
+        return instance;
+    }
+
+    private async void PoolObjects_Async()
     {
         var tasks = new Task[amountToPool];
         for (int i = 0; i < amountToPool; i++)
         {
-            tasks[i] = PoolObject();
+            tasks[i] = PoolObjectAsync();
         }
 
         await Task.WhenAll(tasks);
     }
 
-    private async Task PoolObject()
+    private async Task PoolObjectAsync()
     {
         GameObject instance = Instantiate(objectToPool, transform);
         instance.SetActive(false);
@@ -40,7 +58,11 @@ public class ObjectPool : MonoBehaviour
     {
         GameObject obj = objectPool.Find(obj => !obj.activeInHierarchy);
         if (obj == null)
-            return null;
+        {
+            if (!addIfNotEnough)
+                return null;
+            obj = PoolObject();
+        }
 
         obj.transform.position = position;
         obj.SetActive(true);
