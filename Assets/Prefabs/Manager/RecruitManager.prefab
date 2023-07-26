@@ -196,7 +196,7 @@ MonoBehaviour:
   - {fileID: 4002297421443341154}
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
-  spawnArea: {fileID: 0}
+  spawnArea: {fileID: 892362681589872101}
   initialAmountToSpawn: 10
   EnableIntervalSpawning: 0
   spawnInterval: 10
