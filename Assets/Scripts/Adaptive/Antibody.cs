@@ -15,9 +15,8 @@ public class Antibody : Projectile, IBodyColliderListener
             if (enemy.Type == this.Type)
             {
                 float duration = AntigenManager.instance.GetAntigenCount(Type) * 0.01f;
-                enemy.ApplyStun(AntigenManager.instance.GetAntigenCount(Type) * 0.01f);
+                enemy.ApplyStun(duration);
                 this.gameObject.SetActive(false);
-                Debug.Log("Apply stun");
             }
         }
     }

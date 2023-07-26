@@ -51,7 +51,7 @@ public class MacrophagePull : MonoBehaviour
                 hits = Physics.OverlapSphere(transform.position, 2f * attackSize, layer.value);
                 break;
             case MacrophagePullType.Circle:
-                hits = Physics.OverlapSphere(transform.position, (attackSize + attackRange), layer.value);
+                hits = Physics.OverlapSphere(transform.position, 5f * attackSize, layer.value);
                 break;
         }
 
