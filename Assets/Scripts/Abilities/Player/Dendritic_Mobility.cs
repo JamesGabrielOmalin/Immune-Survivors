@@ -45,8 +45,6 @@ public class Dendritic_MobilitySpec : AbilitySpec
         Vector3 startPos = owner.transform.position;
         Vector3 endPos = startPos + (direction * mobility.DashDistance);
 
-        Debug.Log($"Start: {startPos}, End: {endPos}, Dir: {direction}");
-
         Vector3 rayDir = direction;
         float rayLength = mobility.DashDistance;
 

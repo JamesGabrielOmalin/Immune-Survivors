@@ -67,6 +67,9 @@ public class Enemy : Unit
 
     public void TakeDamage(float amount)
     {
+        if (IsDead)
+            return;
+
         HP.BaseValue -= (amount - Armor.Value);
         //Debug.Log("Damage taken: "+ HP.BaseValue);
 

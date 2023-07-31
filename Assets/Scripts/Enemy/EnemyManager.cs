@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance;
 
     [SerializeField] private List<ObjectPool> enemyPools = new();
-    private readonly List<GameObject> activeEnemies = new();
+    public List<GameObject> activeEnemies = new();
 
     public int InfectionRate => activeEnemies.FindAll(enemy => enemy.activeInHierarchy).Count;
     [field: Header("Infection")]
@@ -162,5 +162,35 @@ public class EnemyManager : MonoBehaviour
         }
 
         return nearest;
+    }
+
+    public GameObject GetFurthestEnemy(Vector3 position, float limit = float.MaxValue)
+    {
+        if (activeEnemies.Count < 1)
+        {
+            return null;
+        }
+
+        float distance;
+
+        GameObject furthest = null;
+        distance = 0f;
+
+        foreach (var unit in activeEnemies)
+        {
+            bool isDead = unit.GetComponent<Enemy>().IsDead;
+            // Skip if unit is inactive or is dead
+            if (!unit.activeInHierarchy || isDead)
+                continue;
+
+            float dist = Vector3.Distance(unit.transform.position, position);
+            if (dist > distance && dist <= limit)
+            {
+                furthest = unit;
+                distance = dist;
+            }
+        }
+
+        return furthest;
     }
 }

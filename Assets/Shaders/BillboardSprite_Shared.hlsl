@@ -123,8 +123,8 @@ Varyings vert(Attributes input)
     //output.positionCS = mul(UNITY_MATRIX_P, viewPos);
     output.positionCS = TransformWorldToHClip(worldPos);
     //output.normalWS = mul(UNITY_MATRIX_V, half3(0, 0, 1));
-    billboardRotation[1] *= -1;
-    output.normalWS = mul(billboardRotation, vertexNormalInput.normalWS);
+    billboardRotation[1] = -billboardRotation[1];
+    output.normalWS = half3(0, 0, -1);
     
     real sign = input.tangentOS.w * GetOddNegativeScale();
     half4 tangentWS = half4(mul(billboardRotation, vertexNormalInput.tangentWS.xyz), sign);

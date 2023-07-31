@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -34,6 +35,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         controller.enabled = false;
+    }
+
+    public void UpdateMoveSpeed()
+    {
+        //moveSpeed = player.GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Move Speed");
     }
 
     // Update is called once per frame

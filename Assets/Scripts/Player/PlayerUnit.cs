@@ -49,18 +49,6 @@ public class PlayerUnit : Unit
 
     public void AddUpgrade(Effect upgrade)
     {
-        if (!CanBeUpgraded())
-            return;
-
-        switch (upgrade.EffectType)
-        {
-            case EffectType.Weapon:
-                player.AddWeapon(upgrade);
-                break;
-            case EffectType.Buff:
-                upgrades.Add(upgrade);
-                break;
-        }
         abilitySystem.ApplyEffectToSelf(upgrade);
     }
 
@@ -75,10 +63,15 @@ public class PlayerUnit : Unit
 
         while (this)
         {
-            foreach (var basicAttack in abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack))
+            var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
+
+            foreach (var basicAttack in attacks)
             {
-                yield return basicAttack.TryActivateAbility();
+                //yield return basicAttack.TryActivateAbility();
+                StartCoroutine(basicAttack.TryActivateAbility());
             }
+
+            yield return new WaitUntil(() => attacks.TrueForAll((attack) => attack.CanActivateAbility()));
         }
     }
 

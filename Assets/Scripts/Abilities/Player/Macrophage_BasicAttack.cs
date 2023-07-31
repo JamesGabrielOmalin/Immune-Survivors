@@ -31,9 +31,6 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
-    public Attribute dotAmount;
-    public Attribute dotDuration;
-    public Attribute dotTickRate;
 
     #endregion Attributes
 
@@ -56,7 +53,7 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         IsAttacking = true;
 
         // Wait before consuming
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        yield return new WaitForSeconds(1f / attackSpeed.Value);
 
         // start consume
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -84,9 +81,7 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
 
         var basicAttack = ability as Macrophage_BasicAttack;
 
-        Vector3 dir = Vector3.Normalize(target.transform.position - owner.transform.position);
-
-        GameObject consume = GameObject.Instantiate(basicAttack.attackPrefab, owner.transform.position + dir, Quaternion.identity, owner.transform);
+        GameObject consume = GameObject.Instantiate(basicAttack.attackPrefab, owner.transform.position, Quaternion.identity, owner.transform);
         MacrophageConsume consumeComp = consume.GetComponent<MacrophageConsume>();
 
         // Set attributes
@@ -96,9 +91,9 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         consumeComp.critRate = critRate.Value;
         consumeComp.critDMG = critDMG.Value;
         consumeComp.knockbackPower = knockbackPower.Value;
-        consumeComp.dot = dotAmount.Value;
-        consumeComp.duration = dotDuration.Value;
-        consumeComp.tickRate = dotTickRate.Value;
+        consumeComp.dot = attackDamage.Value / 4f;
+        consumeComp.duration = 5f;
+        consumeComp.tickRate = (int)attackCount.Value;
 
         consumeComp.transform.localScale = Vector3.one * attackSize.Value;
     }
@@ -117,9 +112,6 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         attackSize = attributes.GetAttribute("Attack Size");
         attackCount = attributes.GetAttribute("Attack Count");
         knockbackPower = attributes.GetAttribute("Knockback Power");
-        dotAmount = attributes.GetAttribute("DoT Amount");
-        dotDuration = attributes.GetAttribute("DoT Duration");
-        dotTickRate = attributes.GetAttribute("DoT Tick Rate");
 
         basicAttack = ability as Macrophage_BasicAttack;
     }

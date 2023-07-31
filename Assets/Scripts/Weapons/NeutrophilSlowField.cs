@@ -10,7 +10,7 @@ public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
 
     private readonly List<Enemy> enemies = new();
 
-    private void Start()
+    private void OnEnable()
     {
         slow = new(slowAmount, AttributeModifierType.Multiply);
     }

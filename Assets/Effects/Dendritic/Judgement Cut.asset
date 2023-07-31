@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
-  m_Name: DoT Duration Up
+  m_Name: Judgement Cut
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: DoT Duration Up
-  <Description>k__BackingField: Increase DoT duration by 1 second
-  <Modifiers>k__BackingField:
-  - <Name>k__BackingField: DoT Duration
-    <Modifier>k__BackingField:
-      <Value>k__BackingField: 1
-      <Type>k__BackingField: 0
+  <Name>k__BackingField: Judgement Cut
+  <Description>k__BackingField: Grants Judgement Cut
+  <EffectType>k__BackingField: 1
+  <Modifiers>k__BackingField: []
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
+  <Abilities>k__BackingField:
+  - {fileID: 11400000, guid: 8b0047722f9fcf14292fc98f9e89b3d5, type: 2}

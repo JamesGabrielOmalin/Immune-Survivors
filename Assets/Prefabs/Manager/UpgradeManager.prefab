@@ -829,6 +829,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &3624086061264950226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,19 +905,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
-  - {fileID: 11400000, guid: d6bb0395c6e9b5242b1e3cdf193d998a, type: 2}
-  - {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
   macrophageUpgrades:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
-  - {fileID: 11400000, guid: c75c8b91edd821942b4872ef50fe4a95, type: 2}
-  - {fileID: 11400000, guid: 0f1fca09c5982db4e845ea8d2a535ec7, type: 2}
-  - {fileID: 11400000, guid: 7d688eb2a69d1f64989b204ee6493de8, type: 2}
   dendriticUpgrades:
   - {fileID: 11400000, guid: 6a8094796ababcd4c9f1f2423bc11281, type: 2}
   - {fileID: 11400000, guid: dcc3344b09f501640ba489fdcf8b332c, type: 2}
   - {fileID: 11400000, guid: e42c77a27f82f254693fe46e49d73bd0, type: 2}
+  neutrophilWeapons:
+  - {fileID: 11400000, guid: 459db27067d2f944787804441c9ec95b, type: 2}
+  - {fileID: 11400000, guid: d6bb0395c6e9b5242b1e3cdf193d998a, type: 2}
+  macrophageWeapons:
+  - {fileID: 11400000, guid: 0f1fca09c5982db4e845ea8d2a535ec7, type: 2}
+  - {fileID: 11400000, guid: c75c8b91edd821942b4872ef50fe4a95, type: 2}
+  dendriticWeapons:
   - {fileID: 11400000, guid: 49dafa52d46139048a58a658cd35fe24, type: 2}
   - {fileID: 11400000, guid: b744c8d5785e14141ad9bed3113bef2b, type: 2}
 --- !u!1 &3355389250892703190
@@ -1327,6 +1341,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &7659132786514062472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,6 +1515,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &9089136767690658083
 MonoBehaviour:

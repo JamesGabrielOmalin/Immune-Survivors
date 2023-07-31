@@ -47,6 +47,7 @@ MonoBehaviour:
   objectToPool: {fileID: 1279424398825100236, guid: 546d6a6a836a89647ad1d7f3239cdbce,
     type: 3}
   amountToPool: 100
+  addIfNotEnough: 0
 --- !u!1 &4002297421443341165
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
   objectToPool: {fileID: 8043878354346428606, guid: 8d850a4b99e6be14abc57d5439e04a23,
     type: 3}
   amountToPool: 100
+  addIfNotEnough: 0
 --- !u!1 &4002297422147529660
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +143,7 @@ MonoBehaviour:
   objectToPool: {fileID: 9076182199751795779, guid: 43c592dbd971bd84bbb56b115a82b551,
     type: 3}
   amountToPool: 100
+  addIfNotEnough: 0
 --- !u!1 &4002297422348402742
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4002297422348402740}
   - component: {fileID: 4002297422348402743}
+  - component: {fileID: 892362681589872101}
   m_Layer: 0
   m_Name: RecruitManager
   m_TagString: Untagged
@@ -192,11 +196,25 @@ MonoBehaviour:
   - {fileID: 4002297421443341154}
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
-  maxSpawnDistance: 10
+  spawnArea: {fileID: 892362681589872101}
   initialAmountToSpawn: 10
+  EnableIntervalSpawning: 0
   spawnInterval: 10
   amountToSpawnPerInterval: 5
   EnableThresholdSpawning: 1
   enemyKillThreshold: 5
   thresholdMultiplier: 2
   amountToSpawn: 1
+--- !u!65 &892362681589872101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4002297422348402742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 100, y: 1, z: 100}
+  m_Center: {x: 0, y: 0, z: 0}
