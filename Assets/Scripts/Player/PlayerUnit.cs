@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PlayerUnitType
 {
@@ -18,6 +19,7 @@ public class PlayerUnit : Unit
     [field:SerializeField] public PlayerUnitType UnitType { get; private set; }
 
     public System.Action OnUnitUpgraded;
+    public System.Action OnDeath;
 
     private List<Effect> upgrades = new();
 
@@ -25,6 +27,10 @@ public class PlayerUnit : Unit
     private Attribute maxHP;
     private Attribute HP;
     private Attribute HPRegen;
+    private Attribute Armor;
+
+    [Header("UI")]
+    [SerializeField] private Slider HPBar;
 
     private void Start()
     {
@@ -32,9 +38,30 @@ public class PlayerUnit : Unit
         maxHP = attributes.GetAttribute("Max HP");
         HP = attributes.GetAttribute("HP");
         HPRegen = attributes.GetAttribute("HP Regen");
+        Armor = attributes.GetAttribute("Armor");
+
+        if (HPBar)
+        {
+            maxHP.OnAttributeModified += delegate { HPBar.maxValue = maxHP.Value; };
+            HP.OnAttributeModified += delegate { HPBar.value = HP.Value; };
+
+            HPBar.maxValue = maxHP.Value;
+            HPBar.value = HP.Value;
+        }
 
         StartCoroutine(Attack());
         StartCoroutine(Regen());
+    }
+
+    public void TakeDamage(float amount)
+    {
+        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add)); 
+        
+        if (HP.Value <= 0f)
+        {
+            //RemoveFromDetectedList();
+            OnDeath?.Invoke();
+        }
     }
 
     public void Upgrade()

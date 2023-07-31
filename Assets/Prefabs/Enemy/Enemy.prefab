@@ -183,10 +183,10 @@ GameObject:
   - component: {fileID: 7887591068935877022}
   - component: {fileID: 6231124011632740226}
   - component: {fileID: 7237207501732077343}
-  - component: {fileID: 8586607718445055313}
   - component: {fileID: 2687134211752357555}
   - component: {fileID: 2459384432141802162}
   - component: {fileID: 1840385973568092237}
+  - component: {fileID: 5881908744751185135}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -275,7 +275,7 @@ MonoBehaviour:
     baseValue: 100
     <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Attack Damage
-    baseValue: 1
+    baseValue: 10
     <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Attack Speed
     baseValue: 1
@@ -286,19 +286,6 @@ MonoBehaviour:
   - <Name>k__BackingField: Armor
     baseValue: 1
     <Modifiers>k__BackingField: []
---- !u!135 &8586607718445055313
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6412926399263074992}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &2687134211752357555
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -342,3 +329,16 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
+--- !u!135 &5881908744751185135
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412926399263074992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
