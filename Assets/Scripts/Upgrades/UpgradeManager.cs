@@ -46,7 +46,8 @@ public class UpgradeManager : MonoBehaviour
                 grantedEffects[unit].Add(effect);
                 break;
             case EffectType.Weapon:
-                grantedWeapons.Add(effect);
+                if (!grantedWeapons.Contains(effect))
+                    grantedWeapons.Add(effect);
                 break;
         }
     }
