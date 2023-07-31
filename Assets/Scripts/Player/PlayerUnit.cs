@@ -64,6 +64,12 @@ public class PlayerUnit : Unit
         }
     }
 
+    public void Heal(float amount)
+    {
+        HP.ApplyInstantModifier(new(amount, AttributeModifierType.Add));
+        HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, maxHP.Value);
+    }
+
     public void Upgrade()
     {
         OnUnitUpgraded?.Invoke();

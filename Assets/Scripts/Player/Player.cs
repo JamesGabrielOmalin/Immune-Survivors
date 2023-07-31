@@ -71,6 +71,11 @@ public class Player : MonoBehaviour
 
     public void RecruitUnit(PlayerUnit recruit)
     {
+        if (activeUnit)
+        {
+            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value / 4f);
+        }
+
         // If already recruit, upgrade instead
         if (unitRecruited[recruit.UnitType])
         {
