@@ -39,10 +39,16 @@ public class NeutrophilGrenade : Projectile
 
         foreach (var hit in hits)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
+            //Enemy enemy = hit.GetComponent<Enemy>();
 
-            float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-            enemy.TakeDamage(damage);
+            if (hit.TryGetComponent<Enemy>(out Enemy enemy))
+            {
+                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+            }
+
+            //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+            //enemy.TakeDamage(damage);
         }
 
         slowField.SetActive(true);

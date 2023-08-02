@@ -15,7 +15,6 @@ public class DendriticSlash : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
 
-    // Start is called before the first frame update
     private void OnEnable()
     {
         StartCoroutine(Slash());
@@ -23,24 +22,30 @@ public class DendriticSlash : MonoBehaviour
 
     private void OnDisable()
     {
-        StopAllCoroutines();
+
     }
 
     private IEnumerator Slash()
     {
-        WaitForSeconds wait = new(1f / attackCount);
+        yield return null;
+        if (!target)
+        {
+            yield break;
+        }
+
+        WaitForSeconds wait = new(0.25f / attackCount);
         vfx.SetInt("Count", attackCount);
         vfx.Play();
 
+        //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+        float armor = target.attributes.GetAttribute("Armor").Value;
+
         for (int i = 0; i < attackCount; i++)
         {
-            //sprite.gameObject.SetActive(false);
-            float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-
-            target.TakeDamage(damage);
+            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
+            //target.TakeDamage(damage);
 
             yield return wait;
-            //sprite.gameObject.SetActive(true);
         }
 
         yield return null;

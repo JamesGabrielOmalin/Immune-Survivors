@@ -47,6 +47,7 @@ float4 _MainTex_ST;
 float4 _ColorMask_ST;
 //float4 _BumpMap_ST;
 half _Cutoff;
+float _Fade;
 
 CBUFFER_END
 
@@ -151,7 +152,7 @@ Varyings vert(Attributes input)
 //#endif
     
 #ifdef ApplyShadowBiasFix
-    float4 positionCS = TransformWorldToHClip(worldPos);
+    float4 positionCS = TransformWorldToHClip(worldPos + float3(0, 0, 0.5));
     #if UNITY_REVERSED_Z
     positionCS.z = min(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
     #else
@@ -179,7 +180,9 @@ half4 GetFinalBaseColor(Varyings input)
     
     float2 uv = (floor(tx) + 0.5 + txOffset) * _MainTex_TexelSize.xy;
     
-    return tex2Dgrad(_MainTex, uv, ddx(input.uv), ddy(input.uv)) * lerp(1, input.color, tex2Dgrad(_ColorMask, uv, ddx(input.uv), ddy(input.uv)).r);
+    float4 final = tex2Dgrad(_MainTex, uv, ddx(input.uv), ddy(input.uv)) * lerp(1, input.color, tex2Dgrad(_ColorMask, uv, ddx(input.uv), ddy(input.uv)).r);
+    
+    return final;
 }
 
 void DoClipTestToTargetAlphaValue(half alpha)

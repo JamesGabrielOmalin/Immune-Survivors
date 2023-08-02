@@ -40,7 +40,7 @@ Shader "Custom/BillboardSprite"
             ZTest LEqual
             ZWrite On
             Blend SrcAlpha OneMinusSrcAlpha
-            AlphaToMask On
+            //AlphaToMask On
 
             HLSLPROGRAM
             #pragma vertex vert

@@ -58,10 +58,10 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
-        float ad = attackDamage.Value;
-        float aS = attackSpeed.Value;
-        float cr = critRate.Value;
-        float cd = critDMG.Value;
+        float AD = attackDamage.Value;
+        float AS = attackSpeed.Value;
+        float CRIT_RATE = critRate.Value;
+        float CRIT_DMG = critDMG.Value;
         float knockBack = knockbackPower.Value / 2f;
 
         WaitForSeconds attackInterval = new(0.1f);
@@ -69,7 +69,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
 
-        float damage = DamageCalculator.CalcDamage(ad * (1f + aS), cr, cd);
+        //float damage = DamageCalculator.CalcDamage(ad * (1f + aS), cr, cd);
         float kbChance = 0.25f;
 
         for (int i = 0; i < 25; i++)
@@ -78,17 +78,18 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
             foreach (var hit in hits)
             {
-                Enemy enemy = hit.GetComponent<Enemy>();
-                if (!enemy)
-                    continue;
+                if (hit.TryGetComponent<Enemy>(out Enemy enemy))
+                {
+                    Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
 
-                Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
+                    //enemy.TakeDamage(damage);
+                    float armor = enemy.attributes.GetAttribute("Armor").Value;
+                    DamageCalculator.ApplyDamage(AD * (AS), CRIT_RATE, CRIT_DMG, armor, enemy);
 
-                enemy.TakeDamage(damage);
-
-                // 25% chance to apply knockback every hit
-                if (Random.value <= kbChance)
-                    enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
+                    // 25% chance to apply knockback every hit
+                    if (Random.value <= kbChance)
+                        enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
+                }
             }
 
             yield return attackInterval;

@@ -38,6 +38,11 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     public void AddUpgrade(Effect effect, PlayerUnitType unit)
     {
         switch (effect.EffectType)

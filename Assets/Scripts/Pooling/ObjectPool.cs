@@ -54,7 +54,7 @@ public class ObjectPool : MonoBehaviour
         await Task.Yield();
     }
 
-    public GameObject RequestPoolable(Vector3 position)
+    public GameObject RequestPoolable(in Vector3 position)
     {
         GameObject obj = objectPool.Find(obj => !obj.activeInHierarchy);
         if (obj == null)

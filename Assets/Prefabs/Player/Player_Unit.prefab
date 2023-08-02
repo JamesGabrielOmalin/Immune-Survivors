@@ -56,6 +56,7 @@ MonoBehaviour:
   player: {fileID: 0}
   <AbilitySet>k__BackingField: {fileID: 2060257187554495769}
   <UnitType>k__BackingField: 0
+  HPBar: {fileID: 0}
 --- !u!114 &487672917330361869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.25
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &479615664774454622
 Rigidbody:
   m_ObjectHideFlags: 0

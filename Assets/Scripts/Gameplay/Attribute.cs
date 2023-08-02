@@ -31,34 +31,49 @@ public class Attribute
     [field: SerializeField]
     public List<AttributeModifier> Modifiers { get; private set; } = new();
 
+    private bool isClean;
+
+    private float value;
+
     // Gets the value of the Attribute, along with its modifiers
     public float Value
     {
         get
         {
-            var Override = Modifiers.FindLast(mod => mod.Type == AttributeModifierType.Override);
-
-            if (Override != null)
+            if (!isClean)
             {
-                return Override.Value;
+                value = CalculateFinalValue();
+                isClean = true;
             }
 
-            float Add = 0f, Multiply = 1f;
-
-            foreach (var Modifier in Modifiers)
-            {
-                switch (Modifier.Type)
-                {
-                    case AttributeModifierType.Add:
-                        Add += Modifier.Value;
-                        break;
-                    case AttributeModifierType.Multiply:
-                        Multiply += Modifier.Value;
-                        break;
-                }
-            }
-            return (BaseValue + Add) * Multiply;
+            return value;
         }
+    }
+
+    private float CalculateFinalValue()
+    {
+        var Override = Modifiers.FindLast(mod => mod.Type == AttributeModifierType.Override);
+
+        if (Override != null)
+        {
+            return Override.Value;
+        }
+
+        float Add = 0f, Multiply = 1f;
+
+        foreach (var Modifier in Modifiers)
+        {
+            switch (Modifier.Type)
+            {
+                case AttributeModifierType.Add:
+                    Add += Modifier.Value;
+                    break;
+                case AttributeModifierType.Multiply:
+                    Multiply += Modifier.Value;
+                    break;
+            }
+        }
+        return (BaseValue + Add) * Multiply;
     }
 
     public System.Action<float, float> OnAttributeModified;
@@ -69,6 +84,7 @@ public class Attribute
         Modifiers.Add(Modifier);
         float NewValue = Value;
 
+        isClean = false;
         OnAttributeModified?.Invoke(OldValue, NewValue);
     }
     public void RemoveModifier(AttributeModifier Modifier)
@@ -77,6 +93,7 @@ public class Attribute
         Modifiers.Remove(Modifier);
         float NewValue = Value;
 
+        isClean = false;
         OnAttributeModified?.Invoke(OldValue, NewValue);
     }
     /// <summary>
@@ -98,6 +115,7 @@ public class Attribute
 
         float NewValue = Value;
 
+        isClean = false;
         OnAttributeModified?.Invoke(OldValue, NewValue);
     }
 }

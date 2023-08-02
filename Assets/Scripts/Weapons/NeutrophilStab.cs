@@ -31,8 +31,11 @@ public class NeutrophilStab : MonoBehaviour
             if (Vector3.Distance(target.transform.position, GameManager.instance.Player.transform.position) >= attackRange)
                 break;
 
-            float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-            target.TakeDamage(damage);
+            //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+            //target.TakeDamage(damage);
+
+            float armor = target.attributes.GetAttribute("Armor").Value;
+            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
 
             yield return wait;
         }

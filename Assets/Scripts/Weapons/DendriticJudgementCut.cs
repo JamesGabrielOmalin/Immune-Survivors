@@ -32,7 +32,7 @@ public class DendriticJudgementCut : MonoBehaviour
         vfx.Play();
 
         var hits = Physics.OverlapSphere(transform.position, attackSize * 5f, layerMask.value);
-        float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+        //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
         for (int i = 0; i < attackCount; i++)
         {
@@ -42,7 +42,9 @@ public class DendriticJudgementCut : MonoBehaviour
             {
                 if (hit.TryGetComponent<Enemy>(out Enemy enemy))
                 {
-                    enemy.TakeDamage(damage);
+                    float armor = enemy.attributes.GetAttribute("Armor").Value;
+                    DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+                    //enemy.TakeDamage(damage);
                 }
             }
 
