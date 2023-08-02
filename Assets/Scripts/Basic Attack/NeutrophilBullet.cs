@@ -13,9 +13,12 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+            //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
-            enemy.TakeDamage(damage);
+            //enemy.TakeDamage(damage);
+            float armor = enemy.attributes.GetAttribute("Armor").Value;
+            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+
             // Apply knockback
             if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impactReceiver))
                 impactReceiver.AddImpact(transform.forward, knockbackPower);

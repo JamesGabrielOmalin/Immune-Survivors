@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Unit
+public class Enemy : Unit, IDamageInterface
 {
     private Attribute MaxHP;
     private Attribute HP;
+    private Attribute AttackDamage;
     private Attribute AttackSpeed;
     private Attribute Armor;
-    private Attribute moveSpeed;
 
     public bool IsDead => HP.Value <= 0f;
 
@@ -22,8 +22,11 @@ public class Enemy : Unit
     [SerializeField] private GameObject stunIndicator;
 
     public bool IsStunned { get; private set; } = false;
+    private Coroutine armorShredCoroutine;
     private Coroutine stunCoroutine;
     private Coroutine dotCoroutine;
+
+    private const string PLAYER_TAG = "Player";
 
     private void Awake()
     {
@@ -36,9 +39,9 @@ public class Enemy : Unit
     {
         MaxHP = attributes.GetAttribute("Max HP");
         HP = attributes.GetAttribute("HP");
+        AttackDamage = attributes.GetAttribute("Attack Damage");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
         Armor = attributes.GetAttribute("Armor");
-        moveSpeed = attributes.GetAttribute("Move Speed");
 
         HP.BaseValue = MaxHP.Value;
 
@@ -70,7 +73,7 @@ public class Enemy : Unit
         if (IsDead)
             return;
 
-        HP.BaseValue -= (amount - Armor.Value);
+        HP.ApplyInstantModifier(new(-amount, AttributeModifierType.Add));
         //Debug.Log("Damage taken: "+ HP.BaseValue);
 
         Vector3 location = transform.position;
@@ -87,19 +90,21 @@ public class Enemy : Unit
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Player>(out Player player))
+        if (other.CompareTag(PLAYER_TAG))
         {
+            targetPlayer = other.GetComponent<Player>();
             attackCoroutine = StartCoroutine(Attack());
-            targetPlayer = player;
+            Debug.Log("Player Entered");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<Player>(out Player player))
+        if (other.CompareTag(PLAYER_TAG))
         {
             StopCoroutine(attackCoroutine);
             targetPlayer = null;
+            Debug.Log("Player Exited");
         }
     }
 
@@ -115,6 +120,9 @@ public class Enemy : Unit
 
             if (targetPlayer)
             {
+                //float armor = targetPlayer.GetActiveUnit().attributes.GetAttribute("Armor").Value;
+                DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
+                targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
                 Debug.Log(gameObject.name + "attacked player!");
             }
         }
@@ -129,6 +137,29 @@ public class Enemy : Unit
             StopCoroutine(stunCoroutine);
 
         stunCoroutine = StartCoroutine(Stun(duration));
+    }
+
+    public void ApplyArmorShred(float amount)
+    {
+        if (IsDead)
+            return;
+
+        if (armorShredCoroutine != null)
+            StopCoroutine(armorShredCoroutine);
+
+        armorShredCoroutine = StartCoroutine(ArmorShred(amount));
+    }
+
+    private IEnumerator ArmorShred(float amount)
+    {
+        AttributeModifier mod = new(-amount, AttributeModifierType.Multiply);
+
+        Armor.AddModifier(mod);
+
+        yield return new WaitForSeconds(3f);
+
+        Armor.RemoveModifier(mod);
+        armorShredCoroutine = null;
     }
 
     private IEnumerator Stun(float duration)

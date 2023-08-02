@@ -62,12 +62,19 @@ public class Dendritic_MobilitySpec : AbilitySpec
         var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, LayerMask.GetMask("Enemy"));
 
         // Guaranteed CRIT
-        float damage = DamageCalculator.CalcDamage(attackDamage.Value, 1f, critDMG.Value);
+        //float damage = DamageCalculator.CalcDamage(attackDamage.Value, 1f, critDMG.Value);
+
+        float AD = attackDamage.Value;
+        float CRIT_RATE = 1f;
+        float CRIT_DMG = critDMG.Value;
+
         foreach (var hit in hits)
         {
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                enemy.TakeDamage(damage);
+                //enemy.TakeDamage(damage);
+                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                DamageCalculator.ApplyDamage(AD, CRIT_RATE, CRIT_DMG, armor, enemy);
                 enemy.GetComponent<ImpactReceiver>().AddImpact(rayDir, rayLength);
             }
         }

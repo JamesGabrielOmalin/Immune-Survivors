@@ -33,13 +33,15 @@ public class MacrophageConsume : MonoBehaviour
 
         var hits = Physics.OverlapSphere(transform.position, attackSize, layerMask);
 
-        float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+        //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                enemy.TakeDamage(damage);
+                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                //enemy.TakeDamage(damage);
+                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
                 enemy.ApplyDoT(dot, duration, tickRate);
 
                 // Pull effect

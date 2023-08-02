@@ -10,7 +10,7 @@ public enum PlayerUnitType
     Dendritic
 }
 
-public class PlayerUnit : Unit
+public class PlayerUnit : Unit, IDamageInterface
 {
     [SerializeField] private Player player;
 

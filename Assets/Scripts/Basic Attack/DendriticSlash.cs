@@ -28,19 +28,24 @@ public class DendriticSlash : MonoBehaviour
 
     private IEnumerator Slash()
     {
+        if (!target)
+        {
+            yield break;
+        }
+
         WaitForSeconds wait = new(1f / attackCount);
         vfx.SetInt("Count", attackCount);
         vfx.Play();
 
+        //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+        float armor = target.attributes.GetAttribute("Armor").Value;
+
         for (int i = 0; i < attackCount; i++)
         {
-            //sprite.gameObject.SetActive(false);
-            float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-
-            target.TakeDamage(damage);
+            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
+            //target.TakeDamage(damage);
 
             yield return wait;
-            //sprite.gameObject.SetActive(true);
         }
 
         yield return null;
