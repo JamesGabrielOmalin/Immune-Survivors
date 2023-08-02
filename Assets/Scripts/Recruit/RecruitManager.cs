@@ -1,9 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
+[System.Serializable]
+public class KillThreshold
+{
+    [field: SerializeField]
+    public int startCycle;
+    [field: SerializeField]
+    public int endCycle;
+    [field: SerializeField]
+
+    public int increment;
+    [field: SerializeField]
+
+    public int nRecruitToSpawn;
+}
 
 public class RecruitManager : MonoBehaviour
 {
+
     public static RecruitManager instance;
 
     [SerializeField] private List<ObjectPool> recruitPools = new();
@@ -13,7 +30,6 @@ public class RecruitManager : MonoBehaviour
 
     [Header("Base Spawning Attributes")]
     [SerializeField] private BoxCollider spawnArea;
-    //[SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
 
     [Header(" Timed Spawning")]
@@ -25,12 +41,21 @@ public class RecruitManager : MonoBehaviour
 
     [Header(" Threshold Spawning")]
     [SerializeField] private bool EnableThresholdSpawning = false;
-    [SerializeField] private int enemyKillThreshold;
-    [SerializeField] private float thresholdMultiplier;
+    private int index = 0;
+    [SerializeField] private int initialKillRequirement;
+
+    [Header(" Threshold Stats")]
+
+    public int killCount = 0;
+    [SerializeField] private int killThreshold;
+    [SerializeField] private int cycle = 1;
+    [SerializeField] private int thresholdIncrement;
     [SerializeField] private int amountToSpawn;
 
+    [field: SerializeField]
+    public List<KillThreshold> killThresholdList;
 
-    private int killCount = 0;
+
 
 
     private void Awake()
@@ -52,6 +77,9 @@ public class RecruitManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        killThreshold = initialKillRequirement;
+        thresholdIncrement = killThresholdList[index].increment;
+
         SpawnRecruitBatch(initialAmountToSpawn);
 
         if (EnableIntervalSpawning)
@@ -86,11 +114,6 @@ public class RecruitManager : MonoBehaviour
             Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
 
             spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
-
-            //if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            //{
-            //    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            //}
 
             PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
             float rand = Random.value;
@@ -141,21 +164,38 @@ public class RecruitManager : MonoBehaviour
         {
             return;
         }
-        killCount++;
 
-        if (killCount >= enemyKillThreshold)
+
+        //cycle = (int)GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Level").Value;
+
+        // next set of values
+        if (cycle > killThresholdList[index].endCycle)
         {
-            // spawn recruit
-            SpawnRecruitBatch(amountToSpawn);
-
-            killCount = 0;
-            // increase kill threshold
-
-            if (thresholdMultiplier != 0)
+            if (index + 1 <= killThresholdList.Count)
             {
-                float newVal = (float)enemyKillThreshold *thresholdMultiplier;
+                Debug.Log("Next Kill Requirement");
+                if (index+1 < killThresholdList.Count)
+                {
+                    index++;
 
-                enemyKillThreshold = (int)newVal;
+                }
+            }
+        }
+        
+        if (cycle >= killThresholdList[index].startCycle && cycle <= killThresholdList[index].endCycle )
+        {
+            killCount++;
+
+            amountToSpawn = killThresholdList[index].nRecruitToSpawn;
+
+            // spawn units when kill requirement is reached
+            if (killCount >= killThreshold)
+            {
+                SpawnRecruitBatch(killThresholdList[index].nRecruitToSpawn);
+                thresholdIncrement = killThresholdList[index].increment;
+                killThreshold += killThresholdList[index].increment;
+                killCount = 0;
+                cycle++;
             }
         }
     }
