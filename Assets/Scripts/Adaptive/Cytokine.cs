@@ -13,7 +13,7 @@ public class Cytokine : Projectile, IBodyColliderListener
         if (other.TryGetComponent<Player>(out Player player))
         {
             AttributeModifier mod = new(AntigenManager.instance.GetAntigenCount(Type) * 0.01f, AttributeModifierType.Multiply);
-            player.ApplyBuffs(Type, mod, 2.5f);
+            player.ApplyAntigenBuffs(Type, mod, 2.5f);
             this.gameObject.SetActive(false);
             Debug.Log("Apply buff");
         }

@@ -8,12 +8,17 @@ public class RecruitManager : MonoBehaviour
 
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
-    
+    GameObject player;
+
+
     [Header("Base Spawning Attributes")]
-    [SerializeField] private int maxSpawnDistance;
+    [SerializeField] private BoxCollider spawnArea;
+    //[SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
 
     [Header(" Timed Spawning")]
+    [SerializeField] private bool EnableIntervalSpawning = false;
+
     [SerializeField] private float spawnInterval;
     [SerializeField] private int amountToSpawnPerInterval;
 
@@ -21,7 +26,7 @@ public class RecruitManager : MonoBehaviour
     [Header(" Threshold Spawning")]
     [SerializeField] private bool EnableThresholdSpawning = false;
     [SerializeField] private int enemyKillThreshold;
-    [SerializeField] private int thresholdMultiplier;
+    [SerializeField] private float thresholdMultiplier;
     [SerializeField] private int amountToSpawn;
 
 
@@ -48,8 +53,12 @@ public class RecruitManager : MonoBehaviour
     private void Start()
     {
         SpawnRecruitBatch(initialAmountToSpawn);
-        StartCoroutine(SpawnCoroutine());
 
+        if (EnableIntervalSpawning)
+        {
+            StartCoroutine(SpawnCoroutine());
+
+        }
 
     }
 
@@ -65,19 +74,24 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
-        GameObject player = GameManager.instance.Player;
+        float angle;
+        Vector3 dir;
+        player = GameManager.instance.Player;
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
-            float angle = Random.Range(0f, 360f);
-            Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
+            angle = Random.Range(0f, 360f);
 
-            if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            {
-                spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            }
-            
+            dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+
+            spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
+
+            //if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+            //{
+            //    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+            //}
+
             PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
             float rand = Random.value;
 
@@ -98,6 +112,15 @@ public class RecruitManager : MonoBehaviour
         }
     }
 
+    private Vector3 RandomPointInBounds(Bounds bounds)
+    {
+        return new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y),
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
+    }
+
     public void SpawnRecruit(Vector3 position, PlayerUnitType type)
     {
         GameObject recruit = recruitPools[(int)type].RequestPoolable(position);
@@ -108,6 +131,7 @@ public class RecruitManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Recruit Spawned");
         activeRecruits.Add(recruit);
     }
 
@@ -129,7 +153,9 @@ public class RecruitManager : MonoBehaviour
 
             if (thresholdMultiplier != 0)
             {
-                enemyKillThreshold *= thresholdMultiplier;
+                float newVal = (float)enemyKillThreshold *thresholdMultiplier;
+
+                enemyKillThreshold = (int)newVal;
             }
         }
     }
