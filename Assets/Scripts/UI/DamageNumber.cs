@@ -9,18 +9,22 @@ public class DamageNumber : MonoBehaviour
 {
     [SerializeField] private float despawnTime;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        
+        StartCoroutine(Despawn());
     }
 
-    public void startDespawnTimer()
+    private void FixedUpdate()
     {
-        StartCoroutine(despawn());
+        transform.position += Vector3.up * Time.fixedDeltaTime;
     }
 
-    IEnumerator despawn()
+    //public void StartDespawnTimer()
+    //{
+    //    StartCoroutine(Despawn());
+    //}
+
+    IEnumerator Despawn()
     {
         yield return new WaitForSeconds(despawnTime);
 

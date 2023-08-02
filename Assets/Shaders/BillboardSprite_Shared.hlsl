@@ -47,6 +47,7 @@ float4 _MainTex_ST;
 float4 _ColorMask_ST;
 //float4 _BumpMap_ST;
 half _Cutoff;
+float _Fade;
 
 CBUFFER_END
 
@@ -179,7 +180,9 @@ half4 GetFinalBaseColor(Varyings input)
     
     float2 uv = (floor(tx) + 0.5 + txOffset) * _MainTex_TexelSize.xy;
     
-    return tex2Dgrad(_MainTex, uv, ddx(input.uv), ddy(input.uv)) * lerp(1, input.color, tex2Dgrad(_ColorMask, uv, ddx(input.uv), ddy(input.uv)).r);
+    float4 final = tex2Dgrad(_MainTex, uv, ddx(input.uv), ddy(input.uv)) * lerp(1, input.color, tex2Dgrad(_ColorMask, uv, ddx(input.uv), ddy(input.uv)).r);
+    
+    return final;
 }
 
 void DoClipTestToTargetAlphaValue(half alpha)

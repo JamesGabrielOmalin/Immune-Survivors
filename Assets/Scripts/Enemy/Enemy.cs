@@ -28,6 +28,9 @@ public class Enemy : Unit, IDamageInterface
 
     private const string PLAYER_TAG = "Player";
 
+    [SerializeField] private Animator animator;
+    private readonly int ANIMATOR_DEATH = Animator.StringToHash("Death");
+
     private void Awake()
     {
         // Register to minimap
@@ -51,7 +54,6 @@ public class Enemy : Unit, IDamageInterface
             AntigenManager.instance.SpawnAntigen(transform.position, Type);
             RecruitManager.instance.AddKillCount();
             //Minimap.Get().Unregister(this.gameObject, MinimapIconType.Enemy);
-            this.gameObject.SetActive(false);
         };
 
         // Hide stun indicator
@@ -76,16 +78,19 @@ public class Enemy : Unit, IDamageInterface
         HP.ApplyInstantModifier(new(-amount, AttributeModifierType.Add));
         //Debug.Log("Damage taken: "+ HP.BaseValue);
 
-        Vector3 location = transform.position;
-        location.y += 1.0f;
-
-        DamageNumberManager.instance.SpawnDamageNumber(location, amount);
-
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();
-            OnDeath?.Invoke();
+            animator.SetTrigger(ANIMATOR_DEATH);
+            StartCoroutine(Death());
         }
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSeconds(0.5f);
+        OnDeath?.Invoke();
+        this.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
