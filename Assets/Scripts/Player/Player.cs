@@ -23,15 +23,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform slot1;
     [SerializeField] private Transform slot2;
 
-    [SerializeField] private List<Ability> weapons = new();
-
     private PlayerUnit activeUnit;
     private GameObject activeHUD;
     private int numRecruit;
 
     public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
 
-    private Dictionary<PlayerUnitType, bool> unitRecruited = new()
+    private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
         { PlayerUnitType.Neutrophil, false },
         { PlayerUnitType.Macrophage, false },
@@ -59,9 +57,11 @@ public class Player : MonoBehaviour
                 RecruitUnit(dendritic);
                 activeUnit = dendritic;
                 dendriticHUD.SetActive(true);
-                activeHUD = dendriticHUD;
+                activeHUD = dendriticHUD;       
                 break;
         }
+
+        Debug.Log("AWAKEN");
 
         //weapons.Add(activeUnit.AbilitySet.BasicAttack.ability);
     }
@@ -70,6 +70,9 @@ public class Player : MonoBehaviour
     {
         input.Controls.Abilities.Mobility.started += (ctx) => StartCoroutine(activeUnit.AbilitySet.Mobility.TryActivateAbility());
         input.Controls.Abilities.Ultimate.started += (ctx) => StartCoroutine(activeUnit.AbilitySet.Ultimate.TryActivateAbility());
+
+        activeUnit.OnDeath += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
+        activeUnit.OnDeath += GameManager.instance.OnGameLose.Invoke;
     }
 
     public void RecruitUnit(PlayerUnit recruit)
@@ -209,13 +212,4 @@ public class Player : MonoBehaviour
         activeHUD.SetActive(enabled);
     }
 
-    public void AddWeapon(Effect weapon)
-    {
-        weapons.Add(weapon.Abilities[0]);
-    }
-
-    public bool CanEquipWeapon()
-    {
-        return weapons.Count < 3;
-    }
 }

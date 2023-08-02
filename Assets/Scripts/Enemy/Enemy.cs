@@ -10,7 +10,7 @@ public class Enemy : Unit, IDamageInterface
     private Attribute AttackSpeed;
     private Attribute Armor;
 
-    public bool IsDead => HP.Value <= 0f;
+    public bool IsDead => HP.BaseValue <= 0f;
 
     public System.Action OnDeath;
 
@@ -31,12 +31,6 @@ public class Enemy : Unit, IDamageInterface
     [SerializeField] private Animator animator;
     private readonly int ANIMATOR_DEATH = Animator.StringToHash("Death");
 
-    private void Awake()
-    {
-        // Register to minimap
-        //Minimap.Get().Register(this.gameObject, MinimapIconType.Enemy);
-    }
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -47,14 +41,6 @@ public class Enemy : Unit, IDamageInterface
         Armor = attributes.GetAttribute("Armor");
 
         HP.BaseValue = MaxHP.Value;
-
-        // Upon elimination, spawn antigen
-        OnDeath += delegate
-        {
-            AntigenManager.instance.SpawnAntigen(transform.position, Type);
-            RecruitManager.instance.AddKillCount();
-            //Minimap.Get().Unregister(this.gameObject, MinimapIconType.Enemy);
-        };
 
         // Hide stun indicator
         stunIndicator.SetActive(false);
@@ -68,6 +54,18 @@ public class Enemy : Unit, IDamageInterface
             HP = attributes.GetAttribute("HP");
 
         HP.BaseValue = MaxHP.Value;
+
+        // Upon elimination, spawn antigen
+        OnDeath += delegate
+        {
+            AntigenManager.instance.SpawnAntigen(transform.position, Type);
+            RecruitManager.instance.AddKillCount();
+        };
+    }
+
+    private void OnDisable()
+    {
+        OnDeath = null;
     }
 
     public void TakeDamage(float amount)
@@ -76,7 +74,6 @@ public class Enemy : Unit, IDamageInterface
             return;
 
         HP.ApplyInstantModifier(new(-amount, AttributeModifierType.Add));
-        //Debug.Log("Damage taken: "+ HP.BaseValue);
 
         if (HP.Value <= 0f)
         {
@@ -116,20 +113,16 @@ public class Enemy : Unit, IDamageInterface
     // Attack the target player
     private IEnumerator Attack()
     {
-        while (this)
+        while (targetPlayer)
         {
             yield return new WaitForSeconds(1f / AttackSpeed.Value);
 
             if (IsStunned)
                 continue;
 
-            if (targetPlayer)
-            {
-                //float armor = targetPlayer.GetActiveUnit().attributes.GetAttribute("Armor").Value;
-                DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
-                targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
-                Debug.Log(gameObject.name + "attacked player!");
-            }
+            DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
+            targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
+            Debug.Log(gameObject.name + "attacked player!");
         }
     }
 

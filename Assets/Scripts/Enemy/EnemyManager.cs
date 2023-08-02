@@ -22,6 +22,8 @@ public class EnemyManager : MonoBehaviour
     public int AmountPerBatch { get; private set; }
     [field: SerializeField]
     public float BatchSpawnInterval { get; private set; }
+    [SerializeField] private AnimationCurve spawnIntervalCurve = AnimationCurve.Linear(0f, 0f, 10f, 1f);
+    [SerializeField] private AnimationCurve spawnAmountCurve = AnimationCurve.Linear(0f, 0f, 10f, 1f);
 
     [SerializeField] private float maxSpawnDistance;
 
@@ -57,11 +59,9 @@ public class EnemyManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(BatchSpawnInterval);
-
-            int x = (int)(GameManager.instance.GameTime.TotalMinutes);
-            //BatchSpawnInterval = Mathf.Max((10 + (float)(GameManager.instance.GameTime.TotalMinutes) * -0.125f), 0.4f);
-            
-            BatchSpawnInterval = 5f - (-(Mathf.Cos(Mathf.PI * x) - 1) / 2) * 5f;
+            float minutes = (float)GameManager.instance.GameTime.TotalMinutes;
+            BatchSpawnInterval = spawnIntervalCurve.Evaluate(minutes);
+            AmountPerBatch = (int)spawnAmountCurve.Evaluate(minutes);
             SpawnEnemyBatch(AmountPerBatch);
         }
     }
@@ -104,7 +104,6 @@ public class EnemyManager : MonoBehaviour
             cc.enabled = true;
         }
 
-
         //Debug.Log(position);
 
         //enemy.transform.position = position;
@@ -134,7 +133,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Return nearest enemy from the active enemy list
-    public GameObject GetNearestEnemy(Vector3 position, float limit = float.MaxValue)
+    public GameObject GetNearestEnemy(in Vector3 position, float limit = float.MaxValue)
     {
         if (activeEnemies.Count < 1)
         {

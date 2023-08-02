@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 4782505582870041296}
+  playerMovement: {fileID: 4782505582870041297}
   neutrophil: {fileID: 5129527484565684729}
   macrophage: {fileID: 5129527484166590096}
   dendritic: {fileID: 5129527483664756542}
@@ -206,7 +207,6 @@ MonoBehaviour:
   activeSlot: {fileID: 4782505584109432570}
   slot1: {fileID: 4782505582749511679}
   slot2: {fileID: 4782505583196375619}
-  weapons: []
 --- !u!143 &4782505582870041326
 CharacterController:
   m_ObjectHideFlags: 0
@@ -222,7 +222,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &4782505582870041296

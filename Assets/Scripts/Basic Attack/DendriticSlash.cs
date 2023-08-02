@@ -15,7 +15,6 @@ public class DendriticSlash : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
 
-    // Start is called before the first frame update
     private void OnEnable()
     {
         StartCoroutine(Slash());
@@ -23,17 +22,18 @@ public class DendriticSlash : MonoBehaviour
 
     private void OnDisable()
     {
-        StopAllCoroutines();
+
     }
 
     private IEnumerator Slash()
     {
+        yield return null;
         if (!target)
         {
             yield break;
         }
 
-        WaitForSeconds wait = new(1f / attackCount);
+        WaitForSeconds wait = new(0.25f / attackCount);
         vfx.SetInt("Count", attackCount);
         vfx.Play();
 
