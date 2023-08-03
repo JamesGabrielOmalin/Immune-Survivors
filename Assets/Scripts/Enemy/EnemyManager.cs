@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -15,17 +16,25 @@ public class EnemyManager : MonoBehaviour
     public int MinInfectionRate { get; private set; }
     [field: SerializeField]
     public int MaxInfectionRate { get; private set; }
-    [field: SerializeField]
-    public int InitialAmountToSpawn { get; private set; }
 
-    [field: SerializeField]
-    public int AmountPerBatch { get; private set; }
-    [field: SerializeField]
-    public float BatchSpawnInterval { get; private set; }
-    [SerializeField] private AnimationCurve spawnIntervalCurve = AnimationCurve.Linear(0f, 0f, 10f, 1f);
-    [SerializeField] private AnimationCurve spawnAmountCurve = AnimationCurve.Linear(0f, 0f, 10f, 1f);
+
+    //[field: SerializeField]
+    //public int InitialAmountToSpawn { get; private set; }
+    //[field: SerializeField]
+    //public int AmountPerBatch { get; private set; }
+    //[field: SerializeField]
+    //public float BatchSpawnInterval { get; private set; }
 
     [SerializeField] private float maxSpawnDistance;
+
+    [field: Header("Wave")]
+    [SerializeField] LevelWaveData levelWaveData;
+
+    [SerializeField] private int WaveNumber = 0;
+    [SerializeField] private Wave currentWave;
+    [SerializeField] private int waveInterval = 0;
+    [SerializeField] private int maxEnemyCountAllowed;
+
 
     public System.Action OnMinInfectionReached;
     public System.Action OnMaxInfectionReached;
@@ -45,7 +54,14 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        SpawnEnemyBatch(InitialAmountToSpawn);
+        // Set the current wave with the firt wave in the wavelist
+        currentWave = levelWaveData.waveList[WaveNumber];
+
+        // Calculate the quota of the current wave
+        CalculateWaveQuota();
+
+        // Start couroutine for wave and spawning
+        StartCoroutine(WaveCoroutine());
         StartCoroutine(SpawnCoroutine());
     }
 
@@ -53,20 +69,75 @@ public class EnemyManager : MonoBehaviour
     {
         instance = null;
     }
+    private IEnumerator WaveCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waveInterval);
 
+            // Increment wave number if there is a next wave
+            if (WaveNumber < levelWaveData.waveList.Count-1)
+            {
+                WaveNumber++;
+                currentWave = levelWaveData.waveList[WaveNumber];
+                currentWave.spawnCounter = 0;
+                foreach(EnemyGroup eg in currentWave.enemyGroups)
+                {
+                    eg.spawnCounter = 0;
+                }
+
+                CalculateWaveQuota();
+
+            }
+            else
+            {
+                Debug.Log(" Last Wave Ended");
+            }
+
+        }
+
+    }
     private IEnumerator SpawnCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(BatchSpawnInterval);
-            float minutes = (float)GameManager.instance.GameTime.TotalMinutes;
-            BatchSpawnInterval = spawnIntervalCurve.Evaluate(minutes);
-            AmountPerBatch = (int)spawnAmountCurve.Evaluate(minutes);
-            SpawnEnemyBatch(AmountPerBatch);
+            yield return new WaitForSeconds(currentWave.spawnInterval);
+
+            int totalEnemyCount = EnemyManager.instance.activeEnemies.Count;
+
+           
+            // Spawn enemy of each type if the number of enemies present in below the wave quota
+            if (currentWave.spawnCounter < currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
+            {
+                // Spawn each type of enemy
+                foreach(EnemyGroup eg in currentWave.enemyGroups)
+                {
+                    // Spawn until quota is reached
+                    if(eg.spawnCounter < eg.enemyQuota)
+                    {
+                        SpawnEnemyBatch(1, eg.antigenType);
+                        eg.spawnCounter++;
+                        currentWave.spawnCounter++;
+
+                        // stop exit foreach loop 
+                        break;
+                    }
+                }
+            }
+            // Spawn each type of enemy if the enemies present are more than the wave quota
+            else if (currentWave.spawnCounter >= currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
+            {
+                int type = Random.Range(0, currentWave.enemyGroups.Count);
+
+                // spawn this type
+                SpawnEnemyBatch(1, currentWave.enemyGroups[type].antigenType);
+                currentWave.enemyGroups[type].spawnCounter++;
+                currentWave.excessSpawnCounter++;
+
+            }
         }
     }
-
-    private void SpawnEnemyBatch(int amount)
+    private void SpawnEnemyBatch(int amount, int antigenType)
     {
         GameObject player = GameManager.instance.Player;
         for (int i = 0; i < amount; i++)
@@ -85,7 +156,7 @@ public class EnemyManager : MonoBehaviour
             //float x = Random.Range(-50f, 50f);
             //float z = Random.Range(-50f, 50f);
 
-            SpawnEnemy(spawnPoint, (AntigenType)Random.Range(0, 3));
+            SpawnEnemy(spawnPoint, (AntigenType)antigenType);
         }
     }
 
@@ -103,6 +174,7 @@ public class EnemyManager : MonoBehaviour
         {
             cc.enabled = true;
         }
+
 
         //Debug.Log(position);
 
@@ -132,8 +204,21 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // Return nearest enemy from the active enemy list
-    public GameObject GetNearestEnemy(in Vector3 position, float limit = float.MaxValue)
+    private void CalculateWaveQuota()
+    {
+        
+        int currentWaveQuota = 0;
+
+        // Current wave quota  = accumulative sum of the enemy groups in the current wave
+        foreach (EnemyGroup eg in currentWave.enemyGroups)
+        {
+            currentWaveQuota += eg.enemyQuota;
+        }
+
+        currentWave.waveSpawnQuota = currentWaveQuota;
+        Debug.Log("Wave " + currentWave.WaveID + " Quota:" + currentWaveQuota);
+    }
+    public GameObject GetNearestEnemy(Vector3 position, float limit = float.MaxValue)
     {
         if (activeEnemies.Count < 1)
         {

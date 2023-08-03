@@ -75,6 +75,11 @@ public class Enemy : Unit, IDamageInterface
 
         HP.ApplyInstantModifier(new(-amount, AttributeModifierType.Add));
 
+        Vector3 location = transform.position;
+        location.y += 1.0f;
+
+        DamageNumberManager.instance.SpawnDamageNumber(location, amount);
+
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();

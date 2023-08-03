@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f854cd394ba6e9f478551db0cfde1747, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  waveList:
+  - WaveID: 1
+    spawnInterval: 1
+    spawnCounter: 0
+    waveQuota: 0
+    enemyGroups:
+    - enemyName: Enemy Type 1
+      enemyQuota: 50
+      spawnCounter: 0
+      antigenType: 0
+    - enemyName: Enemy Type 1
+      enemyQuota: 10
+      spawnCounter: 0
+      antigenType: 1
+  - WaveID: 2
+    spawnInterval: 1
+    spawnCounter: 52
+    waveQuota: 0
+    enemyGroups:
+    - enemyName: Enemy Type 2
+      enemyQuota: 50
+      spawnCounter: 0
+      antigenType: 1
+    - enemyName: Enemy Type 3
+      enemyQuota: 10
+      spawnCounter: 0
+      antigenType: 2
+  - WaveID: 3
+    spawnInterval: 1
+    spawnCounter: 0
+    waveQuota: 0
+    enemyGroups:
+    - enemyName: Enemy Type 3
+      enemyQuota: 60
+      spawnCounter: 0
+      antigenType: 2
