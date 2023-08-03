@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        // TODO: Implement character select?
         switch (toSpawn)
         {
             case PlayerUnitType.Neutrophil:
@@ -60,19 +59,27 @@ public class Player : MonoBehaviour
                 activeHUD = dendriticHUD;       
                 break;
         }
-
-        Debug.Log("AWAKEN");
-
-        //weapons.Add(activeUnit.AbilitySet.BasicAttack.ability);
     }
+
+    private System.Action<InputAction.CallbackContext> mobilityHandler;
+    private System.Action<InputAction.CallbackContext> ultimateHandler;
 
     private void Start()
     {
-        input.Controls.Abilities.Mobility.started += (ctx) => StartCoroutine(activeUnit.AbilitySet.Mobility.TryActivateAbility());
-        input.Controls.Abilities.Ultimate.started += (ctx) => StartCoroutine(activeUnit.AbilitySet.Ultimate.TryActivateAbility());
+        mobilityHandler = (ctx) => StartCoroutine(activeUnit.AbilitySet.Mobility.TryActivateAbility());
+        ultimateHandler = (ctx) => StartCoroutine(activeUnit.AbilitySet.Ultimate.TryActivateAbility());
+
+        input.Controls.Abilities.Mobility.started += mobilityHandler;
+        input.Controls.Abilities.Ultimate.started += ultimateHandler;  
 
         activeUnit.OnDeath += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
         activeUnit.OnDeath += GameManager.instance.OnGameLose.Invoke;
+    }
+
+    private void OnDestroy()
+    {
+        input.Controls.Abilities.Mobility.started -= mobilityHandler;
+        input.Controls.Abilities.Ultimate.started -= ultimateHandler;
     }
 
     public void RecruitUnit(PlayerUnit recruit)

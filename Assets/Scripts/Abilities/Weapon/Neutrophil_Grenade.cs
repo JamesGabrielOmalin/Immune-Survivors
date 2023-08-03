@@ -51,44 +51,44 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
         // Wait before shooting
         yield return new WaitForSeconds(2f / attackSpeed.Value);
-        
-        Shoot();
+
+        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            yield return Shoot();
 
         yield break;
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
-        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value / 2f);
-        if (target == null)
+        WaitForSeconds wait = new(0.5f);
+        for (int i = 0; i < attackCount.Value; i++)
         {
-            return;
+            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value / 2f);
+            if (target == null)
+                continue;
+
+            GameObject grenadeObject = grenades.RequestPoolable(owner.transform.position);
+
+            if (grenadeObject == null)
+                continue;
+
+            Vector3 targetPos = target.transform.position;
+            Vector3 dir = (targetPos - owner.transform.position).normalized;
+
+            grenadeObject.transform.forward = dir;
+
+            NeutrophilGrenade grenade = grenadeObject.GetComponent<NeutrophilGrenade>();
+            grenade.targetPos = targetPos;
+            grenade.attackDamage = attackDamage.Value;
+            grenade.attackSize = attackSize.Value;
+            grenade.critRate = critRate.Value;
+            grenade.critDMG = critDMG.Value;
+            grenade.slowAmount = -0.25f * abilityLevel;
+
+            grenade.transform.localScale = Vector3.one * attackSize.Value;
+
+            yield return wait;
         }
-
-        SpawnProjectile(target);
-    }
-
-    private void SpawnProjectile(in GameObject target)
-    {
-        GameObject grenadeObject = grenades.RequestPoolable(owner.transform.position);
-
-        if (grenadeObject == null)
-            return;
-
-        Vector3 targetPos = target.transform.position;
-        Vector3 dir = (targetPos - owner.transform.position).normalized;
-
-        grenadeObject.transform.forward = dir;
-
-        NeutrophilGrenade grenade = grenadeObject.GetComponent<NeutrophilGrenade>();
-        grenade.targetPos = targetPos;
-        grenade.attackDamage = attackDamage.Value;
-        grenade.attackSize = attackSize.Value;
-        grenade.critRate = critRate.Value;
-        grenade.critDMG = critDMG.Value;
-        grenade.slowAmount = -0.5f;
-
-        grenade.transform.localScale = Vector3.one * attackSize.Value;
     }
 
     public override void EndAbility()

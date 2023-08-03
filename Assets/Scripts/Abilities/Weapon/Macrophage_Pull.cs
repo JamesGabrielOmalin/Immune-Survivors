@@ -71,10 +71,10 @@ public class Macrophage_PullSpec : AbilitySpec
         pullEffect.attackDamage = attackDamage.Value;
         pullEffect.attackRange = attackRange.Value;
         pullEffect.attackCount = (int)attackCount.Value;
-        pullEffect.attackSize = attackSize.Value;
+        pullEffect.attackSize = attackSize.Value * abilityLevel;
         pullEffect.critRate = critRate.Value;
         pullEffect.critDMG = critDMG.Value;
-        pullEffect.knockbackPower = basicAttack.KnockbackPower + knockbackPower.Value;
+        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) * abilityLevel;
 
         pullEffect.transform.localScale = Vector3.one * attackSize.Value;
         pullEffect.transform.forward = dir;

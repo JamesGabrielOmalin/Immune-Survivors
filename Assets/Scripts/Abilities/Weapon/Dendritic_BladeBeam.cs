@@ -54,7 +54,7 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            Slash();
+            yield return Slash();
 
         yield break;
     }
@@ -65,32 +65,39 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
         base.EndAbility();
     }
 
-    private void Slash()
+    private IEnumerator Slash()
     {
+        WaitForSeconds wait = new(0.25f);
         float range = attackRange.Value;
-        // implement basic shooting towards target
-        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
-        if (target == null)
+        
+        for (int i = 0; i < abilityLevel; i++)
         {
-            return;
+            // implement basic shooting towards target
+            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
+            if (target == null)
+            {
+                continue;
+            }
+
+            Vector3 dir = (target.transform.position - owner.transform.position).normalized;
+
+            GameObject projectile = bladeBeams.RequestPoolable(owner.transform.position);
+            if (projectile == null)
+                continue;
+            DendriticBladeBeam cut = projectile.GetComponent<DendriticBladeBeam>();
+            cut.transform.forward = dir;
+
+            // Snapshot attributes
+            cut.attackDamage = attackDamage.Value;
+            cut.critRate = critRate.Value;
+            cut.critDMG = critDMG.Value;
+            cut.attackCount = (int)attackCount.Value;
+            cut.attackRange = range;
+
+            cut.transform.localScale = Vector3.one * attackSize.Value * abilityLevel;
+
+            yield return wait;
         }
-
-        Vector3 dir = (target.transform.position - owner.transform.position).normalized;
-
-        GameObject projectile = bladeBeams.RequestPoolable(owner.transform.position);
-        if (projectile == null)
-            return;
-        DendriticBladeBeam cut = projectile.GetComponent<DendriticBladeBeam>();
-        cut.transform.forward = dir;
-
-        // Snapshot attributes
-        cut.attackDamage = attackDamage.Value;
-        cut.critRate = critRate.Value;
-        cut.critDMG = critDMG.Value;
-        cut.attackCount = (int)attackCount.Value;
-        cut.attackRange = range;
-
-        cut.transform.localScale = Vector3.one * attackSize.Value;
     }
 
     public void Init()

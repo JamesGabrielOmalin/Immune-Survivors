@@ -11,15 +11,24 @@ public class DamageCalculator
 
     public static void ApplyDamage(in float attackDamage, in float critRate, in float critDMG, in float armor, IDamageInterface target)
     {
+        if (attackDamage <= float.Epsilon)
+        {
+            return;
+        }
+
         bool isCrit = Random.value <= critRate;
         float reduction = DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
         float damage = attackDamage * (isCrit ? critDMG : reduction);
 
+        if (damage <= float.Epsilon)
+        {
+            return;
+        }
+
         target.TakeDamage(damage);
 
-
         Vector3 location = (target as MonoBehaviour).transform.position;
-        location.y += 1.0f;
+        location += new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(0, 0.5f), Random.Range(-0.5f, 0.5f));
 
         DamageNumberManager.instance.SpawnDamageNumber(location, damage);
     }

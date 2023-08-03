@@ -32,6 +32,12 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene(string name)
     {
+        if (GameManager.instance)
+        {
+            GameManager.instance.ResumeGame();
+            GameManager.instance.ResumeGameTime();
+        }
+
         StartCoroutine(LoadSceneAsync(name));
     }
 

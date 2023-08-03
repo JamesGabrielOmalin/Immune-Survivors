@@ -26,7 +26,7 @@ public class AbilitySet : MonoBehaviour
     [SerializeField] private Image ultimateCDIcon;
     [SerializeField] private Image ultimateBlockIcon;
 
-    private void Start()
+    private void Awake()
     {
         if (basicAttackAbility)
         {

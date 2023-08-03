@@ -13,7 +13,7 @@ public class RecruitManager : MonoBehaviour
 
     [Header("Base Spawning Attributes")]
     [SerializeField] private BoxCollider spawnArea;
-    //[SerializeField] private int maxSpawnDistance;
+    [SerializeField] private int maxSpawnDistance;
     [SerializeField] private int initialAmountToSpawn;
 
     [Header(" Timed Spawning")]
@@ -52,12 +52,13 @@ public class RecruitManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        player = GameManager.instance.Player;
+
         SpawnRecruitBatch(initialAmountToSpawn);
 
         if (EnableIntervalSpawning)
         {
             StartCoroutine(SpawnCoroutine());
-
         }
 
     }
@@ -66,7 +67,7 @@ public class RecruitManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(amountToSpawnPerInterval);
+            yield return new WaitForSeconds(spawnInterval);
 
             SpawnRecruitBatch(amountToSpawnPerInterval);
         }
@@ -76,37 +77,38 @@ public class RecruitManager : MonoBehaviour
     {
         float angle;
         Vector3 dir;
-        player = GameManager.instance.Player;
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
             angle = Random.Range(0f, 360f);
 
             dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+            //Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
 
-            spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
+            //spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
 
-            //if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+            Vector3 spawnPoint = player.transform.position + (dir * Random.Range(15f, 30f));
+
+            if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+            {
+                spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+            }
+
+            PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
+            //float rand = Random.value;
+
+            //if (rand < 0.1f)
             //{
-            //    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+            //    toSpawn = PlayerUnitType.Dendritic;
             //}
-
-            PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
-            float rand = Random.value;
-
-            if (rand < 0.1f)
-            {
-                toSpawn = PlayerUnitType.Dendritic;
-            }
-            else if (rand < 0.3f)
-            {
-                toSpawn = PlayerUnitType.Macrophage;
-            }
-            else if (rand < 0.7f)
-            {
-                toSpawn = PlayerUnitType.Neutrophil;
-            }
+            //else if (rand < 0.3f)
+            //{
+            //    toSpawn = PlayerUnitType.Macrophage;
+            //}
+            //else if (rand < 0.7f)
+            //{
+            //    toSpawn = PlayerUnitType.Neutrophil;
+            //}
 
             SpawnRecruit(spawnPoint, toSpawn);
         }
@@ -131,7 +133,7 @@ public class RecruitManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("Recruit Spawned");
+        //Debug.Log("Recruit Spawned");
         activeRecruits.Add(recruit);
     }
 

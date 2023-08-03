@@ -38,8 +38,6 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
             vfx.SetVector3("Hit Position", enemy.transform.position);
             vfx.SendEvent("OnHit", evt);
 
-            Debug.Log("Blade Beam Hit!");
-
             if (hitCount >= attackCount)
             {
                 StopAllCoroutines();

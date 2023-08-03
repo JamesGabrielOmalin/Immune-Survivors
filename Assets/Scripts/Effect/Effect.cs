@@ -26,6 +26,7 @@ public class Effect : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
+    [field: SerializeField] public List<string> Descriptions { get; private set; } = new();
     [field: SerializeField] public EffectType EffectType { get; private set; }
     [field: SerializeField] public List<EffectModifier> Modifiers { get; private set; }
 
@@ -93,7 +94,10 @@ public class EffectSpec
             if (!target.HasAbility(ability))
                 target.GrantAbility(ability.CreateSpec(source));
             else
+            {
                 target.GetAbility(ability).abilityLevel++;
+                Debug.Log("UPGRADE!");
+            }
         }
     }
 

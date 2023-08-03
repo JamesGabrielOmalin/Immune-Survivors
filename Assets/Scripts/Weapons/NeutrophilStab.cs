@@ -22,14 +22,14 @@ public class NeutrophilStab : MonoBehaviour
 
     private IEnumerator Stab()
     {
-        WaitForSeconds wait = new(1f / attackCount);
+        WaitForSeconds wait = new(0.25f / attackCount);
         vfx.SetInt("Count", (int)attackCount);
         vfx.Play();
 
         for (int i = 0; i < attackCount; i++)
         {
-            if (Vector3.Distance(target.transform.position, GameManager.instance.Player.transform.position) >= attackRange)
-                break;
+            //if (Vector3.Distance(target.transform.position, GameManager.instance.Player.transform.position) >= attackRange)
+            //    break;
 
             //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
             //target.TakeDamage(damage);

@@ -23,7 +23,12 @@ public class PlayerInput : MonoBehaviour
     {
         DisableControls();
     }
-    
+
+    private void OnDestroy()
+    {
+        Controls = null;
+    }
+
     public void EnableControls()
     {
         if (Controls == null)

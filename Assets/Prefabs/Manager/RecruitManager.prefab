@@ -197,14 +197,15 @@ MonoBehaviour:
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
   spawnArea: {fileID: 892362681589872101}
+  maxSpawnDistance: 50
   initialAmountToSpawn: 3
-  EnableIntervalSpawning: 0
-  spawnInterval: 10
-  amountToSpawnPerInterval: 5
+  EnableIntervalSpawning: 1
+  spawnInterval: 15
+  amountToSpawnPerInterval: 1
   EnableThresholdSpawning: 1
-  enemyKillThreshold: 5
+  enemyKillThreshold: 1
   thresholdMultiplier: 2
-  amountToSpawn: 1
+  amountToSpawn: 3
 --- !u!65 &892362681589872101
 BoxCollider:
   m_ObjectHideFlags: 0

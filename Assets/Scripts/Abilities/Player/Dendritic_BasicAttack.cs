@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dendritic_BasicAttack", menuName = "Ability System/Abilities/Dendritic Basic Attack")]
 public class Dendritic_BasicAttack : Ability
 {
+    [field: SerializeField] public float AttackDamageScaling { get; private set; }
+    [field: SerializeField] public int AttackCount { get; private set; }
     public override AbilitySpec CreateSpec(AbilitySystem owner)
     {
         AbilitySpec spec = new Dendritic_BasicAttackSpec(this, owner);
@@ -53,7 +55,7 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            Slash();
+            yield return Slash();
 
         yield break;
     }
@@ -64,32 +66,33 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         base.EndAbility();
     }
 
-    private void Slash()
+    private IEnumerator Slash()
     {
+        WaitForSeconds wait = new(0.15f);
         // implement basic shooting towards target
-        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value);
-        if (target == null)
+        for (int i = 0; i < abilityLevel; i++)
         {
-            return;
+            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value);
+            if (target == null)
+            {
+                continue;
+            }
+
+            GameObject projectile = slashes.RequestPoolable(target.transform.position);
+            if (projectile == null)
+                continue;
+
+            DendriticSlash slash = projectile.GetComponent<DendriticSlash>();
+            slash.target = target.GetComponent<Enemy>();
+
+            // Snapshot attributes
+            slash.attackDamage = attackDamage.Value * basicAttack.AttackDamageScaling;
+            slash.critRate = critRate.Value;
+            slash.critDMG = critDMG.Value;
+            slash.attackCount = (int)attackCount.Value + basicAttack.AttackCount;
+
+            yield return wait;
         }
-
-        GameObject projectile = slashes.RequestPoolable(target.transform.position);
-        if (projectile == null)
-            return;
-
-        DendriticSlash slash = projectile.GetComponent<DendriticSlash>();
-        slash.target = target.GetComponent<Enemy>();
-
-        if (!slash.target)
-        {
-            Debug.LogError("WHAT?");
-        }
-
-        // Snapshot attributes
-        slash.attackDamage = attackDamage.Value;
-        slash.critRate = critRate.Value;
-        slash.critDMG = critDMG.Value;
-        slash.attackCount = (int)attackCount.Value + 4;
     }
 
     // Cache all attributes required by this ability

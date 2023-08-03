@@ -62,42 +62,45 @@ public class Neutrophil_StabSpec : AbilitySpec
     private void Stab()
     {
         float range = basicAttack.Range;
-        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
-
-        if (target == null)
+        
+        for (int i = 0; i < abilityLevel; i++)
         {
-            return;
+            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
+
+            if (target == null)
+            {
+                return;
+            }
+
+            Vector3 dir = target.transform.position - owner.transform.position;
+            GameObject stabObject = stabs.RequestPoolable(target.transform.position);
+
+            if (stabObject == null)
+            {
+                return;
+            }
+
+            stabObject.transform.forward = dir;
+
+            int count = (int)attackCount.Value;
+
+            float ad = attackDamage.Value;
+            float az = attackSize.Value;
+            float cr = critRate.Value;
+            float cd = critDMG.Value;
+
+            NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
+            stab.attackDamage = attackDamage.Value;
+            stab.attackRange = range;
+            stab.attackCount = attackCount.Value;
+            stab.attackSize = attackSize.Value;
+            stab.critRate = critRate.Value;
+            stab.critDMG = critDMG.Value;
+
+            stab.target = target.GetComponent<Enemy>();
+
+            stab.transform.localScale = Vector3.one * az;
         }
-
-        Vector3 dir = target.transform.position - owner.transform.position;
-        GameObject stabObject = stabs.RequestPoolable(target.transform.position);
-
-        if (stabObject == null)
-        {
-            return;
-        }
-
-        stabObject.transform.forward = dir;
-
-        int count = (int)attackCount.Value;
-
-        float ad = attackDamage.Value;
-        float az = attackSize.Value;
-        float cr = critRate.Value;
-        float cd = critDMG.Value;
-
-
-        NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
-        stab.attackDamage = attackDamage.Value;
-        stab.attackRange = attackRange.Value;
-        stab.attackCount = attackCount.Value;
-        stab.attackSize = attackSize.Value;
-        stab.critRate = critRate.Value;
-        stab.critDMG = critDMG.Value;
-
-        stab.target = target.GetComponent<Enemy>();
-
-        stab.transform.localScale = Vector3.one * az;
     }
 
     private void Init()
