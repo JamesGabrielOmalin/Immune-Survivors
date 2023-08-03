@@ -60,9 +60,9 @@ VisualEffect:
       m_Array: []
     m_Int:
       m_Array:
-      - m_Value: 10
+      - m_Value: 0
         m_Name: Count
-        m_Overridden: 1
+        m_Overridden: 0
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
@@ -158,12 +158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 744c91f55e7732a428570780ccd5eb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 2048
+  target: {fileID: 0}
   vfx: {fileID: 8653658329853414419}
   attackDamage: 0
+  attackCount: 0
   critRate: 0
   critDMG: 0
-  slashCount: 0
-  slashSize: 0

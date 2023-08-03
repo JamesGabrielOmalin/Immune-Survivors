@@ -6,6 +6,30 @@ using UnityEditor;
 
 public class SceneLoader : MonoBehaviour
 {
+    public void ReloadScene()
+    {
+        if (GameManager.instance)
+        {
+            GameManager.instance.ResumeGame();
+            GameManager.instance.ResumeGameTime();
+        }
+
+        StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().name));
+    }
+
+    //private IEnumerator ReloadSceneAsync()
+    //{
+    //    string name = SceneManager.GetActiveScene().name;
+    //    AsyncOperation op = SceneManager.UnloadSceneAsync(name);
+
+    //    while (op.progress < 0.9f)
+    //    {
+    //        yield return null;
+    //    }
+
+    //    yield return LoadSceneAsync(name);
+    //}
+
     public void LoadScene(string name)
     {
         StartCoroutine(LoadSceneAsync(name));

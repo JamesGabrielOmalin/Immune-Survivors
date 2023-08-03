@@ -76,17 +76,20 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         GameObject projectile = slashes.RequestPoolable(target.transform.position);
         if (projectile == null)
             return;
-        DendriticSlash slash = projectile.GetComponent<DendriticSlash>();
 
+        DendriticSlash slash = projectile.GetComponent<DendriticSlash>();
         slash.target = target.GetComponent<Enemy>();
+
+        if (!slash.target)
+        {
+            Debug.LogError("WHAT?");
+        }
 
         // Snapshot attributes
         slash.attackDamage = attackDamage.Value;
         slash.critRate = critRate.Value;
         slash.critDMG = critDMG.Value;
-        slash.attackCount = (int)attackCount.Value;
-
-        slash.transform.localScale = Vector3.one * attackSize.Value;
+        slash.attackCount = (int)attackCount.Value + 4;
     }
 
     // Cache all attributes required by this ability

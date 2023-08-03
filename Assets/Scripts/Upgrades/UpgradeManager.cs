@@ -38,6 +38,11 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
     public void AddUpgrade(Effect effect, PlayerUnitType unit)
     {
         switch (effect.EffectType)
@@ -46,7 +51,8 @@ public class UpgradeManager : MonoBehaviour
                 grantedEffects[unit].Add(effect);
                 break;
             case EffectType.Weapon:
-                grantedWeapons.Add(effect);
+                if (!grantedWeapons.Contains(effect))
+                    grantedWeapons.Add(effect);
                 break;
         }
     }

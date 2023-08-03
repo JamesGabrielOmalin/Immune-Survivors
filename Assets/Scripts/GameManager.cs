@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public GameObject HUD { get; private set; }
 
     public System.TimeSpan GameTime { get; private set; }
+    public string GameTimeDisplay => GameTime.ToString(@"mm\:ss");
     public float TimeToWin;
-    public TMP_Text Timer;
+    //public TMP_Text Timer;
 
     public bool GameTimePaused { get; private set; }
 
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     public System.Action OnGamePaused;
     public System.Action OnGameResumed;
+
+    public System.Action OnGameWin;
+    public System.Action OnGameLose;
 
     private void Awake()
     {
@@ -86,13 +90,14 @@ public class GameManager : MonoBehaviour
         while (GameTime.TotalSeconds < TimeToWin)
         {
             yield return wait;
-            GameTime = GameTime.Add(System.TimeSpan.FromSeconds(1f));
+            GameTime = GameTime.Add(System.TimeSpan.FromSeconds(1d));
 
             //Text can only go to 60 minutes iirc. Might have to refactor if we're planning to add an infinite mode.
-            Timer.text = GameTime.ToString(@"mm\:ss");
+            //Timer.text = GameTime.ToString(@"mm\:ss");
         }
 
         //Do win here
-        EnemyManager.instance.OnMinInfectionReached?.Invoke();
+        Player.SetActive(false); HUD.SetActive(false);
+        OnGameWin?.Invoke();
     }
 }

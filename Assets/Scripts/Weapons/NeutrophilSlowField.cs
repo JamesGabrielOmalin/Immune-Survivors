@@ -21,7 +21,6 @@ public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
         {
             enemy.attributes.GetAttribute("Move Speed").AddModifier(slow);
             enemies.Add(enemy);
-            Debug.Log("Enemy slowed");
         }
     }
 
@@ -31,7 +30,6 @@ public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
         {
             enemy.attributes.GetAttribute("Move Speed").RemoveModifier(slow);
             enemies.Remove(enemy);
-            Debug.Log("Enemy unslowed");
         }
     }
 
@@ -40,9 +38,6 @@ public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
         foreach (var enemy in enemies)
         {
             enemy.attributes.GetAttribute("Move Speed").RemoveModifier(slow);
-            Debug.Log("Disabled field: Enemy unslowed");
         }
-
-
     }
 }

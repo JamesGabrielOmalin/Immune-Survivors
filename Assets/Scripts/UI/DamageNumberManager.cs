@@ -25,7 +25,7 @@ public class DamageNumberManager : MonoBehaviour
         instance = null;
     }
 
-    public void SpawnDamageNumber(Vector3 position, float amount)
+    public void SpawnDamageNumber(in Vector3 position, in float amount)
     {
         GameObject damageNumber = damageNumberPool.RequestPoolable(position);
 
@@ -35,7 +35,7 @@ public class DamageNumberManager : MonoBehaviour
             return;
         }
 
-        damageNumber.GetComponent<TMP_Text>().text = amount.ToString();
-        damageNumber.GetComponent<DamageNumber>().startDespawnTimer();
+        TMP_Text text = damageNumber.GetComponent<TMP_Text>();
+        text.text = Mathf.RoundToInt(amount).ToString();
     }
 }

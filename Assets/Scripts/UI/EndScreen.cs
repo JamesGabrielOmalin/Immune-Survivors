@@ -10,8 +10,8 @@ public class EndScreen : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        EnemyManager.instance.OnMaxInfectionReached += ShowLoseScreen;
-        EnemyManager.instance.OnMinInfectionReached += ShowWinScreen;
+        GameManager.instance.OnGameLose += ShowLoseScreen;
+        GameManager.instance.OnGameWin += ShowWinScreen;
 
         winScreen.SetActive(false);
         loseScreen.SetActive(false);

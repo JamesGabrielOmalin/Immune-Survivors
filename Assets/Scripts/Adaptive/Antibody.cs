@@ -14,10 +14,10 @@ public class Antibody : Projectile, IBodyColliderListener
         {
             if (enemy.Type == this.Type)
             {
-                float duration = AntigenManager.instance.GetAntigenCount(Type) * 0.01f;
-                enemy.ApplyStun(AntigenManager.instance.GetAntigenCount(Type) * 0.01f);
+                // 1% Armor Shred per 10 Antigen
+                float amount = (AntigenManager.instance.GetAntigenCount(Type) / 10f) * 0.01f;
+                enemy.ApplyArmorShred(amount);
                 this.gameObject.SetActive(false);
-                Debug.Log("Apply stun");
             }
         }
     }

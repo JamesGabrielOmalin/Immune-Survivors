@@ -39,7 +39,7 @@ public class MacrophagePull : MonoBehaviour
         yield return null;
         targetPos = GameManager.instance.Player.transform.position;
 
-        float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+        //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
         int hitCount = 0;
         Collider[] hits = { };
         switch (type)
@@ -51,7 +51,7 @@ public class MacrophagePull : MonoBehaviour
                 hits = Physics.OverlapSphere(transform.position, 2f * attackSize, layer.value);
                 break;
             case MacrophagePullType.Circle:
-                hits = Physics.OverlapSphere(transform.position, (attackSize + attackRange), layer.value);
+                hits = Physics.OverlapSphere(transform.position, 5f * attackSize, layer.value);
                 break;
         }
 
@@ -59,8 +59,10 @@ public class MacrophagePull : MonoBehaviour
         {
             if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
             {
-                enemy.TakeDamage(damage);
-                enemy.ApplyDoT(damage, 4f, attackCount);
+                //enemy.TakeDamage(damage);
+                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+                enemy.ApplyDoT(attackDamage, 4f, attackCount);
                 if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impact))
                 {
                     Vector3 dir = (enemy.transform.position - targetPos).normalized;
