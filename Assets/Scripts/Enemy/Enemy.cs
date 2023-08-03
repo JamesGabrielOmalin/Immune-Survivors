@@ -73,6 +73,11 @@ public class Enemy : Unit
         HP.BaseValue -= (amount - Armor.Value);
         //Debug.Log("Damage taken: "+ HP.BaseValue);
 
+        Vector3 location = transform.position;
+        location.y += 1.0f;
+
+        DamageNumberManager.instance.SpawnDamageNumber(location, amount);
+
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();
