@@ -111,24 +111,35 @@ public class Player : MonoBehaviour
                 break;
         }
 
-        switch (recruit.UnitType)
+        PlayerUnit unit = GetUnit(recruit.UnitType);
+        unit.gameObject.SetActive(true);
+        unit.transform.parent = slot;
+        unit.transform.localPosition = Vector3.zero;
+
+        if (numRecruit > 0)
         {
-            case PlayerUnitType.Neutrophil:
-                neutrophil.gameObject.SetActive(true);
-                neutrophil.transform.parent = slot;
-                neutrophil.transform.localPosition = Vector3.zero;
-                break;
-            case PlayerUnitType.Macrophage:
-                macrophage.gameObject.SetActive(true);
-                macrophage.transform.parent = slot;
-                macrophage.transform.localPosition = Vector3.zero;
-                break;
-            case PlayerUnitType.Dendritic:
-                dendritic.gameObject.SetActive(true);
-                dendritic.transform.parent = slot;
-                dendritic.transform.localPosition = Vector3.zero;
-                break;
+            unit.GetComponent<Collider>().enabled = false;
+            unit.GetComponent<Rigidbody>().detectCollisions = false;
         }
+
+        //switch (recruit.UnitType)
+        //{
+        //    case PlayerUnitType.Neutrophil:
+        //        neutrophil.gameObject.SetActive(true);
+        //        neutrophil.transform.parent = slot;
+        //        neutrophil.transform.localPosition = Vector3.zero;
+        //        break;
+        //    case PlayerUnitType.Macrophage:
+        //        macrophage.gameObject.SetActive(true);
+        //        macrophage.transform.parent = slot;
+        //        macrophage.transform.localPosition = Vector3.zero;
+        //        break;
+        //    case PlayerUnitType.Dendritic:
+        //        dendritic.gameObject.SetActive(true);
+        //        dendritic.transform.parent = slot;
+        //        dendritic.transform.localPosition = Vector3.zero;
+        //        break;
+        //}
 
         unitRecruited[recruit.UnitType] = true;
 
