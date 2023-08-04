@@ -62,7 +62,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
         // start shooting
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            Shoot();
+            yield return Shoot();
 
         yield break;
     }
@@ -73,20 +73,15 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         base.EndAbility();
     }
 
-    private void Shoot()
+    private IEnumerator Shoot()
     {
         // implement basic shooting towards target
         GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value);
         if (target == null)
         {
-            return;
+            yield break;
         }
 
-        SpawnProjectile(target);
-    }
-
-    private void SpawnProjectile(in GameObject target)
-    {
         float angle = 0;
         float angleSteps = 0;
         float spreadFactor = 10;
@@ -95,7 +90,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         switch (basicAttack.type)
         {
             case NeutrophilAttackType.Spread:
-                angle = -(attackCount.Value * spreadFactor)/2;
+                angle = -(attackCount.Value * spreadFactor) / 2;
                 angleSteps = spreadFactor;
                 break;
 
@@ -113,37 +108,45 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
         int attackCountValue = (int)attackCount.Value;
 
+        WaitForSeconds wait = new(0.25f);
+
         for (int i = 0; i < attackCountValue; i++)
         {
-            GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
-            if (bulletObject == null)
-                continue;
-            NeutrophilBullet bullet = bulletObject.GetComponent<NeutrophilBullet>();
+            angle = 0;
+            for (int j = 0; j < abilityLevel * 2 - 1; j++)
+            {
+                GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
+                if (bulletObject == null)
+                    continue;
+                NeutrophilBullet bullet = bulletObject.GetComponent<NeutrophilBullet>();
 
-            // Snapshot attributes
-            //bulletObject.name = bulletObject.name + "(" + i.ToString() + ") ";
-            bullet.attackDamage = attackDamage.Value;
-            bullet.critRate = critRate.Value;
-            bullet.critDMG = critDMG.Value;
-            bullet.knockbackPower = knockbackPower.Value;
-            bullet.transform.localScale = Vector3.one * attackSize.Value;
+                // Snapshot attributes
+                //bulletObject.name = bulletObject.name + "(" + i.ToString() + ") ";
+                bullet.attackDamage = attackDamage.Value;
+                bullet.critRate = critRate.Value;
+                bullet.critDMG = critDMG.Value;
+                bullet.knockbackPower = knockbackPower.Value;
+                bullet.transform.localScale = Vector3.one * attackSize.Value;
 
-            // Calculate for the direction 
-            Vector3 direction = (newTargetPos - owner.transform.position).normalized;
+                // Calculate for the direction 
+                Vector3 direction = (newTargetPos - owner.transform.position).normalized;
 
-            // Apply towards the target
-            bulletObject.transform.forward = direction;
+                // Apply towards the target
+                bulletObject.transform.forward = direction;
 
-            // Apply Angle offset
-            //Vector3 forwardDir = projectile.transform.forward;
-            //Quaternion offsetRotation = Quaternion.Euler(0f, angle, 0f);
+                // Apply Angle offset
+                //Vector3 forwardDir = projectile.transform.forward;
+                //Quaternion offsetRotation = Quaternion.Euler(0f, angle, 0f);
 
-            //Vector3 finalForwardDirection = offsetRotation * forwardDir;
-            bulletObject.transform.Rotate(new Vector3(0f, angle, 0f));
-            bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
+                //Vector3 finalForwardDirection = offsetRotation * forwardDir;
+                bulletObject.transform.Rotate(new Vector3(0f, angle, 0f));
+                bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
 
-            // increment angle based on nprojectiles
-            angle += angleSteps;
+                // increment angle based on nprojectiles
+                angle += angleSteps;
+            }
+
+            yield return wait;
         }
     }
 

@@ -75,10 +75,10 @@ public class Enemy : Unit, IDamageInterface
 
         HP.ApplyInstantModifier(new(-amount, AttributeModifierType.Add));
 
-        Vector3 location = transform.position;
-        location.y += 1.0f;
+        //Vector3 location = transform.position;
+        //location.y += 1.0f;
 
-        DamageNumberManager.instance.SpawnDamageNumber(location, amount);
+        //DamageNumberManager.instance.SpawnDamageNumber(location, amount);
 
         if (HP.Value <= 0f)
         {
@@ -101,7 +101,6 @@ public class Enemy : Unit, IDamageInterface
         {
             targetPlayer = other.GetComponent<Player>();
             attackCoroutine = StartCoroutine(Attack());
-            Debug.Log("Player Entered");
         }
     }
 
@@ -111,7 +110,6 @@ public class Enemy : Unit, IDamageInterface
         {
             StopCoroutine(attackCoroutine);
             targetPlayer = null;
-            Debug.Log("Player Exited");
         }
     }
 
@@ -120,14 +118,11 @@ public class Enemy : Unit, IDamageInterface
     {
         while (targetPlayer)
         {
-            yield return new WaitForSeconds(1f / AttackSpeed.Value);
-
-            if (IsStunned)
-                continue;
+            yield return new WaitUntil(() => !this.IsStunned);
 
             DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
             targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
-            Debug.Log(gameObject.name + "attacked player!");
+            yield return new WaitForSeconds(1f / AttackSpeed.Value);
         }
     }
 

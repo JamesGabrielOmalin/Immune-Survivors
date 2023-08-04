@@ -19,12 +19,15 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private List<Effect> macrophageWeapons= new();
     [SerializeField] private List<Effect> dendriticWeapons = new();
 
+    [SerializeField] private List<Effect> defaultWeapons = new();
+
     private readonly Dictionary<PlayerUnitType, List<Effect>> grantedEffects = new()
     {
         { PlayerUnitType.Neutrophil, new() },
         { PlayerUnitType.Macrophage, new() },
         { PlayerUnitType.Dendritic, new() },
     };
+
     private readonly List<Effect> grantedWeapons = new();
 
     private void Awake()
@@ -36,6 +39,11 @@ public class UpgradeManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn]);
     }
 
     private void OnDestroy()

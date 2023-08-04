@@ -55,9 +55,6 @@ public class RecruitManager : MonoBehaviour
     [field: SerializeField]
     public List<KillThreshold> killThresholdList;
 
-
-
-
     private void Awake()
     {
         if (instance == null)
@@ -77,6 +74,8 @@ public class RecruitManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        player = GameManager.instance.Player;
+
         killThreshold = initialKillRequirement;
         thresholdIncrement = killThresholdList[index].increment;
 
@@ -85,16 +84,14 @@ public class RecruitManager : MonoBehaviour
         if (EnableIntervalSpawning)
         {
             StartCoroutine(SpawnCoroutine());
-
         }
-
     }
 
     private IEnumerator SpawnCoroutine()
     {
         while (true)
         {
-            yield return new WaitForSeconds(amountToSpawnPerInterval);
+            yield return new WaitForSeconds(spawnInterval);
 
             SpawnRecruitBatch(amountToSpawnPerInterval);
         }
@@ -104,32 +101,39 @@ public class RecruitManager : MonoBehaviour
     {
         float angle;
         Vector3 dir;
-        player = GameManager.instance.Player;
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
             angle = Random.Range(0f, 360f);
 
             dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+            //Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
 
-            spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
+            //spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
 
-            PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
-            float rand = Random.value;
+            Vector3 spawnPoint = player.transform.position + (dir * Random.Range(20f, 30f));
 
-            if (rand < 0.1f)
+            if (!spawnArea.bounds.Contains(spawnPoint))
             {
-                toSpawn = PlayerUnitType.Dendritic;
+                spawnPoint = RandomPointInBounds(spawnArea.bounds);
+                spawnPoint.y = 0f;
             }
-            else if (rand < 0.3f)
-            {
-                toSpawn = PlayerUnitType.Macrophage;
-            }
-            else if (rand < 0.7f)
-            {
-                toSpawn = PlayerUnitType.Neutrophil;
-            }
+
+            PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
+            //float rand = Random.value;
+
+            //if (rand < 0.1f)
+            //{
+            //    toSpawn = PlayerUnitType.Dendritic;
+            //}
+            //else if (rand < 0.3f)
+            //{
+            //    toSpawn = PlayerUnitType.Macrophage;
+            //}
+            //else if (rand < 0.7f)
+            //{
+            //    toSpawn = PlayerUnitType.Neutrophil;
+            //}
 
             SpawnRecruit(spawnPoint, toSpawn);
         }

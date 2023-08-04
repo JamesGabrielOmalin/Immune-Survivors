@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(TMP_Text))]
 public class DamageNumber : MonoBehaviour
 {
+    [SerializeField] private float speed;
     [SerializeField] private float despawnTime;
 
     private void OnEnable()
@@ -16,7 +17,7 @@ public class DamageNumber : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += Vector3.up * Time.fixedDeltaTime;
+        transform.position += Vector3.up *(speed * Time.fixedDeltaTime);
     }
 
     //public void StartDespawnTimer()

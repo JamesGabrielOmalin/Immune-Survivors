@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 0
-  projectilePrefab: {fileID: 8797763245774040535, guid: ddb7788c2aefe3d46949cc50c749a003,
-    type: 3}
+  <AbilityType>k__BackingField: 0
+  <AttackDamageScaling>k__BackingField: 0.5
+  <AttackCount>k__BackingField: 3
