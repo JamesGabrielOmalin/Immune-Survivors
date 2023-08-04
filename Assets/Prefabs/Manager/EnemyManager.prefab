@@ -107,12 +107,12 @@ MonoBehaviour:
   WaveNumber: 0
   currentWave:
     WaveID: 0
+    waveSpawnQuota: 0
     spawnInterval: 0
     spawnCounter: 0
-    waveQuota: 0
+    excessSpawnCounter: 0
     enemyGroups: []
-  waveInterval: 60
-  maxEnemyCountAllowed: 5
+  maxEnemyCountAllowed: 300
 --- !u!1 &8919689434991410157
 GameObject:
   m_ObjectHideFlags: 0

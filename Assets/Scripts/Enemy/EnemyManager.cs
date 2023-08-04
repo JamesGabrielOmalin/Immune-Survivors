@@ -32,7 +32,6 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private int WaveNumber = 0;
     [SerializeField] private Wave currentWave;
-    [SerializeField] private int waveInterval = 0;
     [SerializeField] private int maxEnemyCountAllowed;
 
 
@@ -55,7 +54,7 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         // Set the current wave with the firt wave in the wavelist
-        currentWave = levelWaveData.waveList[WaveNumber];
+        InitalizeCurrentWave(WaveNumber);
 
         // Calculate the quota of the current wave
         CalculateWaveQuota();
@@ -73,19 +72,13 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(waveInterval);
+            yield return new WaitForSeconds(levelWaveData.waveInterval);
 
             // Increment wave number if there is a next wave
             if (WaveNumber < levelWaveData.waveList.Count-1)
             {
                 WaveNumber++;
-                currentWave = levelWaveData.waveList[WaveNumber];
-                currentWave.spawnCounter = 0;
-                foreach(EnemyGroup eg in currentWave.enemyGroups)
-                {
-                    eg.spawnCounter = 0;
-                }
-
+                InitalizeCurrentWave(WaveNumber);
                 CalculateWaveQuota();
 
             }
@@ -107,7 +100,7 @@ public class EnemyManager : MonoBehaviour
 
            
             // Spawn enemy of each type if the number of enemies present in below the wave quota
-            if (currentWave.spawnCounter < currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
+            if (totalEnemyCount < currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
             {
                 // Spawn each type of enemy
                 foreach(EnemyGroup eg in currentWave.enemyGroups)
@@ -124,7 +117,7 @@ public class EnemyManager : MonoBehaviour
                     }
                 }
             }
-            // Spawn each type of enemy if the enemies present are more than the wave quota
+            // Spawn random enemy if the enemies present are more than the wave quota
             else if (currentWave.spawnCounter >= currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
             {
                 int type = Random.Range(0, currentWave.enemyGroups.Count);
@@ -134,6 +127,10 @@ public class EnemyManager : MonoBehaviour
                 currentWave.enemyGroups[type].spawnCounter++;
                 currentWave.excessSpawnCounter++;
 
+            }
+            else if (totalEnemyCount > maxEnemyCountAllowed)
+            {
+                //spawn boss or trigger events
             }
         }
     }
@@ -203,7 +200,15 @@ public class EnemyManager : MonoBehaviour
             OnMaxInfectionReached?.Invoke();
         }
     }
-
+     private void InitalizeCurrentWave(int waveNum)
+    {
+        levelWaveData.waveList[waveNum].spawnCounter = 0;
+        foreach (EnemyGroup eg in levelWaveData.waveList[waveNum].enemyGroups)
+        {
+            eg.spawnCounter = 0;
+        }
+        currentWave = levelWaveData.waveList[waveNum];
+    }
     private void CalculateWaveQuota()
     {
         

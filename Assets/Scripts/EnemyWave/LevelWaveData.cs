@@ -36,5 +36,6 @@ public class EnemyGroup
 [CreateAssetMenu(fileName = "Wave", menuName = "Level/Wave")]
 public class LevelWaveData : ScriptableObject
 {
+    public int waveInterval = 0;
     public List<Wave> waveList;
 }
