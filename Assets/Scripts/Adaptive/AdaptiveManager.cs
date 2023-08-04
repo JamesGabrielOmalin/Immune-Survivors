@@ -27,6 +27,8 @@ public class AdaptiveManager : MonoBehaviour
     private void Start()
     {
         AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_1] += (() => SpawnAdaptiveCell(AntigenType.Type_1));
+        AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_2] += (() => SpawnAdaptiveCell(AntigenType.Type_2));
+        AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_3] += (() => SpawnAdaptiveCell(AntigenType.Type_3));
     }
 
     private void OnDestroy()
