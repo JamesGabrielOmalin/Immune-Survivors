@@ -60,7 +60,7 @@ public class Enemy : Unit, IDamageInterface
         // Upon elimination, spawn antigen
         OnDeath += delegate
         {
-            if (AntigenSpawnChance.Value <= 0.25f)
+            if (Random.value < AntigenSpawnChance.Value)
                 AntigenManager.instance.SpawnAntigen(transform.position, Type);
             RecruitManager.instance.AddKillCount();
         };

@@ -16,7 +16,7 @@ public class DamageCalculator
             return;
         }
 
-        bool isCrit = Random.value <= critRate;
+        bool isCrit = Random.value < critRate;
         float reduction = DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
         float damage = attackDamage * (isCrit ? critDMG : reduction);
 
