@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Neutrophil_Ultimate
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
-  <Cooldown>k__BackingField: 5
+  <Cooldown>k__BackingField: 30
   <AbilityType>k__BackingField: 2
