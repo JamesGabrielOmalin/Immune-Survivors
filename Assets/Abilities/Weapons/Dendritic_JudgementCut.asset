@@ -15,3 +15,4 @@ MonoBehaviour:
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 0
   <AbilityType>k__BackingField: 0
+  <AttackDamageScaling>k__BackingField: 1
