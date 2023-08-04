@@ -202,9 +202,17 @@ MonoBehaviour:
   spawnInterval: 10
   amountToSpawnPerInterval: 5
   EnableThresholdSpawning: 1
-  enemyKillThreshold: 5
-  thresholdMultiplier: 2
+  initialKillRequirement: 0
+  killCount: 0
+  killThreshold: 0
+  cycle: 1
+  thresholdIncrement: 0
   amountToSpawn: 1
+  killThresholdList:
+  - startCycle: 0
+    endCycle: 0
+    increment: 0
+    nRecruitToSpawn: 0
 --- !u!65 &892362681589872101
 BoxCollider:
   m_ObjectHideFlags: 0

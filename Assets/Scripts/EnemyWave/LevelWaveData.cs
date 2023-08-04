@@ -13,7 +13,7 @@ public class Wave
     public int waveSpawnQuota = 0; //total number of enemies to spawn in this wave
     
     [Header("Spawning")]
-    public int spawnInterval = 0; // spawn interval in seconds
+    public float spawnInterval = 0; // spawn interval in seconds
     public int spawnCounter = 0; //total number of enemies already spawned in this wave
     public int excessSpawnCounter = 0; //total number of enemies already spawned in this wave
 

@@ -14,37 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveList:
   - WaveID: 1
+    waveSpawnQuota: 100
     spawnInterval: 1
-    spawnCounter: 0
-    waveQuota: 0
-    enemyGroups:
-    - enemyName: Enemy Type 1
-      enemyQuota: 50
-      spawnCounter: 0
-      antigenType: 0
-    - enemyName: Enemy Type 1
-      enemyQuota: 10
-      spawnCounter: 0
-      antigenType: 1
-  - WaveID: 2
-    spawnInterval: 1
-    spawnCounter: 52
-    waveQuota: 0
+    spawnCounter: 120
+    excessSpawnCounter: 70
     enemyGroups:
     - enemyName: Enemy Type 2
-      enemyQuota: 50
-      spawnCounter: 0
-      antigenType: 1
-    - enemyName: Enemy Type 3
-      enemyQuota: 10
-      spawnCounter: 0
-      antigenType: 2
-  - WaveID: 3
+      antigenType: 0
+      spawnCounter: 58
+      enemyQuota: 100
+  - WaveID: 2
+    waveSpawnQuota: 100
     spawnInterval: 1
-    spawnCounter: 0
-    waveQuota: 0
+    spawnCounter: 59
+    excessSpawnCounter: 0
+    enemyGroups:
+    - enemyName: Enemy Type 2
+      antigenType: 1
+      spawnCounter: 59
+      enemyQuota: 100
+  - WaveID: 3
+    waveSpawnQuota: 100
+    spawnInterval: 0.5
+    spawnCounter: 100
+    excessSpawnCounter: 16
     enemyGroups:
     - enemyName: Enemy Type 3
-      enemyQuota: 60
-      spawnCounter: 0
       antigenType: 2
+      spawnCounter: 116
+      enemyQuota: 100
