@@ -29,6 +29,7 @@ public class Effect : ScriptableObject
     [field: SerializeField] public List<string> Descriptions { get; private set; } = new();
     [field: SerializeField] public EffectType EffectType { get; private set; }
     [field: SerializeField] public List<EffectModifier> Modifiers { get; private set; }
+    [field: SerializeField] public Sprite Sprite { get; private set; }
 
     [field: Header("Duration")]
     [field: SerializeField] public EffectDurationType DurationType { get; private set; }

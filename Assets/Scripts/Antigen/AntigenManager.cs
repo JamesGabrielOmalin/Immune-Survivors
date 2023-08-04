@@ -54,13 +54,14 @@ public class AntigenManager : MonoBehaviour
 
     public void AddAntigen(AntigenType type)
     {
-        antigenCount[type]++;
+        antigenCount[type] += 10;
         OnAntigenCountChanged[type]?.Invoke();
 
         if (antigenCount[type] >= antigenThreshold && OnAntigenThresholdReached[type] != null)
         {
             OnAntigenThresholdReached[type]?.Invoke();
-            OnAntigenThresholdReached[type] = null;
+            //OnAntigenThresholdReached[type] = null;
+            antigenCount[type] = 0;
         }
     }
 

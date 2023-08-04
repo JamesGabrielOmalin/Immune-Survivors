@@ -9,6 +9,7 @@ public class Enemy : Unit, IDamageInterface
     private Attribute AttackDamage;
     private Attribute AttackSpeed;
     private Attribute Armor;
+    private Attribute AntigenSpawnChance;
 
     public bool IsDead => HP.BaseValue <= 0f;
 
@@ -39,6 +40,7 @@ public class Enemy : Unit, IDamageInterface
         AttackDamage = attributes.GetAttribute("Attack Damage");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
         Armor = attributes.GetAttribute("Armor");
+        AntigenSpawnChance = attributes.GetAttribute("Antigen Spawn Chance");
 
         HP.BaseValue = MaxHP.Value;
 
@@ -58,7 +60,8 @@ public class Enemy : Unit, IDamageInterface
         // Upon elimination, spawn antigen
         OnDeath += delegate
         {
-            AntigenManager.instance.SpawnAntigen(transform.position, Type);
+            if (AntigenSpawnChance.Value <= 0.25f)
+                AntigenManager.instance.SpawnAntigen(transform.position, Type);
             RecruitManager.instance.AddKillCount();
         };
     }
