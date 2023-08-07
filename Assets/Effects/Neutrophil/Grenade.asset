@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Grenade
   <Description>k__BackingField: Gain the NET Grenade Weapon
+  <Descriptions>k__BackingField: []
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 4d7e6e570e9d65a4c9a994783a0652e2,
+    type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
   <Abilities>k__BackingField:
