@@ -152,7 +152,9 @@ Varyings vert(Attributes input)
 //#endif
     
 #ifdef ApplyShadowBiasFix
-    float4 positionCS = TransformWorldToHClip(worldPos + float3(0, 0, 0.5));
+    float3 bias = mul(float3(0, 0, 0.25), billboardRotation);
+    bias.y = 0;
+    float4 positionCS = TransformWorldToHClip(worldPos + bias);
     #if UNITY_REVERSED_Z
     positionCS.z = min(positionCS.z, positionCS.w * UNITY_NEAR_CLIP_VALUE);
     #else
