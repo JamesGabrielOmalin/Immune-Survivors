@@ -25,7 +25,7 @@ public class DamageNumberManager : MonoBehaviour
         instance = null;
     }
 
-    public void SpawnDamageNumber(in Vector3 position, in float amount)
+    public void SpawnDamageNumber(in Vector3 position, in float amount, bool isCrit)
     {
         GameObject damageNumber = damageNumberPool.RequestPoolable(position);
 
@@ -35,7 +35,20 @@ public class DamageNumberManager : MonoBehaviour
             return;
         }
 
+        TMP_Text text = damageNumber.GetComponent<TMP_Text>();
+        text.text = Mathf.RoundToInt(amount).ToString();
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
         text.text.text = Mathf.RoundToInt(amount).ToString();
+        
+        if (isCrit)
+        {
+            text.text.color = Color.red;
+            text.text.fontSize = 0.6f;
+        }
+        else
+        {
+            text.text.color = Color.white;
+            text.text.fontSize = 0.5f;
+        }
     }
 }

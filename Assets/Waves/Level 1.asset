@@ -16,22 +16,22 @@ MonoBehaviour:
   waveList:
   - WaveID: 1
     waveSpawnQuota: 60
-    spawnInterval: 1
-    spawnCounter: 13
+    spawnInterval: 0.5
+    spawnCounter: 60
     excessSpawnCounter: 0
     enemyGroups:
     - enemyName: Enemy Type 1
       antigenType: 0
-      spawnCounter: 13
+      spawnCounter: 40
       enemyQuota: 40
     - enemyName: Enemy Type 2
       antigenType: 1
-      spawnCounter: 0
+      spawnCounter: 20
       enemyQuota: 20
   - WaveID: 2
     waveSpawnQuota: 40
-    spawnInterval: 1
-    spawnCounter: 30
+    spawnInterval: 0.5
+    spawnCounter: 38
     excessSpawnCounter: 0
     enemyGroups:
     - enemyName: Enemy Type 1
@@ -44,23 +44,23 @@ MonoBehaviour:
       enemyQuota: 20
     - enemyName: Enemy Type 3
       antigenType: 1
-      spawnCounter: 0
+      spawnCounter: 8
       enemyQuota: 10
   - WaveID: 3
-    waveSpawnQuota: 60
-    spawnInterval: 1
-    spawnCounter: 60
+    waveSpawnQuota: 300
+    spawnInterval: 0.5
+    spawnCounter: 300
     excessSpawnCounter: 0
     enemyGroups:
     - enemyName: Enemy Type 1
       antigenType: 0
-      spawnCounter: 82
-      enemyQuota: 10
+      spawnCounter: 100
+      enemyQuota: 100
     - enemyName: Enemy Type 2
       antigenType: 1
-      spawnCounter: 73
-      enemyQuota: 25
+      spawnCounter: 100
+      enemyQuota: 100
     - enemyName: Enemy Type 3
       antigenType: 1
-      spawnCounter: 91
-      enemyQuota: 25
+      spawnCounter: 100
+      enemyQuota: 100
