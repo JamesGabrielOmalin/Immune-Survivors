@@ -35,8 +35,6 @@ public class DamageNumberManager : MonoBehaviour
             return;
         }
 
-        TMP_Text text = damageNumber.GetComponent<TMP_Text>();
-        text.text = Mathf.RoundToInt(amount).ToString();
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
         text.text.text = Mathf.RoundToInt(amount).ToString();
         
