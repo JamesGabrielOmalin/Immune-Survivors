@@ -17,18 +17,25 @@ public class AntigenManager : MonoBehaviour
         { AntigenType.Type_3, 0 },
     };
 
+    private readonly Dictionary<AntigenType, int> antigenCountTotal = new()
+    {
+        { AntigenType.Type_1, 0 },
+        { AntigenType.Type_2, 0 },
+        { AntigenType.Type_3, 0 },
+    };
+
     public readonly Dictionary<AntigenType, System.Action> OnAntigenCountChanged = new()
     {
-        { AntigenType.Type_1, () => { } },
-        { AntigenType.Type_2, () => { } },
-        { AntigenType.Type_3, () => { } },
+        { AntigenType.Type_1, null},
+        { AntigenType.Type_2, null },
+        { AntigenType.Type_3, null },
     };
 
     public readonly Dictionary<AntigenType, System.Action> OnAntigenThresholdReached = new()
     {
-        { AntigenType.Type_1, () => { } },
-        { AntigenType.Type_2, () => { } },
-        { AntigenType.Type_3, () => { } },
+        { AntigenType.Type_1, null },
+        { AntigenType.Type_2, null },
+        { AntigenType.Type_3, null },
     };
 
     private void Awake()
@@ -54,18 +61,20 @@ public class AntigenManager : MonoBehaviour
 
     public void AddAntigen(AntigenType type)
     {
-        antigenCount[type]++;
+        antigenCount[type] += 10;
+        antigenCountTotal[type] += 10;
         OnAntigenCountChanged[type]?.Invoke();
 
         if (antigenCount[type] >= antigenThreshold && OnAntigenThresholdReached[type] != null)
         {
             OnAntigenThresholdReached[type]?.Invoke();
-            OnAntigenThresholdReached[type] = null;
+            //OnAntigenThresholdReached[type] = null;
+            antigenCount[type] = 0;
         }
     }
 
     public int GetAntigenCount(AntigenType type)
     {
-        return antigenCount[type];
+        return antigenCountTotal[type];
     }
 }

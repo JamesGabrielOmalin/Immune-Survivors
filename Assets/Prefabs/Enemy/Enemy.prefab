@@ -308,6 +308,9 @@ MonoBehaviour:
   - <Name>k__BackingField: Armor
     baseValue: 3
     <Modifiers>k__BackingField: []
+  - <Name>k__BackingField: Antigen Spawn Chance
+    baseValue: 0.25
+    <Modifiers>k__BackingField: []
 --- !u!54 &2687134211752357555
 Rigidbody:
   m_ObjectHideFlags: 0

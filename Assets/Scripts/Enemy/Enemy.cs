@@ -9,6 +9,7 @@ public class Enemy : Unit, IDamageInterface
     private Attribute AttackDamage;
     private Attribute AttackSpeed;
     private Attribute Armor;
+    private Attribute AntigenSpawnChance;
 
     public bool IsDead => HP.BaseValue <= 0f;
 
@@ -39,6 +40,7 @@ public class Enemy : Unit, IDamageInterface
         AttackDamage = attributes.GetAttribute("Attack Damage");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
         Armor = attributes.GetAttribute("Armor");
+        AntigenSpawnChance = attributes.GetAttribute("Antigen Spawn Chance");
 
         HP.BaseValue = MaxHP.Value;
 
@@ -58,7 +60,8 @@ public class Enemy : Unit, IDamageInterface
         // Upon elimination, spawn antigen
         OnDeath += delegate
         {
-            AntigenManager.instance.SpawnAntigen(transform.position, Type);
+            if (Random.value < AntigenSpawnChance.Value)
+                AntigenManager.instance.SpawnAntigen(transform.position, Type);
             RecruitManager.instance.AddKillCount();
         };
     }
@@ -100,7 +103,8 @@ public class Enemy : Unit, IDamageInterface
         if (other.CompareTag(PLAYER_TAG))
         {
             targetPlayer = other.GetComponent<Player>();
-            attackCoroutine = StartCoroutine(Attack());
+            if (attackCoroutine == null)
+                attackCoroutine = StartCoroutine(Attack());
         }
     }
 
@@ -108,7 +112,7 @@ public class Enemy : Unit, IDamageInterface
     {
         if (other.CompareTag(PLAYER_TAG))
         {
-            StopCoroutine(attackCoroutine);
+            //StopCoroutine(attackCoroutine);
             targetPlayer = null;
         }
     }
@@ -118,12 +122,13 @@ public class Enemy : Unit, IDamageInterface
     {
         while (targetPlayer)
         {
-            yield return new WaitUntil(() => !this.IsStunned);
-
             DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
             targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
             yield return new WaitForSeconds(1f / AttackSpeed.Value);
+            yield return new WaitUntil(() => !this.IsStunned);
         }
+
+        attackCoroutine = null;
     }
 
     public void ApplyStun(float duration)

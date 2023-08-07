@@ -26,7 +26,9 @@ public class AdaptiveManager : MonoBehaviour
 
     private void Start()
     {
-        AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_1] += (() => StartSpawningAdaptiveCells(AntigenType.Type_1));
+        AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_1] += (() => SpawnAdaptiveCell(AntigenType.Type_1));
+        AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_2] += (() => SpawnAdaptiveCell(AntigenType.Type_2));
+        AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_3] += (() => SpawnAdaptiveCell(AntigenType.Type_3));
     }
 
     private void OnDestroy()
@@ -34,44 +36,69 @@ public class AdaptiveManager : MonoBehaviour
         instance = null;
     }
 
-    private void StartSpawningAdaptiveCells(AntigenType type)
+    private void SpawnAdaptiveCell(AntigenType type)
     {
-        StartCoroutine(SpawnCoroutine(type));
-    }
-
-    private IEnumerator SpawnCoroutine(AntigenType type)
-    {
+        //StartCoroutine(SpawnCoroutine(type));
         GameObject player = GameManager.instance.Player;
-        WaitForSeconds wait = new(10f);
+        // spawn point around the player
+        float angle = Random.Range(0f, 360f);
+        Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+        Vector3 spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
 
-        while (this)
+        if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
         {
-            // spawn point around the player
-            float angle = Random.Range(0f, 360f);
-            Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
-
-            if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            {
-                spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            }
-
-            GameObject helperTCell = helperTCellPool.RequestPoolable(spawnPoint);
-            helperTCell.GetComponent<AdaptiveCell>().SetType(type);
-
-            angle = Random.Range(0f, 360f);
-            dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
-
-            if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            {
-                spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            }
-
-            GameObject bCell = BCellPool.RequestPoolable(spawnPoint);
-            bCell.GetComponent<AdaptiveCell>().SetType(type);
-
-            yield return wait;
+            spawnPoint = spawnPoint.normalized * maxSpawnDistance;
         }
+
+        GameObject helperTCell = helperTCellPool.RequestPoolable(spawnPoint);
+        helperTCell.GetComponent<AdaptiveCell>().SetType(type);
+
+        angle = Random.Range(0f, 360f);
+        dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+        spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
+
+        if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+        {
+            spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+        }
+
+        GameObject bCell = BCellPool.RequestPoolable(spawnPoint);
+        bCell.GetComponent<AdaptiveCell>().SetType(type);
     }
+
+    //private IEnumerator SpawnCoroutine(AntigenType type)
+    //{
+    //    GameObject player = GameManager.instance.Player;
+    //    WaitForSeconds wait = new(10f);
+
+    //    while (this)
+    //    {
+    //        // spawn point around the player
+    //        float angle = Random.Range(0f, 360f);
+    //        Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+    //        Vector3 spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
+
+    //        if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+    //        {
+    //            spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+    //        }
+
+    //        GameObject helperTCell = helperTCellPool.RequestPoolable(spawnPoint);
+    //        helperTCell.GetComponent<AdaptiveCell>().SetType(type);
+
+    //        angle = Random.Range(0f, 360f);
+    //        dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+    //        spawnPoint = player.transform.position + dir * Random.Range(20f, 40f);
+
+    //        if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+    //        {
+    //            spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+    //        }
+
+    //        GameObject bCell = BCellPool.RequestPoolable(spawnPoint);
+    //        bCell.GetComponent<AdaptiveCell>().SetType(type);
+
+    //        yield return wait;
+    //    }
+    //}
 }
