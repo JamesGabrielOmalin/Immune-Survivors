@@ -224,7 +224,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &4782505582870041296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,6 +937,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5129593879495125712, guid: ae2b6b42036cdaf4985bd7e4483e9de5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7514146600056064294, guid: ae2b6b42036cdaf4985bd7e4483e9de5,
         type: 3}
       propertyPath: m_RootOrder
@@ -1066,6 +1071,11 @@ PrefabInstance:
       propertyPath: ultimateCDIcon
       value: 
       objectReference: {fileID: 2041476485244624825}
+    - target: {fileID: 5129593879495125712, guid: 6fac4fbbf097b174598e21f64ab5b60c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7514146600056064294, guid: 6fac4fbbf097b174598e21f64ab5b60c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1195,6 +1205,11 @@ PrefabInstance:
       propertyPath: ultimateCDIcon
       value: 
       objectReference: {fileID: 1723952603224949405}
+    - target: {fileID: 5129593879495125712, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6902346673309166622, guid: 39fdfac27ea9c764080e6f908e33311f,
         type: 3}
       propertyPath: m_RootOrder
