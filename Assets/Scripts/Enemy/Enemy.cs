@@ -17,6 +17,7 @@ public class Enemy : Unit, IDamageInterface
 
     private Player targetPlayer;
     private Coroutine attackCoroutine;
+    private const float INITIAL_ATTACK_DELAY = 0.25f;
 
     [field: Header("Antigen")]
     [field: SerializeField] public AntigenType Type { get; private set; }
@@ -120,12 +121,18 @@ public class Enemy : Unit, IDamageInterface
     // Attack the target player
     private IEnumerator Attack()
     {
+        // Short delay before actually attacking
+        yield return new WaitForSeconds(INITIAL_ATTACK_DELAY);
         while (targetPlayer)
         {
-            DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
-            targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
-            yield return new WaitForSeconds(1f / AttackSpeed.Value);
             yield return new WaitUntil(() => !this.IsStunned);
+
+            var activeUnit = targetPlayer.GetActiveUnit();
+            float armor = activeUnit.attributes.GetAttribute("Armor").Value;
+            DamageCalculator.ApplyDamage(AttackDamage.Value,  armor, activeUnit);
+            targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
+
+            yield return new WaitForSeconds(1f / AttackSpeed.Value);
         }
 
         attackCoroutine = null;
