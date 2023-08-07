@@ -30,6 +30,6 @@ public class DamageCalculator
         Vector3 location = (target as MonoBehaviour).transform.position;
         location += new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(0, 0.5f), Random.Range(-0.5f, 0.5f));
 
-        DamageNumberManager.instance.SpawnDamageNumber(location, damage);
+        DamageNumberManager.instance.SpawnDamageNumber(location, damage, isCrit);
     }
 }
