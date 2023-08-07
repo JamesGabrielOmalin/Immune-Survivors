@@ -9,6 +9,24 @@ public class DamageCalculator
         return attackDamage * (isCrit ? critDMG : 1f);
     }
 
+    public static void ApplyDamage(in float attackDamage, in float armor, IDamageInterface target)
+    {
+        if (attackDamage <= float.Epsilon)
+        {
+            return;
+        }
+
+        float reduction = DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
+        float damage = attackDamage * reduction;
+
+        if (damage <= float.Epsilon)
+        {
+            return;
+        }
+
+        target.TakeDamage(damage);
+    }
+
     public static void ApplyDamage(in float attackDamage, in float critRate, in float critDMG, in float armor, IDamageInterface target)
     {
         if (attackDamage <= float.Epsilon)
