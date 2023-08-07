@@ -38,10 +38,12 @@ public class DamageNumberManager : MonoBehaviour
         TMP_Text text = damageNumber.GetComponent<TMP_Text>();
         text.text = Mathf.RoundToInt(amount).ToString();
         text.color = Color.white;
+        text.fontSize = 0.5f;
 
         if (isCrit)
         {
             text.color = Color.red;
+            text.fontSize = 0.6f;
         }
     }
 }
