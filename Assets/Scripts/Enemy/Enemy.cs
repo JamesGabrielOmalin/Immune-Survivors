@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Enemy : Unit, IDamageInterface
 {
@@ -22,6 +23,7 @@ public class Enemy : Unit, IDamageInterface
     [field: Header("Antigen")]
     [field: SerializeField] public AntigenType Type { get; private set; }
     [SerializeField] private GameObject stunIndicator;
+    [SerializeField] private VisualEffect dotIndicator;
 
     public bool IsStunned { get; private set; } = false;
     private Coroutine armorShredCoroutine;
@@ -127,6 +129,9 @@ public class Enemy : Unit, IDamageInterface
         {
             yield return new WaitUntil(() => !this.IsStunned);
 
+            if (!targetPlayer)
+                break;
+
             var activeUnit = targetPlayer.GetActiveUnit();
             float armor = activeUnit.attributes.GetAttribute("Armor").Value;
             DamageCalculator.ApplyDamage(AttackDamage.Value,  armor, activeUnit);
@@ -199,16 +204,23 @@ public class Enemy : Unit, IDamageInterface
 
     private IEnumerator DoT(float damage, float duration, float tickRate)
     {
-        float t = 0f;
-        float tick = 1f / tickRate;
-
-        while (t < duration)
+        if (damage > float.Epsilon)
         {
-            TakeDamage(damage);
-            t += tick;
-            yield return new WaitForSeconds(tick);
+            float t = 0f;
+            float tick = 1f / tickRate;
+
+            dotIndicator.Play();
+
+            while (t < duration)
+            {
+                TakeDamage(damage);
+                DamageNumberManager.instance.SpawnDoTNumber(transform.position, damage);
+                t += tick;
+                yield return new WaitForSeconds(tick);
+            }
         }
 
+        dotIndicator.Stop();
         dotCoroutine = null;
         yield break;
     }
