@@ -62,10 +62,10 @@ public class UpgradeManager : MonoBehaviour
         switch (effect.EffectType)
         {
             case EffectType.Buff:
-                if(!grantedWeapons.ContainsKey(effect))
+                if(!grantedEffects[unit].ContainsKey(effect))
                     grantedEffects[unit].Add(effect, 1);
                 else
-                    grantedWeapons[effect] += 1;
+                    grantedEffects[unit][effect] += 1;
                 break;
             case EffectType.Weapon:
                 if (!grantedWeapons.ContainsKey(effect))

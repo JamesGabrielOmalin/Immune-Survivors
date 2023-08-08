@@ -54,6 +54,8 @@ public class MacrophagePull : MonoBehaviour
                 break;
         }
 
+        float DoT = attackDamage / 4f;
+
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
@@ -61,7 +63,7 @@ public class MacrophagePull : MonoBehaviour
                 //enemy.TakeDamage(damage);
                 float armor = enemy.attributes.GetAttribute("Armor").Value;
                 DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
-                enemy.ApplyDoT(attackDamage, 4f, attackCount);
+                enemy.ApplyDoT(DoT, 4f, 2f + attackCount);
                 if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impact))
                 {
                     Vector3 dir = (enemy.transform.position - targetPos).normalized;

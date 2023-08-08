@@ -49,4 +49,21 @@ public class DamageNumberManager : MonoBehaviour
             text.text.fontSize = 0.5f;
         }
     }
+
+    public void SpawnDoTNumber(in Vector3 position, in float amount)
+    {
+        GameObject damageNumber = damageNumberPool.RequestPoolable(position);
+
+        if (!damageNumber)
+        {
+            Debug.LogWarning("No damageNumber found in object pool!");
+            return;
+        }
+
+        DamageNumber text = damageNumber.GetComponent<DamageNumber>();
+        text.text.text = Mathf.RoundToInt(amount).ToString();
+
+        text.text.color = Color.white;
+        text.text.fontSize = 0.3f;
+    }
 }
