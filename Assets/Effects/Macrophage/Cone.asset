@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Phagocytosis (Line)
   <Description>k__BackingField: Peforms Phagocytosis in a cone
-  <Descriptions>k__BackingField: []
+  <Descriptions>k__BackingField:
+  - Peforms Phagocytosis in a cone
+  - Peforms Phagocytosis in a cone
+  - Peforms Phagocytosis in a cone
+  - Peforms Phagocytosis in a cone
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 874d8401331ede14087e8d8d486ddda6,

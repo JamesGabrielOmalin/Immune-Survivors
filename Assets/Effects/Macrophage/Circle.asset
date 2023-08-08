@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Phagocytosis (Circle)
   <Description>k__BackingField: Peforms Phagocytosis in a circle
-  <Descriptions>k__BackingField: []
+  <Descriptions>k__BackingField:
+  - Peforms Phagocytosis in a circle
+  - Peforms Phagocytosis in a circle
+  - Peforms Phagocytosis in a circle
+  - Peforms Phagocytosis in a circle
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 38236a82ff44aaa4b972248479d5f970,

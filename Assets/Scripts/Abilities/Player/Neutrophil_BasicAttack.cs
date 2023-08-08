@@ -57,8 +57,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
     {
         IsAttacking = true;
 
-        // Wait before shooting
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        // Wait before shooting                                  // Level 3 or higher: increase Attack Speed by 25%
+        yield return new WaitForSeconds(1f / (attackSpeed.Value * (abilityLevel >= 3 ? 1.25f : 1f)));
 
         // start shooting
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -113,6 +113,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         for (int i = 0; i < attackCountValue; i++)
         {
             angle = 0;
+
+            // Fires 2 more bullets per level
             for (int j = 0; j < abilityLevel * 2 - 1; j++)
             {
                 GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
@@ -122,7 +124,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
                 // Snapshot attributes
                 //bulletObject.name = bulletObject.name + "(" + i.ToString() + ") ";
-                bullet.attackDamage = attackDamage.Value;
+                                                           // Level 2 and higher: Increase DMG by 50%
+                bullet.attackDamage = attackDamage.Value * (abilityLevel > 1 ? 1.5f : 1f);
                 bullet.critRate = critRate.Value;
                 bullet.critDMG = critDMG.Value;
                 bullet.knockbackPower = knockbackPower.Value;

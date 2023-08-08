@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Gun
   <Description>k__BackingField: Gain the Gun Weapon
-  <Descriptions>k__BackingField: []
+  <Descriptions>k__BackingField:
+  - Gain the Gun Weapon
+  - Increase bullets fired by 2. Increase DMG dealt by 50%.
+  - Increase bullets fired by 2. Increase ATK SPD by 25%.
+  - 'Increase bullets fired by 2. '
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 0525793900d728a42936791a8a6de63b,

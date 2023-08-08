@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Phagocytosis (Line)
   <Description>k__BackingField: Peforms Phagocytosis in a straight line
-  <Descriptions>k__BackingField: []
+  <Descriptions>k__BackingField:
+  - Peforms Phagocytosis in a straight line
+  - Peforms Phagocytosis in a straight line
+  - Peforms Phagocytosis in a straight line
+  - Peforms Phagocytosis in a straight line
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 2bb4e96f5d0b02c468932d665a015c54,

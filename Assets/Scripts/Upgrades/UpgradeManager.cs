@@ -24,7 +24,7 @@ public class UpgradeManager : MonoBehaviour
 
     [SerializeField] private List<Effect> defaultWeapons = new();
 
-    private readonly Dictionary<PlayerUnitType, Dictionary<Effect, int>> grantedEffects = new()
+    public readonly Dictionary<PlayerUnitType, Dictionary<Effect, int>> grantedEffects = new()
     {
         { PlayerUnitType.Neutrophil, new() },
         { PlayerUnitType.Macrophage, new() },
@@ -32,7 +32,7 @@ public class UpgradeManager : MonoBehaviour
     };
 
     //private readonly List<Effect> grantedWeapons = new();
-    private readonly Dictionary<Effect, int> grantedWeapons = new();
+    public readonly Dictionary<Effect, int> grantedWeapons = new();
 
     private void Awake()
     {
