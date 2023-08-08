@@ -12,7 +12,7 @@ public class ActiveEffects : MonoBehaviour
 
     [SerializeField] private List<Image> effectSlots = new List<Image>();
 
-    public void Awake()
+    public void Start()
     {
         if (type == EffectType.Buff)
         {
@@ -26,14 +26,14 @@ public class ActiveEffects : MonoBehaviour
 
     public void OnDestroy()
     {
-        if (type == EffectType.Buff)
-        {
-            UpgradeManager.instance.OnEffectAcquired -= UpdateBuffs;
-        }
-        else
-        {
-            UpgradeManager.instance.OnEffectAcquired -= UpdateWeapons;
-        }
+        //if (type == EffectType.Buff)
+        //{
+        //    UpgradeManager.instance.OnEffectAcquired -= UpdateBuffs;
+        //}
+        //else
+        //{
+        //    UpgradeManager.instance.OnEffectAcquired -= UpdateWeapons;
+        //}
     }
 
     public void UpdateBuffs()
