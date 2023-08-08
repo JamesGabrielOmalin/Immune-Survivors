@@ -73,7 +73,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
                 continue;
 
             Vector3 targetPos = target.transform.position;
-            Vector3 dir = (targetPos - owner.transform.position).normalized;
+            Vector3 dir = Vector3.ProjectOnPlane(targetPos - owner.transform.position, Vector3.up).normalized;
 
             grenadeObject.transform.forward = dir;
 

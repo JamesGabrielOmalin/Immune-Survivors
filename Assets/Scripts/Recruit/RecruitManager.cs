@@ -99,8 +99,8 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
-        float angle;
-        Vector3 dir;
+        //float angle;
+        //Vector3 dir;
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
