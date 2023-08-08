@@ -97,12 +97,12 @@ public class UpgradeManager : MonoBehaviour
             m.AddRange(macrophageWeapons);
             d.AddRange(dendriticWeapons);
         }
-        //else
-        //{
-        //    n.AddRange(neutrophilWeapons.Intersect(grantedWeapons));
-        //    m.AddRange(macrophageWeapons.Intersect(grantedWeapons));
-        //    d.AddRange(dendriticWeapons.Intersect(grantedWeapons));
-        //}
+        else
+        {
+            n.AddRange(neutrophilWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            m.AddRange(macrophageWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            d.AddRange(dendriticWeapons.Intersect(grantedWeapons.Keys.ToList()));
+        }
 
         return type switch
         {
