@@ -78,6 +78,11 @@ public class PlayerUnit : Unit, IDamageInterface
 
         // Level up
         level.ApplyInstantModifier(new(1, AttributeModifierType.Add));
+
+        if (level.BaseValue == 5)
+        {
+            AbilitySet.GrantUltimate();
+        }
     }
 
     public void AddUpgrade(Effect upgrade)
