@@ -30,7 +30,7 @@ public class DendriticJudgementCut : MonoBehaviour
         WaitForSeconds wait = new(0.5f);
         vfx.Play();
 
-        var hits = Physics.OverlapSphere(transform.position, attackSize * 5f, layerMask.value);
+        var hits = Physics.OverlapSphere(transform.position, attackSize * 2.5f, layerMask.value);
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
         foreach (var hit in hits)
