@@ -40,7 +40,6 @@ public class MacrophagePull : MonoBehaviour
         targetPos = GameManager.instance.Player.transform.position;
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-        int hitCount = 0;
         Collider[] hits = { };
         switch (type)
         {
@@ -55,7 +54,7 @@ public class MacrophagePull : MonoBehaviour
                 break;
         }
 
-        for (int i = 0; i < hits.Length && hitCount < attackCount; i++)
+        for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
             {
@@ -68,7 +67,6 @@ public class MacrophagePull : MonoBehaviour
                     Vector3 dir = (enemy.transform.position - targetPos).normalized;
                     impact.AddImpact(dir, -knockbackPower);
                 }
-                hitCount++;
             }
         }
 
