@@ -66,17 +66,20 @@ public class Macrophage_PullSpec : AbilitySpec
 
         if (basicAttack.PullType == MacrophagePullType.Cone)
             pull.transform.position = target.transform.position;
+                                       // Level 2 and higher: Increase size by 50%
+        float AZ = attackSize.Value * (abilityLevel >= 2f ? 1.5f : 1f);
 
         MacrophagePull pullEffect = pull.GetComponent<MacrophagePull>();
         pullEffect.attackDamage = attackDamage.Value;
         pullEffect.attackRange = attackRange.Value;
         pullEffect.attackCount = (int)attackCount.Value;
-        pullEffect.attackSize = attackSize.Value * abilityLevel;
+        pullEffect.attackSize = AZ;
         pullEffect.critRate = critRate.Value;
         pullEffect.critDMG = critDMG.Value;
-        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) * abilityLevel;
+        // Increase knockback per level
+        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) + abilityLevel;
 
-        pullEffect.transform.localScale = Vector3.one * attackSize.Value;
+        pullEffect.transform.localScale = Vector3.one * AZ;
         pullEffect.transform.forward = dir;
     }
 
