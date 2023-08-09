@@ -50,7 +50,8 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
         IsAttacking = true;
 
         // Wait before shooting
-        yield return new WaitForSeconds(2f / attackSpeed.Value);
+        // Increase Attack SPD with each level
+        yield return new WaitForSeconds(2f / (attackSpeed.Value + (abilityLevel * 0.5f)));
 
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
             yield return Shoot();
@@ -61,7 +62,22 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
     private IEnumerator Shoot()
     {
         WaitForSeconds wait = new(0.5f);
-        for (int i = 0; i < attackCount.Value; i++)
+
+        float AD = attackDamage.Value;
+                                        // Level 2 and higher: Increase size by 50%
+        float AZ = attackSize.Value * (abilityLevel >= 2 ? 1.5f : 1f);
+        float CRIT_RATE = critRate.Value;
+        float CRIT_DMG = critDMG.Value;
+                                // Level 3 and higher: Increase slow amount by 25%
+        float SLOW = -0.25f + (abilityLevel >= 3 ? -0.25f : 0f);
+                                // Level 4 and higher: Increase slow field duration by 2s
+        float LIFESPAN = 3f + (abilityLevel >= 4 ? 2f : 0f);
+
+        Vector3 scale = Vector3.one * AZ;
+
+        int AC = (int)attackCount.Value;
+
+        for (int i = 0; i < AC; i++)
         {
             GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value / 2f);
             if (target == null)
@@ -79,13 +95,14 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
             NeutrophilGrenade grenade = grenadeObject.GetComponent<NeutrophilGrenade>();
             grenade.targetPos = targetPos;
-            grenade.attackDamage = attackDamage.Value;
-            grenade.attackSize = attackSize.Value;
-            grenade.critRate = critRate.Value;
-            grenade.critDMG = critDMG.Value;
-            grenade.slowAmount = -0.25f * abilityLevel;
+            grenade.attackDamage = AD;
+            grenade.attackSize = AZ;
+            grenade.critRate = CRIT_RATE;
+            grenade.critDMG = CRIT_DMG;
+            grenade.slowAmount = SLOW;
+            grenade.lifeSpan = LIFESPAN;
 
-            grenade.transform.localScale = Vector3.one * attackSize.Value;
+            grenade.transform.localScale = scale;
 
             yield return wait;
         }

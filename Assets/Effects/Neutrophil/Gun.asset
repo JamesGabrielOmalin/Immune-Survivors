@@ -18,6 +18,7 @@ MonoBehaviour:
   - Gain the Gun Weapon
   - Increase bullets fired by 2. Increase DMG dealt by 50%.
   - Increase bullets fired by 2. Increase ATK SPD by 25%.
+  - Increase bullets fired by 2. Increase CRIT Rate by 10%.
   - 'Increase bullets fired by 2. '
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []

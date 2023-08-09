@@ -61,11 +61,23 @@ public class Neutrophil_StabSpec : AbilitySpec
 
     private void Stab()
     {
-        float range = basicAttack.Range;
-        
+                                        // Level 4 and higher: Increase Range by 100%
+        float AR = basicAttack.Range * (abilityLevel >= 4 ? 2f : 1f);
+
+        int AC = (int)attackCount.Value;
+                                        // Level 3 and higher: Increase DMG by 50%
+        float AD = attackDamage.Value * (abilityLevel >= 3 ? 1.5f : 1f);
+        float AZ = attackSize.Value;
+                                            // Level 2 and higher: Increase CRIT Rate by 25%
+        float CRIT_RATE = critRate.Value + (abilityLevel >= 2 ? 0.25f : 0f);
+        float CRIT_DMG = critDMG.Value;
+
+        Vector3 scale = Vector3.one * AZ;
+
+        // Number of stabs based on level
         for (int i = 0; i < abilityLevel; i++)
         {
-            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
+            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
 
             if (target == null)
             {
@@ -82,24 +94,15 @@ public class Neutrophil_StabSpec : AbilitySpec
 
             stabObject.transform.forward = dir;
 
-            int count = (int)attackCount.Value;
-
-            float ad = attackDamage.Value;
-            float az = attackSize.Value;
-            float cr = critRate.Value;
-            float cd = critDMG.Value;
-
             NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
-            stab.attackDamage = attackDamage.Value;
-            stab.attackRange = range;
-            stab.attackCount = attackCount.Value;
-            stab.attackSize = attackSize.Value;
-            stab.critRate = critRate.Value;
-            stab.critDMG = critDMG.Value;
+            stab.attackDamage = AD;
+            stab.attackCount = AC;
+            stab.critRate = CRIT_RATE;
+            stab.critDMG = CRIT_DMG;
 
             stab.target = target.GetComponent<Enemy>();
 
-            stab.transform.localScale = Vector3.one * az;
+            stab.transform.localScale = scale;
         }
     }
 

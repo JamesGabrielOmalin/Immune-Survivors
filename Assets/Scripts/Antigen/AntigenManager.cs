@@ -38,6 +38,8 @@ public class AntigenManager : MonoBehaviour
         { AntigenType.Type_3, null },
     };
 
+    private bool firstTimeAntigenThresholdReached = true;
+
     private void Awake()
     {
         if (instance == null)
@@ -70,6 +72,13 @@ public class AntigenManager : MonoBehaviour
             OnAntigenThresholdReached[type]?.Invoke();
             //OnAntigenThresholdReached[type] = null;
             antigenCount[type] = 0;
+
+            if (firstTimeAntigenThresholdReached)
+            {
+                if (TutorialManager.instance)
+                    TutorialManager.instance.AddDynamicPrompt("Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
+                firstTimeAntigenThresholdReached = false;
+            }
         }
     }
 
