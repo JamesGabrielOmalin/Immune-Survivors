@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class ActiveEffects : MonoBehaviour
     [SerializeField] private PlayerUnitType unit;
 
     [SerializeField] private List<Image> effectSlots = new List<Image>();
+    [SerializeField] private List<TMP_Text> levelText = new List<TMP_Text>();
 
     public void Start()
     {
@@ -46,6 +48,12 @@ public class ActiveEffects : MonoBehaviour
         {
             effectSlots[i].sprite = key.Sprite;
             effectSlots[i].gameObject.SetActive(true);
+
+            levelText[i].text = buffs[key].ToString();
+            if (levelText[i].text == "4")
+                levelText[i].text = "MAX";
+            levelText[i].gameObject.SetActive(true);
+
             i++;
         }
     }
@@ -60,6 +68,12 @@ public class ActiveEffects : MonoBehaviour
         {
             effectSlots[i].sprite = key.Sprite;
             effectSlots[i].gameObject.SetActive(true);
+
+            levelText[i].text = weapons[key].ToString();
+            if (levelText[i].text == "4")
+                levelText[i].text = "MAX";
+            levelText[i].gameObject.SetActive(true);
+
             i++;
         }
     }
