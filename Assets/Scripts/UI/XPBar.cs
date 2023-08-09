@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class XPBar : MonoBehaviour
 {
     [SerializeField] private Slider bar;
+    private Coroutine lerpCoroutine;
+
+    [SerializeField] private float lerpSpeed = 0.1f;
 
     private void Start()
     {
@@ -19,8 +22,28 @@ public class XPBar : MonoBehaviour
 
     public void UpdateBar()
     {
-        bar.value = (float)RecruitManager.instance.killCount / (float)RecruitManager.instance.GetCurrentKillThreshold();
+        if(lerpCoroutine != null) 
+        {
+            StopCoroutine(lerpCoroutine);
+        }
+        lerpCoroutine = StartCoroutine(Lerp());
+    }
 
-        Debug.Log(bar.value);
+    private IEnumerator Lerp()
+    {
+        float t = 0;
+        float start = bar.value;
+        float end = (float)RecruitManager.instance.killCount / (float)RecruitManager.instance.GetCurrentKillThreshold();
+
+        while(t < lerpSpeed)
+        {
+            bar.value = Mathf.Lerp(start, end, t/lerpSpeed);
+
+            t += Time.deltaTime;
+
+            yield return null;
+        }
+
+        lerpCoroutine = null;
     }
 }
