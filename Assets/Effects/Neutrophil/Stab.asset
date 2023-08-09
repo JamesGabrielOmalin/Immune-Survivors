@@ -16,9 +16,10 @@ MonoBehaviour:
   <Description>k__BackingField: Gain the Knife Weapon
   <Descriptions>k__BackingField:
   - Gain the Knife Weapon
-  - Gain the Knife Weapon
-  - Gain the Knife Weapon
-  - Gain the Knife Weapon
+  - Increase ATK Speed by 10%.  Increase CRIT Rate by 10%.
+  - Increase ATK Speed by 10%. Increase DMG by 10.
+  - Increase ATK Speed by 10%. Increase Range by 25%.
+  - Increase ATK Speed by 10%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: a3ced8f7044b9de4787602a9e9b20ea7,

@@ -20,6 +20,8 @@ public class NeutrophilStab : MonoBehaviour
 
     private IEnumerator Stab()
     {
+        yield return null;
+
         WaitForSeconds wait = new(0.25f / attackCount);
         vfx.SetInt("Count", (int)attackCount);
         vfx.Play();
