@@ -109,8 +109,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         int AC = (int)attackCount.Value;
 
         WaitForSeconds wait = new(0.25f);
-                                        // Level 2 and higher: Increase DMG by 50%
-        float AD = attackDamage.Value * (abilityLevel >= 2 ? 1.5f : 1f);
+                                        // Level 2 and higher: Increase DMG by 10
+        float AD = attackDamage.Value + (abilityLevel >= 2 ? 10f : 0f);
                                             // Level 4 and higher: Increase CRIT Rate by 10%
         float CRIT_RATE = critRate.Value + (abilityLevel >= 4 ? 0.1f : 0f);
         float CRIT_DMG = critDMG.Value;

@@ -11,6 +11,7 @@ public enum MacrophagePullType
 
 public class MacrophagePull : MonoBehaviour
 {
+    [HideInInspector] public float abilityLevel;
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float attackRange;
     [HideInInspector] public float attackSize;
@@ -37,7 +38,7 @@ public class MacrophagePull : MonoBehaviour
     private IEnumerator Pull()
     {
         yield return null;
-        targetPos = GameManager.instance.Player.transform.position;
+        //targetPos = GameManager.instance.Player.transform.position;
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
         Collider[] hits = { };
@@ -54,7 +55,7 @@ public class MacrophagePull : MonoBehaviour
                 break;
         }
 
-        float DoT = attackDamage / 4f;
+        float DoT = attackDamage / 4f + (abilityLevel >= 4f ? 5f : 0f);
 
         for (int i = 0; i < hits.Length; i++)
         {
@@ -66,7 +67,7 @@ public class MacrophagePull : MonoBehaviour
                 enemy.ApplyDoT(DoT, 4f, 2f + attackCount);
                 if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impact))
                 {
-                    Vector3 dir = (enemy.transform.position - targetPos).normalized;
+                    Vector3 dir = (enemy.transform.position - transform.position).normalized;
                     impact.AddImpact(dir, -knockbackPower);
                 }
             }

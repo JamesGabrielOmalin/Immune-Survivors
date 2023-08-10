@@ -16,9 +16,10 @@ MonoBehaviour:
   <Description>k__BackingField: Peforms Phagocytosis in a circle
   <Descriptions>k__BackingField:
   - Peforms Phagocytosis in a circle
-  - Peforms Phagocytosis in a circle
-  - Peforms Phagocytosis in a circle
-  - Peforms Phagocytosis in a circle
+  - Increase Knockback by 1. Increase Size by 50%.
+  - Increase Knockback by 1. Increase DoT tick count by 4.
+  - Increase Knockback by 1. Increase DoT by 5.
+  - Increase Knockback by 1.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 38236a82ff44aaa4b972248479d5f970,
