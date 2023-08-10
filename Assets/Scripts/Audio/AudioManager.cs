@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
 
     [SerializeField] private GameObject audiosource;
+    [SerializeField] private ObjectPool Audiopool;
 
     public static AudioManager instance;
 
@@ -101,11 +102,11 @@ public class AudioManager : MonoBehaviour
 
         int randonNumber = Random.Range(0, s.clips.Length);
 
-        GameObject temp = Instantiate(audiosource, loc, Quaternion.identity);
+        GameObject temp = Audiopool.RequestPoolable(loc);
         AudioSource audioSource = temp.GetComponent<AudioSource>();
 
         audioSource.clip = s.clips[randonNumber];
-        audioSource.volume = s.volume * SFXMasterVolume;
+        audioSource.volume = (s.volume * (AudioSettings.settings.sfxVolume / 100)) * (AudioSettings.settings.volume / 100);
         audioSource.pitch = s.pitch;
         audioSource.loop = s.loop;
         audioSource.mute = SFXMasterMute;
