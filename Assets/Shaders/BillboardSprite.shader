@@ -39,8 +39,8 @@ Shader "Custom/BillboardSprite"
             Cull Off
             ZTest LEqual
             ZWrite On
-            Blend SrcAlpha OneMinusSrcAlpha
-            //AlphaToMask On
+            Blend SrcAlpha OneMinusSrcAlpha, One OneMinusSrcAlpha
+            AlphaToMask On
 
             HLSLPROGRAM
             #pragma vertex vert

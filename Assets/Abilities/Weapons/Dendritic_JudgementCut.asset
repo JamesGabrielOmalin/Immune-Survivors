@@ -16,3 +16,4 @@ MonoBehaviour:
   <Cooldown>k__BackingField: 0
   <AbilityType>k__BackingField: 0
   <AttackDamageScaling>k__BackingField: 1
+  <AttackInterval>k__BackingField: 1.25

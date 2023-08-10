@@ -66,8 +66,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        mobilityHandler = (ctx) => StartCoroutine(activeUnit.AbilitySet.Mobility.TryActivateAbility());
-        ultimateHandler = (ctx) => StartCoroutine(activeUnit.AbilitySet.Ultimate.TryActivateAbility());
+        mobilityHandler = (ctx) => activeUnit.AbilitySet.ActivateMobility();
+        ultimateHandler = (ctx) => activeUnit.AbilitySet.ActivateUltimate();
 
         input.Controls.Abilities.Mobility.started += mobilityHandler;
         input.Controls.Abilities.Ultimate.started += ultimateHandler;  
