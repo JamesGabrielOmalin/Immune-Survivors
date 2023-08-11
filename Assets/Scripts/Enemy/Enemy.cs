@@ -58,6 +58,8 @@ public class Enemy : Unit, IDamageInterface
         if (HP == null)
             HP = attributes.GetAttribute("HP");
 
+        // Temporary
+        MaxHP.BaseValue = 20f * Mathf.Max(1, GameManager.instance.GameTime.Minutes);
         HP.BaseValue = MaxHP.Value;
 
         // Upon elimination, spawn antigen
