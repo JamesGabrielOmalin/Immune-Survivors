@@ -65,7 +65,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
                                          // Level 2 and higher: Increase DMG by 5
         float AD = attackDamage.Value + (abilityLevel >= 2 ? 5f : 0f);
         // Increase size per level
-        float AZ = attackSize.Value + (abilityLevel * 1.1f);
+        float AZ = attackSize.Value * ((abilityLevel - 1) * 1.1f);
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
                                 // Level 3 and higher: Increase slow amount by 25%

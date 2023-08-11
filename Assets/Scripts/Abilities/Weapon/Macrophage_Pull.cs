@@ -70,7 +70,7 @@ public class Macrophage_PullSpec : AbilitySpec
             pull.transform.position = target.transform.position;
 
         // Increase size per level
-        float AZ = attackSize.Value + (abilityLevel * 1.1f);
+        float AZ = attackSize.Value + ((abilityLevel - 1) * 1.1f);
 
         MacrophagePull pullEffect = pull.GetComponent<MacrophagePull>();
         pullEffect.abilityLevel = abilityLevel;
@@ -83,7 +83,6 @@ public class Macrophage_PullSpec : AbilitySpec
         pullEffect.attackSize = AZ;
         pullEffect.critRate = critRate.Value;
         pullEffect.critDMG = critDMG.Value;
-
                                                                                            // Level 2 and higher: Increase knockback by 25%
         pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) * (abilityLevel >= 2f ? 1.25f : 1f);
 

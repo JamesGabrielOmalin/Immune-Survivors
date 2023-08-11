@@ -73,7 +73,7 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
                                         // Level 4 or higher: Increase range by 25%
         float AR = attackRange.Value * (abilityLevel >= 4f ? 1.25f : 1f);
                                             // Increase CRIT Rate by 10% per level
-        float CRIT_RATE = critRate.Value + (abilityLevel * 0.1f);
+        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
         float CRIT_DMG = critDMG.Value;
                                         // Level 2 or higher: Increase size by 50%
         float AZ = attackSize.Value * (abilityLevel >= 2f ? 1.5f : 1f);
