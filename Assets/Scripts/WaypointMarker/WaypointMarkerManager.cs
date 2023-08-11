@@ -110,8 +110,6 @@ public class WaypointMarkerManager : MonoBehaviour
 
                 Vector3 targetPos = cam.WorldToViewportPoint(marker.target.transform.position);
 
-                Debug.Log(targetPos);
-
                 if (targetPos.x < minBounds.x || targetPos.x > maxBounds.x ||
                      targetPos.y < minBounds.y || targetPos.y > maxBounds.y)
                 {

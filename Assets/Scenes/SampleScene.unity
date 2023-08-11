@@ -2777,11 +2777,6 @@ PrefabInstance:
       propertyPath: markerPool
       value: 
       objectReference: {fileID: 812220071}
-    - target: {fileID: 6985590565439949752, guid: d0ee9b07a370e6449b9a4293c8258003,
-        type: 3}
-      propertyPath: maxBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6985590565439949753, guid: d0ee9b07a370e6449b9a4293c8258003,
         type: 3}
       propertyPath: m_Name
@@ -4427,6 +4422,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 12488505, guid: b14db034bf5041e4ea95646289373afb, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 560223414, guid: b14db034bf5041e4ea95646289373afb, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4782505582870041322, guid: b14db034bf5041e4ea95646289373afb,
         type: 3}
       propertyPath: m_Name
