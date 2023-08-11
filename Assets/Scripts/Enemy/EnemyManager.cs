@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
-    [SerializeField] private List<ObjectPool> enemyPools = new();
+    [SerializeField] private List<EnemyPool> enemyPools = new();
     public List<GameObject> activeEnemies = new();
 
     public int InfectionRate => activeEnemies.FindAll(enemy => enemy.activeInHierarchy).Count;
@@ -28,6 +29,13 @@ public class EnemyManager : MonoBehaviour
     public System.Action OnMinInfectionReached;
     public System.Action OnMaxInfectionReached;
     public System.Action OnInfectionRateChanged;
+
+    [System.Serializable]
+    public class EnemyPool
+    {
+        public string Name;
+        public ObjectPool enemyPool;
+    }
 
     private void Awake()
     {
@@ -100,7 +108,7 @@ public class EnemyManager : MonoBehaviour
                     // Spawn until quota is reached
                     if(eg.enemySpawnCounter < eg.enemyQuota)
                     {
-                        SpawnEnemyBatch(1, eg.antigenType);
+                        SpawnEnemyBatch(1, eg.poolName);
                         eg.enemySpawnCounter++;
                         currentWave.waveSpawnCounter++;
 
@@ -113,7 +121,7 @@ public class EnemyManager : MonoBehaviour
                 int type = Random.Range(0, currentWave.enemyGroups.Count);
 
                 // spawn this type
-                SpawnEnemyBatch(1, currentWave.enemyGroups[type].antigenType);
+                SpawnEnemyBatch(1, currentWave.enemyGroups[type].poolName);
                 currentWave.enemyGroups[type].enemySpawnCounter++;
                 //currentWave.excessSpawnCounter++;
 
@@ -133,14 +141,14 @@ public class EnemyManager : MonoBehaviour
         {
             for (int i = 0; i < eb.count; i++)
             {
-                SpawnEnemyBatch(1, eb.antigenType);
+                SpawnEnemyBatch(1, eb.poolName);
                 Debug.Log(" Boss has been spawned");
 
             }
         }
     }
 
-    private void SpawnEnemyBatch(int amount, int antigenType)
+    private void SpawnEnemyBatch(int amount, string poolName)
     {
         GameObject player = GameManager.instance.Player;
         for (int i = 0; i < amount; i++)
@@ -159,14 +167,14 @@ public class EnemyManager : MonoBehaviour
             //float x = Random.Range(-50f, 50f);
             //float z = Random.Range(-50f, 50f);
 
-            SpawnEnemy(spawnPoint, (AntigenType)antigenType);
+            SpawnEnemy(spawnPoint, poolName);
         }
     }
 
-    public void SpawnEnemy(Vector3 position, AntigenType type = AntigenType.Type_1)
+    public void SpawnEnemy(Vector3 position, string poolName)
     {
-        GameObject enemy = enemyPools[(int)type].RequestPoolable(position);
-        
+        GameObject enemy = RequestFromPool(position, poolName);
+//        
         if (!enemy)
         {
             Debug.LogWarning("No enemy found in object pool!");
@@ -206,7 +214,19 @@ public class EnemyManager : MonoBehaviour
             OnMaxInfectionReached?.Invoke();
         }
     }
-     private void InitalizeCurrentWave(int waveNum)
+
+    public GameObject RequestFromPool(Vector3 position, string poolName)
+    {
+        foreach(EnemyPool enpool in enemyPools )
+        {
+            if (enpool.Name == poolName)
+            {
+                return enpool.enemyPool.RequestPoolable(position);
+            }
+        }
+        return null;
+    }
+    private void InitalizeCurrentWave(int waveNum)
     {
         level.waveList[waveNum].waveSpawnCounter = 0;
         foreach (EnemyGroup eg in level.waveList[waveNum].enemyGroups)

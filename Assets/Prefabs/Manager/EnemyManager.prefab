@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8919689433779787525}
   - component: {fileID: 8919689433779787522}
   m_Layer: 0
-  m_Name: Enemy Pool 2
+  m_Name: Bacteria B Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,9 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPools:
-  - {fileID: 8919689435150740669}
-  - {fileID: 8919689433779787522}
-  - {fileID: 8919689434991410156}
+  - Name: Bacteria A
+    enemyPool: {fileID: 8919689435150740669}
+  - Name: Bacteria B
+    enemyPool: {fileID: 8919689433779787522}
+  - Name: Bacteria C
+    enemyPool: {fileID: 8919689434991410156}
+  - Name: Bacteria Boss A
+    enemyPool: {fileID: 0}
+  - Name: Bacteria Boss B
+    enemyPool: {fileID: 0}
+  - Name: Bacteria Boss C
+    enemyPool: {fileID: 0}
   activeEnemies: []
   <MinInfectionRate>k__BackingField: 0
   <MaxInfectionRate>k__BackingField: 300
@@ -124,7 +133,7 @@ GameObject:
   - component: {fileID: 8919689434991410159}
   - component: {fileID: 8919689434991410156}
   m_Layer: 0
-  m_Name: Enemy Pool 3
+  m_Name: Bacteria C Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +181,7 @@ GameObject:
   - component: {fileID: 8919689435150740666}
   - component: {fileID: 8919689435150740669}
   m_Layer: 0
-  m_Name: Enemy Pool 1
+  m_Name: Bacteria A Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

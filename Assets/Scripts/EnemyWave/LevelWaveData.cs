@@ -35,7 +35,7 @@ public class EnemyGroup
 {
     public string enemyName;
     [Tooltip("Enemy type based on its antigen type")]
-    public int antigenType;
+    public string poolName;
 
     [Tooltip("Target number of this type to spawn")]
     public int enemyQuota = 0;
@@ -50,7 +50,7 @@ public class BossEnemyGroup
 {
     public string enemyName;
     [Tooltip("Enemy type based on its antigen type")]
-    public int antigenType;
+    public string poolName;
 
     [Tooltip("Number of this type to spawn")]
     public int count = 0;
