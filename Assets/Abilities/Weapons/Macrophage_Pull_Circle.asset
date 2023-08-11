@@ -16,5 +16,5 @@ MonoBehaviour:
   <Cooldown>k__BackingField: 0
   <AbilityType>k__BackingField: 0
   <AttackInterval>k__BackingField: 3
-  <KnockbackPower>k__BackingField: 5
+  <KnockbackPower>k__BackingField: 0.5
   <PullType>k__BackingField: 2
