@@ -36,7 +36,7 @@ public class DamageNumberManager : MonoBehaviour
         }
 
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
-        text.text.text = Mathf.RoundToInt(amount).ToString();
+        text.text.text = Mathf.CeilToInt(amount).ToString();
         
         if (isCrit)
         {
@@ -61,7 +61,7 @@ public class DamageNumberManager : MonoBehaviour
         }
 
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
-        text.text.text = Mathf.RoundToInt(amount).ToString();
+        text.text.text = Mathf.CeilToInt(amount).ToString();
 
         text.text.color = Color.white;
         text.text.fontSize = 0.3f;
