@@ -227,7 +227,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         currentWave.waveSpawnQuota = currentWaveQuota;
-        Debug.Log("Wave " + currentWave.WaveID + " Quota:" + currentWaveQuota);
+        Debug.Log("Wave " + currentWave.waveName + " Quota:" + currentWaveQuota);
     }
     public GameObject GetNearestEnemy(Vector3 position, float limit = float.MaxValue)
     {

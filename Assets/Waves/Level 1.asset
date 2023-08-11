@@ -12,55 +12,139 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f854cd394ba6e9f478551db0cfde1747, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
+  maxActiveEnemyThreshold: 1000
   waveInterval: 60
   waveList:
-  - WaveID: 1
+  - waveName: 'Wave 1: A'
+    ID: 1
+    spawnInterval: 1
+    waveSpawnCounter: 59
     waveSpawnQuota: 60
-    spawnInterval: 0.5
-    spawnCounter: 60
-    excessSpawnCounter: 0
     enemyGroups:
-    - enemyName: Enemy Type 1
+    - enemyName: Bacteria A
       antigenType: 0
-      spawnCounter: 40
-      enemyQuota: 40
-    - enemyName: Enemy Type 2
-      antigenType: 1
-      spawnCounter: 20
-      enemyQuota: 20
-  - WaveID: 2
-    waveSpawnQuota: 40
+      enemyQuota: 60
+      enemySpawnCounter: 59
+    BossEnemyGroups: []
+  - waveName: 'Wave 2: AB'
+    ID: 2
     spawnInterval: 0.5
-    spawnCounter: 38
-    excessSpawnCounter: 0
+    waveSpawnCounter: 120
+    waveSpawnQuota: 120
     enemyGroups:
-    - enemyName: Enemy Type 1
+    - enemyName: Bacteria A
       antigenType: 0
-      spawnCounter: 10
-      enemyQuota: 10
-    - enemyName: Enemy Type 2
-      antigenType: 1
-      spawnCounter: 20
-      enemyQuota: 20
-    - enemyName: Enemy Type 3
-      antigenType: 1
-      spawnCounter: 8
-      enemyQuota: 10
-  - WaveID: 3
-    waveSpawnQuota: 300
+      enemyQuota: 60
+      enemySpawnCounter: 84
+    - enemyName: Bacteria B
+      antigenType: 0
+      enemyQuota: 30
+      enemySpawnCounter: 91
+    BossEnemyGroups: []
+  - waveName: 'Wave 3: ABC'
+    ID: 3
     spawnInterval: 0.5
-    spawnCounter: 300
-    excessSpawnCounter: 0
+    waveSpawnCounter: 90
+    waveSpawnQuota: 90
     enemyGroups:
-    - enemyName: Enemy Type 1
+    - enemyName: Bacteria A
       antigenType: 0
-      spawnCounter: 100
-      enemyQuota: 100
-    - enemyName: Enemy Type 2
+      enemyQuota: 60
+      enemySpawnCounter: 83
+    - enemyName: Bacteria B
       antigenType: 1
-      spawnCounter: 100
-      enemyQuota: 100
-    - enemyName: Enemy Type 3
+      enemyQuota: 60
+      enemySpawnCounter: 60
+    - enemyName: Bacteria C
       antigenType: 1
-      spawnCounter: 100
-      enemyQuota: 100
+      enemyQuota: 30
+      enemySpawnCounter: 60
+    BossEnemyGroups: []
+  - waveName: 'Wave 4: ABC'
+    ID: 4
+    spawnInterval: 0.5
+    waveSpawnCounter: 180
+    waveSpawnQuota: 180
+    enemyGroups:
+    - enemyName: Bacteria A
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 77
+    - enemyName: Bacteria B
+      antigenType: 1
+      enemyQuota: 60
+      enemySpawnCounter: 83
+    - enemyName: Bacteria C
+      antigenType: 2
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    BossEnemyGroups: []
+  - waveName: 'Wave 5: AABC'
+    ID: 5
+    spawnInterval: 0.5
+    waveSpawnCounter: 180
+    waveSpawnQuota: 180
+    enemyGroups:
+    - enemyName: Bacteria A
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 77
+    - enemyName: Bacteria A
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    - enemyName: Bacteria B
+      antigenType: 1
+      enemyQuota: 60
+      enemySpawnCounter: 83
+    - enemyName: Bacteria C
+      antigenType: 2
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    BossEnemyGroups: []
+  - waveName: 'Wave 6: ABBC'
+    ID: 6
+    spawnInterval: 0.5
+    waveSpawnCounter: 180
+    waveSpawnQuota: 180
+    enemyGroups:
+    - enemyName: Bacteria A
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 77
+    - enemyName: Bacteria B
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    - enemyName: Bacteria B
+      antigenType: 1
+      enemyQuota: 60
+      enemySpawnCounter: 83
+    - enemyName: Bacteria C
+      antigenType: 2
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    BossEnemyGroups: []
+  - waveName: 'Wave 5: ABCC'
+    ID: 7
+    spawnInterval: 0.5
+    waveSpawnCounter: 180
+    waveSpawnQuota: 180
+    enemyGroups:
+    - enemyName: Bacteria A
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 77
+    - enemyName: Bacteria B
+      antigenType: 0
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    - enemyName: Bacteria C
+      antigenType: 2
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    - enemyName: Bacteria C
+      antigenType: 2
+      enemyQuota: 60
+      enemySpawnCounter: 86
+    BossEnemyGroups: []

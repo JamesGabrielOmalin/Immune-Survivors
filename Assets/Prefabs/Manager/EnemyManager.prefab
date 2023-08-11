@@ -101,18 +101,18 @@ MonoBehaviour:
   - {fileID: 8919689434991410156}
   activeEnemies: []
   <MinInfectionRate>k__BackingField: 0
-  <MaxInfectionRate>k__BackingField: 120
+  <MaxInfectionRate>k__BackingField: 300
   maxSpawnDistance: 50
-  levelWaveData: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3, type: 2}
-  WaveNumber: 0
+  level: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3, type: 2}
+  waveIndex: 0
   currentWave:
-    WaveID: 0
+    waveName: 
+    ID: 0
     spawnInterval: 0
-    enemyGroups: []
-    BossEnemyGroups: []
     waveSpawnCounter: 0
     waveSpawnQuota: 0
-  maxEnemyCountAllowed: 300
+    enemyGroups: []
+    BossEnemyGroups: []
 --- !u!1 &8919689434991410157
 GameObject:
   m_ObjectHideFlags: 0

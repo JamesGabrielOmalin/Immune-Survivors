@@ -81,14 +81,14 @@ public class WaypointMarkerManager : MonoBehaviour
 
     public void UnregisterToWaypointMarker(GameObject unit)
     {
-        foreach(WaypointMarker marker in activeMarkers)
+        for(int i = 0; i<activeMarkers.Count; i++)
         {
-            if (marker.target == unit)
+            if (activeMarkers[i].target == unit)
             {
-                marker.target = null;
-                marker.isActive = false;
-                marker.gameObject.SetActive(false);
-                activeMarkers.Remove(marker);
+                activeMarkers[i].target = null;
+                activeMarkers[i].isActive = false;
+                activeMarkers[i].gameObject.SetActive(false);
+                activeMarkers.Remove(activeMarkers[i]);
                 Debug.Log("Marker has been unregistered");
             }
         }

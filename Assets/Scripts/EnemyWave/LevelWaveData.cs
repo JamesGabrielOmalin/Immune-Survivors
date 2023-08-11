@@ -9,21 +9,23 @@ using UnityEngine.UIElements;
 public class Wave
 {
     [Header ("Wave")]
-    public int WaveID = 0;
-    
+    public string waveName;
+    public int ID;
+
+
     [Header("Spawning")]
     public float spawnInterval = 0; // spawn interval in seconds
-
-    [Header("Spawnables")]
-    [Tooltip("Types of enemies to spawn")]
-    public List<EnemyGroup> enemyGroups;
-
-    public List<BossEnemyGroup> BossEnemyGroups;
 
     [Header("Tracker [DO NOT MODIFY]")]
     public int waveSpawnCounter = 0; //total number of enemies already spawned in this wave
     [Tooltip("Target number of enemies in this wave to spawn")]
     public int waveSpawnQuota = 0; //total number of enemies to spawn in this wave
+
+    [Header("Spawnables")]
+    [Tooltip("Enemies to spawn in interval")]
+    public List<EnemyGroup> enemyGroups;
+    [Tooltip("Enemies to spawn after each wave")]
+    public List<BossEnemyGroup> BossEnemyGroups;
 
 }
 
@@ -61,7 +63,9 @@ public class BossEnemyGroup
 [CreateAssetMenu(fileName = "Wave", menuName = "Level/Wave")]
 public class LevelWaveData : ScriptableObject
 {
+    [Tooltip("Allowed Active Enemies; stop spawning when reached")]
     public int maxActiveEnemyThreshold = 0;
+    [Tooltip("Time interval between waves in seconds")]
     public int waveInterval = 0;
     public List<Wave> waveList;
 }

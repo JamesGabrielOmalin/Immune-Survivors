@@ -47,4 +47,4 @@ MonoBehaviour:
   markerPool: {fileID: 0}
   activeMarkers: []
   minBounds: {x: 0.5, y: 0.5}
-  maxBounds: {x: 5, y: 0.5}
+  maxBounds: {x: 0.5, y: 0.5}
