@@ -1798,17 +1798,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8919689434467367443, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
-        type: 3}
-      propertyPath: level
-      value: 
-      objectReference: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3,
-        type: 2}
-    - target: {fileID: 8919689434467367443, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
-        type: 3}
-      propertyPath: maxEnemyCountAllowed
-      value: 1500
-      objectReference: {fileID: 0}
     - target: {fileID: 8919689434467367445, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
         type: 3}
       propertyPath: m_RootOrder
