@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3081676437429295173}
   - component: {fileID: 3340519495825984474}
   m_Layer: 0
-  m_Name: Boss Pool 1
+  m_Name: Bacteria Boss A Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 402894378905215614}
   - component: {fileID: 8378954411920403306}
   m_Layer: 0
-  m_Name: Boss Pool 2
+  m_Name: Bacteria Boss B Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7614966742769816524}
   - component: {fileID: 314824912392813152}
   m_Layer: 0
-  m_Name: Boss Pool 3
+  m_Name: Bacteria Boss C Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,11 +250,11 @@ MonoBehaviour:
   - Name: Bacteria C
     enemyPool: {fileID: 8919689434991410156}
   - Name: Bacteria Boss A
-    enemyPool: {fileID: 0}
+    enemyPool: {fileID: 3340519495825984474}
   - Name: Bacteria Boss B
-    enemyPool: {fileID: 0}
+    enemyPool: {fileID: 8378954411920403306}
   - Name: Bacteria Boss C
-    enemyPool: {fileID: 0}
+    enemyPool: {fileID: 314824912392813152}
   activeEnemies: []
   <MinInfectionRate>k__BackingField: 0
   <MaxInfectionRate>k__BackingField: 300
