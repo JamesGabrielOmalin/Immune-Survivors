@@ -12,6 +12,7 @@ public class NeutrophilStab : MonoBehaviour
     [HideInInspector] public float attackCount;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
+    [HideInInspector] public float DoT;
 
     protected void OnEnable()
     {
@@ -28,18 +29,10 @@ public class NeutrophilStab : MonoBehaviour
 
         float armor = target.attributes.GetAttribute("Armor").Value;
 
-        for (int i = 0; i < attackCount; i++)
-        {
-            //if (Vector3.Distance(target.transform.position, GameManager.instance.Player.transform.position) >= attackRange)
-            //    break;
+        DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
+        target.ApplyDoT(DoT, 3f, 4f + attackCount);
 
-            //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-            //target.TakeDamage(damage);
-
-            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
-
-            yield return wait;
-        }
+        yield return wait;
 
         vfx.Stop();
 

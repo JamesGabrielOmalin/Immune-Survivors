@@ -61,8 +61,7 @@ public class Neutrophil_StabSpec : AbilitySpec
 
     private void Stab()
     {
-                                        // Level 4 and higher: Increase range by 25%
-        float AR = basicAttack.Range * (abilityLevel >= 4 ? 1.25f : 1f);
+        float AR = basicAttack.Range;
         int AC = (int)attackCount.Value;
                                         // Level 3 and higher: Increase DMG by 10
         float AD = attackDamage.Value + (abilityLevel >= 3 ? 10 : 0f);
@@ -95,6 +94,8 @@ public class Neutrophil_StabSpec : AbilitySpec
         stab.attackCount = AC;
         stab.critRate = CRIT_RATE;
         stab.critDMG = CRIT_DMG;
+                                // Level 4 and higher: Increase DoT by 5
+        stab.DoT = (AD / 4f) + (abilityLevel >= 4 ? 5f : 0f);
 
         stab.target = target.GetComponent<Enemy>();
 

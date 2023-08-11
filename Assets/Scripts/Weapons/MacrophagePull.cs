@@ -19,6 +19,7 @@ public class MacrophagePull : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public float knockbackPower;
+    [HideInInspector] public float DoT;
 
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
@@ -38,6 +39,14 @@ public class MacrophagePull : MonoBehaviour
     private IEnumerator Pull()
     {
         yield return null;
+
+        if (attackDamage <= float.Epsilon)
+        {
+            yield return new WaitForSeconds(0.15f);
+            this.gameObject.SetActive(false);
+            yield break;
+        }
+
         //targetPos = GameManager.instance.Player.transform.position;
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
@@ -51,11 +60,9 @@ public class MacrophagePull : MonoBehaviour
                 hits = Physics.OverlapSphere(transform.position, 2f * attackSize, layer.value);
                 break;
             case MacrophagePullType.Circle:
-                hits = Physics.OverlapSphere(transform.position, 5f * attackSize, layer.value);
+                hits = Physics.OverlapSphere(transform.position, attackRange, layer.value);
                 break;
         }
-
-        float DoT = attackDamage / 4f + (abilityLevel >= 4f ? 5f : 0f);
 
         for (int i = 0; i < hits.Length; i++)
         {
