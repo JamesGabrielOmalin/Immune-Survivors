@@ -50,8 +50,10 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     {
         IsAttacking = true;
 
+        float interval = Mathf.Pow((float)System.Math.E, -attackSpeed.Value);
+
         // Wait before shooting
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        yield return new WaitForSeconds(interval);
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -72,7 +74,7 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
                                                                             // Level 4 and higher: Increase DMG by 5
         float AD = (attackDamage.Value * basicAttack.AttackDamageScaling) + (abilityLevel >= 4f ? 5f : 0f);
                                             // Increase CRIT Rate by 10% per level
-        float CRIT_RATE = critRate.Value + (abilityLevel * 0.1f);
+        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
                                             // Level 2 and higher: Increase CRIT DMG by 25%
         float CRIT_DMG = critDMG.Value + (abilityLevel >= 2f ? 0.25f : 0f);
         int AC = (int)attackCount.Value;

@@ -72,7 +72,7 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
         int AC = (int)attackCount.Value;
         float AD = attackDamage.Value * basicAttack.AttackDamageScaling;
                                             // Increase CRIT Rate by 10% per level
-        float CRIT_RATE = critRate.Value + (abilityLevel * 0.1f);
+        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
                                           // Level 3 and higher: Increase CRIT DMG by 50%
         float CRIT_DMG = critDMG.Value + (abilityLevel >= 3 ? 0.5f : 0f);
                                          // Level 2 and higher: Increase size by 15%
