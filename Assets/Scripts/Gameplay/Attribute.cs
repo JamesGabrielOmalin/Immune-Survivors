@@ -96,6 +96,17 @@ public class Attribute
         isClean = false;
         OnAttributeModified?.Invoke(OldValue, NewValue);
     }
+
+    public void RemoveAllModifiers()
+    {
+        float OldValue = Value;
+        Modifiers.Clear();
+        float NewValue = Value;
+
+        isClean = false;
+        OnAttributeModified?.Invoke(OldValue, NewValue);
+    }
+
     /// <summary>
     /// Directly modifies the BaseValue
     /// </summary>
