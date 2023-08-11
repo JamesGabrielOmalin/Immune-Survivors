@@ -61,7 +61,8 @@ public class Enemy : Unit, IDamageInterface
         MaxHP.RemoveAllModifiers();
 
         // Increase HP by 10% for every minute that has passed
-        MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+        if (GameManager.instance)
+            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
         HP.BaseValue = MaxHP.Value;
 
         // Upon elimination, spawn antigen

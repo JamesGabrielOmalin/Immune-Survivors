@@ -118,10 +118,14 @@ public class RecruitManager : MonoBehaviour
 
             Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
 
-            if (!spawnArea.bounds.Contains(spawnPoint))
+            while (!spawnArea.bounds.Contains(spawnPoint))
             {
-                spawnPoint = RandomPointInBounds(spawnArea.bounds);
-                spawnPoint.y = 0f;
+                positiveX = Random.value < 0.5f;
+                positiveZ = Random.value < 0.5f;
+
+                spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+                
+                Debug.Log($"Out of bounds, moving to: {spawnPoint}");
             }
 
             PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
@@ -226,18 +230,33 @@ public class RecruitManager : MonoBehaviour
             {
                 if (Vector3.Distance(player.transform.position, recruit.transform.position) > 30f)
                 {
-                    bool positiveX = Random.value < 0.5f;
-                    bool positiveZ = Random.value < 0.5f;
+                    Vector3 spawnPoint = (recruit.transform.position - player.transform.position).normalized;
 
-                    Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+                    if (spawnPoint.z > 0f)
+                    {
+                        spawnPoint *= 30f;
+                    }
+                    else
+                    {
+                        spawnPoint *= 12f;
+                    }
+
+                    //bool positiveX = Random.value < 0.5f;
+                    //bool positiveZ = Random.value < 0.5f;
+
+                    //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
                     
-                    if (!spawnArea.bounds.Contains(spawnPoint))
-            {
-                spawnPoint = RandomPointInBounds(spawnArea.bounds);
-                spawnPoint.y = 0f;
-            }
+                    //while (!spawnArea.bounds.Contains(spawnPoint))
+                    //{
+                    //    positiveX = Random.value < 0.5f;
+                    //    positiveZ = Random.value < 0.5f;
+
+                    //    spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+                    //    Debug.Log($"Out of bounds, moving to: {spawnPoint}"); 
+                    //    //yield return null;
+                    //}
                     
-                    recruit.transform.position = spawnPoint;
+                    recruit.transform.position = player.transform.position + spawnPoint;
                     Debug.Log("Relocated " + recruit.name);
                 }
             }
