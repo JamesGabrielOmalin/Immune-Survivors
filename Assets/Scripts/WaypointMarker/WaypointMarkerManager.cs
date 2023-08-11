@@ -94,14 +94,16 @@ public class WaypointMarkerManager : MonoBehaviour
         }
 
         activeMarkers.RemoveAll((marker) => marker.target == null);
+        activeMarkers.TrimExcess();
     }
 
 
     private IEnumerator WaypointCoroutine()
     {
+        WaitForFixedUpdate wait = new();
         while (true)
         {
-            yield return null;
+            yield return wait;
 
             foreach(WaypointMarker marker in activeMarkers)
             {
@@ -124,12 +126,10 @@ public class WaypointMarkerManager : MonoBehaviour
 
                 Vector3 targetDir = marker.target.transform.position - marker.transform.position;
 
-                Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.deltaTime, 0.0f);
+                Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.fixedDeltaTime, 0.0f);
 
                 marker.gameObject.transform.rotation = Quaternion.LookRotation(newDirection);
             }
-
-
 
         }
     }
