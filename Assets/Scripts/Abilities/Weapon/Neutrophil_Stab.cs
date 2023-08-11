@@ -45,10 +45,14 @@ public class Neutrophil_StabSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        yield return new WaitUntil(() => owner.GetComponent<AbilitySet>().CanUseBasicAttack);
+        if (!owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            yield break;
+
         IsAttacking = true;
+
         // Increase attack speed per level
-        yield return new WaitForSeconds(2.5f / (attackSpeed.Value + (abilityLevel * 1.1f)));
+        float AS = attackSpeed.Value + ((abilityLevel - 1) * 1.1f);
+        yield return new WaitForSeconds(2.5f / AS);
 
         Stab();
     }
