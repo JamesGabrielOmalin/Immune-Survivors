@@ -50,8 +50,10 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     {
         IsAttacking = true;
 
+        float interval = Mathf.Pow((float)System.Math.E, -attackSpeed.Value);
+
         // Wait before shooting
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        yield return new WaitForSeconds(interval);
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
