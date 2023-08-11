@@ -23,6 +23,8 @@ public class RecruitManager : MonoBehaviour
 
     public static RecruitManager instance;
 
+    public System.Action OnThreshholdUpdate;
+
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
     GameObject player;
@@ -163,6 +165,7 @@ public class RecruitManager : MonoBehaviour
 
         Debug.Log("Recruit Spawned");
         activeRecruits.Add(recruit);
+        WaypointMarkerManager.instance.RegisterToWaypointMarker(recruit);
     }
 
     public void AddKillCount()
@@ -205,6 +208,8 @@ public class RecruitManager : MonoBehaviour
                 cycle++;
             }
         }
+
+        OnThreshholdUpdate?.Invoke();
     }
 
     private IEnumerator RelocateRecruits()
@@ -237,5 +242,10 @@ public class RecruitManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public int GetCurrentKillThreshold()
+    {
+        return killThreshold;
     }
 }
