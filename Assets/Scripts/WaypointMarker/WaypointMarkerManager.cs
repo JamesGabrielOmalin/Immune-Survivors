@@ -110,6 +110,7 @@ public class WaypointMarkerManager : MonoBehaviour
 
                 Vector3 targetPos = cam.WorldToViewportPoint(marker.target.transform.position);
 
+                Debug.Log(targetPos);
 
                 if (targetPos.x < minBounds.x || targetPos.x > maxBounds.x ||
                      targetPos.y < minBounds.y || targetPos.y > maxBounds.y)
@@ -124,11 +125,13 @@ public class WaypointMarkerManager : MonoBehaviour
 
                 }
 
-                Vector3 targetDir = marker.target.transform.position - marker.transform.position;
+                //Vector3 targetDir = marker.target.transform.position - marker.transform.position;
 
-                Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.fixedDeltaTime, 0.0f);
+                //Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.fixedDeltaTime, 0.0f);
 
-                marker.gameObject.transform.rotation = Quaternion.LookRotation(newDirection);
+                //marker.gameObject.transform.rotation = Quaternion.LookRotation(newDirection);
+
+                marker.gameObject.transform.LookAt(marker.target.transform);
             }
 
         }
