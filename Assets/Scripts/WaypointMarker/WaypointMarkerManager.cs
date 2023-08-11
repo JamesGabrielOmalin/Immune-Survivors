@@ -81,17 +81,19 @@ public class WaypointMarkerManager : MonoBehaviour
 
     public void UnregisterToWaypointMarker(GameObject unit)
     {
-        for(int i = 0; i<activeMarkers.Count; i++)
+        foreach(WaypointMarker marker in activeMarkers)
         {
-            if (activeMarkers[i].target == unit)
+            if (marker.target == unit)
             {
-                activeMarkers[i].target = null;
-                activeMarkers[i].isActive = false;
-                activeMarkers[i].gameObject.SetActive(false);
-                activeMarkers.Remove(activeMarkers[i]);
+                marker.target = null;
+                marker.isActive = false;
+                marker.gameObject.SetActive(false);
+                //activeMarkers.Remove(marker);
                 Debug.Log("Marker has been unregistered");
             }
         }
+
+        activeMarkers.RemoveAll((marker) => marker.target == null);
     }
 
 
@@ -99,7 +101,7 @@ public class WaypointMarkerManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.01f);
+            yield return null;
 
             foreach(WaypointMarker marker in activeMarkers)
             {
@@ -120,7 +122,7 @@ public class WaypointMarkerManager : MonoBehaviour
 
                 }
 
-                Vector3 targetDir = marker.target.transform.position - marker.gameObject.transform.position;
+                Vector3 targetDir = marker.target.transform.position - marker.transform.position;
 
                 Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.deltaTime, 0.0f);
 
