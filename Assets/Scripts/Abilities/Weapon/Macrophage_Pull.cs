@@ -53,8 +53,10 @@ public class Macrophage_PullSpec : AbilitySpec
 
     private void Pull()
     {
+        float AD = attackDamage.Value;
+        float AR = attackRange.Value + (basicAttack.PullType == MacrophagePullType.Line ? 1f : 0f);
         // implement basic shooting towards target
-        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value);
+        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
         if (target == null)
         {
             return;
@@ -67,16 +69,24 @@ public class Macrophage_PullSpec : AbilitySpec
         if (basicAttack.PullType == MacrophagePullType.Cone)
             pull.transform.position = target.transform.position;
 
+        // Increase size per level
+        float AZ = attackSize.Value + ((abilityLevel - 1) * 1.1f);
+
         MacrophagePull pullEffect = pull.GetComponent<MacrophagePull>();
-        pullEffect.attackDamage = attackDamage.Value;
-        pullEffect.attackRange = attackRange.Value;
-        pullEffect.attackCount = (int)attackCount.Value;
-        pullEffect.attackSize = attackSize.Value * abilityLevel;
+        pullEffect.abilityLevel = abilityLevel;
+        pullEffect.attackDamage = AD;
+        pullEffect.attackRange = AR;
+                                     // Level 4 and higher: Increase DoT by 5
+        pullEffect.DoT = (AD / 4f) + (abilityLevel >= 4f ? 5f : 0f);
+                                                           // Level 3 and higher: Increase DoT tick count by 4
+        pullEffect.attackCount = (int)attackCount.Value + (abilityLevel >= 3f ? 4 : 0);
+        pullEffect.attackSize = AZ;
         pullEffect.critRate = critRate.Value;
         pullEffect.critDMG = critDMG.Value;
-        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) * abilityLevel;
+                                                                                           // Level 2 and higher: Increase knockback by 25%
+        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) * (abilityLevel >= 2f ? 1.25f : 1f);
 
-        pullEffect.transform.localScale = Vector3.one * attackSize.Value;
+        pullEffect.transform.localScale = Vector3.one * AZ;
         pullEffect.transform.forward = dir;
     }
 

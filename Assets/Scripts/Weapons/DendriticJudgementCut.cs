@@ -10,7 +10,6 @@ public class DendriticJudgementCut : MonoBehaviour
     [SerializeField] private VisualEffect vfx;
 
     [HideInInspector] public float attackDamage;
-    [HideInInspector] public int attackCount;
     [HideInInspector] public float attackSize;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
@@ -28,30 +27,23 @@ public class DendriticJudgementCut : MonoBehaviour
 
     private IEnumerator Slash()
     {
-        WaitForSeconds wait = new(0.5f / attackCount);
+        WaitForSeconds wait = new(0.5f);
         vfx.Play();
 
-        var hits = Physics.OverlapSphere(transform.position, attackSize * 5f, layerMask.value);
+        var hits = Physics.OverlapSphere(transform.position, attackSize * 2.5f, layerMask.value);
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
-        for (int i = 0; i < attackCount; i++)
+        foreach (var hit in hits)
         {
-            //sprite.gameObject.SetActive(false);
-
-            foreach (var hit in hits)
+            if (hit.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                if (hit.TryGetComponent<Enemy>(out Enemy enemy))
-                {
-                    float armor = enemy.attributes.GetAttribute("Armor").Value;
-                    DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
-                    //enemy.TakeDamage(damage);
-                }
+                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+                //enemy.TakeDamage(damage);
             }
-
-            yield return wait;
-            //sprite.gameObject.SetActive(true);
         }
-        yield return null;
+
+        yield return wait;
         this.gameObject.SetActive(false);
         yield break;
     }

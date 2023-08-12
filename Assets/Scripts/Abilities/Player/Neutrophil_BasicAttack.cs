@@ -55,10 +55,12 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        IsAttacking = true;
+        IsAttacking = true;              
+                                        // Level 3 or higher: increase Attack Speed by 25%
+        float AS = (attackSpeed.Value * (abilityLevel >= 3 ? 1.25f : 1f));
 
-        // Wait before shooting
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        // Wait before shooting                
+        yield return new WaitForSeconds(1f / AS);
 
         // start shooting
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -84,7 +86,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
         float angle = 0;
         float angleSteps = 0;
-        float spreadFactor = 10;
+        float spreadFactor = 15f;
 
         // angle threshold
         switch (basicAttack.type)
@@ -106,13 +108,24 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         Vector3 newTargetPos = targetPos;
         newTargetPos.y = owner.transform.position.y;
 
-        int attackCountValue = (int)attackCount.Value;
+        int AC = (int)attackCount.Value;
 
         WaitForSeconds wait = new(0.25f);
+                                        // Level 2 and higher: Increase DMG by 10
+        float AD = attackDamage.Value + (abilityLevel >= 2 ? 10f : 0f);
+                                            // Level 4 and higher: Increase CRIT Rate by 10%
+        float CRIT_RATE = critRate.Value + (abilityLevel >= 4 ? 0.1f : 0f);
+        float CRIT_DMG = critDMG.Value;
+        float KB = knockbackPower.Value;
+        float AZ = attackSize.Value;
 
-        for (int i = 0; i < attackCountValue; i++)
+        Vector3 scale = Vector3.one * AZ;
+
+        for (int i = 0; i < AC; i++)
         {
             angle = 0;
+
+            // Fires 2 more bullets per level
             for (int j = 0; j < abilityLevel * 2 - 1; j++)
             {
                 GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
@@ -122,11 +135,11 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
                 // Snapshot attributes
                 //bulletObject.name = bulletObject.name + "(" + i.ToString() + ") ";
-                bullet.attackDamage = attackDamage.Value;
-                bullet.critRate = critRate.Value;
-                bullet.critDMG = critDMG.Value;
-                bullet.knockbackPower = knockbackPower.Value;
-                bullet.transform.localScale = Vector3.one * attackSize.Value;
+                bullet.attackDamage = AD;
+                bullet.critRate = CRIT_RATE;
+                bullet.critDMG = CRIT_DMG;
+                bullet.knockbackPower = KB;
+                bullet.transform.localScale = scale;
 
                 // Calculate for the direction 
                 Vector3 direction = (newTargetPos - owner.transform.position).normalized;

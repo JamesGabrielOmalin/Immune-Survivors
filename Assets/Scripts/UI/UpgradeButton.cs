@@ -19,6 +19,21 @@ public class UpgradeButton : MonoBehaviour
     {
         Upgrade = inUpgrade;
         nameText.text = inUpgrade.Name;
-        descriptionText.text = inUpgrade.Description;
+
+        if (inUpgrade.EffectType == EffectType.Weapon)
+        {
+            if (UpgradeManager.instance.grantedWeapons.ContainsKey(inUpgrade))
+            {
+                descriptionText.text = inUpgrade.Descriptions[Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4)];
+            }
+            else
+            {
+                descriptionText.text = inUpgrade.Descriptions[0];
+            }
+        }
+        else
+        {
+            descriptionText.text = inUpgrade.Description;
+        }
     }
 }

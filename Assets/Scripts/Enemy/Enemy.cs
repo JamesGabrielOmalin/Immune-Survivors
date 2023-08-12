@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Enemy : Unit, IDamageInterface
 {
@@ -8,6 +9,7 @@ public class Enemy : Unit, IDamageInterface
     private Attribute HP;
     private Attribute AttackDamage;
     private Attribute AttackSpeed;
+    private Attribute MoveSpeed;
     private Attribute Armor;
     private Attribute AntigenSpawnChance;
 
@@ -17,10 +19,12 @@ public class Enemy : Unit, IDamageInterface
 
     private Player targetPlayer;
     private Coroutine attackCoroutine;
+    private const float INITIAL_ATTACK_DELAY = 0.25f;
 
     [field: Header("Antigen")]
     [field: SerializeField] public AntigenType Type { get; private set; }
     [SerializeField] private GameObject stunIndicator;
+    [SerializeField] private VisualEffect dotIndicator;
 
     public bool IsStunned { get; private set; } = false;
     private Coroutine armorShredCoroutine;
@@ -39,6 +43,7 @@ public class Enemy : Unit, IDamageInterface
         HP = attributes.GetAttribute("HP");
         AttackDamage = attributes.GetAttribute("Attack Damage");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
+        MoveSpeed = attributes.GetAttribute("Move Speed");
         Armor = attributes.GetAttribute("Armor");
         AntigenSpawnChance = attributes.GetAttribute("Antigen Spawn Chance");
 
@@ -55,12 +60,22 @@ public class Enemy : Unit, IDamageInterface
         if (HP == null)
             HP = attributes.GetAttribute("HP");
 
+        MaxHP.RemoveAllModifiers();
+        MoveSpeed.RemoveAllModifiers();
+
+        // Increase HP and Move Speed by 10% for every minute that has passed
+        if (GameManager.instance)
+        {
+            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+            MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+        }
+
         HP.BaseValue = MaxHP.Value;
 
         // Upon elimination, spawn antigen
         OnDeath += delegate
         {
-            if (AntigenSpawnChance.Value <= 0.25f)
+            if (Random.value < AntigenSpawnChance.Value)
                 AntigenManager.instance.SpawnAntigen(transform.position, Type);
             RecruitManager.instance.AddKillCount();
         };
@@ -103,7 +118,8 @@ public class Enemy : Unit, IDamageInterface
         if (other.CompareTag(PLAYER_TAG))
         {
             targetPlayer = other.GetComponent<Player>();
-            attackCoroutine = StartCoroutine(Attack());
+            if (attackCoroutine == null)
+                attackCoroutine = StartCoroutine(Attack());
         }
     }
 
@@ -111,7 +127,7 @@ public class Enemy : Unit, IDamageInterface
     {
         if (other.CompareTag(PLAYER_TAG))
         {
-            StopCoroutine(attackCoroutine);
+            //StopCoroutine(attackCoroutine);
             targetPlayer = null;
         }
     }
@@ -119,14 +135,24 @@ public class Enemy : Unit, IDamageInterface
     // Attack the target player
     private IEnumerator Attack()
     {
+        // Short delay before actually attacking
+        yield return new WaitForSeconds(INITIAL_ATTACK_DELAY);
         while (targetPlayer)
         {
             yield return new WaitUntil(() => !this.IsStunned);
 
-            DamageCalculator.ApplyDamage(AttackDamage.Value, 0f, 1f, 0f, targetPlayer.GetActiveUnit());
+            if (!targetPlayer)
+                break;
+
+            var activeUnit = targetPlayer.GetActiveUnit();
+            float armor = activeUnit.attributes.GetAttribute("Armor").Value;
+            DamageCalculator.ApplyDamage(AttackDamage.Value,  armor, activeUnit);
             targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
+
             yield return new WaitForSeconds(1f / AttackSpeed.Value);
         }
+
+        attackCoroutine = null;
     }
 
     public void ApplyStun(float duration)
@@ -190,16 +216,23 @@ public class Enemy : Unit, IDamageInterface
 
     private IEnumerator DoT(float damage, float duration, float tickRate)
     {
-        float t = 0f;
-        float tick = 1f / tickRate;
-
-        while (t < duration)
+        if (damage > float.Epsilon)
         {
-            TakeDamage(damage);
-            t += tick;
-            yield return new WaitForSeconds(tick);
+            float t = 0f;
+            float tick = 1f / tickRate;
+
+            dotIndicator.Play();
+
+            while (t < duration)
+            {
+                TakeDamage(damage);
+                DamageNumberManager.instance.SpawnDoTNumber(transform.position, damage);
+                t += tick;
+                yield return new WaitForSeconds(tick);
+            }
         }
 
+        dotIndicator.Stop();
         dotCoroutine = null;
         yield break;
     }

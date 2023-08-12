@@ -11,6 +11,7 @@ public enum MacrophagePullType
 
 public class MacrophagePull : MonoBehaviour
 {
+    [HideInInspector] public float abilityLevel;
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float attackRange;
     [HideInInspector] public float attackSize;
@@ -18,6 +19,7 @@ public class MacrophagePull : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public float knockbackPower;
+    [HideInInspector] public float DoT;
 
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
@@ -37,10 +39,17 @@ public class MacrophagePull : MonoBehaviour
     private IEnumerator Pull()
     {
         yield return null;
-        targetPos = GameManager.instance.Player.transform.position;
+
+        if (attackDamage <= float.Epsilon)
+        {
+            yield return new WaitForSeconds(0.15f);
+            this.gameObject.SetActive(false);
+            yield break;
+        }
+
+        //targetPos = GameManager.instance.Player.transform.position;
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-        int hitCount = 0;
         Collider[] hits = { };
         switch (type)
         {
@@ -51,24 +60,23 @@ public class MacrophagePull : MonoBehaviour
                 hits = Physics.OverlapSphere(transform.position, 2f * attackSize, layer.value);
                 break;
             case MacrophagePullType.Circle:
-                hits = Physics.OverlapSphere(transform.position, 5f * attackSize, layer.value);
+                hits = Physics.OverlapSphere(transform.position, attackRange, layer.value);
                 break;
         }
 
-        for (int i = 0; i < hits.Length && hitCount < attackCount; i++)
+        for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
             {
                 //enemy.TakeDamage(damage);
                 float armor = enemy.attributes.GetAttribute("Armor").Value;
                 DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
-                enemy.ApplyDoT(attackDamage, 4f, attackCount);
+                enemy.ApplyDoT(DoT, 4f, 2f + attackCount);
                 if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impact))
                 {
-                    Vector3 dir = (enemy.transform.position - targetPos).normalized;
+                    Vector3 dir = (enemy.transform.position - transform.position).normalized;
                     impact.AddImpact(dir, -knockbackPower);
                 }
-                hitCount++;
             }
         }
 

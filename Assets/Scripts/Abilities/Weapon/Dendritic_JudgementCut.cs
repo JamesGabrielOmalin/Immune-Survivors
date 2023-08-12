@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dendritic_JudgementCut", menuName = "Ability System/Abilities/Dendritic Judgement Cut")]
 public class Dendritic_JudgementCut : Ability
 {
+    [field:SerializeField] public float AttackDamageScaling { get; private set; }
+    [field:SerializeField] public float AttackInterval { get; private set; }
     public override AbilitySpec CreateSpec(AbilitySystem owner)
     {
         AbilitySpec spec = new Dendritic_JudgementCutSpec(this, owner);
@@ -47,8 +49,8 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
     {
         IsAttacking = true;
 
-        // Wait before shooting
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        // Wait before shooting                                                            // Level 4 and higher: Increase ATK SPD by 30%
+        yield return new WaitForSeconds(basicAttack.AttackInterval / (attackSpeed.Value * (abilityLevel >= 4 ? 1.3f : 1f)));
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -65,9 +67,18 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
 
     private IEnumerator Slash()
     {
-        WaitForSeconds wait = new(0.1f);
-       
-        for(int i = 0; i < abilityLevel; i++)
+        WaitForSeconds wait = new(0.25f);
+                                           
+        int AC = (int)attackCount.Value;
+        float AD = attackDamage.Value * basicAttack.AttackDamageScaling;
+                                            // Increase CRIT Rate by 10% per level
+        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
+                                          // Level 3 and higher: Increase CRIT DMG by 50%
+        float CRIT_DMG = critDMG.Value + (abilityLevel >= 3 ? 0.5f : 0f);
+                                         // Level 2 and higher: Increase size by 15%
+        float SIZE = attackSize.Value * (abilityLevel >= 2 ? 1.15f : 1f);
+
+        for (int i = 0; i < AC; i++)
         {
             // implement basic shooting towards target
             GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value);
@@ -82,13 +93,12 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
             DendriticJudgementCut cut = projectile.GetComponent<DendriticJudgementCut>();
 
             // Snapshot attributes
-            cut.attackDamage = attackDamage.Value;
-            cut.critRate = critRate.Value;
-            cut.critDMG = critDMG.Value;
-            cut.attackCount = (int)attackCount.Value;
-            cut.attackSize = attackSize.Value;
+            cut.attackDamage = AD;
+            cut.critRate = CRIT_RATE;
+            cut.critDMG = CRIT_DMG;
+            cut.attackSize = SIZE;
 
-            cut.transform.localScale = Vector3.one * attackSize.Value;
+            cut.transform.localScale = Vector3.one * SIZE;
 
             yield return wait;
         }

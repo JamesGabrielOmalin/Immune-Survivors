@@ -14,8 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Phagocytosis (Line)
   <Description>k__BackingField: Peforms Phagocytosis in a cone
+  <Descriptions>k__BackingField:
+  - Peforms Phagocytosis in a cone
+  - Increase Knockback by 1. Increase Size by 50%.
+  - Increase Knockback by 1. Increase DoT tick count by 4.
+  - Increase Knockback by 1. Increase DoT by 5.
+  - Increase Knockback by 1.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 874d8401331ede14087e8d8d486ddda6,
+    type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
   <Abilities>k__BackingField:

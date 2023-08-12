@@ -24,7 +24,7 @@ public class AbilitySet : MonoBehaviour
     [Header("UI")]
     [SerializeField] private Image mobilityCDIcon;
     [SerializeField] private Image ultimateCDIcon;
-    [SerializeField] private Image ultimateBlockIcon;
+    [SerializeField] private GameObject ultimateButton;
 
     private void Awake()
     {
@@ -38,12 +38,6 @@ public class AbilitySet : MonoBehaviour
         {
             Mobility = mobilityAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Mobility);
-        }
-
-        if (ultimateAbility)
-        {
-            Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
-            abilitySystem.GrantAbility(Ultimate);
         }
     }
 
@@ -63,6 +57,28 @@ public class AbilitySet : MonoBehaviour
     public void EnableBasicAttack(bool enabled)
     {
         CanUseBasicAttack = enabled;
+    }
+
+    public void GrantUltimate()
+    {
+        if (ultimateAbility)
+        {
+            ultimateButton.SetActive(true);
+            Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
+            abilitySystem.GrantAbility(Ultimate); 
+        }
+    }
+
+    public void ActivateUltimate()
+    {
+        if (Ultimate != null)
+            StartCoroutine(Ultimate.TryActivateAbility());
+    }
+
+    public void ActivateMobility()
+    {
+        if (Mobility != null)
+            StartCoroutine(Mobility.TryActivateAbility());
     }
 
     //public void Ultimate(InputAction.CallbackContext context)

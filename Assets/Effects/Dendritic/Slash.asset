@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Slash
   <Description>k__BackingField: Grants Slash
-  <Descriptions>k__BackingField: []
+  <Descriptions>k__BackingField:
+  - Grants Slash
+  - Increase CRIT Rate by 10%. Increase CRIT DMG by 20%.
+  - Increase CRIT Rate by 10%. Increase number of slashes by 3.
+  - Increase CRIT Rate by 10%. Increase DMG by 5.
+  - Increase CRIT Rate by 10%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 6d6088174bb906b49ad8428526ee337b,
+    type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
   <Abilities>k__BackingField:

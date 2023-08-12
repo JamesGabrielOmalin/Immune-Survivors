@@ -23,10 +23,11 @@ public class RecruitManager : MonoBehaviour
 
     public static RecruitManager instance;
 
+    public System.Action OnThreshholdUpdate;
+
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
     GameObject player;
-
 
     [Header("Base Spawning Attributes")]
     [SerializeField] private BoxCollider spawnArea;
@@ -37,7 +38,6 @@ public class RecruitManager : MonoBehaviour
 
     [SerializeField] private float spawnInterval;
     [SerializeField] private int amountToSpawnPerInterval;
-
 
     [Header(" Threshold Spawning")]
     [SerializeField] private bool EnableThresholdSpawning = false;
@@ -85,6 +85,8 @@ public class RecruitManager : MonoBehaviour
         {
             StartCoroutine(SpawnCoroutine());
         }
+
+        StartCoroutine(RelocateRecruits());
     }
 
     private IEnumerator SpawnCoroutine()
@@ -99,24 +101,31 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
-        float angle;
-        Vector3 dir;
+        //float angle;
+        //Vector3 dir;
         for (int i = 0; i < amount; i++)
         {
             // spawn point around the player
-            angle = Random.Range(0f, 360f);
+            //angle = Random.Range(0f, 360f);
 
-            dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            //dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
             //Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
 
             //spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
 
-            Vector3 spawnPoint = player.transform.position + (dir * Random.Range(20f, 30f));
+            bool positiveX = Random.value < 0.5f;
+            bool positiveZ = Random.value < 0.5f;
 
-            if (!spawnArea.bounds.Contains(spawnPoint))
+            Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+
+            while (!spawnArea.bounds.Contains(spawnPoint))
             {
-                spawnPoint = RandomPointInBounds(spawnArea.bounds);
-                spawnPoint.y = 0f;
+                positiveX = Random.value < 0.5f;
+                positiveZ = Random.value < 0.5f;
+
+                spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+                
+                Debug.Log($"Out of bounds, moving to: {spawnPoint}");
             }
 
             PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
@@ -139,7 +148,7 @@ public class RecruitManager : MonoBehaviour
         }
     }
 
-    private Vector3 RandomPointInBounds(Bounds bounds)
+    private Vector3 RandomPointInBounds(in Bounds bounds)
     {
         return new Vector3(
             Random.Range(bounds.min.x, bounds.max.x),
@@ -160,6 +169,7 @@ public class RecruitManager : MonoBehaviour
 
         Debug.Log("Recruit Spawned");
         activeRecruits.Add(recruit);
+        WaypointMarkerManager.instance.RegisterToWaypointMarker(recruit);
     }
 
     public void AddKillCount()
@@ -202,5 +212,59 @@ public class RecruitManager : MonoBehaviour
                 cycle++;
             }
         }
+
+        OnThreshholdUpdate?.Invoke();
+    }
+
+    private IEnumerator RelocateRecruits()
+    {
+        WaitForSeconds wait = new(30f);
+        while (this)
+        {
+            yield return wait;
+
+            activeRecruits.RemoveAll((recruit) => !recruit.activeInHierarchy);
+            activeRecruits.TrimExcess();
+
+            foreach (var recruit in activeRecruits)
+            {
+                if (Vector3.Distance(player.transform.position, recruit.transform.position) > 30f)
+                {
+                    Vector3 spawnPoint = (recruit.transform.position - player.transform.position).normalized;
+
+                    if (spawnPoint.z > 0f)
+                    {
+                        spawnPoint *= 30f;
+                    }
+                    else
+                    {
+                        spawnPoint *= 12f;
+                    }
+
+                    //bool positiveX = Random.value < 0.5f;
+                    //bool positiveZ = Random.value < 0.5f;
+
+                    //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+                    
+                    //while (!spawnArea.bounds.Contains(spawnPoint))
+                    //{
+                    //    positiveX = Random.value < 0.5f;
+                    //    positiveZ = Random.value < 0.5f;
+
+                    //    spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+                    //    Debug.Log($"Out of bounds, moving to: {spawnPoint}"); 
+                    //    //yield return null;
+                    //}
+                    
+                    recruit.transform.position = player.transform.position + spawnPoint;
+                    Debug.Log("Relocated " + recruit.name);
+                }
+            }
+        }
+    }
+
+    public int GetCurrentKillThreshold()
+    {
+        return killThreshold;
     }
 }

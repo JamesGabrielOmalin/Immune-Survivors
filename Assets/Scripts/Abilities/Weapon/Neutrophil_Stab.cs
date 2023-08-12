@@ -45,10 +45,14 @@ public class Neutrophil_StabSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        yield return new WaitUntil(() => owner.GetComponent<AbilitySet>().CanUseBasicAttack);
+        if (!owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            yield break;
+
         IsAttacking = true;
 
-        yield return new WaitForSeconds(2.5f / attackSpeed.Value);
+        // Increase attack speed per level
+        float AS = attackSpeed.Value + ((abilityLevel - 1) * 1.1f);
+        yield return new WaitForSeconds(2.5f / AS);
 
         Stab();
     }
@@ -61,46 +65,45 @@ public class Neutrophil_StabSpec : AbilitySpec
 
     private void Stab()
     {
-        float range = basicAttack.Range;
-        
-        for (int i = 0; i < abilityLevel; i++)
+        float AR = basicAttack.Range;
+        int AC = (int)attackCount.Value;
+                                        // Level 3 and higher: Increase DMG by 10
+        float AD = attackDamage.Value + (abilityLevel >= 3 ? 10 : 0f);
+        float AZ = attackSize.Value;
+                                             // Level 2 and higher: Increase CRIT Rate by 10%
+        float CRIT_RATE = critRate.Value + (abilityLevel >= 2 ? 1.1f : 0f);
+        float CRIT_DMG = critDMG.Value;
+
+        Vector3 scale = Vector3.one * AZ;
+
+        GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
+
+        if (target == null)
         {
-            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
-
-            if (target == null)
-            {
-                return;
-            }
-
-            Vector3 dir = target.transform.position - owner.transform.position;
-            GameObject stabObject = stabs.RequestPoolable(target.transform.position);
-
-            if (stabObject == null)
-            {
-                return;
-            }
-
-            stabObject.transform.forward = dir;
-
-            int count = (int)attackCount.Value;
-
-            float ad = attackDamage.Value;
-            float az = attackSize.Value;
-            float cr = critRate.Value;
-            float cd = critDMG.Value;
-
-            NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
-            stab.attackDamage = attackDamage.Value;
-            stab.attackRange = range;
-            stab.attackCount = attackCount.Value;
-            stab.attackSize = attackSize.Value;
-            stab.critRate = critRate.Value;
-            stab.critDMG = critDMG.Value;
-
-            stab.target = target.GetComponent<Enemy>();
-
-            stab.transform.localScale = Vector3.one * az;
+            return;
         }
+
+        Vector3 dir = target.transform.position - owner.transform.position;
+        GameObject stabObject = stabs.RequestPoolable(target.transform.position);
+
+        if (stabObject == null)
+        {
+            return;
+        }
+
+        stabObject.transform.forward = dir;
+
+        NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
+        stab.attackDamage = AD;
+        stab.attackCount = AC;
+        stab.critRate = CRIT_RATE;
+        stab.critDMG = CRIT_DMG;
+                                // Level 4 and higher: Increase DoT by 5
+        stab.DoT = (AD / 4f) + (abilityLevel >= 4 ? 5f : 0f);
+
+        stab.target = target.GetComponent<Enemy>();
+
+        stab.transform.localScale = scale;
     }
 
     private void Init()

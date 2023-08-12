@@ -49,8 +49,8 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
     {
         IsAttacking = true;
 
-        // Wait before shooting
-        yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value);
+        // Wait before shooting                                                          // Level 3 and higher: Increase ATK SPD by 20%
+        yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f));
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -68,12 +68,23 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
     private IEnumerator Slash()
     {
         WaitForSeconds wait = new(0.25f);
-        float range = attackRange.Value;
-        
-        for (int i = 0; i < abilityLevel; i++)
+
+        float AD = attackDamage.Value;
+                                        // Level 4 or higher: Increase range by 25%
+        float AR = attackRange.Value * (abilityLevel >= 4f ? 1.25f : 1f);
+                                            // Increase CRIT Rate by 10% per level
+        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
+        float CRIT_DMG = critDMG.Value;
+                                        // Level 2 or higher: Increase size by 50%
+        float AZ = attackSize.Value * (abilityLevel >= 2f ? 1.5f : 1f);
+        Vector3 scale = Vector3.one * AZ;
+
+        int AC = (int)attackCount.Value;
+
+        for (int i = 0; i < AC; i++)
         {
             // implement basic shooting towards target
-            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, range);
+            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
             if (target == null)
             {
                 continue;
@@ -88,13 +99,12 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
             cut.transform.forward = dir;
 
             // Snapshot attributes
-            cut.attackDamage = attackDamage.Value;
-            cut.critRate = critRate.Value;
-            cut.critDMG = critDMG.Value;
-            cut.attackCount = (int)attackCount.Value;
-            cut.attackRange = range;
+            cut.attackDamage = AD;
+            cut.critRate = CRIT_RATE;
+            cut.critDMG = CRIT_DMG;
+            cut.attackRange = AR;
 
-            cut.transform.localScale = Vector3.one * attackSize.Value * abilityLevel;
+            cut.transform.localScale = scale;
 
             yield return wait;
         }

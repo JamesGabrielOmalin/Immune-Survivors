@@ -2,10 +2,13 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager instance;
+
+    public System.Action OnEffectAcquired;
 
     [SerializeField] private UpgradeSelect upgradeScreen;
 
@@ -21,14 +24,15 @@ public class UpgradeManager : MonoBehaviour
 
     [SerializeField] private List<Effect> defaultWeapons = new();
 
-    private readonly Dictionary<PlayerUnitType, List<Effect>> grantedEffects = new()
+    public readonly Dictionary<PlayerUnitType, Dictionary<Effect, int>> grantedEffects = new()
     {
         { PlayerUnitType.Neutrophil, new() },
         { PlayerUnitType.Macrophage, new() },
         { PlayerUnitType.Dendritic, new() },
     };
 
-    private readonly List<Effect> grantedWeapons = new();
+    //private readonly List<Effect> grantedWeapons = new();
+    public readonly Dictionary<Effect, int> grantedWeapons = new();
 
     private void Awake()
     {
@@ -43,7 +47,9 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn]);
+        grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
+
+        OnEffectAcquired?.Invoke();
     }
 
     private void OnDestroy()
@@ -56,13 +62,20 @@ public class UpgradeManager : MonoBehaviour
         switch (effect.EffectType)
         {
             case EffectType.Buff:
-                grantedEffects[unit].Add(effect);
+                if(!grantedEffects[unit].ContainsKey(effect))
+                    grantedEffects[unit].Add(effect, 1);
+                else
+                    grantedEffects[unit][effect] += 1;
                 break;
             case EffectType.Weapon:
-                if (!grantedWeapons.Contains(effect))
-                    grantedWeapons.Add(effect);
+                if (!grantedWeapons.ContainsKey(effect))
+                    grantedWeapons.Add(effect, 1);
+                else
+                    grantedWeapons[effect] += 1;
                 break;
         }
+
+        OnEffectAcquired?.Invoke();
     }
 
     public bool CanEquipWeapons => grantedWeapons.Count < 3;
@@ -86,9 +99,9 @@ public class UpgradeManager : MonoBehaviour
         }
         else
         {
-            n.AddRange(neutrophilWeapons.Intersect(grantedWeapons));
-            m.AddRange(macrophageWeapons.Intersect(grantedWeapons));
-            d.AddRange(dendriticWeapons.Intersect(grantedWeapons));
+            n.AddRange(neutrophilWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            m.AddRange(macrophageWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            d.AddRange(dendriticWeapons.Intersect(grantedWeapons.Keys.ToList()));
         }
 
         return type switch
@@ -104,7 +117,23 @@ public class UpgradeManager : MonoBehaviour
     {
         GameManager.instance.PauseGameTime();
         GameManager.instance.HUD.SetActive(false);
+        GameManager.instance.Player.GetComponent<Player>().EnableHUD(false);
         upgradeScreen.SelectUpgrades(type);
         upgradeScreen.gameObject.SetActive(true);
+    }
+
+    public Dictionary<Effect, int> GetEffects(PlayerUnitType type)
+    {
+        return grantedEffects[type];
+    }
+
+    public Dictionary<Effect, int> GetWeapons()
+    {
+        return grantedWeapons;
+    }
+
+    public void OnDisable()
+    {
+        OnEffectAcquired = null;
     }
 }

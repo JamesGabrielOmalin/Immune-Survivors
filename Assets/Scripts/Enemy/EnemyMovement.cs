@@ -9,6 +9,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Enemy enemy;
     [SerializeField] private Rigidbody rigidBody;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private ImpactReceiver impact;
 
     private GameObject target;
     private Attribute moveSpeed;
@@ -29,6 +30,11 @@ public class EnemyMovement : MonoBehaviour
 
     private void Move()
     {
+        if (impact.hasImpact)
+        {
+            return;
+        }
+
         if (enemy.IsStunned || Vector3.Distance(transform.position, target.transform.position) <= 2f)
             return;
         moveDir = (target.transform.position - transform.position).normalized;
