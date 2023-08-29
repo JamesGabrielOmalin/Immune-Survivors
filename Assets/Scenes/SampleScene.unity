@@ -1793,6 +1793,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8919689433779787522, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: amountToPool
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689433779787522, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: addIfNotEnough
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8919689434467367440, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
         type: 3}
       propertyPath: m_Name
@@ -1852,6 +1862,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689434991410156, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: amountToPool
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689434991410156, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: addIfNotEnough
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689435150740669, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: amountToPool
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689435150740669, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: addIfNotEnough
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347, type: 3}
@@ -2770,6 +2800,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaypointMarkerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985590565439949753, guid: d0ee9b07a370e6449b9a4293c8258003,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6985590565439949755, guid: d0ee9b07a370e6449b9a4293c8258003,
         type: 3}
