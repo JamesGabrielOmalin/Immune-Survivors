@@ -30,6 +30,23 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int waveIndex = 0;
     [SerializeField] private Wave currentWave;
 
+    [Header("Viewport Bounds Threshold")]
+
+    [Tooltip("Relocate objects when the x units away from the viewport screen")]
+    [SerializeField] private Vector2 boundsThreshold;
+
+    [Tooltip("Relocate objects by x units outside of the viewport screen (must be less than bouds threshold)")]
+    [SerializeField] private float spawnThreshold;
+
+    [Tooltip("Within (0-1)  LL Viewing fustrum (0,0) ")]
+    private Vector2 minBounds = new Vector2(0, 0);
+    [Tooltip("Within (0-1)  UR Viewing fustrum (1,1) ")]
+    private Vector2 maxBounds = new Vector2(1, 1);
+
+    private Camera cam;
+
+
+
     public System.Action OnMinInfectionReached;
     public System.Action OnMaxInfectionReached;
     public System.Action OnInfectionRateChanged;
@@ -55,6 +72,11 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        cam = Camera.main;
+
+        minBounds -= boundsThreshold;
+        maxBounds += boundsThreshold;
+
         // Set the current wave with the firt wave in the wavelist
         InitalizeCurrentWave(waveIndex);
         lastWaveIndex = level.waveList.Count - 1;
@@ -65,6 +87,9 @@ public class EnemyManager : MonoBehaviour
         // Start couroutine for wave and spawning
         waveCoroutine = StartCoroutine(WaveCoroutine());
         spawnCoroutine = StartCoroutine(BasicEnemySpawnCoroutine());
+
+        StartCoroutine(RelocateEnemies());
+
     }
 
     private void OnDestroy()
@@ -231,6 +256,103 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private IEnumerator RelocateEnemies()
+    {
+        WaitForSeconds wait = new(1.0f);
+        //WaitForFixedUpdate wait = new();
+
+        while (this)
+        {
+            yield return wait;
+
+            activeEnemies.RemoveAll((recruit) => !recruit.activeInHierarchy);
+            activeEnemies.TrimExcess();
+
+            foreach (GameObject enemy in activeEnemies)
+            {
+                // Translate World to Viewport
+                Vector3 recruitPos = cam.WorldToViewportPoint(enemy.transform.position);
+
+                Vector3 ViewportToWorldPos = recruitPos;
+
+                // Proceed to next iteration if is within bounds
+                if ((recruitPos.x >= minBounds.x && recruitPos.x <= maxBounds.x) && (recruitPos.y >= minBounds.y && recruitPos.y <= maxBounds.y))
+                {
+                    Debug.Log("In range: " + recruitPos);
+
+                    continue;
+                }
+
+                if (recruitPos.x < minBounds.x)
+                {
+                    // Left side of the screen
+                    ViewportToWorldPos.x = -spawnThreshold;
+                    ViewportToWorldPos.y = Random.Range(-spawnThreshold, 1 + spawnThreshold);
+                }
+                else if (recruitPos.x > maxBounds.x)
+                {
+                    // Right side of the screen
+                    ViewportToWorldPos.x = 1 + spawnThreshold;
+                    ViewportToWorldPos.y = Random.Range(-spawnThreshold, 1 + spawnThreshold); ;
+                }
+                else if (recruitPos.y < minBounds.y)
+                {
+                    // Bottom side of the screen
+                    ViewportToWorldPos.y = -spawnThreshold;
+                    ViewportToWorldPos.x = Random.Range(-spawnThreshold, 1 + spawnThreshold);
+                }
+                else if (recruitPos.y > maxBounds.y)
+                {
+                    // Top side of the screen
+                    ViewportToWorldPos.y = 1 + spawnThreshold;
+                    ViewportToWorldPos.x = Random.Range(-spawnThreshold, 1 + spawnThreshold);
+                }
+
+                Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z));
+
+                enemy.transform.position = new Vector3(newPos.x, enemy.transform.position.y, newPos.z);
+
+                Debug.Log("Not in range: " + recruitPos);
+
+            }
+
+            //foreach (var recruit in activeRecruits)
+            //{
+            //    if (Vector3.Distance(player.transform.position, recruit.transform.position) > 30f)
+            //    {
+            //        Vector3 spawnPoint = (recruit.transform.position - player.transform.position).normalized;
+
+            //        if (spawnPoint.z > 0f)
+            //        {
+            //            spawnPoint *= 30f;
+            //        }
+            //        else
+            //        {
+            //            spawnPoint *= 12f;
+            //        }
+
+            //        //bool positiveX = Random.value < 0.5f;
+            //        //bool positiveZ = Random.value < 0.5f;
+
+            //        //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+
+            //        //while (!spawnArea.bounds.Contains(spawnPoint))
+            //        //{
+            //        //    positiveX = Random.value < 0.5f;
+            //        //    positiveZ = Random.value < 0.5f;
+
+            //        //    spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+            //        //    Debug.Log($"Out of bounds, moving to: {spawnPoint}"); 
+            //        //    //yield return null;
+            //        //}
+
+            //        recruit.transform.position = player.transform.position + spawnPoint;
+            //        Debug.Log("Relocated " + recruit.name);
+            //    }
+            //}
+
+        }
+    }
     public GameObject RequestFromPool(Vector3 position, string poolName)
     {
         foreach(EnemyPool enpool in enemyPools )
