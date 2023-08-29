@@ -197,7 +197,7 @@ MonoBehaviour:
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
   spawnArea: {fileID: 892362681589872101}
-  initialAmountToSpawn: 2
+  initialAmountToSpawn: 5
   EnableIntervalSpawning: 0
   spawnInterval: 60
   amountToSpawnPerInterval: 1
@@ -211,11 +211,11 @@ MonoBehaviour:
   killThresholdList:
   - startCycle: 1
     endCycle: 5
-    increment: 1
+    increment: 2
     nRecruitToSpawn: 1
   - startCycle: 6
     endCycle: 10
-    increment: 2
+    increment: 3
     nRecruitToSpawn: 1
   - startCycle: 11
     endCycle: 20
@@ -229,6 +229,10 @@ MonoBehaviour:
     endCycle: 100
     increment: 5
     nRecruitToSpawn: 1
+  boundsThreshold: {x: 1, y: 1}
+  spawnThreshold: 0.5
+  minBounds: {x: 0, y: 0}
+  maxBounds: {x: 1, y: 1}
 --- !u!65 &892362681589872101
 BoxCollider:
   m_ObjectHideFlags: 0
