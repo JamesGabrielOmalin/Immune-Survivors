@@ -23,6 +23,10 @@ public class EnemyManager : MonoBehaviour
     [field: Header("Wave")]
     [SerializeField] LevelWaveData level;
 
+    Coroutine waveCoroutine;
+    Coroutine spawnCoroutine;
+
+    private int lastWaveIndex;
     [SerializeField] private int waveIndex = 0;
     [SerializeField] private Wave currentWave;
 
@@ -53,13 +57,14 @@ public class EnemyManager : MonoBehaviour
     {
         // Set the current wave with the firt wave in the wavelist
         InitalizeCurrentWave(waveIndex);
+        lastWaveIndex = level.waveList.Count - 1;
 
         // Calculate the quota of the current wave
         CalculateWaveQuota();
 
         // Start couroutine for wave and spawning
-        StartCoroutine(WaveCoroutine());
-        StartCoroutine(BasicEnemySpawnCoroutine());
+        waveCoroutine = StartCoroutine(WaveCoroutine());
+        spawnCoroutine = StartCoroutine(BasicEnemySpawnCoroutine());
     }
 
     private void OnDestroy()
@@ -98,15 +103,26 @@ public class EnemyManager : MonoBehaviour
 
             int totalEnemyCount = EnemyManager.instance.activeEnemies.Count;
 
-           
+
+            // Trigger events when the number of active enemies exceeds the maxEnemyCount
+            if (totalEnemyCount > level.maxActiveEnemyThreshold)
+            {
+
+                Debug.Log(" Trigger Special Events: Symptoms?");
+
+                StopCoroutine(waveCoroutine);
+                StopCoroutine(spawnCoroutine);
+
+                //spawn boss or trigger
+            }
             // Spawn enemy of each type if the number of enemies present in below the wave quota
-            if (currentWave.waveSpawnCounter < currentWave.waveSpawnQuota && totalEnemyCount < level.maxActiveEnemyThreshold)
+            else if (currentWave.waveSpawnCounter < currentWave.waveSpawnQuota)
             {
                 // Spawn each type of enemy
-                foreach(EnemyGroup eg in currentWave.enemyGroups)
+                foreach (EnemyGroup eg in currentWave.enemyGroups)
                 {
                     // Spawn until quota is reached
-                    if(eg.enemySpawnCounter < eg.enemyQuota)
+                    if (eg.enemySpawnCounter < eg.enemyQuota)
                     {
                         SpawnEnemyBatch(1, eg.poolName);
                         eg.enemySpawnCounter++;
@@ -116,25 +132,25 @@ public class EnemyManager : MonoBehaviour
                 }
             }
             // Spawn random enemy if the enemies present are more than the wave quota
-            else if (currentWave.waveSpawnCounter >= currentWave.waveSpawnQuota && totalEnemyCount < level.maxActiveEnemyThreshold)
+            else if (currentWave.waveSpawnCounter >= currentWave.waveSpawnQuota)
             {
-                int type = Random.Range(0, currentWave.enemyGroups.Count);
+                if (waveIndex < lastWaveIndex)
+                {
+                    int type = Random.Range(0, currentWave.enemyGroups.Count);
 
-                // spawn this type
-                SpawnEnemyBatch(1, currentWave.enemyGroups[type].poolName);
-                currentWave.enemyGroups[type].enemySpawnCounter++;
-                //currentWave.excessSpawnCounter++;
-
-            }
-            // Trigger events when the number of active enemies exceeds the maxEnemyCount
-            else if (totalEnemyCount > level.maxActiveEnemyThreshold)
-            {
-                Debug.Log(" Trigger Special Events: Symptoms?");
-                //spawn boss or trigger
+                    // spawn this type
+                    SpawnEnemyBatch(1, currentWave.enemyGroups[type].poolName);
+                    currentWave.enemyGroups[type].enemySpawnCounter++;
+                    //currentWave.excessSpawnCounter++;                }
+                }
+                else
+                {
+                    StopCoroutine(waveCoroutine);
+                    StopCoroutine(spawnCoroutine);
+                }
             }
         }
     }
-
     private void SpawnWaveEnemyBoss()
     {
         foreach(BossEnemyGroup eb in currentWave.BossEnemyGroups)
