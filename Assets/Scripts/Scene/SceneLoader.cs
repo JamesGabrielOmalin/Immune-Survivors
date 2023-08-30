@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using UnityEditor;
 
 public class SceneLoader : MonoBehaviour
 {
+    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private Image loadingBar;
+    [SerializeField] private GameObject animatedIcon;
+
     public void ReloadScene()
     {
         if (GameManager.instance)
@@ -43,14 +48,23 @@ public class SceneLoader : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string name)
     {
+        loadingScreen.SetActive(true);
+
         AsyncOperation op = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
         op.allowSceneActivation = false;
 
-        while(op.progress < 0.9f)
+        while(loadingBar.fillAmount < 1f)
         {
-            // TODO: Loading screen here
+            loadingBar.fillAmount += Time.deltaTime / 3f;
             yield return null;
         }
+
+        yield return new WaitUntil(() => op.progress >= 0.9f);
+
+        loadingBar.transform.parent.gameObject.SetActive(false);
+        animatedIcon.SetActive(true);
+
+        yield return new WaitForSeconds(0.25f);
 
         op.allowSceneActivation = true;
     }
