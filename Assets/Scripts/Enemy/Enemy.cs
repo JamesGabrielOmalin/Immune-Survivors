@@ -59,8 +59,11 @@ public class Enemy : Unit, IDamageInterface
             MaxHP = attributes.GetAttribute("Max HP");
         if (HP == null)
             HP = attributes.GetAttribute("HP");
+        if (MoveSpeed == null)
+            MoveSpeed = attributes.GetAttribute("Move Speed");
 
         MaxHP.RemoveAllModifiers();
+
         MoveSpeed.RemoveAllModifiers();
 
         // Increase HP and Move Speed by 10% for every minute that has passed
