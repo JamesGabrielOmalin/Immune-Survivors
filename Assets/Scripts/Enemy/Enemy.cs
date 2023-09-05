@@ -59,6 +59,8 @@ public class Enemy : Unit, IDamageInterface
             MaxHP = attributes.GetAttribute("Max HP");
         if (HP == null)
             HP = attributes.GetAttribute("HP");
+        if (MoveSpeed == null)
+            MoveSpeed = attributes.GetAttribute("Move Speed");
 
         MaxHP.RemoveAllModifiers();
         MoveSpeed.RemoveAllModifiers();

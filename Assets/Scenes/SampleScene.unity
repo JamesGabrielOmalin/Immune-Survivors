@@ -1520,7 +1520,7 @@ PrefabInstance:
     - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
         type: 3}
       propertyPath: spawnInterval
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
         type: 3}
@@ -1530,7 +1530,17 @@ PrefabInstance:
     - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
         type: 3}
       propertyPath: initialKillRequirement
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
+        type: 3}
+      propertyPath: killThresholdList.Array.data[0].increment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002297422348402743, guid: 738b5a5d052bc46479a8865e9c12d0d4,
+        type: 3}
+      propertyPath: killThresholdList.Array.data[1].increment
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 738b5a5d052bc46479a8865e9c12d0d4, type: 3}
@@ -3423,15 +3433,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8919689433779787522, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: amountToPool
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689433779787522, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: addIfNotEnough
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8919689434467367440, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
         type: 3}
       propertyPath: m_Name
       value: EnemyManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8919689434467367443, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
-        type: 3}
-      propertyPath: maxEnemyCountAllowed
-      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 8919689434467367445, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
         type: 3}
@@ -3487,6 +3502,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689434991410156, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: amountToPool
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689434991410156, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: addIfNotEnough
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689435150740669, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: amountToPool
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919689435150740669, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347,
+        type: 3}
+      propertyPath: addIfNotEnough
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cc0c26b3e9dc8844a5abfe9dcb0a347, type: 3}
@@ -5699,15 +5734,15 @@ PrefabInstance:
       propertyPath: markerPool
       value: 
       objectReference: {fileID: 812220071}
-    - target: {fileID: 6985590565439949752, guid: d0ee9b07a370e6449b9a4293c8258003,
-        type: 3}
-      propertyPath: maxBounds.x
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 6985590565439949753, guid: d0ee9b07a370e6449b9a4293c8258003,
         type: 3}
       propertyPath: m_Name
       value: WaypointMarkerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6985590565439949753, guid: d0ee9b07a370e6449b9a4293c8258003,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6985590565439949755, guid: d0ee9b07a370e6449b9a4293c8258003,
         type: 3}
@@ -7543,6 +7578,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 12488505, guid: b14db034bf5041e4ea95646289373afb, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 560223414, guid: b14db034bf5041e4ea95646289373afb, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4782505582870041322, guid: b14db034bf5041e4ea95646289373afb,
         type: 3}
       propertyPath: m_Name

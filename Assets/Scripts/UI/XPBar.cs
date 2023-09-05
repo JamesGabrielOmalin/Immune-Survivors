@@ -20,6 +20,14 @@ public class XPBar : MonoBehaviour
         //RecruitManager.instance.OnThreshholdUpdate -= UpdateBar;
     }
 
+    private void OnDisable()
+    {
+        if(lerpCoroutine != null)
+        {
+            StopCoroutine(lerpCoroutine);
+        }
+    }
+
     public void UpdateBar()
     {
         if(lerpCoroutine != null) 
