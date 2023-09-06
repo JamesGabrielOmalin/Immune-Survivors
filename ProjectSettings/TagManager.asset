@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Camera
   - Water
   - UI
   - Player
@@ -21,7 +21,7 @@ TagManager:
   - Antigen Magnet
   - Adaptive
   - Adaptive Projectile
-  - 
+  - WorldBoundary
   - 
   - 
   - 
