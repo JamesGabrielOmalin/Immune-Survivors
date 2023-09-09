@@ -213,26 +213,29 @@ public class EnemyManager : MonoBehaviour
                 spawnPoint = spawnPoint.normalized * maxSpawnDistance;
             }
 
-            //if (!spawnArea.bounds.Contains(spawnPoint))
-            //{
-            //     angle = Random.Range(0f, 360f);
-            //     dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            //    spawnPoint = player.transform.position + dir * Random.Range(30f, 40f);
+            if (!spawnArea.bounds.Contains(spawnPoint))
+            {
+                angle = Random.Range(0f, 360f);
+                dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+                spawnPoint = player.transform.position + dir * Random.Range(30f, 40f);
 
-            //    // Limit spawn position
-            //    if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            //    {
-            //        spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            //    }
+                // Limit spawn position
+                if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+                {
+                    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+                }
 
-            //    Debug.Log($" Enemy Out of bounds, moving to: {spawnPoint}");
+                Debug.Log($" Enemy Out of bounds, moving to: {spawnPoint}");
 
-            //}
+            }
+            else
+            {
+                SpawnEnemy(spawnPoint, poolName);
+
+            }
 
             //float x = Random.Range(-50f, 50f);
             //float z = Random.Range(-50f, 50f);
-
-            SpawnEnemy(spawnPoint, poolName);
         }
     }
 
