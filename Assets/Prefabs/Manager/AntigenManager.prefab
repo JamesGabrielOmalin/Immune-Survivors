@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &995850180489964004
+--- !u!1 &6866743440281523248
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 995850180489964005}
-  - component: {fileID: 995850180489964002}
+  - component: {fileID: 6866743440281523249}
+  - component: {fileID: 6866743440281523254}
   m_Layer: 0
-  m_Name: Antigen Pool
+  m_Name: Antigen Pool (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &995850180489964005
+--- !u!4 &6866743440281523249
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850180489964004}
+  m_GameObject: {fileID: 6866743440281523248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 995850181466926244}
-  m_RootOrder: 0
+  m_Father: {fileID: 6866743441768052072}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &995850180489964002
+--- !u!114 &6866743440281523254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850180489964004}
+  m_GameObject: {fileID: 6866743440281523248}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8423726210655736128, guid: 6aeb7eab50d487f448e82373a7bbdde4,
+  objectToPool: {fileID: 8423726210655736128, guid: 5a0ee74592b34ea4a9dd94a2ff6fa488,
     type: 3}
   amountToPool: 100
   addIfNotEnough: 0
---- !u!1 &995850181379800705
+--- !u!1 &6866743441715193677
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,8 +56,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 995850181379800734}
-  - component: {fileID: 995850181379800735}
+  - component: {fileID: 6866743441715193682}
+  - component: {fileID: 6866743441715193683}
   m_Layer: 0
   m_Name: Antigen Pool (2)
   m_TagString: Untagged
@@ -65,28 +65,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &995850181379800734
+--- !u!4 &6866743441715193682
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850181379800705}
+  m_GameObject: {fileID: 6866743441715193677}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 995850181466926244}
+  m_Father: {fileID: 6866743441768052072}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &995850181379800735
+--- !u!114 &6866743441715193683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850181379800705}
+  m_GameObject: {fileID: 6866743441715193677}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
@@ -96,7 +96,7 @@ MonoBehaviour:
     type: 3}
   amountToPool: 100
   addIfNotEnough: 0
---- !u!1 &995850181466926246
+--- !u!1 &6866743441768052074
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,8 +104,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 995850181466926244}
-  - component: {fileID: 995850181466926247}
+  - component: {fileID: 6866743441768052072}
+  - component: {fileID: 6866743441768052075}
   m_Layer: 0
   m_Name: AntigenManager
   m_TagString: Untagged
@@ -113,42 +113,42 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &995850181466926244
+--- !u!4 &6866743441768052072
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850181466926246}
+  m_GameObject: {fileID: 6866743441768052074}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 995850180489964005}
-  - {fileID: 995850182076829181}
-  - {fileID: 995850181379800734}
+  - {fileID: 6866743441864732713}
+  - {fileID: 6866743440281523249}
+  - {fileID: 6866743441715193682}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &995850181466926247
+--- !u!114 &6866743441768052075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850181466926246}
+  m_GameObject: {fileID: 6866743441768052074}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44035d960e945cb409fdba18a44946ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   antigenPools:
-  - {fileID: 995850180489964002}
-  - {fileID: 995850182076829178}
-  - {fileID: 995850181379800735}
-  antigenThreshold: 1
---- !u!1 &995850182076829180
+  - {fileID: 6866743441864732718}
+  - {fileID: 6866743440281523254}
+  - {fileID: 6866743441715193683}
+  antigenThreshold: 100
+--- !u!1 &6866743441864732712
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,43 +156,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 995850182076829181}
-  - component: {fileID: 995850182076829178}
+  - component: {fileID: 6866743441864732713}
+  - component: {fileID: 6866743441864732718}
   m_Layer: 0
-  m_Name: Antigen Pool (1)
+  m_Name: Antigen Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &995850182076829181
+--- !u!4 &6866743441864732713
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850182076829180}
+  m_GameObject: {fileID: 6866743441864732712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 995850181466926244}
-  m_RootOrder: 1
+  m_Father: {fileID: 6866743441768052072}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &995850182076829178
+--- !u!114 &6866743441864732718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995850182076829180}
+  m_GameObject: {fileID: 6866743441864732712}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: 8423726210655736128, guid: 5a0ee74592b34ea4a9dd94a2ff6fa488,
+  objectToPool: {fileID: 8423726210655736128, guid: 6aeb7eab50d487f448e82373a7bbdde4,
     type: 3}
   amountToPool: 100
   addIfNotEnough: 0
