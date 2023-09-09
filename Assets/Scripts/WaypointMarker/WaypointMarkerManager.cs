@@ -113,12 +113,12 @@ public class WaypointMarkerManager : MonoBehaviour
                 if (targetPos.x < minBounds.x || targetPos.x > maxBounds.x ||
                      targetPos.y < minBounds.y || targetPos.y > maxBounds.y)
                 {
-                    Debug.Log("Not in range");
+                    //Debug.Log("Not in range");/
                     marker.gameObject.SetActive(true);
                 }
                 else
                 {
-                    Debug.Log("In range");
+                    //Debug.Log("In range");
                     marker.gameObject.SetActive(false);
 
                 }

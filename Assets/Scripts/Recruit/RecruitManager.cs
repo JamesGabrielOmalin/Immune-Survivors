@@ -180,14 +180,14 @@ public class RecruitManager : MonoBehaviour
 
             //Debug.Log("Reloc: " + newPos);
 
-            while (!spawnArea.bounds.Contains(spawnPoint))
+            if (!spawnArea.bounds.Contains(spawnPoint))
             {
                 positiveX = Random.value < 0.5f;
                 positiveZ = Random.value < 0.5f;
 
                 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
 
-                Debug.Log($"Out of bounds, moving to: {spawnPoint}");
+                Debug.Log($"Recruit Out of bounds, moving to: {spawnPoint}");
 
 
             }
@@ -302,7 +302,7 @@ public class RecruitManager : MonoBehaviour
                 // Proceed to next iteration if is within bounds
                 if ((recruitPos.x >= minBounds.x && recruitPos.x <= maxBounds.x) && (recruitPos.y >= minBounds.y && recruitPos.y <= maxBounds.y))
                 {
-                    Debug.Log("In range: " + recruitPos);
+                    //Debug.Log("In range: " + recruitPos);
 
                     continue;
                 }
@@ -336,7 +336,7 @@ public class RecruitManager : MonoBehaviour
 
                 recruit.transform.position = new Vector3(newPos.x, recruit.transform.position.y, newPos.z);
 
-                Debug.Log("Not in range: " + recruitPos);
+                //Debug.Log("Not in range: " + recruitPos);
 
             }
 
