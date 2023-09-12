@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
 {
+    [SerializeField] private VisualEffect vfx;
     [HideInInspector] public float slowAmount;
+    [HideInInspector] public float duration;
 
     private AttributeModifier slow;
 
@@ -13,6 +16,7 @@ public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
     private void OnEnable()
     {
         slow = new(slowAmount, AttributeModifierType.Multiply);
+        vfx.SetFloat("Duration", duration);
     }
 
     public void OnBodyColliderEnter(Collider other)

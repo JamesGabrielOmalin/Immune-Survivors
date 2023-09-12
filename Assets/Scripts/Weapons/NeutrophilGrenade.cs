@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class NeutrophilGrenade : Projectile
 {
+    [SerializeField] private VisualEffect vfx;
     [SerializeField] private GameObject slowField;
     [SerializeField] private LayerMask layerMask;
 
@@ -51,8 +53,12 @@ public class NeutrophilGrenade : Projectile
             //enemy.TakeDamage(damage);
         }
 
+        vfx.SetBool("Alive", false);
+        vfx.SendEvent("Kill");
+
         slowField.SetActive(true);
         slowField.GetComponent<NeutrophilSlowField>().slowAmount = slowAmount;
+        slowField.GetComponent<NeutrophilSlowField>().duration = lifeSpan;
 
         yield return LifeSpanCoroutine();
     }
@@ -60,6 +66,7 @@ public class NeutrophilGrenade : Projectile
     protected override void OnEnable()
     {
         startPos = transform.position;
+        vfx.SetBool("Alive", true);
         StartCoroutine(ActivateSlowField());
     }
 
