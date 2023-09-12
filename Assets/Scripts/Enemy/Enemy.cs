@@ -63,6 +63,7 @@ public class Enemy : Unit, IDamageInterface
             MoveSpeed = attributes.GetAttribute("Move Speed");
 
         MaxHP.RemoveAllModifiers();
+
         MoveSpeed.RemoveAllModifiers();
 
         // Increase HP and Move Speed by 10% for every minute that has passed
