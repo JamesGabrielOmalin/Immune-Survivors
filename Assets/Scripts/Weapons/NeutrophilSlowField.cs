@@ -43,5 +43,7 @@ public class NeutrophilSlowField : MonoBehaviour, IBodyColliderListener
         {
             enemy.attributes.GetAttribute("Move Speed").RemoveModifier(slow);
         }
+
+        enemies.Clear();
     }
 }

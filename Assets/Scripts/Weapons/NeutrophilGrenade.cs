@@ -57,8 +57,11 @@ public class NeutrophilGrenade : Projectile
         vfx.SendEvent("Kill");
 
         slowField.SetActive(true);
-        slowField.GetComponent<NeutrophilSlowField>().slowAmount = slowAmount;
-        slowField.GetComponent<NeutrophilSlowField>().duration = lifeSpan;
+
+        var field = slowField.GetComponent<NeutrophilSlowField>();
+
+        field.slowAmount = slowAmount;
+        field.duration = lifeSpan;
 
         yield return LifeSpanCoroutine();
     }
