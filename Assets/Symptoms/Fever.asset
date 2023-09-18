@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fever
   m_EditorClassIdentifier: 
   Name: 
-  ActivationDelay: 0
-  ActivationType: 0
-  symptomEffects: []
+  symptomEffects:
+  - {fileID: 11400000, guid: b36435b5280dcd045a309fe9395f90c3, type: 2}
+  - {fileID: 11400000, guid: d5f51a2940e93844ab0aa736d6b999e6, type: 2}

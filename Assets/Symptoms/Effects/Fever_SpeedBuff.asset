@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Fever_SpeedBuff
   m_EditorClassIdentifier: 
   EffectType: 3
-  ActivationDelay: 0
-  ActivationType: 0
+  ActivationDelay: 4
+  ActivationType: 1
   KnockbackIntensity: 0
+  Direction: 0
   DotDamage: 0
   DotDuration: 0
   DotTickRate: 0
-  MoveSpeedBuffAmount: 0
-  MoveSpeedBuffDuration: 0
+  MoveSpeedBuffAmount: 2
+  ModifierType: 0
+  MoveSpeedBuffDuration: 4

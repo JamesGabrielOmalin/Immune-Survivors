@@ -18,6 +18,9 @@ public class EnemyManager : MonoBehaviour
     [field: SerializeField]
     public int MaxInfectionRate { get; private set; }
 
+    [field: SerializeField]
+    public int SymptomThreshold { get; private set; }
+
     [SerializeField] private BoxCollider spawnArea;
 
     [SerializeField] private float maxSpawnDistance;
@@ -52,6 +55,10 @@ public class EnemyManager : MonoBehaviour
     public System.Action OnMinInfectionReached;
     public System.Action OnMaxInfectionReached;
     public System.Action OnInfectionRateChanged;
+
+    public System.Action OnSymptomThresholdNotReached;
+    public System.Action OnSymptomThresholdReached;
+
 
     [System.Serializable]
     public class EnemyPool
@@ -225,7 +232,7 @@ public class EnemyManager : MonoBehaviour
                     spawnPoint = spawnPoint.normalized * maxSpawnDistance;
                 }
 
-                Debug.Log($" Enemy Out of bounds, moving to: {spawnPoint}");
+                //Debug.Log($" Enemy Out of bounds, moving to: {spawnPoint}");
 
             }
             else
@@ -275,6 +282,16 @@ public class EnemyManager : MonoBehaviour
                 OnMinInfectionReached?.Invoke();
             }
         };
+
+        // Symptom Activation
+        if (InfectionRate >= SymptomThreshold && !SymptomManager.instance.isActive)
+        {
+            OnSymptomThresholdReached?.Invoke();
+        }
+        else 
+        { 
+        
+        }
 
         // Lose Condition
         if (InfectionRate >= MaxInfectionRate)
@@ -412,7 +429,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         currentWave.waveSpawnQuota = currentWaveQuota;
-        Debug.Log("Wave " + currentWave.waveName + " Quota:" + currentWaveQuota);
+        //Debug.Log("Wave " + currentWave.waveName + " Quota:" + currentWaveQuota);
     }
     public GameObject GetNearestEnemy(Vector3 position, float limit = float.MaxValue)
     {
