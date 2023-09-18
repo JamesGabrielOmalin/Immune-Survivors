@@ -54,7 +54,7 @@ public class Macrophage_PullSpec : AbilitySpec
     private void Pull()
     {
         float AD = attackDamage.Value;
-        float AR = attackRange.Value + (basicAttack.PullType == MacrophagePullType.Line ? 1f : 0f);
+        float AR = attackRange.Value;
         // implement basic shooting towards target
         GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
         if (target == null)
