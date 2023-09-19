@@ -55,7 +55,7 @@ public class Macrophage_PullSpec : AbilitySpec
     {
         float AD = attackDamage.Value;
         float AR = attackRange.Value;
-        // implement basic shooting towards target
+
         GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
         if (target == null)
         {
@@ -66,11 +66,8 @@ public class Macrophage_PullSpec : AbilitySpec
 
         GameObject pull = pulls.RequestPoolable(owner.transform.position);
 
-        if (basicAttack.PullType == MacrophagePullType.Cone)
-            pull.transform.position = target.transform.position;
-
-        // Increase size per level
-        float AZ = attackSize.Value + ((abilityLevel - 1) * 1.1f);
+                                    // Level 2 and higher: Increase Size by 50%
+        float AZ = attackSize.Value * (abilityLevel >= 2f ? 1.5f : 1f);
 
         MacrophagePull pullEffect = pull.GetComponent<MacrophagePull>();
         pullEffect.abilityLevel = abilityLevel;
@@ -83,11 +80,25 @@ public class Macrophage_PullSpec : AbilitySpec
         pullEffect.attackSize = AZ;
         pullEffect.critRate = critRate.Value;
         pullEffect.critDMG = critDMG.Value;
-                                                                                           // Level 2 and higher: Increase knockback by 25%
-        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value) * (abilityLevel >= 2f ? 1.25f : 1f);
+
+        pullEffect.knockbackPower = (basicAttack.KnockbackPower + knockbackPower.Value);
+        // Increase knockback by 25% per level
+        pullEffect.knockbackPower += pullEffect.knockbackPower * ((abilityLevel - 1) * 1.25f);
 
         pullEffect.transform.localScale = Vector3.one * AZ;
-        pullEffect.transform.forward = dir;
+
+        switch (basicAttack.PullType)
+        {
+            case MacrophagePullType.Line:
+                pullEffect.transform.forward = dir;
+                break;
+            case MacrophagePullType.Cone:
+                pullEffect.transform.forward = dir;
+                pull.transform.position = target.transform.position;
+                break;
+            case MacrophagePullType.Circle:
+                break;
+        }
     }
 
     private void Init()

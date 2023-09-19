@@ -23,7 +23,6 @@ public class MacrophagePull : MonoBehaviour
 
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
-    private Vector3 targetPos;
 
     private WaitForSeconds wait = new WaitForSeconds(0.25f);
 
