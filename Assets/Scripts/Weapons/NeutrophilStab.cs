@@ -14,16 +14,24 @@ public class NeutrophilStab : MonoBehaviour
     [HideInInspector] public float critDMG;
     [HideInInspector] public float DoT;
 
+
+    private readonly static WaitForSeconds wait = new WaitForSeconds(0.25f);
+    //private readonly static WaitForSeconds delay = new WaitForSeconds(1f);
+
     protected void OnEnable()
     {
         StartCoroutine(Stab());
+    }
+
+    protected void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private IEnumerator Stab()
     {
         yield return null;
 
-        WaitForSeconds wait = new(0.25f / attackCount);
         vfx.SetInt("Count", (int)attackCount);
         vfx.Play();
 
@@ -36,7 +44,6 @@ public class NeutrophilStab : MonoBehaviour
 
         vfx.Stop();
 
-        yield return new WaitForSeconds(1f);
         this.gameObject.SetActive(false);
     }
 }
