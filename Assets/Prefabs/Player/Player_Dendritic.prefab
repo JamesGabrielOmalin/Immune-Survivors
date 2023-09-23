@@ -511,6 +511,11 @@ PrefabInstance:
       propertyPath: Attributes.Array.data[6].baseValue
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: Attributes.Array.data[13].baseValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 487672917330361875, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_Name
@@ -550,6 +555,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b7ffe10a6d9e0184183c5321c5399ad2,
         type: 2}
+    - target: {fileID: 3730584619399922100, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5939989266211001594, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_Sprite
@@ -560,6 +570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6652383940041035294, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7778404878689880141, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}

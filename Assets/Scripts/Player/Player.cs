@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -188,12 +187,12 @@ public class Player : MonoBehaviour
         d.RemoveModifier(mod);
     }
 
-    public void ApplyMoveSpeedBuff(AttributeModifier mod, float duration)
+    public void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
     {
-        StartCoroutine(MoveSpeedBuffCoroutine(mod, duration));
+       StartCoroutine(MoveSpeedModifierDurationCoroutine(mod, duration, isInfinite));
     }
 
-    private IEnumerator MoveSpeedBuffCoroutine(AttributeModifier mod, float duration)
+    private IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
     {
         var n = neutrophil.attributes.GetAttribute("Move Speed");
         var m = macrophage.attributes.GetAttribute("Move Speed");
@@ -205,13 +204,16 @@ public class Player : MonoBehaviour
 
         playerMovement.UpdateMoveSpeed();
 
-        yield return new WaitForSeconds(duration);
+        if (!isInfinite)
+        {
+            yield return new WaitForSeconds(duration);
 
-        n.RemoveModifier(mod);
-        m.RemoveModifier(mod);
-        d.RemoveModifier(mod);
+            n.RemoveModifier(mod);
+            m.RemoveModifier(mod);
+            d.RemoveModifier(mod);
 
-        playerMovement.UpdateMoveSpeed();
+            playerMovement.UpdateMoveSpeed();
+        }
     }
 
     public PlayerUnit GetUnit(PlayerUnitType type)

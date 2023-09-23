@@ -17,14 +17,14 @@ MonoBehaviour:
   waveList:
   - waveName: 'Wave 1: A'
     ID: 1
-    spawnInterval: 1
-    waveSpawnCounter: 59
+    spawnInterval: 0.75
+    waveSpawnCounter: 8
     waveSpawnQuota: 60
     enemyGroups:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 59
+      enemySpawnCounter: 8
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -33,17 +33,17 @@ MonoBehaviour:
   - waveName: 'Wave 2: AB'
     ID: 2
     spawnInterval: 0.5
-    waveSpawnCounter: 90
+    waveSpawnCounter: 50
     waveSpawnQuota: 90
     enemyGroups:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 81
+      enemySpawnCounter: 25
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 30
-      enemySpawnCounter: 62
+      enemySpawnCounter: 25
     BossEnemyGroups:
     - enemyName: Bacteria Boss B
       poolName: Bacteria Boss B
@@ -58,15 +58,15 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 79
+      enemySpawnCounter: 63
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 81
+      enemySpawnCounter: 63
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 30
-      enemySpawnCounter: 45
+      enemySpawnCounter: 34
     BossEnemyGroups:
     - enemyName: Bacteria Boss C
       poolName: Bacteria Boss C

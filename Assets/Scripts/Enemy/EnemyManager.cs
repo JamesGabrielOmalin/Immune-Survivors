@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance;
 
     [SerializeField] private List<EnemyPool> enemyPools = new();
+    public List<GameObject> allEnemies = new();
     public List<GameObject> activeEnemies = new();
 
     public int InfectionRate => activeEnemies.FindAll(enemy => enemy.activeInHierarchy).Count;
@@ -56,8 +57,8 @@ public class EnemyManager : MonoBehaviour
     public System.Action OnMaxInfectionReached;
     public System.Action OnInfectionRateChanged;
 
-    public System.Action OnSymptomThresholdNotReached;
-    public System.Action OnSymptomThresholdReached;
+    //public System.Action OnSymptomThresholdNotReached;
+    //public System.Action OnSymptomThresholdReached;
 
 
     [System.Serializable]
@@ -284,14 +285,14 @@ public class EnemyManager : MonoBehaviour
         };
 
         // Symptom Activation
-        if (InfectionRate >= SymptomThreshold && !SymptomManager.instance.isActive)
-        {
-            OnSymptomThresholdReached?.Invoke();
-        }
-        else 
-        { 
+        //if (InfectionRate >= SymptomThreshold && !SymptomManager.instance.isActive)
+        //{
+        //    OnSymptomThresholdReached?.Invoke();
+        //}
+        //else 
+        //{ 
         
-        }
+        //}
 
         // Lose Condition
         if (InfectionRate >= MaxInfectionRate)

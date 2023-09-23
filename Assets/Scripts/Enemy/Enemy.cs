@@ -51,6 +51,8 @@ public class Enemy : Unit, IDamageInterface
 
         // Hide stun indicator
         stunIndicator.SetActive(false);
+
+        EnemyManager.instance.allEnemies.Add(this.gameObject);
     }
 
     private void OnEnable()
@@ -238,5 +240,40 @@ public class Enemy : Unit, IDamageInterface
         dotIndicator.Stop();
         dotCoroutine = null;
         yield break;
+    }
+
+    public void ApplyKnockback(Vector3 force, ForceMode forceMode)
+    {
+        if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.AddForce(force, forceMode);
+
+        }
+    }
+
+    public void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
+    {
+        if (isInfinite)
+        {
+            var e = attributes.GetAttribute("Move Speed");
+            e.AddModifier(mod); 
+        }
+        else
+        {
+            StartCoroutine(MoveSpeedModifierDurationCoroutine(mod, duration, isInfinite));
+        }
+    }
+
+    private IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
+    {
+        var e =  attributes.GetAttribute("Move Speed");
+
+        e.AddModifier(mod);
+      
+        yield return new WaitForSeconds(duration);
+
+        e.RemoveModifier(mod);
+
+     
     }
 }

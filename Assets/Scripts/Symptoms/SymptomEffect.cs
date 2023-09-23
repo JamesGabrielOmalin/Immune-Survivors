@@ -10,12 +10,19 @@ using UnityEngine;
 [System.Serializable]
 public class SymptomEffect: ScriptableObject
 {
+   public enum TargetUnit
+    {
+        Player,
+        Recruit,
+        Enemy
+    }
+
     public enum SymptomEffectType
     {
         None = 0,
         Knockback = 1,
-        DOT = 2,
-        MoveSpeedBuff = 3,
+        DoT = 2,
+        MoveSpeedModifier = 3,
     }
 
     public enum SymptomActivationType
@@ -32,11 +39,13 @@ public class SymptomEffect: ScriptableObject
     }
 
     //public string Name;
+    [field: SerializeField] public TargetUnit AffectedUnit;
 
     [field: SerializeField] public SymptomEffectType EffectType;
     //[field: SerializeField] float SymptomRadius;
-    [field: SerializeField] public float ActivationDelay;
     [field: SerializeField] public SymptomActivationType ActivationType;
+
+    [field: SerializeField] public float ActivationDelay;
 
     // attributes shown based on custom editor Scripts/Editor/ SymptomEditor -> switch cases
     [Header ("Effect Attributes")]
@@ -53,9 +62,10 @@ public class SymptomEffect: ScriptableObject
 
     [Header("Effect Attributes")]
     // move speed
-    [field: SerializeField] float MoveSpeedBuffAmount;
+    [field: SerializeField] float MoveSpeedModifierAmount;
     [field: SerializeField] AttributeModifierType ModifierType;
-    [field: SerializeField] float MoveSpeedBuffDuration;
+    [field: SerializeField] bool IsInfiniteDuration = false;
+    [field: SerializeField] float MoveSpeedModifierDuration;
 
 
 
@@ -67,53 +77,98 @@ public class SymptomEffect: ScriptableObject
         switch (EffectType) 
         {
             case SymptomEffectType.Knockback:
-                foreach(GameObject enemy in EnemyManager.instance.activeEnemies)
+
+                Vector3 dir = Vector3.right;
+                switch (Direction)
                 {
-                    //Debug.Log(collider.name);
-                    Vector3 dir = Vector3.right;
+                    case KnockbackDirection.Left:
+                        dir = Vector3.left;
+                        break;
 
-                    if (enemy.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                    case KnockbackDirection.Right:
+                        dir = Vector3.right;
+
+                        break;
+                }
+
+                if (AffectedUnit == TargetUnit.Player)
+                {
+                    if(GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
                     {
-
-                        switch(Direction)
+                        pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+                    }
+                }
+                else if (AffectedUnit == TargetUnit.Enemy)
+                {
+                    foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
+                    {
+                        if (enemy.TryGetComponent<Enemy>(out Enemy eu))
                         {
-                            case KnockbackDirection.Left:
-                                dir = Vector3.left;
-                                break;
-
-                            case KnockbackDirection.Right:
-                                dir = Vector3.right;
-
-                                break;
-
-                            case KnockbackDirection.Away:
-                                dir = enemy.transform.position - player.transform.position;
-                                break;
-
-                            
+                            eu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
                         }
-                        rb.AddForce(dir * KnockbackIntensity, ForceMode.Impulse);
-
                     }
-
                 }
 
                 break;
 
-            case SymptomEffectType.DOT:
-                foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
+            case SymptomEffectType.DoT:
+                if (AffectedUnit == TargetUnit.Player)
                 {
-                    if (enemy.TryGetComponent<Enemy>(out Enemy enemyComp))
+                    if (GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
                     {
-                        enemyComp.ApplyDoT(DotDamage, DotDuration, DotTickRate);
+                        pu.ApplyDoT(DotDamage, DotDuration, DotTickRate);
+                    }
+                }
+                else if (AffectedUnit == TargetUnit.Enemy)
+                {
+                    foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
+                    {
+                        if (enemy.TryGetComponent<Enemy>(out Enemy enemyComp))
+                        {
+                            enemyComp.ApplyDoT(DotDamage, DotDuration, DotTickRate);
+                        }
                     }
                 }
                 break;
 
-            case SymptomEffectType.MoveSpeedBuff:
-                AttributeModifier mod = new AttributeModifier(MoveSpeedBuffAmount, ModifierType);
+            case SymptomEffectType.MoveSpeedModifier:
 
-                GameManager.instance.Player.GetComponent<Player>().ApplyMoveSpeedBuff(mod, MoveSpeedBuffDuration);
+
+                if (AffectedUnit == TargetUnit.Player)
+                {
+                    AttributeModifier mod = new AttributeModifier(MoveSpeedModifierAmount, ModifierType);
+
+                    GameManager.instance.Player.GetComponent<Player>().ApplyMoveSpeedModifier(mod, MoveSpeedModifierDuration, IsInfiniteDuration);
+                }
+                else if (AffectedUnit == TargetUnit.Enemy)
+                {
+                    if (IsInfiniteDuration)
+                    {
+                        foreach (GameObject enemy in EnemyManager.instance.allEnemies)
+                        {
+                            if (enemy.TryGetComponent<Enemy>(out Enemy enemyComp))
+                            {
+                                AttributeModifier mod = new AttributeModifier(MoveSpeedModifierAmount, ModifierType);
+
+                                enemyComp.ApplyMoveSpeedModifier(mod, MoveSpeedModifierDuration, IsInfiniteDuration);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
+                        {
+                            if (enemy.TryGetComponent<Enemy>(out Enemy enemyComp))
+                            {
+                                AttributeModifier mod = new AttributeModifier(MoveSpeedModifierAmount, ModifierType);
+
+                                enemyComp.ApplyMoveSpeedModifier(mod, MoveSpeedModifierDuration, IsInfiniteDuration);
+                            }
+                        }
+                    }
+                   
+                }
+                
                 break;
 
 

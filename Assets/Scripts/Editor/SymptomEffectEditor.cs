@@ -9,8 +9,8 @@ public class SymptomEffectEditor : Editor
         serializedObject.Update();
 
 
-        //var nameProperty = serializedObject.FindProperty("Name");
-        //EditorGUILayout.PropertyField(nameProperty);
+        var affectedUnitProperty = serializedObject.FindProperty("AffectedUnit");
+        EditorGUILayout.PropertyField(affectedUnitProperty);
 
         var enumProperty = serializedObject.FindProperty("EffectType");
         EditorGUILayout.PropertyField(enumProperty);
@@ -22,6 +22,7 @@ public class SymptomEffectEditor : Editor
         EditorGUILayout.PropertyField(activationTypeProperty);
 
        var scriptableObject = target as SymptomEffect;
+
         switch (scriptableObject.EffectType)
         {
             case SymptomEffect.SymptomEffectType.Knockback:
@@ -34,7 +35,7 @@ public class SymptomEffectEditor : Editor
 
             // Add cases for other enum values if needed
 
-            case SymptomEffect.SymptomEffectType.DOT:
+            case SymptomEffect.SymptomEffectType.DoT:
                 var DotDamage = serializedObject.FindProperty("DotDamage");
                 EditorGUILayout.PropertyField(DotDamage);
 
@@ -45,15 +46,21 @@ public class SymptomEffectEditor : Editor
                 EditorGUILayout.PropertyField(DotTickRate);
                 break;
 
-            case SymptomEffect.SymptomEffectType.MoveSpeedBuff:
-                var SpeedBuffAmount = serializedObject.FindProperty("MoveSpeedBuffAmount");
-                EditorGUILayout.PropertyField(SpeedBuffAmount);
+            case SymptomEffect.SymptomEffectType.MoveSpeedModifier:
+                var SpeedModifierAmount = serializedObject.FindProperty("MoveSpeedModifierAmount");
+                EditorGUILayout.PropertyField(SpeedModifierAmount);
 
                 var ModifierType = serializedObject.FindProperty("ModifierType");
                 EditorGUILayout.PropertyField(ModifierType);
 
-                var SpeedBuffDuration = serializedObject.FindProperty("MoveSpeedBuffDuration");
-                EditorGUILayout.PropertyField(SpeedBuffDuration);
+                var IsInfiniteDuration = serializedObject.FindProperty("IsInfiniteDuration");
+                EditorGUILayout.PropertyField(IsInfiniteDuration);
+
+                if (!IsInfiniteDuration.boolValue)
+                {
+                    var SpeedModifierDuration = serializedObject.FindProperty("MoveSpeedModifierDuration");
+                    EditorGUILayout.PropertyField(SpeedModifierDuration);
+                }
                 break;
 
             default:
