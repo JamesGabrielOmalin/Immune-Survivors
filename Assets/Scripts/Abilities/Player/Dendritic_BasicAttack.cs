@@ -50,8 +50,10 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     {
         IsAttacking = true;
 
+        float interval = Mathf.Pow((float)System.Math.E, -attackSpeed.Value);
+
         // Wait before shooting
-        yield return new WaitForSeconds(1 / attackSpeed.Value);
+        yield return new WaitForSeconds(interval);
 
         // start slashing
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -69,8 +71,17 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     private IEnumerator Slash()
     {
         WaitForSeconds wait = new(0.15f);
+                                                                            // Level 4 and higher: Increase DMG by 5
+        float AD = (attackDamage.Value * basicAttack.AttackDamageScaling) + (abilityLevel >= 4f ? 5f : 0f);
+                                            // Increase CRIT Rate by 10% per level
+        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
+                                            // Level 2 and higher: Increase CRIT DMG by 25%
+        float CRIT_DMG = critDMG.Value + (abilityLevel >= 2f ? 0.25f : 0f);
+        int AC = (int)attackCount.Value;
+                                            // Level 3 and higher: Increase slash count by 3
+        int count = basicAttack.AttackCount + (abilityLevel >= 3f ? 3 : 0);
         // implement basic shooting towards target
-        for (int i = 0; i < abilityLevel; i++)
+        for (int i = 0; i < AC; i++)
         {
             GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value);
             if (target == null)
@@ -86,10 +97,10 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
             slash.target = target.GetComponent<Enemy>();
 
             // Snapshot attributes
-            slash.attackDamage = attackDamage.Value * basicAttack.AttackDamageScaling;
-            slash.critRate = critRate.Value;
-            slash.critDMG = critDMG.Value;
-            slash.attackCount = (int)attackCount.Value + basicAttack.AttackCount;
+            slash.attackDamage = AD;
+            slash.critRate = CRIT_RATE;
+            slash.critDMG = CRIT_DMG;
+            slash.attackCount = count;
 
             yield return wait;
         }

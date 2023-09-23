@@ -28,6 +28,8 @@ public class UpgradeSelect : MonoBehaviour
         Effect upgrade = buttons[index].Upgrade;
         UpgradeManager.instance.AddUpgrade(upgrade, UnitToUpgrade);
 
+        GameManager.instance.HUD.SetActive(true);
+        GameManager.instance.Player.GetComponent<Player>().EnableHUD(true);
         GameManager.instance.Player.GetComponent<Player>().GetUnit(UnitToUpgrade).AddUpgrade(upgrade);
         GameManager.instance.ResumeGameTime();
     }

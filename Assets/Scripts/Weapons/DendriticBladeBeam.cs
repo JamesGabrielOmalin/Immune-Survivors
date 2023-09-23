@@ -9,7 +9,6 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
 
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float attackRange;
-    [HideInInspector] public int attackCount;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
 
@@ -37,24 +36,18 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
 
             vfx.SetVector3("Hit Position", enemy.transform.position);
             vfx.SendEvent("OnHit", evt);
-
-            if (hitCount >= attackCount)
-            {
-                StopAllCoroutines();
-                StartCoroutine(Stop());
-            }
         }
     }
 
-    private IEnumerator Stop()
-    {
-        WaitForSeconds wait = new(0.075f);
+    //private IEnumerator Stop()
+    //{
+    //    WaitForSeconds wait = new(0.075f);
 
-        yield return wait;
-        vfx.Stop();
-        yield return wait;
-        this.gameObject.SetActive(false);
-    }
+    //    yield return wait;
+    //    vfx.Stop();
+    //    yield return wait;
+    //    this.gameObject.SetActive(false);
+    //}
 
     public void OnBodyColliderExit(Collider other)
     {

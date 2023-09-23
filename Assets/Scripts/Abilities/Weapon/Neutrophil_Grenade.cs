@@ -50,8 +50,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
         IsAttacking = true;
 
         // Wait before shooting
-        // Increase Attack SPD with each level
-        yield return new WaitForSeconds(2f / (attackSpeed.Value + (abilityLevel * 0.5f)));
+        yield return new WaitForSeconds(2f / attackSpeed.Value);
 
         if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
             yield return Shoot();
@@ -63,9 +62,10 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
     {
         WaitForSeconds wait = new(0.5f);
 
-        float AD = attackDamage.Value;
-                                        // Level 2 and higher: Increase size by 50%
-        float AZ = attackSize.Value * (abilityLevel >= 2 ? 1.5f : 1f);
+                                         // Level 2 and higher: Increase DMG by 5
+        float AD = attackDamage.Value + (abilityLevel >= 2 ? 5f : 0f);
+        // Increase size per level
+        float AZ = attackSize.Value * ((abilityLevel - 1) * 1.1f);
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
                                 // Level 3 and higher: Increase slow amount by 25%

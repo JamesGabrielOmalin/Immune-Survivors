@@ -12,36 +12,38 @@ public class NeutrophilStab : MonoBehaviour
     [HideInInspector] public float attackCount;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
+    [HideInInspector] public float DoT;
+
+
+    private readonly static WaitForSeconds wait = new WaitForSeconds(0.25f);
+    //private readonly static WaitForSeconds delay = new WaitForSeconds(1f);
 
     protected void OnEnable()
     {
         StartCoroutine(Stab());
     }
 
+    protected void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     private IEnumerator Stab()
     {
-        WaitForSeconds wait = new(0.25f / attackCount);
+        yield return null;
+
         vfx.SetInt("Count", (int)attackCount);
         vfx.Play();
 
         float armor = target.attributes.GetAttribute("Armor").Value;
 
-        for (int i = 0; i < attackCount; i++)
-        {
-            //if (Vector3.Distance(target.transform.position, GameManager.instance.Player.transform.position) >= attackRange)
-            //    break;
+        DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
+        target.ApplyDoT(DoT, 3f, 4f + attackCount);
 
-            //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-            //target.TakeDamage(damage);
-
-            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
-
-            yield return wait;
-        }
+        yield return wait;
 
         vfx.Stop();
 
-        yield return new WaitForSeconds(1f);
         this.gameObject.SetActive(false);
     }
 }

@@ -17,23 +17,13 @@ public class EnemyManager : MonoBehaviour
     [field: SerializeField]
     public int MaxInfectionRate { get; private set; }
 
-
-    //[field: SerializeField]
-    //public int InitialAmountToSpawn { get; private set; }
-    //[field: SerializeField]
-    //public int AmountPerBatch { get; private set; }
-    //[field: SerializeField]
-    //public float BatchSpawnInterval { get; private set; }
-
     [SerializeField] private float maxSpawnDistance;
 
     [field: Header("Wave")]
-    [SerializeField] LevelWaveData levelWaveData;
+    [SerializeField] LevelWaveData level;
 
-    [SerializeField] private int WaveNumber = 0;
+    [SerializeField] private int waveIndex = 0;
     [SerializeField] private Wave currentWave;
-    [SerializeField] private int maxEnemyCountAllowed;
-
 
     public System.Action OnMinInfectionReached;
     public System.Action OnMaxInfectionReached;
@@ -54,14 +44,14 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         // Set the current wave with the firt wave in the wavelist
-        InitalizeCurrentWave(WaveNumber);
+        InitalizeCurrentWave(waveIndex);
 
         // Calculate the quota of the current wave
         CalculateWaveQuota();
 
         // Start couroutine for wave and spawning
         StartCoroutine(WaveCoroutine());
-        StartCoroutine(SpawnCoroutine());
+        StartCoroutine(BasicEnemySpawnCoroutine());
     }
 
     private void OnDestroy()
@@ -72,13 +62,15 @@ public class EnemyManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(levelWaveData.waveInterval);
+            yield return new WaitForSeconds(level.waveInterval);
 
+            // Spawn a Boss
+            SpawnWaveEnemyBoss();
             // Increment wave number if there is a next wave
-            if (WaveNumber < levelWaveData.waveList.Count-1)
+            if (waveIndex < level.waveList.Count-1)
             {
-                WaveNumber++;
-                InitalizeCurrentWave(WaveNumber);
+                waveIndex++;
+                InitalizeCurrentWave(waveIndex);
                 CalculateWaveQuota();
 
             }
@@ -90,7 +82,7 @@ public class EnemyManager : MonoBehaviour
         }
 
     }
-    private IEnumerator SpawnCoroutine()
+    private IEnumerator BasicEnemySpawnCoroutine()
     {
         while (true)
         {
@@ -100,40 +92,54 @@ public class EnemyManager : MonoBehaviour
 
            
             // Spawn enemy of each type if the number of enemies present in below the wave quota
-            if (totalEnemyCount < currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
+            if (currentWave.waveSpawnCounter < currentWave.waveSpawnQuota && totalEnemyCount < level.maxActiveEnemyThreshold)
             {
                 // Spawn each type of enemy
                 foreach(EnemyGroup eg in currentWave.enemyGroups)
                 {
                     // Spawn until quota is reached
-                    if(eg.spawnCounter < eg.enemyQuota)
+                    if(eg.enemySpawnCounter < eg.enemyQuota)
                     {
                         SpawnEnemyBatch(1, eg.antigenType);
-                        eg.spawnCounter++;
-                        currentWave.spawnCounter++;
+                        eg.enemySpawnCounter++;
+                        currentWave.waveSpawnCounter++;
 
-                        // stop exit foreach loop 
-                        break;
                     }
                 }
             }
             // Spawn random enemy if the enemies present are more than the wave quota
-            else if (currentWave.spawnCounter >= currentWave.waveSpawnQuota && totalEnemyCount < maxEnemyCountAllowed)
+            else if (currentWave.waveSpawnCounter >= currentWave.waveSpawnQuota && totalEnemyCount < level.maxActiveEnemyThreshold)
             {
                 int type = Random.Range(0, currentWave.enemyGroups.Count);
 
                 // spawn this type
                 SpawnEnemyBatch(1, currentWave.enemyGroups[type].antigenType);
-                currentWave.enemyGroups[type].spawnCounter++;
-                currentWave.excessSpawnCounter++;
+                currentWave.enemyGroups[type].enemySpawnCounter++;
+                //currentWave.excessSpawnCounter++;
 
             }
-            else if (totalEnemyCount > maxEnemyCountAllowed)
+            // Trigger events when the number of active enemies exceeds the maxEnemyCount
+            else if (totalEnemyCount > level.maxActiveEnemyThreshold)
             {
-                //spawn boss or trigger events
+                Debug.Log(" Trigger Special Events: Symptoms?");
+                //spawn boss or trigger
             }
         }
     }
+
+    private void SpawnWaveEnemyBoss()
+    {
+        foreach(BossEnemyGroup eb in currentWave.BossEnemyGroups)
+        {
+            for (int i = 0; i < eb.count; i++)
+            {
+                SpawnEnemyBatch(1, eb.antigenType);
+                Debug.Log(" Boss has been spawned");
+
+            }
+        }
+    }
+
     private void SpawnEnemyBatch(int amount, int antigenType)
     {
         GameObject player = GameManager.instance.Player;
@@ -202,12 +208,12 @@ public class EnemyManager : MonoBehaviour
     }
      private void InitalizeCurrentWave(int waveNum)
     {
-        levelWaveData.waveList[waveNum].spawnCounter = 0;
-        foreach (EnemyGroup eg in levelWaveData.waveList[waveNum].enemyGroups)
+        level.waveList[waveNum].waveSpawnCounter = 0;
+        foreach (EnemyGroup eg in level.waveList[waveNum].enemyGroups)
         {
-            eg.spawnCounter = 0;
+            eg.enemySpawnCounter = 0;
         }
-        currentWave = levelWaveData.waveList[waveNum];
+        currentWave = level.waveList[waveNum];
     }
     private void CalculateWaveQuota()
     {

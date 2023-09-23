@@ -9,6 +9,7 @@ public class Enemy : Unit, IDamageInterface
     private Attribute HP;
     private Attribute AttackDamage;
     private Attribute AttackSpeed;
+    private Attribute MoveSpeed;
     private Attribute Armor;
     private Attribute AntigenSpawnChance;
 
@@ -42,6 +43,7 @@ public class Enemy : Unit, IDamageInterface
         HP = attributes.GetAttribute("HP");
         AttackDamage = attributes.GetAttribute("Attack Damage");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
+        MoveSpeed = attributes.GetAttribute("Move Speed");
         Armor = attributes.GetAttribute("Armor");
         AntigenSpawnChance = attributes.GetAttribute("Antigen Spawn Chance");
 
@@ -57,6 +59,19 @@ public class Enemy : Unit, IDamageInterface
             MaxHP = attributes.GetAttribute("Max HP");
         if (HP == null)
             HP = attributes.GetAttribute("HP");
+        if (MoveSpeed == null)
+            MoveSpeed = attributes.GetAttribute("Move Speed");
+
+        MaxHP.RemoveAllModifiers();
+
+        MoveSpeed.RemoveAllModifiers();
+
+        // Increase HP and Move Speed by 10% for every minute that has passed
+        if (GameManager.instance)
+        {
+            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+            MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+        }
 
         HP.BaseValue = MaxHP.Value;
 

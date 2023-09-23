@@ -69,6 +69,18 @@ public class AbilitySet : MonoBehaviour
         }
     }
 
+    public void ActivateUltimate()
+    {
+        if (Ultimate != null)
+            StartCoroutine(Ultimate.TryActivateAbility());
+    }
+
+    public void ActivateMobility()
+    {
+        if (Mobility != null)
+            StartCoroutine(Mobility.TryActivateAbility());
+    }
+
     //public void Ultimate(InputAction.CallbackContext context)
     //{
     //    //StartCoroutine(ProcessUlimate());

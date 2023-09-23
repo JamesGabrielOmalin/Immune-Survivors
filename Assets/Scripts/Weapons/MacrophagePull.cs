@@ -11,6 +11,7 @@ public enum MacrophagePullType
 
 public class MacrophagePull : MonoBehaviour
 {
+    [HideInInspector] public float abilityLevel;
     [HideInInspector] public float attackDamage;
     [HideInInspector] public float attackRange;
     [HideInInspector] public float attackSize;
@@ -18,10 +19,12 @@ public class MacrophagePull : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public float knockbackPower;
+    [HideInInspector] public float DoT;
 
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
-    private Vector3 targetPos;
+
+    private WaitForSeconds wait = new WaitForSeconds(0.25f);
 
     private void OnEnable()
     {
@@ -37,24 +40,30 @@ public class MacrophagePull : MonoBehaviour
     private IEnumerator Pull()
     {
         yield return null;
-        targetPos = GameManager.instance.Player.transform.position;
+
+        if (attackDamage <= float.Epsilon)
+        {
+            yield return wait;
+            this.gameObject.SetActive(false);
+            yield break;
+        }
+
+        //targetPos = GameManager.instance.Player.transform.position;
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
         Collider[] hits = { };
         switch (type)
         {
             case MacrophagePullType.Line:
-                hits = Physics.OverlapCapsule(transform.position, transform.position + (transform.forward * attackRange), 0.5f * (attackSize + attackRange), layer.value);
+                hits = Physics.OverlapCapsule(transform.position, transform.position + (transform.forward * attackRange), 0.25f * (attackSize), layer.value);
                 break;
             case MacrophagePullType.Cone:
                 hits = Physics.OverlapSphere(transform.position, 2f * attackSize, layer.value);
                 break;
             case MacrophagePullType.Circle:
-                hits = Physics.OverlapSphere(transform.position, 5f * attackSize, layer.value);
+                hits = Physics.OverlapSphere(transform.position, attackRange, layer.value);
                 break;
         }
-
-        float DoT = attackDamage / 4f;
 
         for (int i = 0; i < hits.Length; i++)
         {
@@ -66,13 +75,13 @@ public class MacrophagePull : MonoBehaviour
                 enemy.ApplyDoT(DoT, 4f, 2f + attackCount);
                 if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impact))
                 {
-                    Vector3 dir = (enemy.transform.position - targetPos).normalized;
+                    Vector3 dir = (enemy.transform.position - transform.position).normalized;
                     impact.AddImpact(dir, -knockbackPower);
                 }
             }
         }
 
-        yield return new WaitForSeconds(0.15f);
+        yield return wait;
         this.gameObject.SetActive(false);
         yield break;
     }
