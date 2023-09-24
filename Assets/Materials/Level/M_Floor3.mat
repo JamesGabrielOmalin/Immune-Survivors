@@ -115,7 +115,7 @@ Material:
     - _NormalMapStength: 0
     - _OcclusionStrength: 1
     - _Offset: 0
-    - _Opacity: 0.39
+    - _Opacity: 0.641
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
