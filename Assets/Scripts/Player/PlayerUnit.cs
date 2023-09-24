@@ -23,6 +23,8 @@ public class PlayerUnit : Unit, IDamageInterface
 
     public System.Action OnUnitUpgraded;
     public System.Action OnDeath;
+    public System.Action OnTakeDamage;
+
 
     private List<Effect> upgrades = new();
 
@@ -41,6 +43,7 @@ public class PlayerUnit : Unit, IDamageInterface
 
     [Header("UI")]
     [SerializeField] private Slider HPBar;
+
 
     private void Start()
     {
@@ -68,8 +71,10 @@ public class PlayerUnit : Unit, IDamageInterface
 
     public void TakeDamage(float amount)
     {
-        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add)); 
-        
+        OnTakeDamage?.Invoke();
+
+        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add));
+
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();
