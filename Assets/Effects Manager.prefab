@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2571982115880152286}
-  - component: {fileID: 2571982115880152284}
   - component: {fileID: 2571982115880152273}
+  - component: {fileID: 2571982115880152284}
   - component: {fileID: 2571982115880152287}
   m_Layer: 0
   m_Name: Effects Manager
@@ -34,24 +34,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2571982115880152284
+--- !u!114 &2571982115880152273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2571982115880152272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsGlobal: 1
-  priority: 0
+  priority: 2
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
---- !u!114 &2571982115880152273
+  sharedProfile: {fileID: 11400000, guid: bc2264ae69a3b4b43a988a377b6c76ae, type: 2}
+--- !u!114 &2571982115880152284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   priority: 1
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: bc2264ae69a3b4b43a988a377b6c76ae, type: 2}
+  sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
 --- !u!114 &2571982115880152287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,5 +83,10 @@ MonoBehaviour:
   mainProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
   playerVignetteprofile: {fileID: 11400000, guid: bc2264ae69a3b4b43a988a377b6c76ae,
     type: 2}
+  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  defaultSmoothness: 0.4
+  defaultIntensity: 0.4
+  targetColor: {r: 0.16981131, g: 0.0056069805, b: 0.029933533, a: 0}
+  targetSmoothness: 1
+  targetIntensity: 0.4
   lerpDuration: 0.2
-  targetIntensity: 0.3

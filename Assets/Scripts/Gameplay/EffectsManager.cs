@@ -12,11 +12,20 @@ public class EffectsManager : MonoBehaviour
     [SerializeField] private VolumeProfile mainProfile;
     [SerializeField] private VolumeProfile playerVignetteprofile;
 
-    private Vignette playerHitVignette;
+    private Vignette mainVignette;
 
     [Header("Player Vignette")]
-    [SerializeField] float lerpDuration;
+    [SerializeField] Color defaultColor;
+    [SerializeField] float defaultSmoothness;
+    [SerializeField] float defaultIntensity;
+
+
+    [SerializeField] Color targetColor;
+    [SerializeField] float targetSmoothness;
     [SerializeField] float targetIntensity;
+
+    [SerializeField] float lerpDuration;
+
 
 
 
@@ -48,9 +57,13 @@ public class EffectsManager : MonoBehaviour
     void Start()
     {
 
-        if (playerVignetteprofile.TryGet<Vignette>(out Vignette vignette))
+        if (mainProfile.TryGet<Vignette>(out Vignette vignette))
         {
-            playerHitVignette = vignette;
+            mainVignette = vignette;
+
+            mainVignette.color.value = defaultColor;
+            mainVignette.smoothness.value = defaultSmoothness;
+            mainVignette.intensity.value = defaultIntensity;
         }
         else
         {
@@ -72,30 +85,42 @@ public class EffectsManager : MonoBehaviour
     IEnumerator DamageVignetteCoroutine()
     {
         float time = 0;
-        float startValue = playerHitVignette.intensity.value;
+        Color startColor = mainVignette.color.value;
+        float startSmoothness = defaultSmoothness;
+        float startIntensity = defaultIntensity;
+
+
+
         while (time < lerpDuration)
         {
-            playerHitVignette.intensity.value = Mathf.Lerp(startValue, targetIntensity, time / lerpDuration);
+            mainVignette.color.value = Color.Lerp(startColor, targetColor, time / lerpDuration);
+            mainVignette.smoothness.value = Mathf.Lerp(startSmoothness, targetSmoothness, time / lerpDuration);
+            mainVignette.intensity.value = Mathf.Lerp(startIntensity, targetIntensity, time / lerpDuration);
             time += Time.deltaTime;
             yield return null;
         }
-        playerHitVignette.intensity.value = targetIntensity;
+        mainVignette.color.value = targetColor;
+        mainVignette.smoothness.value = targetSmoothness;
+        mainVignette.intensity.value = targetIntensity;
 
-        startValue = playerHitVignette.intensity.value;
+        startColor = mainVignette.color.value;
+        startSmoothness = mainVignette.smoothness.value;
+        startIntensity = mainVignette.intensity.value;
+
 
         time = 0;
 
         while (time < lerpDuration)
         {
-            playerHitVignette.intensity.value = Mathf.Lerp(startValue, 0, time / lerpDuration);
+            mainVignette.color.value = Color.Lerp(startColor, defaultColor, time / lerpDuration);
+            mainVignette.smoothness.value = Mathf.Lerp(startSmoothness, defaultSmoothness, time / lerpDuration);
+            mainVignette.intensity.value = Mathf.Lerp(startIntensity, defaultIntensity, time / lerpDuration);
             time += Time.deltaTime;
             yield return null;
         }
 
-        playerHitVignette.intensity.value = 0;
-
-
-
-
+        mainVignette.color.value = defaultColor;
+        mainVignette.smoothness.value = defaultSmoothness;
+        mainVignette.intensity.value = defaultIntensity;
     }
 }

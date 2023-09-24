@@ -3013,7 +3013,7 @@ MonoBehaviour:
   m_InputSlots:
   - {fileID: 8926484042661614769}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   attribute: scale
   Composition: 0
   Source: 0
