@@ -26,6 +26,9 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField] private float maxSpawnDistance;
 
+    [SerializeField] private GameObject track;
+
+
     [field: Header("Wave")]
     [SerializeField] LevelWaveData level;
 
@@ -98,7 +101,7 @@ public class EnemyManager : MonoBehaviour
         waveCoroutine = StartCoroutine(WaveCoroutine());
         spawnCoroutine = StartCoroutine(BasicEnemySpawnCoroutine());
 
-        StartCoroutine(RelocateEnemies());
+        //StartCoroutine(RelocateEnemies());
 
     }
 
@@ -247,10 +250,17 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+       Debug.Log("Track: " +cam.WorldToViewportPoint(track.transform.position));
+
+    }
+
     public void SpawnEnemy(Vector3 position, string poolName)
     {
         GameObject enemy = RequestFromPool(position, poolName);
-//        
+        StartCoroutine(RelocateEnemy(enemy));
+
         if (!enemy)
         {
             Debug.LogWarning("No enemy found in object pool!");
@@ -271,6 +281,7 @@ public class EnemyManager : MonoBehaviour
         //InfectionRate++;
         OnInfectionRateChanged?.Invoke();
 
+
         enemy.GetComponent<Enemy>().OnDeath += delegate 
         { 
             activeEnemies.Remove(enemy);
@@ -283,16 +294,6 @@ public class EnemyManager : MonoBehaviour
                 OnMinInfectionReached?.Invoke();
             }
         };
-
-        // Symptom Activation
-        //if (InfectionRate >= SymptomThreshold && !SymptomManager.instance.isActive)
-        //{
-        //    OnSymptomThresholdReached?.Invoke();
-        //}
-        //else 
-        //{ 
-        
-        //}
 
         // Lose Condition
         if (InfectionRate >= MaxInfectionRate)
@@ -398,6 +399,59 @@ public class EnemyManager : MonoBehaviour
 
         }
     }
+
+    public IEnumerator RelocateEnemy(GameObject enemy)
+    {
+        Vector3 enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
+
+        yield return new WaitForSeconds(1.0f);
+        // Translate World to Viewport
+        enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
+
+        Vector3 ViewportToWorldPos = enemyPos;
+
+        // Proceed to next iteration if is within bounds
+        //if ((enemyPos.x >= minBounds.x && enemyPos.x <= maxBounds.x) && (enemyPos.y >= minBounds.y && enemyPos.y <= maxBounds.y))
+        //{
+        //    Debug.Log("In range: " + enemyPos);
+
+            //    return;
+            //}
+        if (enemyPos.y > maxBounds.y)
+        {
+            // Top side of the screen
+            ViewportToWorldPos.y = 0.6f;
+            ViewportToWorldPos.x = Random.Range(0f, 1f);
+        }
+        else if (enemyPos.y < minBounds.y)
+        {
+            // Bottom side of the screen
+            ViewportToWorldPos.y = 0.6f;
+            ViewportToWorldPos.x = Random.Range(0f, 1f);
+        }
+
+        //enemyPos = cam.WorldToViewportPoint(cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z)));
+
+        else if (enemyPos.x < minBounds.x)
+        {
+            // Left side of the screen
+            ViewportToWorldPos.x = 0f;
+            ViewportToWorldPos.y = Random.Range(0f, 1f);
+        }
+        else if (enemyPos.x > maxBounds.x)
+        {
+            // Right side of the screen
+            ViewportToWorldPos.x = 1f;
+            ViewportToWorldPos.y = Random.Range(0f, 1f);
+        }
+
+        Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z));
+
+        enemy.transform.position = new Vector3(newPos.x, enemy.transform.position.y, newPos.z);
+
+        Debug.Log("Not in range: " + enemyPos + " New pos: " + cam.WorldToViewportPoint(enemy.transform.position));
+    }
+
     public GameObject RequestFromPool(Vector3 position, string poolName)
     {
         foreach(EnemyPool enpool in enemyPools )

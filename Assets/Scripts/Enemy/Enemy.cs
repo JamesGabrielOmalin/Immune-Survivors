@@ -17,6 +17,7 @@ public class Enemy : Unit, IDamageInterface
 
     public System.Action OnDeath;
 
+
     private Player targetPlayer;
     private Coroutine attackCoroutine;
     private const float INITIAL_ATTACK_DELAY = 0.25f;
@@ -68,10 +69,12 @@ public class Enemy : Unit, IDamageInterface
 
         MoveSpeed.RemoveAllModifiers();
 
-        // Increase HP and Move Speed by 10% for every minute that has passed
+        // Increase HP and Move Speed by 50% for every minute that has passed
         if (GameManager.instance)
         {
-            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.5f, AttributeModifierType.Multiply));
+
+            //MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
             MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
         }
 
