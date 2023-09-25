@@ -50,6 +50,7 @@ public class SymptomManager : MonoBehaviour
 
     private void ActivateSymptoms()
     {
+        HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
         foreach(SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
         {
             StartCoroutine(se.SymptomCoroutine());
@@ -78,7 +79,7 @@ public class SymptomManager : MonoBehaviour
                 ActivateSymptoms();
                 SymptomLevel++;
 
-                if (SymptomLevel > SymptomList.Count)
+                if (SymptomLevel >= SymptomList.Count)
                 {
                     isActive = false;
                 }
