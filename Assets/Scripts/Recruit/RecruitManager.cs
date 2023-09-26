@@ -24,7 +24,9 @@ public class RecruitManager : MonoBehaviour
 
     public static RecruitManager instance;
 
+    public System.Action OnKillCountUpdate;
     public System.Action OnThreshholdUpdate;
+
 
     private Camera cam;
 
@@ -262,6 +264,7 @@ public class RecruitManager : MonoBehaviour
         
         if (cycle >= killThresholdList[index].startCycle && cycle <= killThresholdList[index].endCycle )
         {
+            OnKillCountUpdate?.Invoke();
             killCount++;
 
             amountToSpawn = killThresholdList[index].nRecruitToSpawn;

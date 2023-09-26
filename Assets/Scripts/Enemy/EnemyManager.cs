@@ -252,8 +252,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-       Debug.Log("Track: " +cam.WorldToViewportPoint(track.transform.position));
-
     }
 
     public void SpawnEnemy(Vector3 position, string poolName)
