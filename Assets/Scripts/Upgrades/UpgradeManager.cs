@@ -47,7 +47,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
+        //grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
 
         OnEffectAcquired?.Invoke();
     }
