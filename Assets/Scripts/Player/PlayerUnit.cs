@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public enum PlayerUnitType
 {
@@ -31,6 +32,9 @@ public class PlayerUnit : Unit, IDamageInterface
 
     [Header("UI")]
     [SerializeField] private Slider HPBar;
+
+    [Header("VFX")]
+    public VisualEffect buffVFX;
 
     private void Start()
     {

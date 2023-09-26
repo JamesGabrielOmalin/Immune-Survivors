@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,13 +26,20 @@ public class Player : MonoBehaviour
     private GameObject activeHUD;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Macrophage;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
         { PlayerUnitType.Neutrophil, false },
         { PlayerUnitType.Macrophage, false },
         { PlayerUnitType.Dendritic, false },
+    };
+
+    private readonly Dictionary<AntigenType, Coroutine> buffCoroutines = new()
+    {
+        { AntigenType.Type_1, null },
+        { AntigenType.Type_2, null },
+        { AntigenType.Type_3, null },
     };
 
     private void Awake()
@@ -169,6 +175,8 @@ public class Player : MonoBehaviour
 
     public void ApplyAntigenBuffs(AntigenType type, AttributeModifier mod, float duration)
     {
+        if (buffCoroutines[type] != null)
+            StopCoroutine(buffCoroutines[type]);
         StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
@@ -181,7 +189,11 @@ public class Player : MonoBehaviour
         m.AddModifier(mod);
         d.AddModifier(mod);
 
+        neutrophil.buffVFX.Play();
+
         yield return new WaitForSeconds(duration);
+
+        neutrophil.buffVFX.Stop();
 
         n.RemoveModifier(mod);
         m.RemoveModifier(mod);
