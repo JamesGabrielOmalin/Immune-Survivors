@@ -26,6 +26,7 @@ public class RecruitManager : MonoBehaviour
 
     public System.Action OnKillCountUpdate;
     public System.Action OnThreshholdUpdate;
+    public System.Action OnRecruitSpawn;
 
 
     private Camera cam;
@@ -51,6 +52,7 @@ public class RecruitManager : MonoBehaviour
 
     [Header(" Threshold Stats")]
 
+    public int totalKillCount=0;
     public int killCount = 0;
     [SerializeField] private int killThreshold;
     [SerializeField] private int cycle = 1;
@@ -266,9 +268,9 @@ public class RecruitManager : MonoBehaviour
         
         if (cycle >= killThresholdList[index].startCycle && cycle <= killThresholdList[index].endCycle )
         {
-            OnKillCountUpdate?.Invoke();
             killCount++;
-
+            totalKillCount++;
+            OnKillCountUpdate?.Invoke();
             amountToSpawn = killThresholdList[index].nRecruitToSpawn;
 
             // spawn units when kill requirement is reached
@@ -279,6 +281,7 @@ public class RecruitManager : MonoBehaviour
                 killThreshold += killThresholdList[index].increment;
                 killCount = 0;
                 cycle++;
+                OnRecruitSpawn?.Invoke();
             }
         }
 

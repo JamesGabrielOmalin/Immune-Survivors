@@ -13,6 +13,10 @@ public class TutorialManager : MonoBehaviour
     private Queue<string> dynamicPromptTextQueue = new();
     private Coroutine dynamicPromptCoroutine;
 
+    //StaticPrompt variables here
+    //WARNING: CURRENTLY NO CHECKER FOR IF INDEX IS OVER/UNDER
+    [SerializeField] private List<GameObject> StaticPrompts = new List<GameObject>();
+
     private void Awake()
     {
         if (instance == null)
@@ -29,11 +33,43 @@ public class TutorialManager : MonoBehaviour
         AddDynamicPrompt("you know what's funny?");
         AddDynamicPrompt("confidently says something wrong");
         AddDynamicPrompt("imagine");
+
+        //StaticPrompts activation ritual
+        //There should be a bool here whether or not these things should show up or not for new/old players
+        Instantiate(StaticPrompts[0]);
+        AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
+        RecruitManager.instance.OnRecruitSpawn += EnablePromptOnThresholdUpdate;
+        UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
+        UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
     }
 
     private void OnDestroy()
     {
         instance = null;
+    }
+
+    public void EnablePromptOnAntigenPickup()
+    {
+        Instantiate(StaticPrompts[1]);
+        AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
+    }
+
+    public void EnablePromptOnThresholdUpdate()
+    {
+        Instantiate(StaticPrompts[2]);
+        RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
+    }
+
+    public void EnablePromptOnUpgrade()
+    {
+        Instantiate(StaticPrompts[3]);
+        UpgradeManager.instance.OnUpgradeScreen -= EnablePromptOnUpgrade;
+    }
+
+    public void EnablePromptOnUltiGet()
+    {
+        Instantiate(StaticPrompts[4]);
+        UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
     }
 
     public void AddDynamicPrompt(string text)

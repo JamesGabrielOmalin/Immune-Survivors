@@ -22,7 +22,7 @@ public class KillCounter : MonoBehaviour
     {
         if (killCountText != null) 
         {
-            killCountText.text = RecruitManager.instance.killCount.ToString();
+            killCountText.text = RecruitManager.instance.totalKillCount.ToString();
         }
     }
 }

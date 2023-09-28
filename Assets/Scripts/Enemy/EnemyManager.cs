@@ -447,7 +447,7 @@ public class EnemyManager : MonoBehaviour
 
         enemy.transform.position = new Vector3(newPos.x, enemy.transform.position.y, newPos.z);
 
-        Debug.Log("Not in range: " + enemyPos + " New pos: " + cam.WorldToViewportPoint(enemy.transform.position));
+        //Debug.Log("Not in range: " + enemyPos + " New pos: " + cam.WorldToViewportPoint(enemy.transform.position));
     }
 
     public GameObject RequestFromPool(Vector3 position, string poolName)

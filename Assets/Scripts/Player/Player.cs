@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private GameObject activeHUD;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Macrophage;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
