@@ -7,11 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 255013043658003832, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 487672917330361871, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_RootOrder
@@ -67,16 +62,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[6].baseValue
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: Attributes.Array.data[13].baseValue
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 487672917330361875, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_Name
@@ -87,6 +72,12 @@ PrefabInstance:
       propertyPath: spriteCopyPrefab
       value: 
       objectReference: {fileID: 1017346715513677961, guid: 655e229485e6cbe4fa52258464f1f262,
+        type: 3}
+    - target: {fileID: 845904875180468680, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: 62982445e7c33c748874ce7d9ef63a04,
         type: 3}
     - target: {fileID: 1817928188801238589, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
@@ -111,11 +102,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1a005f1b22153ee4aae5c8c48ab5e1eb,
         type: 2}
-    - target: {fileID: 3730584619399922100, guid: 51ed58f86627e1647b18720f3500d592,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 5939989266211001594, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_FlipX
@@ -132,7 +118,7 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1211931248, guid: 9c2ad1c557c1aaa4eaad2406d0509e40,
         type: 3}
-    - target: {fileID: 6652383940041035294, guid: 51ed58f86627e1647b18720f3500d592,
+    - target: {fileID: 7997651493589132322, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_RootOrder
       value: 3

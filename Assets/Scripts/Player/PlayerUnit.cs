@@ -19,12 +19,8 @@ public class PlayerUnit : Unit, IDamageInterface
 
     [field:SerializeField] public PlayerUnitType UnitType { get; private set; }
 
-    public bool IsDead => HP.BaseValue <= 0f;
-
     public System.Action OnUnitUpgraded;
     public System.Action OnDeath;
-    public System.Action OnTakeDamage;
-
 
     private List<Effect> upgrades = new();
 
@@ -34,16 +30,11 @@ public class PlayerUnit : Unit, IDamageInterface
     private Attribute HPRegen;
     private Attribute Armor;
 
-    [SerializeField] private GameObject stunIndicator;
-    [SerializeField] private VisualEffect dotIndicator;
-
-    public bool IsStunned { get; private set; } = false;
-    private Coroutine stunCoroutine;
-    private Coroutine dotCoroutine;
-
     [Header("UI")]
     [SerializeField] private Slider HPBar;
 
+    [Header("VFX")]
+    public VisualEffect buffVFX;
 
     private void Start()
     {
@@ -52,9 +43,6 @@ public class PlayerUnit : Unit, IDamageInterface
         HP = attributes.GetAttribute("HP");
         HPRegen = attributes.GetAttribute("HP Regen");
         Armor = attributes.GetAttribute("Armor");
-
-        // Hide stun indicator
-        stunIndicator.SetActive(false);
 
         if (HPBar)
         {
@@ -71,10 +59,8 @@ public class PlayerUnit : Unit, IDamageInterface
 
     public void TakeDamage(float amount)
     {
-        OnTakeDamage?.Invoke();
-
-        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add));
-
+        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add)); 
+        
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();
@@ -87,74 +73,7 @@ public class PlayerUnit : Unit, IDamageInterface
         HP.ApplyInstantModifier(new(amount, AttributeModifierType.Add));
         HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, maxHP.Value);
     }
-    public void ApplyStun(float duration)
-    {
-        if (IsDead)
-            return;
 
-        if (stunCoroutine != null)
-            StopCoroutine(stunCoroutine);
-
-        stunCoroutine = StartCoroutine(Stun(duration));
-    }
-
-
-    private IEnumerator Stun(float duration)
-    {
-        IsStunned = true;
-        stunIndicator.SetActive(true);
-        WaitForSeconds wait = new(duration);
-        yield return wait;
-
-        IsStunned = false;
-        stunIndicator.SetActive(false);
-
-        stunCoroutine = null;
-        yield break;
-    }
-
-    public void ApplyDoT(float damage, float duration, float tickRate)
-    {
-        if (IsDead)
-            return;
-
-        if (dotCoroutine != null)
-            StopCoroutine(dotCoroutine);
-
-        dotCoroutine = StartCoroutine(DoT(damage, duration, tickRate));
-    }
-
-    private IEnumerator DoT(float damage, float duration, float tickRate)
-    {
-        if (damage > float.Epsilon)
-        {
-            float t = 0f;
-            float tick = 1f / tickRate;
-
-            dotIndicator.Play();
-
-            while (t < duration)
-            {
-                TakeDamage(damage);
-                DamageNumberManager.instance.SpawnDoTNumber(transform.position, damage);
-                t += tick;
-                yield return new WaitForSeconds(tick);
-            }
-        }
-
-        dotIndicator.Stop();
-        dotCoroutine = null;
-        yield break;
-    }
-
-    public void ApplyKnockback(Vector3 force, ForceMode forceMode)
-    {
-        if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
-        {
-            rb.AddForce(force, forceMode);
-
-        }
-    }
     public void Upgrade()
     {
         OnUnitUpgraded?.Invoke();
