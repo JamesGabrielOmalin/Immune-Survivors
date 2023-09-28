@@ -25,6 +25,7 @@ public class RecruitManager : MonoBehaviour
     public static RecruitManager instance;
 
     public System.Action OnThreshholdUpdate;
+    public System.Action OnRecruitSpawn;
 
     private Camera cam;
 
@@ -274,6 +275,7 @@ public class RecruitManager : MonoBehaviour
                 killThreshold += killThresholdList[index].increment;
                 killCount = 0;
                 cycle++;
+                OnRecruitSpawn?.Invoke();
             }
         }
 

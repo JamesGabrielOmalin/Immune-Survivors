@@ -10,6 +10,8 @@ public class AntigenManager : MonoBehaviour
 
     [SerializeField] private int antigenThreshold;
 
+    public System.Action OnAntigenPickup;
+
     private readonly Dictionary<AntigenType, int> antigenCount = new()
     {
         { AntigenType.Type_1, 0 },

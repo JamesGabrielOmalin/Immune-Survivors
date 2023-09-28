@@ -14,20 +14,20 @@ public class StaticPrompt : MonoBehaviour
 
     public void OnEnable()
     {
-        //GameManager.instance.PauseGame();
+        GameManager.instance.PauseGame();
         StartCoroutine(Disable());
     }
 
     public void OnDisable()
     {
-        //GameManager.instance.ResumeGame();
+        GameManager.instance.ResumeGame();
         StopAllCoroutines();
     }
 
     private IEnumerator Disable()
     {
         yield return new WaitUntil(() => Keyboard.current.escapeKey.IsPressed() && pageIndex >= pages.Count - 1);
-        this.gameObject.SetActive(false);
+        Destroy();
         Debug.Log("Pressed Esc");
     }
 
@@ -35,9 +35,12 @@ public class StaticPrompt : MonoBehaviour
     {
         if (pageIndex >= pages.Count)
             return;
-        pageIndex++;
 
-        nextButton.interactable = pageIndex < pages.Count;
+        pages[pageIndex].SetActive(false);
+        pageIndex++;
+        pages[pageIndex].SetActive(true);
+
+        nextButton.interactable = pageIndex < pages.Count-1;
         previousButton.interactable = true;
 
         if (!nextButton.interactable)
@@ -49,10 +52,17 @@ public class StaticPrompt : MonoBehaviour
         if (pageIndex <= 0)
             return;
 
+        pages[pageIndex].SetActive(false);
         pageIndex--;
+        pages[pageIndex].SetActive(true);
 
         nextButton.interactable = true;
         previousButton.interactable = pageIndex > 0;
         closeButton.SetActive(false);
+    }
+
+    public void Destroy()
+    {
+        Destroy(this.gameObject);
     }
 }

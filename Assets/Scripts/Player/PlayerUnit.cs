@@ -44,7 +44,6 @@ public class PlayerUnit : Unit, IDamageInterface
     [Header("UI")]
     [SerializeField] private Slider HPBar;
 
-
     private void Start()
     {
         level = attributes.GetAttribute("Level");
@@ -158,6 +157,7 @@ public class PlayerUnit : Unit, IDamageInterface
     public void Upgrade()
     {
         OnUnitUpgraded?.Invoke();
+        UpgradeManager.instance.OnUpgradeScreen?.Invoke();
 
         UpgradeManager.instance.OpenUpgradeScreen(UnitType);
 
@@ -166,6 +166,7 @@ public class PlayerUnit : Unit, IDamageInterface
 
         if (level.BaseValue == 5)
         {
+            UpgradeManager.instance.OnUltiGet.Invoke();
             AbilitySet.GrantUltimate();
         }
     }
