@@ -21,7 +21,7 @@ MonoBehaviour:
   DotDamage: 0
   DotDuration: 0
   DotTickRate: 0
-  MoveSpeedModifierAmount: 1.5
+  MoveSpeedModifierAmount: 0.5
   ModifierType: 1
   IsInfiniteDuration: 0
   MoveSpeedModifierDuration: 5
