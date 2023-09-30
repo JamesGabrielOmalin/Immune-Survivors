@@ -170,7 +170,7 @@ public class PlayerUnit : Unit, IDamageInterface
 
         if (level.BaseValue == 5)
         {
-            UpgradeManager.instance.OnUltiGet.Invoke();
+            //Needs a checker if should only activate on specific unit
             AbilitySet.GrantUltimate();
         }
     }
