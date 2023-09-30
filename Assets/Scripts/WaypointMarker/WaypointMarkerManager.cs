@@ -110,25 +110,26 @@ public class WaypointMarkerManager : MonoBehaviour
 
                 Vector3 targetPos = cam.WorldToViewportPoint(marker.target.transform.position);
 
-
                 if (targetPos.x < minBounds.x || targetPos.x > maxBounds.x ||
                      targetPos.y < minBounds.y || targetPos.y > maxBounds.y)
                 {
-                    Debug.Log("Not in range");
+                    //Debug.Log("Not in range");/
                     marker.gameObject.SetActive(true);
                 }
                 else
                 {
-                    Debug.Log("In range");
+                    //Debug.Log("In range");
                     marker.gameObject.SetActive(false);
 
                 }
 
-                Vector3 targetDir = marker.target.transform.position - marker.transform.position;
+                //Vector3 targetDir = marker.target.transform.position - marker.transform.position;
 
-                Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.fixedDeltaTime, 0.0f);
+                //Vector3 newDirection = Vector3.RotateTowards(marker.gameObject.transform.forward, targetDir, Time.fixedDeltaTime, 0.0f);
 
-                marker.gameObject.transform.rotation = Quaternion.LookRotation(newDirection);
+                //marker.gameObject.transform.rotation = Quaternion.LookRotation(newDirection);
+
+                marker.gameObject.transform.LookAt(marker.target.transform);
             }
 
         }

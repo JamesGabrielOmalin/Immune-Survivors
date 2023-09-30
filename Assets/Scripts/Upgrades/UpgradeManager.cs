@@ -9,6 +9,8 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager instance;
 
     public System.Action OnEffectAcquired;
+    public System.Action OnUpgradeScreen;
+    public System.Action OnUltiGet;
 
     [SerializeField] private UpgradeSelect upgradeScreen;
 

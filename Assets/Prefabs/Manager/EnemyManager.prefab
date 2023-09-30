@@ -1,5 +1,149 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1299627605947769706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3081676437429295173}
+  - component: {fileID: 3340519495825984474}
+  m_Layer: 0
+  m_Name: Bacteria Boss A Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3081676437429295173
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299627605947769706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8919689434467367445}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3340519495825984474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299627605947769706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 8989998791546633274, guid: 5a3502e346f0a7c4c8d3b994e7dee568,
+    type: 3}
+  amountToPool: 5
+  addIfNotEnough: 0
+--- !u!1 &5852067015631304098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402894378905215614}
+  - component: {fileID: 8378954411920403306}
+  m_Layer: 0
+  m_Name: Bacteria Boss B Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402894378905215614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5852067015631304098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8919689434467367445}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8378954411920403306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5852067015631304098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 4546942653729289289, guid: a42492c9f1abeb14ca11e2d7491bf7d1,
+    type: 3}
+  amountToPool: 5
+  addIfNotEnough: 0
+--- !u!1 &6948882597558913990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7614966742769816524}
+  - component: {fileID: 314824912392813152}
+  m_Layer: 0
+  m_Name: Bacteria Boss C Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7614966742769816524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948882597558913990}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8919689434467367445}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &314824912392813152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948882597558913990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPool: {fileID: 5393877332638916496, guid: 4bdf1d45729f86141bc22b469b146471,
+    type: 3}
+  amountToPool: 5
+  addIfNotEnough: 0
 --- !u!1 &8919689433779787523
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +155,7 @@ GameObject:
   - component: {fileID: 8919689433779787525}
   - component: {fileID: 8919689433779787522}
   m_Layer: 0
-  m_Name: Enemy Pool 2
+  m_Name: Bacteria B Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,8 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 4546942653729289289, guid: 9fdea2d7355eb934d80aef59be894b65,
     type: 3}
-  amountToPool: 100
-  addIfNotEnough: 0
+  amountToPool: 200
+  addIfNotEnough: 1
 --- !u!1 &8919689434467367440
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +224,9 @@ Transform:
   - {fileID: 8919689435150740666}
   - {fileID: 8919689433779787525}
   - {fileID: 8919689434991410159}
+  - {fileID: 3081676437429295173}
+  - {fileID: 402894378905215614}
+  - {fileID: 7614966742769816524}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -96,23 +243,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPools:
-  - {fileID: 8919689435150740669}
-  - {fileID: 8919689433779787522}
-  - {fileID: 8919689434991410156}
+  - Name: Bacteria A
+    enemyPool: {fileID: 8919689435150740669}
+  - Name: Bacteria B
+    enemyPool: {fileID: 8919689433779787522}
+  - Name: Bacteria C
+    enemyPool: {fileID: 8919689434991410156}
+  - Name: Bacteria Boss A
+    enemyPool: {fileID: 3340519495825984474}
+  - Name: Bacteria Boss B
+    enemyPool: {fileID: 8378954411920403306}
+  - Name: Bacteria Boss C
+    enemyPool: {fileID: 314824912392813152}
+  allEnemies: []
   activeEnemies: []
   <MinInfectionRate>k__BackingField: 0
-  <MaxInfectionRate>k__BackingField: 120
+  <MaxInfectionRate>k__BackingField: 100
+  <SymptomThreshold>k__BackingField: 5
+  spawnArea: {fileID: 0}
   maxSpawnDistance: 50
-  levelWaveData: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3, type: 2}
-  WaveNumber: 0
+  track: {fileID: 0}
+  level: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3, type: 2}
+  waveIndex: 0
   currentWave:
-    WaveID: 0
+    waveName: 
+    ID: 0
     spawnInterval: 0
-    enemyGroups: []
-    BossEnemyGroups: []
     waveSpawnCounter: 0
     waveSpawnQuota: 0
-  maxEnemyCountAllowed: 300
+    enemyGroups: []
+    BossEnemyGroups: []
+  boundsThreshold: {x: 0, y: 0}
+  spawnThreshold: 0
 --- !u!1 &8919689434991410157
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +286,7 @@ GameObject:
   - component: {fileID: 8919689434991410159}
   - component: {fileID: 8919689434991410156}
   m_Layer: 0
-  m_Name: Enemy Pool 3
+  m_Name: Bacteria C Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,8 +321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 5393877332638916496, guid: 1456af6433cabd14a988104de0a546bc,
     type: 3}
-  amountToPool: 100
-  addIfNotEnough: 0
+  amountToPool: 200
+  addIfNotEnough: 1
 --- !u!1 &8919689435150740667
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +334,7 @@ GameObject:
   - component: {fileID: 8919689435150740666}
   - component: {fileID: 8919689435150740669}
   m_Layer: 0
-  m_Name: Enemy Pool 1
+  m_Name: Bacteria A Pool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,5 +369,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 8989998791546633274, guid: d00cdf4cba5c6ca41a8398b6e2b2bd2b,
     type: 3}
-  amountToPool: 100
-  addIfNotEnough: 0
+  amountToPool: 200
+  addIfNotEnough: 1

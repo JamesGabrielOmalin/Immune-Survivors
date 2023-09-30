@@ -6,6 +6,7 @@ public class CharacterSelect : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private List<Sprite> sprites = new();
+    [SerializeField] private GameObject[] info;
 
     private int character = 0;
 
@@ -13,10 +14,12 @@ public class CharacterSelect : MonoBehaviour
     {
         Player.toSpawn = (PlayerUnitType)character;
         sprite.sprite = sprites[character];
+        info[character].SetActive(true);
     }
 
     public void SelectCharacter(int select)
     {
+        info[character].SetActive(false);
         character = select;
         SelectCharacter();
     }

@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   markerPool: {fileID: 0}
   activeMarkers: []
-  minBounds: {x: 0.5, y: 0.5}
-  maxBounds: {x: 5, y: 0.5}
+  minBounds: {x: 0.1, y: 0.1}
+  maxBounds: {x: 0.9, y: 0.9}

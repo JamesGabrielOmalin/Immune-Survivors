@@ -45,6 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  isActive: 1
   SymptomList:
-  - {fileID: 11400000, guid: 304b986dd3567eb4ab570dd2f6c46a0a, type: 2}
-  - {fileID: 11400000, guid: 7f862d16f7d314c4092fc0a166b95110, type: 2}
+  - symptom: {fileID: 11400000, guid: cb9cdb154051dd24090faa565e4834db, type: 2}
+    activationTimestamp: 30
+  - symptom: {fileID: 11400000, guid: 304b986dd3567eb4ab570dd2f6c46a0a, type: 2}
+    activationTimestamp: 60
+  - symptom: {fileID: 11400000, guid: fc2986c89eabd494aa930009db38a616, type: 2}
+    activationTimestamp: 240
+  - symptom: {fileID: 11400000, guid: 241f58175e195814aafff19a09cde802, type: 2}
+    activationTimestamp: 420
+  - symptom: {fileID: 11400000, guid: 7171a65e94a5a0545b5073130ab6da46, type: 2}
+    activationTimestamp: 600
+  SymptomLevel: 1
+  symptomTimer: 0

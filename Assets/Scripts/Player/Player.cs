@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     private GameObject activeHUD;
     private int numRecruit;
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Macrophage;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -94,7 +94,7 @@ public class Player : MonoBehaviour
     {
         if (activeUnit)
         {
-            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value / 4f);
+            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value * 0.10f);
         }
 
         // If already recruit, upgrade instead
@@ -206,12 +206,12 @@ public class Player : MonoBehaviour
         d.RemoveModifier(mod);
     }
 
-    public void ApplyMoveSpeedBuff(AttributeModifier mod, float duration)
+    public void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
     {
-        StartCoroutine(MoveSpeedBuffCoroutine(mod, duration));
+       StartCoroutine(MoveSpeedModifierDurationCoroutine(mod, duration, isInfinite));
     }
 
-    private IEnumerator MoveSpeedBuffCoroutine(AttributeModifier mod, float duration)
+    private IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
     {
         var n = neutrophil.attributes.GetAttribute("Move Speed");
         var m = macrophage.attributes.GetAttribute("Move Speed");
@@ -223,13 +223,16 @@ public class Player : MonoBehaviour
 
         playerMovement.UpdateMoveSpeed();
 
-        yield return new WaitForSeconds(duration);
+        if (!isInfinite)
+        {
+            yield return new WaitForSeconds(duration);
 
-        n.RemoveModifier(mod);
-        m.RemoveModifier(mod);
-        d.RemoveModifier(mod);
+            n.RemoveModifier(mod);
+            m.RemoveModifier(mod);
+            d.RemoveModifier(mod);
 
-        playerMovement.UpdateMoveSpeed();
+            playerMovement.UpdateMoveSpeed();
+        }
     }
 
     public PlayerUnit GetUnit(PlayerUnitType type)
