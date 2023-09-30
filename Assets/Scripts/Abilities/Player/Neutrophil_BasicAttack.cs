@@ -84,6 +84,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
             yield break;
         }
 
+        AudioManager.instance.Play("NeutrophilAttack", owner.transform.position);
+
         float angle = 0;
         float angleSteps = 0;
         float spreadFactor = 15f;
@@ -112,7 +114,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
         WaitForSeconds wait = new(0.25f);
                                         // Level 2 and higher: Increase DMG by 10
-        float AD = attackDamage.Value + (abilityLevel >= 2 ? 10f : 0f);
+        float AD = attackDamage.Value + (abilityLevel >= 2 ? 2f : 0f);
                                             // Level 4 and higher: Increase CRIT Rate by 10%
         float CRIT_RATE = critRate.Value + (abilityLevel >= 4 ? 0.1f : 0f);
         float CRIT_DMG = critDMG.Value;
@@ -126,7 +128,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
             angle = 0;
 
             // Fires 2 more bullets per level
-            for (int j = 0; j < abilityLevel * 2 - 1; j++)
+            for (int j = 0; j < abilityLevel; j++)
             {
                 GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
                 if (bulletObject == null)

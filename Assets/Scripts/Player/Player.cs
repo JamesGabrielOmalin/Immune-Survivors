@@ -35,6 +35,15 @@ public class Player : MonoBehaviour
         { PlayerUnitType.Dendritic, false },
     };
 
+    private readonly Dictionary<AntigenType, Coroutine> buffCoroutines = new()
+    {
+        { AntigenType.Type_1, null },
+        { AntigenType.Type_2, null },
+        { AntigenType.Type_3, null },
+    };
+
+    private const string DMG_BONUS_STRING = " DMG Bonus";
+
     private void Awake()
     {
         switch (toSpawn)
@@ -85,7 +94,7 @@ public class Player : MonoBehaviour
     {
         if (activeUnit)
         {
-            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value / 4f);
+            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value * 0.10f);
         }
 
         // If already recruit, upgrade instead
@@ -168,19 +177,29 @@ public class Player : MonoBehaviour
 
     public void ApplyAntigenBuffs(AntigenType type, AttributeModifier mod, float duration)
     {
+        if (buffCoroutines[type] != null)
+            StopCoroutine(buffCoroutines[type]);
         StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
     private IEnumerator AntigenBuffCoroutine(AntigenType type, AttributeModifier mod, float duration)
     {
-        var n = neutrophil.attributes.GetAttribute(type.ToString() + " DMG Bonus");
-        var m = macrophage.attributes.GetAttribute(type.ToString() + " DMG Bonus");
-        var d = dendritic.attributes.GetAttribute(type.ToString() + " DMG Bonus");
+        var n = neutrophil.attributes.GetAttribute(type.ToString() + DMG_BONUS_STRING);
+        var m = macrophage.attributes.GetAttribute(type.ToString() + DMG_BONUS_STRING);
+        var d = dendritic.attributes.GetAttribute(type.ToString() + DMG_BONUS_STRING);
         n.AddModifier(mod);
         m.AddModifier(mod);
         d.AddModifier(mod);
 
+        neutrophil.buffVFX.Play();
+        macrophage.buffVFX.Play();
+        dendritic.buffVFX.Play();
+
         yield return new WaitForSeconds(duration);
+
+        neutrophil.buffVFX.Stop();
+        macrophage.buffVFX.Stop();
+        dendritic.buffVFX.Stop();
 
         n.RemoveModifier(mod);
         m.RemoveModifier(mod);

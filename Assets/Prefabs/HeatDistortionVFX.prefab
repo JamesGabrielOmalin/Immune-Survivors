@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52544e4634b306340a6f03059ebafda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatDistortVFX: {fileID: 0}
+  heatDistortVFX: {fileID: 5775319925300653924}
   parameterList:
   - name: Level 1
     distortionIntensity: 0.01

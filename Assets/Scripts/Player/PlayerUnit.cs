@@ -18,7 +18,6 @@ public class PlayerUnit : Unit, IDamageInterface
     [field: SerializeField] public AbilitySet AbilitySet { get; private set; }
 
     [field:SerializeField] public PlayerUnitType UnitType { get; private set; }
-
     public bool IsDead => HP.BaseValue <= 0f;
 
     public System.Action OnUnitUpgraded;
@@ -34,15 +33,19 @@ public class PlayerUnit : Unit, IDamageInterface
     private Attribute HPRegen;
     private Attribute Armor;
 
-    [SerializeField] private GameObject stunIndicator;
-    [SerializeField] private VisualEffect dotIndicator;
-
     public bool IsStunned { get; private set; } = false;
     private Coroutine stunCoroutine;
     private Coroutine dotCoroutine;
 
     [Header("UI")]
     [SerializeField] private Slider HPBar;
+
+    [Header("VFX")]
+    public VisualEffect buffVFX;
+
+    [SerializeField] private VisualEffect dotIndicator;
+    [SerializeField] private GameObject stunIndicator;
+
 
     private void Start()
     {
@@ -51,9 +54,6 @@ public class PlayerUnit : Unit, IDamageInterface
         HP = attributes.GetAttribute("HP");
         HPRegen = attributes.GetAttribute("HP Regen");
         Armor = attributes.GetAttribute("Armor");
-
-        // Hide stun indicator
-        stunIndicator.SetActive(false);
 
         if (HPBar)
         {
@@ -64,6 +64,8 @@ public class PlayerUnit : Unit, IDamageInterface
             HPBar.value = HP.Value;
         }
 
+        stunIndicator.SetActive(false);
+
         StartCoroutine(Attack());
         StartCoroutine(Regen());
     }
@@ -72,8 +74,8 @@ public class PlayerUnit : Unit, IDamageInterface
     {
         OnTakeDamage?.Invoke();
 
-        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add));
-
+        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add)); 
+        
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();
@@ -86,6 +88,7 @@ public class PlayerUnit : Unit, IDamageInterface
         HP.ApplyInstantModifier(new(amount, AttributeModifierType.Add));
         HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, maxHP.Value);
     }
+
     public void ApplyStun(float duration)
     {
         if (IsDead)
@@ -154,6 +157,7 @@ public class PlayerUnit : Unit, IDamageInterface
 
         }
     }
+
     public void Upgrade()
     {
         OnUnitUpgraded?.Invoke();

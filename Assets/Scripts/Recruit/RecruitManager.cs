@@ -24,8 +24,10 @@ public class RecruitManager : MonoBehaviour
 
     public static RecruitManager instance;
 
+    public System.Action OnKillCountUpdate;
     public System.Action OnThreshholdUpdate;
     public System.Action OnRecruitSpawn;
+
 
     private Camera cam;
 
@@ -50,6 +52,7 @@ public class RecruitManager : MonoBehaviour
 
     [Header(" Threshold Stats")]
 
+    public int totalKillCount=0;
     public int killCount = 0;
     [SerializeField] private int killThreshold;
     [SerializeField] private int cycle = 1;
@@ -109,7 +112,7 @@ public class RecruitManager : MonoBehaviour
             StartCoroutine(SpawnCoroutine());
         }
 
-        StartCoroutine(RelocateRecruits());
+        //StartCoroutine(RelocateRecruits());
     }
 
     private IEnumerator SpawnCoroutine()
@@ -186,7 +189,9 @@ public class RecruitManager : MonoBehaviour
                 positiveX = Random.value < 0.5f;
                 positiveZ = Random.value < 0.5f;
 
-                spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+                //spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+                spawnPoint = RandomPointInBounds(spawnArea.bounds);
+                spawnPoint.y = 0;
 
                 Debug.Log($"Recruit Out of bounds, moving to: {spawnPoint}");
 
@@ -264,7 +269,8 @@ public class RecruitManager : MonoBehaviour
         if (cycle >= killThresholdList[index].startCycle && cycle <= killThresholdList[index].endCycle )
         {
             killCount++;
-
+            totalKillCount++;
+            OnKillCountUpdate?.Invoke();
             amountToSpawn = killThresholdList[index].nRecruitToSpawn;
 
             // spawn units when kill requirement is reached

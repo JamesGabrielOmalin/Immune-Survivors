@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a675bbeb6961ba4aa710b60fc3483dc, type: 3}
-  m_Name: Enemy_Perma_DoT
+  m_Name: Player_Timed_DoT 0
   m_EditorClassIdentifier: 
-  AffectedUnit: 2
+  AffectedUnit: 0
   EffectType: 2
-  ActivationType: 1
-  ActivationDelay: 8
+  ActivationType: 0
+  ActivationDelay: 0
   KnockbackIntensity: 0
   Direction: 0
-  DotDamage: 1
-  DotDuration: 5
-  DotTickRate: 1
+  DotDamage: 0
+  DotDuration: 0
+  DotTickRate: 0
   MoveSpeedModifierAmount: 0
   ModifierType: 0
   IsInfiniteDuration: 0

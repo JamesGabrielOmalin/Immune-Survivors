@@ -509,7 +509,7 @@ PrefabInstance:
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.data[6].baseValue
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
@@ -526,6 +526,12 @@ PrefabInstance:
       propertyPath: spriteCopyPrefab
       value: 
       objectReference: {fileID: 1017346715513677961, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+    - target: {fileID: 845904875180468680, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_Asset
+      value: 
+      objectReference: {fileID: 8926484042661614526, guid: defd3403352e8e14fa34c5474900e6ee,
         type: 3}
     - target: {fileID: 1817928188801238589, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
@@ -555,10 +561,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b7ffe10a6d9e0184183c5321c5399ad2,
         type: 2}
+    - target: {fileID: 2914977061079506005, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3730584619399922100, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875056749029556697, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5939989266211001594, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
@@ -579,6 +595,11 @@ PrefabInstance:
     - target: {fileID: 7778404878689880141, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_Radius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997651493589132322, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Attack Damage Up
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Attack Damage Up
-  <Description>k__BackingField: Increases Attack Damage by 10
+  <Description>k__BackingField: Increases Attack Damage by 10%
   <Descriptions>k__BackingField: []
   <EffectType>k__BackingField: 0
   <Modifiers>k__BackingField:
   - <Name>k__BackingField: Attack Damage
     <Modifier>k__BackingField:
-      <Value>k__BackingField: 10
-      <Type>k__BackingField: 0
+      <Value>k__BackingField: 0.1
+      <Type>k__BackingField: 1
   - <Name>k__BackingField: Projectile Count
     <Modifier>k__BackingField:
       <Value>k__BackingField: 1
