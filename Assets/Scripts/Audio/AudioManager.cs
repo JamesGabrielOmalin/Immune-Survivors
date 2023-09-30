@@ -123,7 +123,7 @@ public class AudioManager : MonoBehaviour
         yield return wait;
         Debug.LogWarning("DeletedAudioObject");
         //audioSource.clip = null;
-        Destroy(audioSource.gameObject);
+        audioSource.gameObject.SetActive(false);
 
         yield break;
     }
