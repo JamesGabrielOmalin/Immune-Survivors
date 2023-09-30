@@ -66,15 +66,15 @@ public class PlayerMovement : MonoBehaviour
         inputDir = new(moveInput.x, 0f, moveInput.y);
         moveDir = inputDir;
 
-        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 1.3f))
-        {
-            float distance = hit.distance - 1f;
-            //controller.Move(new Vector3(0, distance, 0));
-            moveDir.y += distance;
-            floorNormal = hit.normal;
-        }
-        else
-            floorNormal = Vector3.up;
+        //if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 1.3f))
+        //{
+        //    float distance = hit.distance - 1f;
+        //    //controller.Move(new Vector3(0, distance, 0));
+        //    moveDir.y += distance;
+        //    floorNormal = hit.normal;
+        //}
+        //else
+        //    floorNormal = Vector3.up;
 
         controller.Move(moveDir * (moveSpeed.Value * Time.deltaTime));
     
