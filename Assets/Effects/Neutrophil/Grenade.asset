@@ -22,7 +22,7 @@ MonoBehaviour:
   - 'Increase Size by 10%. '
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 4d7e6e570e9d65a4c9a994783a0652e2,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 217c8cc3fe2808040b5645c1a913b41f,
     type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
