@@ -19,8 +19,7 @@ public class SymptomManager : MonoBehaviour
     [SerializeField] private int SymptomLevel = 1;
     [SerializeField] private int symptomTimer = 0;
 
-    public System.Action OnSymptomThresholdNotReached;
-    public System.Action OnSymptomThresholdReached;
+    public System.Action OnActivateSymptom;
 
     private void Awake()
     {
@@ -41,15 +40,12 @@ public class SymptomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //EnemyManager.instance.OnSymptomThresholdReached += ActivateSymptoms;
-        //EnemyManager.instance.OnSymptomThresholdNotReached += DeactivateSyptoms;
-
         StartCoroutine(SymptomTimerCoroutine());
-
     }
 
     private void ActivateSymptoms()
     {
+        OnActivateSymptom?.Invoke();
         HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
         foreach(SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
         {
