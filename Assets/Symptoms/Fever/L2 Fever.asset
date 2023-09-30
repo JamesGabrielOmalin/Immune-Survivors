@@ -16,3 +16,5 @@ MonoBehaviour:
   symptomEffects:
   - {fileID: 11400000, guid: 7105d193ed9bd4a4880ec5b233fcf903, type: 2}
   - {fileID: 11400000, guid: 1345601a714f04d4d8d36337d84fcee3, type: 2}
+  - {fileID: 11400000, guid: 37311095f1d44644296f7470a8fb1ee9, type: 2}
+  - {fileID: 11400000, guid: 1eb6b92045ad849459b161ed23eb85bc, type: 2}
