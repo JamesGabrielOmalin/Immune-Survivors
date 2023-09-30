@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 0}
   <HUD>k__BackingField: {fileID: 0}
-  TimeToWin: 600
+  TimeToWin: 900

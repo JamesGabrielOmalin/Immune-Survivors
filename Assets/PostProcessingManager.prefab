@@ -71,6 +71,12 @@ MonoBehaviour:
   targetIntensity: 0.4
   lerpDuration: 0.2
   colorAdjustment: {fileID: 0}
-  defaultColorAdjustment: {r: 0, g: 0, b: 0, a: 0}
-  targetColorList: []
-  transitionDuration: 0
+  defaultColorAdjustment: {r: 1, g: 1, b: 1, a: 1}
+  targetColorList:
+  - {r: 1, g: 0.95, b: 0.95, a: 1}
+  - {r: 1, g: 0.9, b: 0.9, a: 1}
+  - {r: 1, g: 0.85, b: 0.85, a: 1}
+  - {r: 1, g: 0.8, b: 0.8, a: 1}
+  - {r: 1, g: 0.75, b: 0.75, a: 1}
+  - {r: 1, g: 0.65, b: 0.65, a: 1}
+  transitionDuration: 2
