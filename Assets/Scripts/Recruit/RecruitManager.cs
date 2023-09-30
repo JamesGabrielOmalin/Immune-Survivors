@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,8 +14,8 @@ public class KillThreshold
     [field: SerializeField]
 
     public int increment;
-    [field: SerializeField]
 
+    [field: SerializeField]
     public int nRecruitToSpawn;
 }
 
@@ -23,7 +24,12 @@ public class RecruitManager : MonoBehaviour
 
     public static RecruitManager instance;
 
+    public System.Action OnKillCountUpdate;
     public System.Action OnThreshholdUpdate;
+    public System.Action OnRecruitSpawn;
+
+
+    private Camera cam;
 
     [SerializeField] private List<ObjectPool> recruitPools = new();
     private readonly List<GameObject> activeRecruits = new();
@@ -46,6 +52,7 @@ public class RecruitManager : MonoBehaviour
 
     [Header(" Threshold Stats")]
 
+    public int totalKillCount=0;
     public int killCount = 0;
     [SerializeField] private int killThreshold;
     [SerializeField] private int cycle = 1;
@@ -54,6 +61,20 @@ public class RecruitManager : MonoBehaviour
 
     [field: SerializeField]
     public List<KillThreshold> killThresholdList;
+
+
+    [Header("Viewport Bounds Threshold")]
+    
+    [Tooltip("Relocate objects when the x units away from the viewport screen")]
+    [SerializeField] private Vector2 boundsThreshold;
+
+    [Tooltip("Relocate objects by x units outside of the viewport screen (must be less than bouds threshold)")]
+    [SerializeField] private float spawnThreshold;
+
+    [Tooltip("Within (0-1)  LL Viewing fustrum (0,0) ")]
+    private Vector2 minBounds = new Vector2(0,0);
+    [Tooltip("Within (0-1)  UR Viewing fustrum (1,1) ")]
+    private Vector2 maxBounds = new Vector2(1,1);
 
     private void Awake()
     {
@@ -74,7 +95,12 @@ public class RecruitManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        cam = Camera.main;
         player = GameManager.instance.Player;
+
+        minBounds-= boundsThreshold;
+        maxBounds += boundsThreshold;
+        
 
         killThreshold = initialKillRequirement;
         thresholdIncrement = killThresholdList[index].increment;
@@ -86,7 +112,7 @@ public class RecruitManager : MonoBehaviour
             StartCoroutine(SpawnCoroutine());
         }
 
-        StartCoroutine(RelocateRecruits());
+        //StartCoroutine(RelocateRecruits());
     }
 
     private IEnumerator SpawnCoroutine()
@@ -118,14 +144,58 @@ public class RecruitManager : MonoBehaviour
 
             Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
 
-            while (!spawnArea.bounds.Contains(spawnPoint))
+
+            //Vector3 recruitPos = cam.WorldToViewportPoint(spawnPoint);
+
+            //Vector3 ScreenToWorldPos = recruitPos;
+
+            ////if ((recruitPos.x >= minBounds.x && recruitPos.x <= maxBounds.x) && (recruitPos.y >= minBounds.y && recruitPos.y <= maxBounds.y))
+            ////{
+            ////    continue;
+            ////}
+
+            //if (recruitPos.x < minBounds.x)
+            //{
+            //    ScreenToWorldPos.x = -spawnThreshold;
+            //    ScreenToWorldPos.y = Random.value;
+            //}
+            //else if (recruitPos.x > maxBounds.x)
+            //{
+            //    ScreenToWorldPos.x = spawnThreshold;
+            //    ScreenToWorldPos.y = Random.value;
+            //}
+
+            //if (recruitPos.y < minBounds.y)
+            //{
+            //    ScreenToWorldPos.y = -spawnThreshold;
+            //    ScreenToWorldPos.x = Random.value;
+            //}
+            //else if (recruitPos.y > maxBounds.y)
+            //{
+            //    ScreenToWorldPos.y = spawnThreshold;
+            //    ScreenToWorldPos.x = Random.value;
+
+            //}
+
+
+            //Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ScreenToWorldPos.x, ScreenToWorldPos.y, Vector3.Distance(cam.transform.position, spawnPoint)));
+
+            //spawnPoint = new Vector3(newPos.x, spawnPoint.y, newPos.y);
+
+            //Debug.Log("Reloc: " + newPos);
+
+            if (!spawnArea.bounds.Contains(spawnPoint))
             {
                 positiveX = Random.value < 0.5f;
                 positiveZ = Random.value < 0.5f;
 
-                spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
-                
-                Debug.Log($"Out of bounds, moving to: {spawnPoint}");
+                //spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+                spawnPoint = RandomPointInBounds(spawnArea.bounds);
+                spawnPoint.y = 0;
+
+                Debug.Log($"Recruit Out of bounds, moving to: {spawnPoint}");
+
+
             }
 
             PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
@@ -199,7 +269,8 @@ public class RecruitManager : MonoBehaviour
         if (cycle >= killThresholdList[index].startCycle && cycle <= killThresholdList[index].endCycle )
         {
             killCount++;
-
+            totalKillCount++;
+            OnKillCountUpdate?.Invoke();
             amountToSpawn = killThresholdList[index].nRecruitToSpawn;
 
             // spawn units when kill requirement is reached
@@ -210,6 +281,7 @@ public class RecruitManager : MonoBehaviour
                 killThreshold += killThresholdList[index].increment;
                 killCount = 0;
                 cycle++;
+                OnRecruitSpawn?.Invoke();
             }
         }
 
@@ -218,7 +290,9 @@ public class RecruitManager : MonoBehaviour
 
     private IEnumerator RelocateRecruits()
     {
-        WaitForSeconds wait = new(30f);
+        WaitForSeconds wait = new(1.0f);
+        //WaitForFixedUpdate wait = new();
+
         while (this)
         {
             yield return wait;
@@ -226,40 +300,89 @@ public class RecruitManager : MonoBehaviour
             activeRecruits.RemoveAll((recruit) => !recruit.activeInHierarchy);
             activeRecruits.TrimExcess();
 
-            foreach (var recruit in activeRecruits)
+            foreach (GameObject recruit in activeRecruits)
             {
-                if (Vector3.Distance(player.transform.position, recruit.transform.position) > 30f)
+                // Translate World to Viewport
+                Vector3 recruitPos = cam.WorldToViewportPoint(recruit.transform.position);
+
+                Vector3 ViewportToWorldPos = recruitPos;
+
+                // Proceed to next iteration if is within bounds
+                if ((recruitPos.x >= minBounds.x && recruitPos.x <= maxBounds.x) && (recruitPos.y >= minBounds.y && recruitPos.y <= maxBounds.y))
                 {
-                    Vector3 spawnPoint = (recruit.transform.position - player.transform.position).normalized;
+                    //Debug.Log("In range: " + recruitPos);
 
-                    if (spawnPoint.z > 0f)
-                    {
-                        spawnPoint *= 30f;
-                    }
-                    else
-                    {
-                        spawnPoint *= 12f;
-                    }
-
-                    //bool positiveX = Random.value < 0.5f;
-                    //bool positiveZ = Random.value < 0.5f;
-
-                    //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
-                    
-                    //while (!spawnArea.bounds.Contains(spawnPoint))
-                    //{
-                    //    positiveX = Random.value < 0.5f;
-                    //    positiveZ = Random.value < 0.5f;
-
-                    //    spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
-                    //    Debug.Log($"Out of bounds, moving to: {spawnPoint}"); 
-                    //    //yield return null;
-                    //}
-                    
-                    recruit.transform.position = player.transform.position + spawnPoint;
-                    Debug.Log("Relocated " + recruit.name);
+                    continue;
                 }
+
+                if (recruitPos.x < minBounds.x)
+                {
+                    // Left side of the screen
+                    ViewportToWorldPos.x = -spawnThreshold;
+                    ViewportToWorldPos.y = Random.Range(-spawnThreshold,1 + spawnThreshold);
+                }
+                else if (recruitPos.x > maxBounds.x)
+                {
+                    // Right side of the screen
+                    ViewportToWorldPos.x = 1+spawnThreshold;
+                    ViewportToWorldPos.y = Random.Range(-spawnThreshold, 1 + spawnThreshold); ;
+                }
+                else if (recruitPos.y < minBounds.y)
+                {
+                    // Bottom side of the screen
+                    ViewportToWorldPos.y = -spawnThreshold;
+                    ViewportToWorldPos.x = Random.Range(-spawnThreshold, 1 + spawnThreshold);
+                }
+                else if (recruitPos.y > maxBounds.y)
+                {
+                    // Top side of the screen
+                    ViewportToWorldPos.y = 1 + spawnThreshold;
+                    ViewportToWorldPos.x = Random.Range(-spawnThreshold, 1 + spawnThreshold);
+                }
+
+                Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z));
+
+                recruit.transform.position = new Vector3(newPos.x, recruit.transform.position.y, newPos.z);
+
+                //Debug.Log("Not in range: " + recruitPos);
+
             }
+
+            //foreach (var recruit in activeRecruits)
+            //{
+            //    if (Vector3.Distance(player.transform.position, recruit.transform.position) > 30f)
+            //    {
+            //        Vector3 spawnPoint = (recruit.transform.position - player.transform.position).normalized;
+
+            //        if (spawnPoint.z > 0f)
+            //        {
+            //            spawnPoint *= 30f;
+            //        }
+            //        else
+            //        {
+            //            spawnPoint *= 12f;
+            //        }
+
+            //        //bool positiveX = Random.value < 0.5f;
+            //        //bool positiveZ = Random.value < 0.5f;
+
+            //        //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+
+            //        //while (!spawnArea.bounds.Contains(spawnPoint))
+            //        //{
+            //        //    positiveX = Random.value < 0.5f;
+            //        //    positiveZ = Random.value < 0.5f;
+
+            //        //    spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
+            //        //    Debug.Log($"Out of bounds, moving to: {spawnPoint}"); 
+            //        //    //yield return null;
+            //        //}
+
+            //        recruit.transform.position = player.transform.position + spawnPoint;
+            //        Debug.Log("Relocated " + recruit.name);
+            //    }
+            //}
+
         }
     }
 
@@ -267,4 +390,5 @@ public class RecruitManager : MonoBehaviour
     {
         return killThreshold;
     }
+    
 }

@@ -9,6 +9,8 @@ public class UpgradeManager : MonoBehaviour
     public static UpgradeManager instance;
 
     public System.Action OnEffectAcquired;
+    public System.Action OnUpgradeScreen;
+    public System.Action OnUltiGet;
 
     [SerializeField] private UpgradeSelect upgradeScreen;
 
@@ -47,7 +49,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
+        //grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
 
         OnEffectAcquired?.Invoke();
     }

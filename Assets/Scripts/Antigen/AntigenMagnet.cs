@@ -31,6 +31,7 @@ public class AntigenMagnet : MonoBehaviour, IBodyColliderListener
         }
 
         AntigenManager.instance.AddAntigen(antigen.Type);
+        AntigenManager.instance.OnAntigenPickup?.Invoke();
         antigen.gameObject.SetActive(false);
         yield break;
     }

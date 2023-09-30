@@ -17,6 +17,7 @@ public class Enemy : Unit, IDamageInterface
 
     public System.Action OnDeath;
 
+
     private Player targetPlayer;
     private Coroutine attackCoroutine;
     private const float INITIAL_ATTACK_DELAY = 0.25f;
@@ -51,6 +52,8 @@ public class Enemy : Unit, IDamageInterface
 
         // Hide stun indicator
         stunIndicator.SetActive(false);
+
+        EnemyManager.instance.allEnemies.Add(this.gameObject);
     }
 
     private void OnEnable()
@@ -66,10 +69,12 @@ public class Enemy : Unit, IDamageInterface
 
         MoveSpeed.RemoveAllModifiers();
 
-        // Increase HP and Move Speed by 10% for every minute that has passed
+        // Increase HP and Move Speed by 20% for every minute that has passed
         if (GameManager.instance)
         {
-            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.2f, AttributeModifierType.Multiply));
+
+            //MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
             MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
         }
 
@@ -238,5 +243,40 @@ public class Enemy : Unit, IDamageInterface
         dotIndicator.Stop();
         dotCoroutine = null;
         yield break;
+    }
+
+    public void ApplyKnockback(Vector3 force, ForceMode forceMode)
+    {
+        if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb.AddForce(force, forceMode);
+
+        }
+    }
+
+    public void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
+    {
+        if (isInfinite)
+        {
+            var e = attributes.GetAttribute("Move Speed");
+            e.AddModifier(mod); 
+        }
+        else
+        {
+            StartCoroutine(MoveSpeedModifierDurationCoroutine(mod, duration, isInfinite));
+        }
+    }
+
+    private IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
+    {
+        var e =  attributes.GetAttribute("Move Speed");
+
+        e.AddModifier(mod);
+      
+        yield return new WaitForSeconds(duration);
+
+        e.RemoveModifier(mod);
+
+     
     }
 }

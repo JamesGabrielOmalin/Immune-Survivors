@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +33,13 @@ public class Player : MonoBehaviour
         { PlayerUnitType.Neutrophil, false },
         { PlayerUnitType.Macrophage, false },
         { PlayerUnitType.Dendritic, false },
+    };
+
+    private readonly Dictionary<AntigenType, Coroutine> buffCoroutines = new()
+    {
+        { AntigenType.Type_1, null },
+        { AntigenType.Type_2, null },
+        { AntigenType.Type_3, null },
     };
 
     private void Awake()
@@ -86,7 +92,7 @@ public class Player : MonoBehaviour
     {
         if (activeUnit)
         {
-            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value / 4f);
+            activeUnit.Heal(recruit.attributes.GetAttribute("Max HP").Value * 0.10f);
         }
 
         // If already recruit, upgrade instead
@@ -169,6 +175,8 @@ public class Player : MonoBehaviour
 
     public void ApplyAntigenBuffs(AntigenType type, AttributeModifier mod, float duration)
     {
+        if (buffCoroutines[type] != null)
+            StopCoroutine(buffCoroutines[type]);
         StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
@@ -181,19 +189,23 @@ public class Player : MonoBehaviour
         m.AddModifier(mod);
         d.AddModifier(mod);
 
+        neutrophil.buffVFX.Play();
+
         yield return new WaitForSeconds(duration);
+
+        neutrophil.buffVFX.Stop();
 
         n.RemoveModifier(mod);
         m.RemoveModifier(mod);
         d.RemoveModifier(mod);
     }
 
-    public void ApplyMoveSpeedBuff(AttributeModifier mod, float duration)
+    public void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
     {
-        StartCoroutine(MoveSpeedBuffCoroutine(mod, duration));
+       StartCoroutine(MoveSpeedModifierDurationCoroutine(mod, duration, isInfinite));
     }
 
-    private IEnumerator MoveSpeedBuffCoroutine(AttributeModifier mod, float duration)
+    private IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
     {
         var n = neutrophil.attributes.GetAttribute("Move Speed");
         var m = macrophage.attributes.GetAttribute("Move Speed");
@@ -205,13 +217,16 @@ public class Player : MonoBehaviour
 
         playerMovement.UpdateMoveSpeed();
 
-        yield return new WaitForSeconds(duration);
+        if (!isInfinite)
+        {
+            yield return new WaitForSeconds(duration);
 
-        n.RemoveModifier(mod);
-        m.RemoveModifier(mod);
-        d.RemoveModifier(mod);
+            n.RemoveModifier(mod);
+            m.RemoveModifier(mod);
+            d.RemoveModifier(mod);
 
-        playerMovement.UpdateMoveSpeed();
+            playerMovement.UpdateMoveSpeed();
+        }
     }
 
     public PlayerUnit GetUnit(PlayerUnitType type)
