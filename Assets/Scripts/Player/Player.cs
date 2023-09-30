@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
         { AntigenType.Type_3, null },
     };
 
+    private const string DMG_BONUS_STRING = " DMG Bonus";
+
     private void Awake()
     {
         switch (toSpawn)
@@ -182,18 +184,22 @@ public class Player : MonoBehaviour
 
     private IEnumerator AntigenBuffCoroutine(AntigenType type, AttributeModifier mod, float duration)
     {
-        var n = neutrophil.attributes.GetAttribute(type.ToString() + " DMG Bonus");
-        var m = macrophage.attributes.GetAttribute(type.ToString() + " DMG Bonus");
-        var d = dendritic.attributes.GetAttribute(type.ToString() + " DMG Bonus");
+        var n = neutrophil.attributes.GetAttribute(type.ToString() + DMG_BONUS_STRING);
+        var m = macrophage.attributes.GetAttribute(type.ToString() + DMG_BONUS_STRING);
+        var d = dendritic.attributes.GetAttribute(type.ToString() + DMG_BONUS_STRING);
         n.AddModifier(mod);
         m.AddModifier(mod);
         d.AddModifier(mod);
 
         neutrophil.buffVFX.Play();
+        macrophage.buffVFX.Play();
+        dendritic.buffVFX.Play();
 
         yield return new WaitForSeconds(duration);
 
         neutrophil.buffVFX.Stop();
+        macrophage.buffVFX.Stop();
+        dendritic.buffVFX.Stop();
 
         n.RemoveModifier(mod);
         m.RemoveModifier(mod);
