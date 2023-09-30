@@ -23,7 +23,8 @@ public class MacrophagePull : MonoBehaviour
 
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
-    private Vector3 targetPos;
+
+    private WaitForSeconds wait = new WaitForSeconds(0.25f);
 
     private void OnEnable()
     {
@@ -42,7 +43,7 @@ public class MacrophagePull : MonoBehaviour
 
         if (attackDamage <= float.Epsilon)
         {
-            yield return new WaitForSeconds(0.15f);
+            yield return wait;
             this.gameObject.SetActive(false);
             yield break;
         }
@@ -54,7 +55,7 @@ public class MacrophagePull : MonoBehaviour
         switch (type)
         {
             case MacrophagePullType.Line:
-                hits = Physics.OverlapCapsule(transform.position, transform.position + (transform.forward * attackRange), 0.5f * (attackSize + attackRange), layer.value);
+                hits = Physics.OverlapCapsule(transform.position, transform.position + (transform.forward * attackRange), 0.25f * (attackSize), layer.value);
                 break;
             case MacrophagePullType.Cone:
                 hits = Physics.OverlapSphere(transform.position, 2f * attackSize, layer.value);
@@ -80,7 +81,7 @@ public class MacrophagePull : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.15f);
+        yield return wait;
         this.gameObject.SetActive(false);
         yield break;
     }

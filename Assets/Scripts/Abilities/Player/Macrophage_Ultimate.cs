@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 [CreateAssetMenu(fileName = "Macrophage_Ultimate", menuName = "Ability System/Abilities/Macrophage Ultimate")]
 public class Macrophage_Ultimate : Ability
@@ -41,8 +42,11 @@ public class Macrophage_UltimateSpec : AbilitySpec
     {
         Macrophage_Ultimate ultimate = ability as Macrophage_Ultimate;
 
-        var sprite = owner.GetComponentInChildren<SpriteRenderer>();
+        var sprite = owner.GetComponentInChildren<SpriteRenderer>(); 
         
+        var playable = owner.GetComponent<PlayableDirector>();
+        playable.Play();
+
         foreach (Transform child in sprite.transform)
         {
             child.gameObject.SetActive(false);
@@ -62,16 +66,12 @@ public class Macrophage_UltimateSpec : AbilitySpec
         dotAmount.AddModifier(dotMod);
         dotDuration.AddModifier(dotMod);
 
-        owner.transform.localScale = new(2.5f, 2.5f, 2.5f);
-
         yield return new WaitForSeconds(ultimate.Duration);
 
         foreach (Transform child in sprite.transform)
         {
             child.gameObject.SetActive(true);
         }
-
-        owner.transform.localScale = new(1, 1, 1);
 
         // Remove all modifiers
         attackDamage.RemoveModifier(attackMod);
