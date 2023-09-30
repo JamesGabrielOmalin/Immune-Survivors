@@ -84,6 +84,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
             yield break;
         }
 
+        AudioManager.instance.Play("NeutrophilAttack", owner.transform.position);
+
         float angle = 0;
         float angleSteps = 0;
         float spreadFactor = 15f;

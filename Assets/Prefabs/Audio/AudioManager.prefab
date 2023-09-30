@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5776bf605085ea042b870d2a9ca5b3b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPool: {fileID: 0}
+  objectToPool: {fileID: 4864984923243135619, guid: 3550ede35e79b904a96e20cc2a1bac95,
+    type: 3}
   amountToPool: 100
   addIfNotEnough: 1
 --- !u!1 &8750247663846281659
@@ -92,9 +93,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b16f018de1bd74aaa07e31cdb2e9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: NeutrophilAttack
+    clips:
+    - {fileID: 8300000, guid: a1be521eb27ddbd4f8b028138e57e27c, type: 3}
+    - {fileID: 8300000, guid: 586b0017ddd307e4c9708b4fcd651f09, type: 3}
+    - {fileID: 8300000, guid: 0d3bf9dc3af71e74fbe56c5c84b2d8cc, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
   musicSource: {fileID: 0}
-  audiosource: {fileID: 0}
-  Audiopool: {fileID: 0}
-  SFXMasterVolume: 0
+  audiosource: {fileID: 285206030483098560, guid: 0c61a735aeca4ab4db6910c5cde198b0,
+    type: 3}
+  Audiopool: {fileID: 5703550600313480107}
+  SFXMasterVolume: 50
   SFXMasterMute: 0
