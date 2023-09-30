@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AffectedUnit: 0
   EffectType: 2
-  ActivationType: 0
-  ActivationDelay: 0
+  ActivationType: 1
+  ActivationDelay: 5
   KnockbackIntensity: 0
   Direction: 0
   DotDamage: 1
-  DotDuration: 999999
-  DotTickRate: 1
+  DotDuration: 3
+  DotTickRate: 2
   MoveSpeedModifierAmount: 0
   ModifierType: 0
   IsInfiniteDuration: 0

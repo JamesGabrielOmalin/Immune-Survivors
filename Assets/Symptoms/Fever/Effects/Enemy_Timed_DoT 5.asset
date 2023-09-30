@@ -18,7 +18,7 @@ MonoBehaviour:
   ActivationDelay: 1
   KnockbackIntensity: 0
   Direction: 0
-  DotDamage: 1
+  DotDamage: 0.5
   DotDuration: 10
   DotTickRate: 1
   MoveSpeedModifierAmount: 0
