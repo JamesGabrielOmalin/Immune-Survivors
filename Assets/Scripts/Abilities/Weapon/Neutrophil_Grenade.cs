@@ -90,6 +90,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
             Vector3 targetPos = target.transform.position;
             Vector3 dir = Vector3.ProjectOnPlane(targetPos - owner.transform.position, Vector3.up).normalized;
+            AudioManager.instance.Play("NeutrophilGrenade", owner.transform.position);
 
             grenadeObject.transform.forward = dir;
 

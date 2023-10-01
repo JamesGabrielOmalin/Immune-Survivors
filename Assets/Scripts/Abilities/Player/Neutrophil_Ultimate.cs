@@ -72,6 +72,8 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         //float damage = DamageCalculator.CalcDamage(ad * (1f + aS), cr, cd);
         float kbChance = 0.25f;
 
+        AudioManager.instance.Play("NeutrophilUltimate", owner.transform.position);
+
         for (int i = 0; i < 25; i++)
         {
             var hits = Physics.OverlapSphere(owner.transform.position, 5f);
