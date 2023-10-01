@@ -15,7 +15,8 @@ public class Cytokine : MonoBehaviour, IBodyColliderListener
         if (other.TryGetComponent(out Player player))
         {
             AttributeModifier mod = new(AntigenManager.instance.GetAntigenCount(Type) * 0.01f, AttributeModifierType.Multiply);
-            player.ApplyAntigenBuffs(Type, mod, 2.5f);
+            float duration = 2.5f + AntigenManager.instance.GetAntigenCount(Type) * 0.001f;
+            player.ApplyAntigenBuffs(Type, mod, duration);
             this.gameObject.SetActive(false);
             Debug.Log("Apply buff");
         }
