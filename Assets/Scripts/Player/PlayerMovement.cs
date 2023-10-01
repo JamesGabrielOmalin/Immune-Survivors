@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private List<Animator> animators = new();
     [SerializeField] private CharacterController controller;
+    [SerializeField] private new Rigidbody rigidbody;
     [SerializeField] private Player player;
     [SerializeField] private PlayerInput input;
     [SerializeField] private List<SpriteRenderer> sprites = new();
@@ -28,12 +29,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        controller.enabled = true;
+        //controller.enabled = true;
+        rigidbody.WakeUp();
     }
 
     private void OnDisable()
     {
-        controller.enabled = false;
+        //controller.enabled = false;
+        rigidbody.Sleep();
     }
 
     public void UpdateMoveSpeed()
@@ -42,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
     }
@@ -58,6 +61,9 @@ public class PlayerMovement : MonoBehaviour
             if (animator.isActiveAndEnabled)
                 animator.SetBool(ANIMATOR_ISMOVING, hasInput);
         }
+
+        if (!hasInput)
+            return;
 
         //else if (moveInput.x != 0f)
         //    sprite.flipX = moveInput.x < 0f;
@@ -75,15 +81,16 @@ public class PlayerMovement : MonoBehaviour
         //else
         //    floorNormal = Vector3.up;
 
-        controller.Move(moveDir * (moveSpeed.Value * Time.deltaTime));
-    
-        if (controller.velocity.x != 0f)
+        //controller.Move(moveDir * (moveSpeed.Value * Time.deltaTime));
+
+        var deltaPos = moveDir * (moveSpeed.Value * Time.fixedDeltaTime);
+
+        rigidbody.MovePosition(rigidbody.transform.position + deltaPos);
+
+        foreach (var sprite in sprites)
         {
-            foreach (var sprite in sprites)
-            {
-                if (sprite.enabled)
-                    sprite.flipX = moveInput.x < 0f;
-            }
+            if (sprite.enabled)
+                sprite.flipX = moveInput.x < 0f;
         }
 
         if (hasInput)

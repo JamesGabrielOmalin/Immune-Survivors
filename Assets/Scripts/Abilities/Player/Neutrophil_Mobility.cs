@@ -35,33 +35,46 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
-        owner.StartCoroutine(UpdateCD());
-
         float tick = 0f;
 
         var mobility = ability as Neutrophil_Mobility;
-        CharacterController controller = owner.GetComponentInParent<CharacterController>();
+        //CharacterController controller = owner.GetComponentInParent<CharacterController>();
+        Rigidbody rigidbody = owner.transform.root.GetComponent<Rigidbody>();
+        var input = owner.transform.root.GetComponent<PlayerInput>().MoveInput;
 
-        Vector3 direction = controller.velocity.normalized;
+        Vector3 direction = new(input.x, 0, input.y);
 
-        if (controller.velocity.sqrMagnitude <= 0f)
-            direction = Vector3.right;
+        if (direction == Vector3.zero)
+        {
+            yield break;
+        }
 
         IsDashing = true;
 
-        float y = owner.transform.position.y;
+        //Physics.IgnoreLayerCollision(6, 11, true);
+
+        var velocity = direction *mobility.DashSpeed;
+        var deltaPos = direction * (mobility.DashSpeed * Time.fixedDeltaTime);
+
+        rigidbody.AddForce(direction * mobility.DashSpeed, ForceMode.VelocityChange);
+
         while (tick < mobility.MaxDashTime)
         {
-            tick += Time.deltaTime;
-            controller.Move(direction * (moveSpeed.Value * mobility.DashSpeed * Time.deltaTime));
+            tick += Time.fixedDeltaTime;
+            rigidbody.velocity = velocity;
+            //rigidbody.AddForce(deltaPos, ForceMode.VelocityChange);
+            yield return new WaitForFixedUpdate();
 
-            yield return null;
+            Debug.Log($"Dash: {rigidbody.velocity}");
 
-            var newPos = owner.transform.position;
-            newPos.y = y;
-            owner.transform.position = newPos;
+            //var newPos = owner.transform.position;
+            //newPos.y = y;
+            //owner.transform.position = newPos;
         }
+        //Physics.IgnoreLayerCollision(6, 11, false);
+
+        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+        owner.StartCoroutine(UpdateCD());
 
         yield break;
     }
