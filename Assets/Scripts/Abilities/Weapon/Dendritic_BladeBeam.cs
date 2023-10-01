@@ -47,16 +47,17 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        IsAttacking = true;
+        while (true)
+        {
+            IsAttacking = true;
 
-        // Wait before shooting                                                          // Level 3 and higher: Increase ATK SPD by 20%
-        yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f));
+            // Wait before shooting                                                          // Level 3 and higher: Increase ATK SPD by 20%
+            yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f));
 
-        // start slashing
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield return Slash();
-
-        yield break;
+            // start slashing
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield return Slash();
+        }
     }
 
     public override void EndAbility()

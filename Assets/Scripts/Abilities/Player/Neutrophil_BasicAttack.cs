@@ -55,18 +55,19 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        IsAttacking = true;              
-                                        // Level 3 or higher: increase Attack Speed by 25%
-        float AS = (attackSpeed.Value * (abilityLevel >= 3 ? 1.25f : 1f));
+        while(true)
+        {
+            IsAttacking = true;
+            // Level 3 or higher: increase Attack Speed by 25%
+            float AS = (attackSpeed.Value * (abilityLevel >= 3 ? 1.25f : 1f));
 
-        // Wait before shooting                
-        yield return new WaitForSeconds(1f / AS);
+            // Wait before shooting                
+            yield return new WaitForSeconds(1f / AS);
 
-        // start shooting
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield return Shoot();
-
-        yield break;
+            // start shooting
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield return Shoot();
+        }
     }
 
     public override void EndAbility()

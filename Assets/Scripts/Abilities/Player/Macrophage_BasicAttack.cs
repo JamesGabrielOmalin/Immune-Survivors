@@ -48,20 +48,23 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         return base.CanActivateAbility() && !IsAttacking;
     }
 
+    private static readonly WaitForSeconds attackWait = new(1f);
+
     public override IEnumerator ActivateAbility()
     {
-        IsAttacking = true;
+        while (true)
+        {
+            IsAttacking = true;
 
-        // Wait before consuming
-        yield return new WaitForSeconds(1f / attackSpeed.Value);
+            // Wait before consuming
+            yield return new WaitForSeconds(1f / attackSpeed.Value);
 
-        // start consume
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            Consume();
+            // start consume
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                Consume();
 
-        yield return new WaitForSeconds(1f);
-
-        yield break;
+            yield return attackWait;
+        }
     }
 
     public override void EndAbility()

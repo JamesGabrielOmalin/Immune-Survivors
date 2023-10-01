@@ -46,16 +46,17 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        yield return new WaitUntil(() => owner.GetComponent<AbilitySet>().CanUseBasicAttack);
-        IsAttacking = true;
+        while (true)
+        {
+            yield return new WaitUntil(() => owner.GetComponent<AbilitySet>().CanUseBasicAttack);
+            IsAttacking = true;
 
-        // Wait before shooting
-        yield return new WaitForSeconds(2f / attackSpeed.Value);
+            // Wait before shooting
+            yield return new WaitForSeconds(2f / attackSpeed.Value);
 
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield return Shoot();
-
-        yield break;
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield return Shoot();
+        }
     }
 
     private IEnumerator Shoot()
