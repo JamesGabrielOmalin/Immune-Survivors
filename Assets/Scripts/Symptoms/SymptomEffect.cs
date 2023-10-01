@@ -37,6 +37,8 @@ public class SymptomEffect: ScriptableObject
         Left = 0,
         Right = 1,
         Away = 2,
+        Random = 3,
+
     }
 
     //public string Name;
@@ -92,7 +94,6 @@ public class SymptomEffect: ScriptableObject
 
                     case KnockbackDirection.Right:
                         dir = Vector3.right;
-
                         break;
                 }
 
@@ -100,6 +101,7 @@ public class SymptomEffect: ScriptableObject
                 {
                     if(GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
                     {
+
                         SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu,dir));
                         //pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
                     }
@@ -110,6 +112,14 @@ public class SymptomEffect: ScriptableObject
                     {
                         if (enemy.TryGetComponent<Enemy>(out Enemy eu))
                         {
+                            if (Direction == KnockbackDirection.Away)
+                            {
+                                dir = enemy.transform.position - player.transform.position;
+                            }
+                            else if (Direction == KnockbackDirection.Random)
+                            {
+                                dir = RandomizeKnockbackDirection();
+                            }
                             SymptomManager.instance.StartCoroutine(KnockbackCoroutine(eu, dir));
 
                             //eu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
@@ -129,10 +139,15 @@ public class SymptomEffect: ScriptableObject
                 }
                 else if (AffectedUnit == TargetUnit.Enemy)
                 {
+
                     foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
                     {
                         if (enemy.TryGetComponent<Enemy>(out Enemy enemyComp))
                         {
+                            if (Direction == KnockbackDirection.Away)
+                            {
+                                dir = enemy.transform.position - player.transform.position;
+                            }
                             enemyComp.ApplyDoT(DotDamage, DotDuration, DotTickRate);
                         }
                     }
@@ -205,6 +220,31 @@ public class SymptomEffect: ScriptableObject
 
         }
         while (ActivationType == SymptomActivationType.Loop);
+    }
+
+    private Vector3 RandomizeKnockbackDirection()
+    {
+        Vector3 direction = Vector3.zero;
+        int index = Random.Range(1, 4);
+        switch (index)
+        {
+            case 1:
+                direction = Vector3.left;
+                break;
+            case 2:
+                direction = Vector3.right;
+
+                break;
+            case 3:
+                direction = Vector3.forward;
+                break;
+
+            case 4:
+                direction = -Vector3.forward;
+                break;
+        }
+
+        return direction;
     }
 
 }
