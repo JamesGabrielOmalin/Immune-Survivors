@@ -39,6 +39,7 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
     {
         //InitializeAttributes(owner.gameObject);
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;

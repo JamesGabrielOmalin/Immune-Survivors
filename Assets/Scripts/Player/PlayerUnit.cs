@@ -71,12 +71,12 @@ public class PlayerUnit : Unit, IDamageInterface
 
         //StartCoroutine(Attack());
 
-        var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
-        foreach (var basicAttack in attacks)
-        {
-            //yield return basicAttack.TryActivateAbility();
-            StartCoroutine(basicAttack.TryActivateAbility());
-        }
+        //var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
+        //foreach (var basicAttack in attacks)
+        //{
+        //    //yield return basicAttack.TryActivateAbility();
+        //    StartCoroutine(basicAttack.TryActivateAbility());
+        //}
 
         StartCoroutine(Regen());
     }

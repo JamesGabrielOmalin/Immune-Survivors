@@ -34,6 +34,7 @@ public class Neutrophil_StabSpec : AbilitySpec
     public Neutrophil_StabSpec(Neutrophil_Stab ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;
@@ -109,6 +110,7 @@ public class Neutrophil_StabSpec : AbilitySpec
         stab.target = target.GetComponent<Enemy>();
 
         stab.transform.localScale = scale;
+        Debug.Log("STAB STAB STAB");
     }
 
     private void Init()
