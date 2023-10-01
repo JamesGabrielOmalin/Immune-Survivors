@@ -36,6 +36,7 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
     public Dendritic_JudgementCutSpec(Dendritic_JudgementCut ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;
@@ -47,16 +48,17 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        IsAttacking = true;
+        while (true)
+        {
+            IsAttacking = true;
 
-        // Wait before shooting                                                            // Level 4 and higher: Increase ATK SPD by 30%
-        yield return new WaitForSeconds(basicAttack.AttackInterval / (attackSpeed.Value * (abilityLevel >= 4 ? 1.3f : 1f)));
+            // Wait before shooting                                                            // Level 4 and higher: Increase ATK SPD by 30%
+            yield return new WaitForSeconds(basicAttack.AttackInterval / (attackSpeed.Value * (abilityLevel >= 4 ? 1.3f : 1f)));
 
-        // start slashing
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield return Slash();
-
-        yield break;
+            // start slashing
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield return Slash();
+        }
     }
 
     public override void EndAbility()

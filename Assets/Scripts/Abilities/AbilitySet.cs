@@ -66,7 +66,8 @@ public class AbilitySet : MonoBehaviour
         {
             ultimateButton.SetActive(true);
             Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
-            abilitySystem.GrantAbility(Ultimate); 
+            abilitySystem.GrantAbility(Ultimate);
+            UpgradeManager.instance.OnUltiGet?.Invoke();
         }
     }
 

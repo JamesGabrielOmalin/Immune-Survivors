@@ -35,6 +35,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
     public Neutrophil_GrenadeSpec(Neutrophil_Grenade ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;
@@ -46,16 +47,17 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        yield return new WaitUntil(() => owner.GetComponent<AbilitySet>().CanUseBasicAttack);
-        IsAttacking = true;
+        while (true)
+        {
+            yield return new WaitUntil(() => owner.GetComponent<AbilitySet>().CanUseBasicAttack);
+            IsAttacking = true;
 
-        // Wait before shooting
-        yield return new WaitForSeconds(2f / attackSpeed.Value);
+            // Wait before shooting
+            yield return new WaitForSeconds(2f / attackSpeed.Value);
 
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield return Shoot();
-
-        yield break;
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield return Shoot();
+        }
     }
 
     private IEnumerator Shoot()
@@ -90,6 +92,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
             Vector3 targetPos = target.transform.position;
             Vector3 dir = Vector3.ProjectOnPlane(targetPos - owner.transform.position, Vector3.up).normalized;
+            AudioManager.instance.Play("NeutrophilGrenade", owner.transform.position);
 
             grenadeObject.transform.forward = dir;
 
