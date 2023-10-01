@@ -257,7 +257,7 @@ public class EnemyManager : MonoBehaviour
     public void SpawnEnemy(Vector3 position, string poolName)
     {
         GameObject enemy = RequestFromPool(position, poolName);
-        StartCoroutine(RelocateEnemy(enemy));
+        //StartCoroutine(RelocateEnemy(enemy));
 
         if (!enemy)
         {

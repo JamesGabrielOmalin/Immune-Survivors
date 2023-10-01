@@ -26,11 +26,19 @@ public class SymptomEffectEditor : Editor
         switch (scriptableObject.EffectType)
         {
             case SymptomEffect.SymptomEffectType.Knockback:
-                var value1Property = serializedObject.FindProperty("KnockbackIntensity");
-                EditorGUILayout.PropertyField(value1Property);
 
                 var Direction = serializedObject.FindProperty("Direction");
                 EditorGUILayout.PropertyField(Direction);
+
+                var KnockIntensity = serializedObject.FindProperty("KnockbackIntensity");
+                EditorGUILayout.PropertyField(KnockIntensity);
+
+                var KnockCount = serializedObject.FindProperty("KnockbackCount");
+                EditorGUILayout.PropertyField(KnockCount);
+
+                var KnockInterval = serializedObject.FindProperty("KnockbackInterval");
+                EditorGUILayout.PropertyField(KnockInterval);
+
                 break;
 
             // Add cases for other enum values if needed

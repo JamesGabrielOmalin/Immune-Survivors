@@ -26,7 +26,9 @@ public class PostProcessingManager : MonoBehaviour
 
 
     [Header("Color Adjustment")]
-    [SerializeField] ColorAdjustments colorAdjustment;
+    private ColorAdjustments colorAdjustment;
+    [SerializeField] Color feverColor;
+
     [SerializeField] Color defaultColorAdjustment;
     [SerializeField] List<Color> targetColorList;
     [SerializeField] float transitionDuration;
@@ -149,11 +151,25 @@ public class PostProcessingManager : MonoBehaviour
 
         while (time < transitionDuration)
         {
+            colorAdjustment.colorFilter.value = Color.Lerp(startColor, feverColor, time / transitionDuration);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(10f);
+        time = 0;
+        colorAdjustment.colorFilter.value = feverColor;
+        startColor = feverColor;
+
+        while (time < transitionDuration)
+        {
             colorAdjustment.colorFilter.value = Color.Lerp(startColor, targetColorList[level], time / transitionDuration);
 
             time += Time.deltaTime;
             yield return null;
         }
+
         colorAdjustment.colorFilter.value = targetColorList[level];
         defaultColorAdjustment = targetColorList[level];
     }

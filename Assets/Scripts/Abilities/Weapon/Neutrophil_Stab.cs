@@ -34,6 +34,7 @@ public class Neutrophil_StabSpec : AbilitySpec
     public Neutrophil_StabSpec(Neutrophil_Stab ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;
@@ -45,16 +46,19 @@ public class Neutrophil_StabSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        if (!owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield break;
+        while (true)
+        {
+            if (!owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield break;
 
-        IsAttacking = true;
+            IsAttacking = true;
 
-        // Increase attack speed per level
-        float AS = attackSpeed.Value + ((abilityLevel - 1) * 1.1f);
-        yield return new WaitForSeconds(2.5f / AS);
+            // Increase attack speed per level
+            float AS = attackSpeed.Value + ((abilityLevel - 1) * 1.1f);
+            yield return new WaitForSeconds(2.5f / AS);
 
-        Stab();
+            Stab();
+        }
     }
 
     public override void EndAbility()
@@ -76,6 +80,7 @@ public class Neutrophil_StabSpec : AbilitySpec
 
         Vector3 scale = Vector3.one * AZ;
 
+        
         GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
 
         if (target == null)
@@ -90,7 +95,8 @@ public class Neutrophil_StabSpec : AbilitySpec
         {
             return;
         }
-
+        
+        AudioManager.instance.Play("NeutrophilStab", owner.transform.position);
         stabObject.transform.forward = dir;
 
         NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
@@ -104,6 +110,7 @@ public class Neutrophil_StabSpec : AbilitySpec
         stab.target = target.GetComponent<Enemy>();
 
         stab.transform.localScale = scale;
+        Debug.Log("STAB STAB STAB");
     }
 
     private void Init()

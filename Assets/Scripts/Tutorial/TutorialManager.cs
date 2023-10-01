@@ -13,6 +13,8 @@ public class TutorialManager : MonoBehaviour
     private Queue<string> dynamicPromptTextQueue = new();
     private Coroutine dynamicPromptCoroutine;
 
+    public static bool isFirstTime;
+
     //StaticPrompt variables here
     //WARNING: CURRENTLY NO CHECKER FOR IF INDEX IS OVER/UNDER
     [SerializeField] private List<GameObject> StaticPrompts = new List<GameObject>();
@@ -26,6 +28,8 @@ public class TutorialManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -35,7 +39,13 @@ public class TutorialManager : MonoBehaviour
         AddDynamicPrompt("imagine");
 
         //StaticPrompts activation ritual
-        //There should be a bool here whether or not these things should show up or not for new/old players
+        
+        //Checker if player wants prompts or not
+        if (!isFirstTime)
+        {
+            return;
+        }
+
         Instantiate(StaticPrompts[0]);
         AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
         RecruitManager.instance.OnRecruitSpawn += EnablePromptOnThresholdUpdate;

@@ -50,11 +50,17 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
         IsDashing = true;
 
+        float y = owner.transform.position.y;
         while (tick < mobility.MaxDashTime)
         {
             tick += Time.deltaTime;
             controller.Move(direction * (moveSpeed.Value * mobility.DashSpeed * Time.deltaTime));
+
             yield return null;
+
+            var newPos = owner.transform.position;
+            newPos.y = y;
+            owner.transform.position = newPos;
         }
 
         yield break;

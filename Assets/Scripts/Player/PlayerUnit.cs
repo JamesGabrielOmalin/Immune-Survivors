@@ -18,24 +18,24 @@ public class PlayerUnit : Unit, IDamageInterface
     [field: SerializeField] public AbilitySet AbilitySet { get; private set; }
 
     [field:SerializeField] public PlayerUnitType UnitType { get; private set; }
-    public bool IsDead => HP.BaseValue <= 0f;
+    //public bool IsDead => HP.BaseValue <= 0f;
 
     public System.Action OnUnitUpgraded;
-    public System.Action OnDeath;
-    public System.Action OnTakeDamage;
+    //public System.Action OnDeath;
+    //public System.Action OnTakeDamage;
 
 
     private List<Effect> upgrades = new();
 
     private Attribute level;
-    private Attribute maxHP;
-    private Attribute HP;
+    //private Attribute MaxHP;
+    //private Attribute HP;
     private Attribute HPRegen;
-    private Attribute Armor;
+    //private Attribute Armor;
 
-    public bool IsStunned { get; private set; } = false;
-    private Coroutine stunCoroutine;
-    private Coroutine dotCoroutine;
+    //public bool IsStunned { get; private set; } = false;
+    //private Coroutine stunCoroutine;
+    //private Coroutine dotCoroutine;
 
     [Header("UI")]
     [SerializeField] private Slider HPBar;
@@ -43,30 +43,41 @@ public class PlayerUnit : Unit, IDamageInterface
     [Header("VFX")]
     public VisualEffect buffVFX;
 
-    [SerializeField] private VisualEffect dotIndicator;
-    [SerializeField] private GameObject stunIndicator;
+    //[SerializeField] private VisualEffect dotIndicator;
+    //[SerializeField] private GameObject stunIndicator;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         level = attributes.GetAttribute("Level");
-        maxHP = attributes.GetAttribute("Max HP");
-        HP = attributes.GetAttribute("HP");
         HPRegen = attributes.GetAttribute("HP Regen");
-        Armor = attributes.GetAttribute("Armor");
+
+        //MaxHP = attributes.GetAttribute("Max HP");
+        //HP = attributes.GetAttribute("HP");
+        //HPRegen = attributes.GetAttribute("HP Regen");
+        //Armor = attributes.GetAttribute("Armor");
 
         if (HPBar)
         {
-            maxHP.OnAttributeModified += delegate { HPBar.maxValue = maxHP.Value; };
+            MaxHP.OnAttributeModified += delegate { HPBar.maxValue = MaxHP.Value; };
             HP.OnAttributeModified += delegate { HPBar.value = HP.Value; };
 
-            HPBar.maxValue = maxHP.Value;
+            HPBar.maxValue = MaxHP.Value;
             HPBar.value = HP.Value;
         }
 
-        stunIndicator.SetActive(false);
+        //stunIndicator.SetActive(false);
 
-        StartCoroutine(Attack());
+        //StartCoroutine(Attack());
+
+        //var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
+        //foreach (var basicAttack in attacks)
+        //{
+        //    //yield return basicAttack.TryActivateAbility();
+        //    StartCoroutine(basicAttack.TryActivateAbility());
+        //}
+
         StartCoroutine(Regen());
     }
 
@@ -74,6 +85,7 @@ public class PlayerUnit : Unit, IDamageInterface
     {
         OnTakeDamage?.Invoke();
 
+        Debug.Log("Take Damage");
         HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add)); 
         
         if (HP.Value <= 0f)
@@ -86,10 +98,10 @@ public class PlayerUnit : Unit, IDamageInterface
     public void Heal(float amount)
     {
         HP.ApplyInstantModifier(new(amount, AttributeModifierType.Add));
-        HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, maxHP.Value);
+        HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, MaxHP.Value);
     }
 
-    public void ApplyStun(float duration)
+    public override void ApplyStun(float duration)
     {
         if (IsDead)
             return;
@@ -101,7 +113,7 @@ public class PlayerUnit : Unit, IDamageInterface
     }
 
 
-    private IEnumerator Stun(float duration)
+    protected override IEnumerator Stun(float duration)
     {
         IsStunned = true;
         stunIndicator.SetActive(true);
@@ -115,7 +127,7 @@ public class PlayerUnit : Unit, IDamageInterface
         yield break;
     }
 
-    public void ApplyDoT(float damage, float duration, float tickRate)
+    public override void ApplyDoT(float damage, float duration, float tickRate)
     {
         if (IsDead)
             return;
@@ -126,7 +138,7 @@ public class PlayerUnit : Unit, IDamageInterface
         dotCoroutine = StartCoroutine(DoT(damage, duration, tickRate));
     }
 
-    private IEnumerator DoT(float damage, float duration, float tickRate)
+    protected override IEnumerator DoT(float damage, float duration, float tickRate)
     {
         if (damage > float.Epsilon)
         {
@@ -149,7 +161,7 @@ public class PlayerUnit : Unit, IDamageInterface
         yield break;
     }
 
-    public void ApplyKnockback(Vector3 force, ForceMode forceMode)
+    public override void ApplyKnockback(Vector3 force, ForceMode forceMode)
     {
         if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
@@ -170,7 +182,6 @@ public class PlayerUnit : Unit, IDamageInterface
 
         if (level.BaseValue == 5)
         {
-            UpgradeManager.instance.OnUltiGet.Invoke();
             AbilitySet.GrantUltimate();
         }
     }
@@ -187,20 +198,21 @@ public class PlayerUnit : Unit, IDamageInterface
 
     private IEnumerator Attack()
     {
-        yield return null;
+        yield break;
+        //yield return null;
 
-        while (this)
-        {
-            var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
+        //while (this)
+        //{
+        //    var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
 
-            foreach (var basicAttack in attacks)
-            {
-                //yield return basicAttack.TryActivateAbility();
-                StartCoroutine(basicAttack.TryActivateAbility());
-            }
+        //    foreach (var basicAttack in attacks)
+        //    {
+        //        //yield return basicAttack.TryActivateAbility();
+        //        StartCoroutine(basicAttack.TryActivateAbility());
+        //    }
 
-            yield return new WaitUntil(() => attacks.TrueForAll((attack) => attack.CanActivateAbility()));
-        }
+        //    yield return new WaitUntil(() => attacks.TrueForAll((attack) => attack.CanActivateAbility()));
+        //}
     }
 
     private IEnumerator Regen()
@@ -210,13 +222,13 @@ public class PlayerUnit : Unit, IDamageInterface
 
         while (HP.Value > 0f)
         {
-            yield return new WaitUntil(() => HP.BaseValue < maxHP.Value);
+            yield return new WaitUntil(() => HP.BaseValue < MaxHP.Value);
             yield return wait;
 
             // Restore HP through HP Regen
             HP.ApplyInstantModifier(new(HPRegen.Value, AttributeModifierType.Add));
             // Clamp HP to Max HP
-            HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, maxHP.Value);
+            HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, MaxHP.Value);
         }
     }
 }
