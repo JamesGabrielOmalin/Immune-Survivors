@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
@@ -52,6 +53,10 @@ public class SymptomEffect: ScriptableObject
     //knockback
     [field: SerializeField] float KnockbackIntensity;
     [field: SerializeField] KnockbackDirection Direction;
+    [field: SerializeField] int KnockbackCount;
+    [field: SerializeField] float KnockbackInterval;
+
+
 
 
     [Header("Effect Attributes")]
@@ -95,7 +100,8 @@ public class SymptomEffect: ScriptableObject
                 {
                     if(GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
                     {
-                        pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+                        SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu,dir));
+                        //pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
                     }
                 }
                 else if (AffectedUnit == TargetUnit.Enemy)
@@ -104,7 +110,9 @@ public class SymptomEffect: ScriptableObject
                     {
                         if (enemy.TryGetComponent<Enemy>(out Enemy eu))
                         {
-                            eu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+                            SymptomManager.instance.StartCoroutine(KnockbackCoroutine(eu, dir));
+
+                            //eu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
                         }
                     }
                 }
@@ -175,6 +183,16 @@ public class SymptomEffect: ScriptableObject
             default:
                 break;
         }
+    }
+
+    private IEnumerator KnockbackCoroutine(Unit unit, Vector3 dir)
+    {
+         for (int i = 0; i < KnockbackCount; i++)
+         {
+            yield return new WaitForSeconds(KnockbackInterval);
+
+            unit.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+         }
     }
 
     public IEnumerator SymptomCoroutine()
