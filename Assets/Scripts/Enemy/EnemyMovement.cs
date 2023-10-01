@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        if (enemy.IsStunned || Vector3.Distance(transform.position, target.transform.position) <= 2f)
+        if (enemy.IsStunned)
             return;
         moveDir = (target.transform.position - transform.position).normalized;
 
