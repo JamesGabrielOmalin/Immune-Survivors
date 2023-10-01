@@ -35,6 +35,7 @@ public class UpgradeManager : MonoBehaviour
 
     //private readonly List<Effect> grantedWeapons = new();
     public readonly Dictionary<Effect, int> grantedWeapons = new();
+    public readonly Dictionary<Effect, int> grantedDefaultWeapons = new();
 
     private void Awake()
     {
@@ -49,7 +50,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        //grantedWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
+        grantedDefaultWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
 
         OnEffectAcquired?.Invoke();
     }
@@ -70,7 +71,14 @@ public class UpgradeManager : MonoBehaviour
                     grantedEffects[unit][effect] += 1;
                 break;
             case EffectType.Weapon:
-                if (!grantedWeapons.ContainsKey(effect))
+                if (defaultWeapons.Contains(effect))
+                {
+                    if (!grantedDefaultWeapons.ContainsKey(effect))
+                        grantedDefaultWeapons.Add(effect, 1);
+                    else
+                        grantedDefaultWeapons[effect] += 1;
+                }
+                else if (!grantedWeapons.ContainsKey(effect))
                     grantedWeapons.Add(effect, 1);
                 else
                     grantedWeapons[effect] += 1;
