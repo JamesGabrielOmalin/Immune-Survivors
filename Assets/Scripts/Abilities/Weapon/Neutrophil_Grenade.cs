@@ -62,12 +62,12 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
     private IEnumerator Shoot()
     {
-        WaitForSeconds wait = new(0.5f);
+        WaitForSeconds wait = new(0.25f);
 
                                          // Level 2 and higher: Increase DMG by 5
         float AD = attackDamage.Value + (abilityLevel >= 2 ? 5f : 0f);
         // Increase size per level
-        float AZ = attackSize.Value * ((abilityLevel - 1) * 1.1f);
+        float AZ = attackSize.Value + ((abilityLevel - 1) * 1.1f);
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
                                 // Level 3 and higher: Increase slow amount by 25%
@@ -91,7 +91,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
                 continue;
 
             Vector3 targetPos = target.transform.position;
-            Vector3 dir = Vector3.ProjectOnPlane(targetPos - owner.transform.position, Vector3.up).normalized;
+            Vector3 dir = (targetPos - owner.transform.position).normalized;
             AudioManager.instance.Play("NeutrophilGrenade", owner.transform.position);
 
             grenadeObject.transform.forward = dir;
@@ -108,6 +108,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
             grenade.transform.localScale = scale;
 
             yield return wait;
+            Debug.Log($"GRANADA: {grenadeObject.transform.position}");
         }
     }
 
