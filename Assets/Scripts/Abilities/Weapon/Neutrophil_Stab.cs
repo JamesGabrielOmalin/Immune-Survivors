@@ -79,6 +79,7 @@ public class Neutrophil_StabSpec : AbilitySpec
 
         Vector3 scale = Vector3.one * AZ;
 
+        
         GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
 
         if (target == null)
@@ -93,7 +94,8 @@ public class Neutrophil_StabSpec : AbilitySpec
         {
             return;
         }
-
+        
+        AudioManager.instance.Play("NeutrophilStab", owner.transform.position);
         stabObject.transform.forward = dir;
 
         NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
