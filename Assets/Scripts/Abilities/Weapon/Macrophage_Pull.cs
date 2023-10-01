@@ -39,6 +39,7 @@ public class Macrophage_PullSpec : AbilitySpec
     public Macrophage_PullSpec(Macrophage_Pull ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public override IEnumerator ActivateAbility()

@@ -35,6 +35,7 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
     public Neutrophil_GrenadeSpec(Neutrophil_Grenade ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;

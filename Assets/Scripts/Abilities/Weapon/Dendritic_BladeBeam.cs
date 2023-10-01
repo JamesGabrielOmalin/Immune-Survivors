@@ -36,6 +36,7 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
     public Dendritic_BladeBeamSpec(Dendritic_BladeBeam ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;
