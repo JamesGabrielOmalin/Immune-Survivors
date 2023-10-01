@@ -182,7 +182,6 @@ public class PlayerUnit : Unit, IDamageInterface
 
         if (level.BaseValue == 5)
         {
-            UpgradeManager.instance.OnUltiGet.Invoke();
             AbilitySet.GrantUltimate();
         }
     }

@@ -100,7 +100,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 586b0017ddd307e4c9708b4fcd651f09, type: 3}
     - {fileID: 8300000, guid: 0d3bf9dc3af71e74fbe56c5c84b2d8cc, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NeutrophilGrenade
