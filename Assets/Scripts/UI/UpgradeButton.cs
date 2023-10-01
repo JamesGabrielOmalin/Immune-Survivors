@@ -10,6 +10,8 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Image icon;
+    public Image unitIcon;
+    public List<Sprite> unitSprites = new();
 
     private void Start()
     {
