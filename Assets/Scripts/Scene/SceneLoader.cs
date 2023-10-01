@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,9 +8,24 @@ using UnityEditor;
 
 public class SceneLoader : MonoBehaviour
 {
+    public static SceneLoader instance;
+
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private Image loadingBar;
     [SerializeField] private GameObject animatedIcon;
+
+    public System.Action OnSceneLoad;
+
+    public void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+        {
+            Destroy(instance.gameObject);
+            instance = this;
+        }
+    }
 
     public void ReloadScene()
     {

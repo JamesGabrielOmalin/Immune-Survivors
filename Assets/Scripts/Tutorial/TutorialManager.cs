@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 { 
@@ -13,7 +14,7 @@ public class TutorialManager : MonoBehaviour
     private Queue<string> dynamicPromptTextQueue = new();
     private Coroutine dynamicPromptCoroutine;
 
-    public static bool isFirstTime;
+    public static bool isFirstTime = true;
 
     //StaticPrompt variables here
     //WARNING: CURRENTLY NO CHECKER FOR IF INDEX IS OVER/UNDER
@@ -26,7 +27,6 @@ public class TutorialManager : MonoBehaviour
         else if (instance != this)
         {
             Destroy(instance.gameObject);
-            instance = this;
         }
 
         DontDestroyOnLoad(gameObject);
@@ -38,19 +38,32 @@ public class TutorialManager : MonoBehaviour
         AddDynamicPrompt("confidently says something wrong");
         AddDynamicPrompt("imagine");
 
+        Scene currentScene = SceneManager.GetActiveScene();
+        int buildIndex = currentScene.buildIndex;
+
         //StaticPrompts activation ritual
-        
         //Checker if player wants prompts or not
         if (!isFirstTime)
         {
             return;
         }
 
-        Instantiate(StaticPrompts[0]);
-        AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
-        RecruitManager.instance.OnRecruitSpawn += EnablePromptOnThresholdUpdate;
-        UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
-        UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
+        switch (buildIndex)
+        {
+            case 1:
+                Instantiate(StaticPrompts[0]);
+                AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
+                RecruitManager.instance.OnRecruitSpawn += EnablePromptOnThresholdUpdate;
+                UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
+                UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
+                break;
+            case 2:
+                SymptomManager.instance.OnActivateSymptom += EnablePromptOnSymptom;
+                break;
+            default:
+                break;
+        }
+        
     }
 
     private void OnDestroy()
@@ -80,6 +93,12 @@ public class TutorialManager : MonoBehaviour
     {
         Instantiate(StaticPrompts[4]);
         UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
+    }
+
+    public void EnablePromptOnSymptom()
+    {
+        Instantiate(StaticPrompts[5]);
+        SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
     }
 
     public void AddDynamicPrompt(string text)
