@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CharacterSelect : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private List<Sprite> sprites = new();
+    [SerializeField] private List<GameObject> animatedSprites = new();
     [SerializeField] private GameObject[] info;
 
     private int character = 0;
@@ -13,13 +12,14 @@ public class CharacterSelect : MonoBehaviour
     private void SelectCharacter()
     {
         Player.toSpawn = (PlayerUnitType)character;
-        sprite.sprite = sprites[character];
         info[character].SetActive(true);
+        animatedSprites[character].SetActive(true);
     }
 
     public void SelectCharacter(int select)
     {
         info[character].SetActive(false);
+        animatedSprites[character].SetActive(false);
         character = select;
         SelectCharacter();
     }
