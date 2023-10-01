@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ea49ca73f0c97c44b842d3c57ad1f8c
+guid: a51fb5f88993e174cb6901d4651d557b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_infectionbareffect_0
+      name: UI_infectionBar_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a85e3da06d9341448ae41536dcb19e69
-      internalID: 2064043185
+      spriteID: ebc8915e493ac6d4188eb0e8bfee89e3
+      internalID: 761288180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_1
+      name: UI_infectionBar_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09d45eaadb3d0fe4ebd366595c9b31f3
-      internalID: -1953852018
+      spriteID: f9cce67693c87864aa926b0a8aa9269f
+      internalID: -1826047296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_2
+      name: UI_infectionBar_2
       rect:
         serializedVersion: 2
         x: 64
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba9389fbe78382e4e8730aa2dbc351b2
-      internalID: 1814373834
+      spriteID: c9f0d4a323fef2c488e540639e9a4e60
+      internalID: -793117281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_3
+      name: UI_infectionBar_3
       rect:
         serializedVersion: 2
         x: 96
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d97eb16c569cc9f4d952ba4afab25334
-      internalID: 2073392914
+      spriteID: 188deeebd4d39e942816ebfc017a8d8e
+      internalID: 1769030346
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_4
+      name: UI_infectionBar_4
       rect:
         serializedVersion: 2
         x: 128
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c61522cec194bb243a7cd7f5cc6c3185
-      internalID: 509108011
+      spriteID: 7bc4b744a4640b34a847d0c0a9342551
+      internalID: -201093695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_5
+      name: UI_infectionBar_5
       rect:
         serializedVersion: 2
         x: 0
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c87b6e40f8424344b0da3448c1aa94d
-      internalID: 483919707
+      spriteID: 9b44e872998bbf247af700e1fbeab497
+      internalID: -325104688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_6
+      name: UI_infectionBar_6
       rect:
         serializedVersion: 2
         x: 32
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 292cee1ceb62a03418f16cbed00f8238
-      internalID: 841473036
+      spriteID: 031b37d86658d6f4cbdd0398322242a9
+      internalID: -155678183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_7
+      name: UI_infectionBar_7
       rect:
         serializedVersion: 2
         x: 64
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 561104645fe78804590dd38eddf023af
-      internalID: -510565696
+      spriteID: d2bed985a22b68445bcc227f1767e85b
+      internalID: -1044481925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_8
+      name: UI_infectionBar_8
       rect:
         serializedVersion: 2
         x: 96
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44aa893267a93584c9a2970df48dcdeb
-      internalID: -657667711
+      spriteID: 99753d4e392c3cf42933efd3b7b0f3ff
+      internalID: -1176158041
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_9
+      name: UI_infectionBar_9
       rect:
         serializedVersion: 2
         x: 128
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b341fde3d055f344686cdde996a196fe
-      internalID: 472368053
+      spriteID: 61c807e2beb250e4d92e76f27c1b8b16
+      internalID: -825357125
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_10
+      name: UI_infectionBar_10
       rect:
         serializedVersion: 2
         x: 0
@@ -329,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d872532e712b2524c96cd3e84892520c
-      internalID: 198999414
+      spriteID: ddde7627d54a6fd4b9cd4b3a96b528ef
+      internalID: 334346282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_11
+      name: UI_infectionBar_11
       rect:
         serializedVersion: 2
         x: 32
@@ -350,14 +350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5697d76fbde59114899e96e941a4d16c
-      internalID: 396830390
+      spriteID: 5989dde23cb417b45894b923eca80616
+      internalID: 1209270829
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_12
+      name: UI_infectionBar_12
       rect:
         serializedVersion: 2
         x: 64
@@ -371,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 457f9563a5320fe4c9c1e5755985ba8f
-      internalID: -95799097
+      spriteID: 57f0896ee093e9343aca63cd4e5de01b
+      internalID: -644464396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_13
+      name: UI_infectionBar_13
       rect:
         serializedVersion: 2
         x: 96
@@ -392,14 +392,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4aed33b4c8610d245848c32265579b3e
-      internalID: 164296847
+      spriteID: 77ba0548ce94e4e40b8e325d240b2cd4
+      internalID: -70829491
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_14
+      name: UI_infectionBar_14
       rect:
         serializedVersion: 2
         x: 128
@@ -413,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 460fa757251b08747980d438f95292eb
-      internalID: -608181926
+      spriteID: 17f753234e6b23344af8ab01849174bf
+      internalID: -1116812443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_15
+      name: UI_infectionBar_15
       rect:
         serializedVersion: 2
         x: 0
@@ -434,14 +434,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 137d48ac9c8e93141a5abbbdd18e14d8
-      internalID: -1519159588
+      spriteID: 2e3c6d74dcf338844b461b0e6c592e9a
+      internalID: 586632245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_16
+      name: UI_infectionBar_16
       rect:
         serializedVersion: 2
         x: 32
@@ -455,14 +455,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b54ab2200089fa43b9c381333194405
-      internalID: -1088938872
+      spriteID: 70e2f69c89edaa647bb58b3812b32201
+      internalID: -1845829327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_17
+      name: UI_infectionBar_17
       rect:
         serializedVersion: 2
         x: 64
@@ -476,14 +476,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d46c7d3c142e0974eaeca10ed6140512
-      internalID: -611775229
+      spriteID: bc07889974076324bb29ca48d3a7f4a3
+      internalID: 2052342922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_18
+      name: UI_infectionBar_18
       rect:
         serializedVersion: 2
         x: 96
@@ -497,14 +497,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb4d3fd089e33b24986a28511b865c79
-      internalID: 1531026456
+      spriteID: 2258201f34987584aace009847ad5217
+      internalID: -1411461705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_19
+      name: UI_infectionBar_19
       rect:
         serializedVersion: 2
         x: 128
@@ -518,14 +518,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 179da0ca9c4ec2449a00ee64e8f7f321
-      internalID: 103465063
+      spriteID: 805066aa959534b40a3dadaf524f15cb
+      internalID: -658438116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_infectionbareffect_20
+      name: UI_infectionBar_20
       rect:
         serializedVersion: 2
         x: 0
@@ -539,8 +539,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a18f7581fa1aa1489734472d3dbbbe2
-      internalID: 1239188633
+      spriteID: da0f04d867e1c6645845afd7529fadf0
+      internalID: -765448293
       vertices: []
       indices: 
       edges: []
@@ -548,7 +548,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0b1524b1daad90a4e8dee55181f4b8d4
+    spriteID: f5cf1119cb65df84a9470e50b56b2b29
     internalID: 0
     vertices: []
     indices: 
@@ -556,27 +556,27 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_infectionbareffect_0: 2064043185
-      UI_infectionbareffect_1: -1953852018
-      UI_infectionbareffect_10: 198999414
-      UI_infectionbareffect_11: 396830390
-      UI_infectionbareffect_12: -95799097
-      UI_infectionbareffect_13: 164296847
-      UI_infectionbareffect_14: -608181926
-      UI_infectionbareffect_15: -1519159588
-      UI_infectionbareffect_16: -1088938872
-      UI_infectionbareffect_17: -611775229
-      UI_infectionbareffect_18: 1531026456
-      UI_infectionbareffect_19: 103465063
-      UI_infectionbareffect_2: 1814373834
-      UI_infectionbareffect_20: 1239188633
-      UI_infectionbareffect_3: 2073392914
-      UI_infectionbareffect_4: 509108011
-      UI_infectionbareffect_5: 483919707
-      UI_infectionbareffect_6: 841473036
-      UI_infectionbareffect_7: -510565696
-      UI_infectionbareffect_8: -657667711
-      UI_infectionbareffect_9: 472368053
+      UI_infectionBar_0: 761288180
+      UI_infectionBar_1: -1826047296
+      UI_infectionBar_10: 334346282
+      UI_infectionBar_11: 1209270829
+      UI_infectionBar_12: -644464396
+      UI_infectionBar_13: -70829491
+      UI_infectionBar_14: -1116812443
+      UI_infectionBar_15: 586632245
+      UI_infectionBar_16: -1845829327
+      UI_infectionBar_17: 2052342922
+      UI_infectionBar_18: -1411461705
+      UI_infectionBar_19: -658438116
+      UI_infectionBar_2: -793117281
+      UI_infectionBar_20: -765448293
+      UI_infectionBar_3: 1769030346
+      UI_infectionBar_4: -201093695
+      UI_infectionBar_5: -325104688
+      UI_infectionBar_6: -155678183
+      UI_infectionBar_7: -1044481925
+      UI_infectionBar_8: -1176158041
+      UI_infectionBar_9: -825357125
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
