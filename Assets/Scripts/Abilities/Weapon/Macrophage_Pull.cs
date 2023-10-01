@@ -43,12 +43,13 @@ public class Macrophage_PullSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value);
+        while (true)
+        {
+            yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value);
 
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            Pull();
-
-        yield break;
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                Pull();
+        }
     }
 
     private void Pull()

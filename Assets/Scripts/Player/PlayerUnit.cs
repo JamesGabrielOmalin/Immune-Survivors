@@ -69,7 +69,15 @@ public class PlayerUnit : Unit, IDamageInterface
 
         //stunIndicator.SetActive(false);
 
-        StartCoroutine(Attack());
+        //StartCoroutine(Attack());
+
+        var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
+        foreach (var basicAttack in attacks)
+        {
+            //yield return basicAttack.TryActivateAbility();
+            StartCoroutine(basicAttack.TryActivateAbility());
+        }
+
         StartCoroutine(Regen());
     }
 
@@ -191,20 +199,21 @@ public class PlayerUnit : Unit, IDamageInterface
 
     private IEnumerator Attack()
     {
-        yield return null;
+        yield break;
+        //yield return null;
 
-        while (this)
-        {
-            var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
+        //while (this)
+        //{
+        //    var attacks = abilitySystem.GetAbilitiesOfType(AbilityType.BasicAttack);
 
-            foreach (var basicAttack in attacks)
-            {
-                //yield return basicAttack.TryActivateAbility();
-                StartCoroutine(basicAttack.TryActivateAbility());
-            }
+        //    foreach (var basicAttack in attacks)
+        //    {
+        //        //yield return basicAttack.TryActivateAbility();
+        //        StartCoroutine(basicAttack.TryActivateAbility());
+        //    }
 
-            yield return new WaitUntil(() => attacks.TrueForAll((attack) => attack.CanActivateAbility()));
-        }
+        //    yield return new WaitUntil(() => attacks.TrueForAll((attack) => attack.CanActivateAbility()));
+        //}
     }
 
     private IEnumerator Regen()
