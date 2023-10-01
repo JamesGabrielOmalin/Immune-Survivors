@@ -17,15 +17,16 @@ public class Enemy : Unit, IDamageInterface
 
     public System.Action OnDeath;
 
-
     private Player targetPlayer;
     private Coroutine attackCoroutine;
     private const float INITIAL_ATTACK_DELAY = 0.25f;
 
     [field: Header("Antigen")]
     [field: SerializeField] public AntigenType Type { get; private set; }
+    [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private GameObject stunIndicator;
     [SerializeField] private VisualEffect dotIndicator;
+    [SerializeField] private VisualEffect armorShredIndicator;
 
     public bool IsStunned { get; private set; } = false;
     private Coroutine armorShredCoroutine;
@@ -185,15 +186,22 @@ public class Enemy : Unit, IDamageInterface
         armorShredCoroutine = StartCoroutine(ArmorShred(amount));
     }
 
+    private static readonly WaitForSeconds armorShredDuration = new(3f);
+
     private IEnumerator ArmorShred(float amount)
     {
         AttributeModifier mod = new(-amount, AttributeModifierType.Multiply);
 
         Armor.AddModifier(mod);
+        armorShredIndicator.Play();
+        sprite.color = Color.gray;
 
-        yield return new WaitForSeconds(3f);
+        yield return armorShredDuration;
 
         Armor.RemoveModifier(mod);
+        armorShredIndicator.Stop();
+        sprite.color = Color.white;
+
         armorShredCoroutine = null;
     }
 
