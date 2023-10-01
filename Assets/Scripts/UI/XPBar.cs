@@ -18,6 +18,13 @@ public class XPBar : MonoBehaviour
     private void OnDestroy()
     {
         //RecruitManager.instance.OnThreshholdUpdate -= UpdateBar;
+        StopAllCoroutines();
+    }
+
+    private void OnEnable()
+    {
+        if (RecruitManager.instance)
+            RecruitManager.instance.OnThreshholdUpdate += UpdateBar;
     }
 
     private void OnDisable()
@@ -26,6 +33,7 @@ public class XPBar : MonoBehaviour
         {
             StopCoroutine(lerpCoroutine);
         }
+        RecruitManager.instance.OnThreshholdUpdate -= UpdateBar;
     }
 
     public void UpdateBar()
@@ -34,7 +42,9 @@ public class XPBar : MonoBehaviour
         {
             StopCoroutine(lerpCoroutine);
         }
-        lerpCoroutine = StartCoroutine(Lerp());
+
+        if (this.enabled)
+            lerpCoroutine = StartCoroutine(Lerp());
     }
 
     private IEnumerator Lerp()

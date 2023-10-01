@@ -59,6 +59,7 @@ public class SceneLoader : MonoBehaviour
             GameManager.instance.ResumeGameTime();
         }
 
+        Time.timeScale = 1;
         StartCoroutine(LoadSceneAsync(name));
     }
 
@@ -71,7 +72,7 @@ public class SceneLoader : MonoBehaviour
 
         while(loadingBar.fillAmount < 1f)
         {
-            loadingBar.fillAmount += Time.deltaTime / 3f;
+            loadingBar.fillAmount += Time.fixedDeltaTime / 3f;
             yield return null;
         }
 
