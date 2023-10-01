@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: L0 Cough
   m_EditorClassIdentifier: 
   Name: 
-  symptomEffects: []
+  symptomEffects:
+  - {fileID: 11400000, guid: e8e723553513d1442a4cbf32ee431d8b, type: 2}

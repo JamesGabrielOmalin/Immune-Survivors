@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AffectedUnit: 2
   EffectType: 1
-  ActivationType: 1
+  ActivationType: 0
   ActivationDelay: 0
-  KnockbackIntensity: 0
+  KnockbackIntensity: 10
   Direction: 1
-  KnockbackCount: 0
-  KnockbackInterval: 0
+  KnockbackCount: 3
+  KnockbackInterval: 2
   DotDamage: 0
   DotDuration: 0
   DotTickRate: 0
