@@ -9,6 +9,7 @@ using UnityEngine.VFX;
 public class Neutrophil_Ultimate : Ability
 {
     //[SerializeField] public GameObject ultimateVFX;
+    [field: SerializeField] public LayerMask LayerMask { get; private set; }
 
     public override AbilitySpec CreateSpec(AbilitySystem owner)
     {
@@ -42,6 +43,9 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         return level.Value >= 5f && base.CanActivateAbility();
     }
 
+
+    private static readonly WaitForSeconds attackInterval = new(0.25f);
+
     public override IEnumerator ActivateAbility()
     {
         var player = GameManager.instance.Player.GetComponent<Player>();
@@ -62,21 +66,21 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         float AS = attackSpeed.Value;
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
-        float knockBack = knockbackPower.Value / 2f;
-
-        WaitForSeconds attackInterval = new(0.1f);
+        float knockBack = knockbackPower.Value / 10f;
 
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
 
         //float damage = DamageCalculator.CalcDamage(ad * (1f + aS), cr, cd);
-        float kbChance = 0.25f;
+        //float kbChance = 0.25f;
 
         AudioManager.instance.Play("NeutrophilUltimate", owner.transform.position);
 
-        for (int i = 0; i < 25; i++)
+        string armor_string = "Armor";
+
+        for (int i = 0; i < 10; i++)
         {
-            var hits = Physics.OverlapSphere(owner.transform.position, 5f);
+            var hits = Physics.OverlapSphere(owner.transform.position, 5f, ult.LayerMask);
 
             foreach (var hit in hits)
             {
@@ -85,12 +89,10 @@ public class Neutrophil_UltimateSpec : AbilitySpec
                     Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
 
                     //enemy.TakeDamage(damage);
-                    float armor = enemy.attributes.GetAttribute("Armor").Value;
+                    float armor = enemy.attributes.GetAttribute(armor_string).Value;
                     DamageCalculator.ApplyDamage(AD * (AS), CRIT_RATE, CRIT_DMG, armor, enemy);
 
-                    // 25% chance to apply knockback every hit
-                    if (Random.value <= kbChance)
-                        enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
+                    enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
                 }
             }
 
