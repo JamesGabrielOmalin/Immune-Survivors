@@ -1011,7 +1011,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3999882027504178237
 MonoBehaviour:
@@ -1065,6 +1065,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59a39208977cd842a2bc0e675eb2bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  loadingBar: {fileID: 0}
+  animatedIcon: {fileID: 0}
 --- !u!1 &3896912052743520034
 GameObject:
   m_ObjectHideFlags: 0
