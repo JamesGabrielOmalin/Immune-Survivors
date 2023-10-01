@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
 
-public class Cytokine : Projectile, IBodyColliderListener
+public class Cytokine : MonoBehaviour, IBodyColliderListener
 {
     [HideInInspector] public AntigenType Type { get; private set; }
     [SerializeField] private SpriteRenderer sprite;

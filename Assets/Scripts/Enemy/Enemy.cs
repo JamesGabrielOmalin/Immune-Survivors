@@ -5,32 +5,40 @@ using UnityEngine.VFX;
 
 public class Enemy : Unit, IDamageInterface
 {
-    private Attribute MaxHP;
-    private Attribute HP;
+    //private Attribute MaxHP;
+    //private Attribute HP;
     private Attribute AttackDamage;
     private Attribute AttackSpeed;
     private Attribute MoveSpeed;
-    private Attribute Armor;
+    //private Attribute Armor;
     private Attribute AntigenSpawnChance;
 
-    public bool IsDead => HP.BaseValue <= 0f;
+    //public bool IsDead => HP.BaseValue <= 0f;
 
-    public System.Action OnDeath;
+    //public System.Action OnDeath;
 
 
     private Player targetPlayer;
+
     private Coroutine attackCoroutine;
     private const float INITIAL_ATTACK_DELAY = 0.25f;
 
     [field: Header("Antigen")]
     [field: SerializeField] public AntigenType Type { get; private set; }
-    [SerializeField] private GameObject stunIndicator;
-    [SerializeField] private VisualEffect dotIndicator;
 
-    public bool IsStunned { get; private set; } = false;
+    [SerializeField] private SpriteRenderer sprite;
+    //[SerializeField] private GameObject stunIndicator;
+    //[SerializeField] private VisualEffect dotIndicator;
+    [SerializeField] private VisualEffect armorShredIndicator;
+
+    //[SerializeField] private GameObject stunIndicator;
+    //[SerializeField] private VisualEffect dotIndicator;
+
+
+    //public bool IsStunned { get; private set; } = false;
     private Coroutine armorShredCoroutine;
-    private Coroutine stunCoroutine;
-    private Coroutine dotCoroutine;
+    //private Coroutine stunCoroutine;
+    //private Coroutine dotCoroutine;
 
     private const string PLAYER_TAG = "Player";
 
@@ -38,22 +46,25 @@ public class Enemy : Unit, IDamageInterface
     private readonly int ANIMATOR_DEATH = Animator.StringToHash("Death");
 
     // Start is called before the first frame update
-    private void Start()
+    protected override void Start()
     {
-        MaxHP = attributes.GetAttribute("Max HP");
-        HP = attributes.GetAttribute("HP");
+        base.Start();
+        //MaxHP = attributes.GetAttribute("Max HP");
+        //HP = attributes.GetAttribute("HP");
         AttackDamage = attributes.GetAttribute("Attack Damage");
         AttackSpeed = attributes.GetAttribute("Attack Speed");
         MoveSpeed = attributes.GetAttribute("Move Speed");
-        Armor = attributes.GetAttribute("Armor");
+        //Armor = attributes.GetAttribute("Armor");
         AntigenSpawnChance = attributes.GetAttribute("Antigen Spawn Chance");
 
         HP.BaseValue = MaxHP.Value;
 
         // Hide stun indicator
-        stunIndicator.SetActive(false);
+        //stunIndicator.SetActive(false);
 
         EnemyManager.instance.allEnemies.Add(this.gameObject);
+
+        attackCoroutine = null;
     }
 
     private void OnEnable()
@@ -123,11 +134,26 @@ public class Enemy : Unit, IDamageInterface
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Detect Player");
+
         if (other.CompareTag(PLAYER_TAG))
         {
             targetPlayer = other.GetComponent<Player>();
             if (attackCoroutine == null)
+            {
+                Debug.Log("Start Attack Coroutine");
+
                 attackCoroutine = StartCoroutine(Attack());
+
+            }
+            else
+            {
+                Debug.Log("Coroutine not null");
+            }
+        }
+        else
+        {
+            Debug.Log("tag: " + other.tag + "Name: " + other.name);
         }
     }
 
@@ -154,6 +180,8 @@ public class Enemy : Unit, IDamageInterface
 
             var activeUnit = targetPlayer.GetActiveUnit();
             float armor = activeUnit.attributes.GetAttribute("Armor").Value;
+            Debug.Log("Attack Player");
+
             DamageCalculator.ApplyDamage(AttackDamage.Value,  armor, activeUnit);
             targetPlayer.GetActiveUnit().TakeDamage(AttackDamage.Value);
 
@@ -163,7 +191,7 @@ public class Enemy : Unit, IDamageInterface
         attackCoroutine = null;
     }
 
-    public void ApplyStun(float duration)
+    public override void ApplyStun(float duration)
     {
         if (IsDead)
             return;
@@ -185,19 +213,26 @@ public class Enemy : Unit, IDamageInterface
         armorShredCoroutine = StartCoroutine(ArmorShred(amount));
     }
 
+    private static readonly WaitForSeconds armorShredDuration = new(3f);
+
     private IEnumerator ArmorShred(float amount)
     {
         AttributeModifier mod = new(-amount, AttributeModifierType.Multiply);
 
         Armor.AddModifier(mod);
+        armorShredIndicator.Play();
+        sprite.color = Color.gray;
 
-        yield return new WaitForSeconds(3f);
+        yield return armorShredDuration;
 
         Armor.RemoveModifier(mod);
+        armorShredIndicator.Stop();
+        sprite.color = Color.white;
+
         armorShredCoroutine = null;
     }
 
-    private IEnumerator Stun(float duration)
+    protected override IEnumerator Stun(float duration)
     {
         IsStunned = true;
         stunIndicator.SetActive(true);
@@ -211,7 +246,7 @@ public class Enemy : Unit, IDamageInterface
         yield break;
     }
 
-    public void ApplyDoT(float damage, float duration, float tickRate)
+    public override void ApplyDoT(float damage, float duration, float tickRate)
     {
         if (IsDead)
             return;
@@ -222,7 +257,7 @@ public class Enemy : Unit, IDamageInterface
         dotCoroutine = StartCoroutine(DoT(damage, duration, tickRate));
     }
 
-    private IEnumerator DoT(float damage, float duration, float tickRate)
+    protected override IEnumerator DoT(float damage, float duration, float tickRate)
     {
         if (damage > float.Epsilon)
         {
@@ -245,7 +280,7 @@ public class Enemy : Unit, IDamageInterface
         yield break;
     }
 
-    public void ApplyKnockback(Vector3 force, ForceMode forceMode)
+    public override void ApplyKnockback(Vector3 force, ForceMode forceMode)
     {
         if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
@@ -254,12 +289,12 @@ public class Enemy : Unit, IDamageInterface
         }
     }
 
-    public void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
+    public override void ApplyMoveSpeedModifier(AttributeModifier mod, float duration, bool isInfinite)
     {
         if (isInfinite)
         {
             var e = attributes.GetAttribute("Move Speed");
-            e.AddModifier(mod); 
+            e.AddModifier(mod);
         }
         else
         {
@@ -267,16 +302,16 @@ public class Enemy : Unit, IDamageInterface
         }
     }
 
-    private IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
+    protected override IEnumerator MoveSpeedModifierDurationCoroutine(AttributeModifier mod, float duration, bool isInfinite)
     {
-        var e =  attributes.GetAttribute("Move Speed");
+        var e = attributes.GetAttribute("Move Speed");
 
         e.AddModifier(mod);
-      
+
         yield return new WaitForSeconds(duration);
 
         e.RemoveModifier(mod);
 
-     
+
     }
 }

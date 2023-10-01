@@ -70,7 +70,7 @@ MonoBehaviour:
   targetSmoothness: 1
   targetIntensity: 0.4
   lerpDuration: 0.2
-  colorAdjustment: {fileID: 0}
+  feverColor: {r: 1, g: 0.6, b: 0.7137255, a: 1}
   defaultColorAdjustment: {r: 1, g: 1, b: 1, a: 1}
   targetColorList:
   - {r: 1, g: 0.95, b: 0.95, a: 1}

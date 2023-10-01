@@ -22,7 +22,7 @@ MonoBehaviour:
   - Increase CRIT Rate by 10%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 64eb0648ca0d11944a9517d8662508fd,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 6a6a2e5da722bcf42a99785471525c46,
     type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
