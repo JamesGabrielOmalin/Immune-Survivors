@@ -22,7 +22,7 @@ MonoBehaviour:
   - Increase Knockback by 25%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
-  <Sprite>k__BackingField: {fileID: 21300000, guid: 38236a82ff44aaa4b972248479d5f970,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: e93d61985ca1c0445aa768a64db9424d,
     type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
