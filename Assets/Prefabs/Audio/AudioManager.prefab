@@ -103,6 +103,31 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
+  - name: NeutrophilGrenade
+    clips:
+    - {fileID: 8300000, guid: 24d132c313ab54247b6ac8e7fbac1f4d, type: 3}
+    - {fileID: 8300000, guid: 91618515c0ccd654990e42e9670d12fe, type: 3}
+    - {fileID: 8300000, guid: a1e462908a75aec4286c578d7a7116e2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NeutrophilStab
+    clips:
+    - {fileID: 8300000, guid: 90bac67a88f98904997feb00d155d70d, type: 3}
+    - {fileID: 8300000, guid: 21a70d6454905c142bec1539d1bbc10f, type: 3}
+    - {fileID: 8300000, guid: cb08b978f6493e54bb80f0a702611248, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NeutrophilUltimate
+    clips:
+    - {fileID: 8300000, guid: 34fc9f953f9ff4745a518698b3c3a589, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   musicSource: {fileID: 0}
   audiosource: {fileID: 285206030483098560, guid: 0c61a735aeca4ab4db6910c5cde198b0,
     type: 3}
