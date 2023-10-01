@@ -9,6 +9,7 @@ public class UpgradeButton : MonoBehaviour
     public Effect Upgrade { get; private set; }
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private Image icon;
 
     private void Start()
     {
@@ -35,5 +36,7 @@ public class UpgradeButton : MonoBehaviour
         {
             descriptionText.text = inUpgrade.Description;
         }
+
+        icon.sprite = inUpgrade.Sprite;
     }
 }

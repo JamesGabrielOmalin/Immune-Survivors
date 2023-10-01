@@ -920,6 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 7596794114268761229}
   descriptionText: {fileID: 234101370422632327}
+  icon: {fileID: 4346787774669895747}
 --- !u!1 &2791951278686124530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 8585960275561158046}
   descriptionText: {fileID: 2155222998040780726}
+  icon: {fileID: 8686151095101030486}
 --- !u!1 &5838706214097319528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameText: {fileID: 9133742695524397060}
   descriptionText: {fileID: 5612761270796390909}
+  icon: {fileID: 6373344497245869487}
 --- !u!1 &6595399938472609790
 GameObject:
   m_ObjectHideFlags: 0
