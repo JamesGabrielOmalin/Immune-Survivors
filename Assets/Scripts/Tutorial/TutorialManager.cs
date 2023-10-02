@@ -28,8 +28,6 @@ public class TutorialManager : MonoBehaviour
         {
             Destroy(instance.gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

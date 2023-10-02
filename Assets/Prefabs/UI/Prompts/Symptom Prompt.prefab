@@ -695,7 +695,6 @@ MonoBehaviour:
   pages:
   - {fileID: 3901206190135279650}
   - {fileID: 54899070603696943}
-  - {fileID: 0}
   previousButton: {fileID: 1182504304561466377}
   nextButton: {fileID: 1182504305084975629}
   closeButton: {fileID: 1182504303897254585}
