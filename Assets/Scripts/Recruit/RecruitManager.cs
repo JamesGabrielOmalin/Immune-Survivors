@@ -136,7 +136,7 @@ public class RecruitManager : MonoBehaviour
 
             //dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
             Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
-
+            spawnPoint.y = 0;
             //spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
 
             bool positiveX = Random.value < 0.5f;
