@@ -52,7 +52,7 @@ public class RecruitManager : MonoBehaviour
 
     [Header(" Threshold Stats")]
 
-    public int totalKillCount=0;
+    public int totalKillCount = 0;
     public int killCount = 0;
     [SerializeField] private int killThreshold;
     [SerializeField] private int cycle = 1;
@@ -135,14 +135,14 @@ public class RecruitManager : MonoBehaviour
             //angle = Random.Range(0f, 360f);
 
             //dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            //Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
 
             //spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
 
             bool positiveX = Random.value < 0.5f;
             bool positiveZ = Random.value < 0.5f;
 
-            Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
+            //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
 
 
             //Vector3 recruitPos = cam.WorldToViewportPoint(spawnPoint);
