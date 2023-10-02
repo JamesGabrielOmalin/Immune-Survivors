@@ -8,6 +8,7 @@ Shader "Custom/BillboardSprite"
 
         [Header(Alpha)]
         [Toggle(_UseAlphaClipping)]_UseAlphaClipping("UseAlphaClipping", Float) = 0
+        [Toggle(_NoPixelFilter)]_NoPixelFilter("Disable Pixel Filter", Float) = 0
         _Cutoff("Cutoff (Alpha Cutoff)", Range(0.0, 1.0)) = 0.5
     }
 

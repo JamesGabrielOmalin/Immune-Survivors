@@ -37,6 +37,7 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     public Dendritic_BasicAttackSpec(Dendritic_BasicAttack ability, AbilitySystem owner) : base(ability, owner)
     {
         Init();
+        owner.StartCoroutine(TryActivateAbility());
     }
 
     public bool IsAttacking { get; private set; } = false;
@@ -48,18 +49,19 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
-        IsAttacking = true;
+        while (true)
+        {
+            IsAttacking = true;
 
-        float interval = Mathf.Pow((float)System.Math.E, -attackSpeed.Value);
+            float interval = Mathf.Pow((float)System.Math.E, -attackSpeed.Value);
 
-        // Wait before shooting
-        yield return new WaitForSeconds(interval);
+            // Wait before shooting
+            yield return new WaitForSeconds(interval);
 
-        // start slashing
-        if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
-            yield return Slash();
-
-        yield break;
+            // start slashing
+            if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+                yield return Slash();
+        }
     }
 
     public override void EndAbility()

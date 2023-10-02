@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 3404279194469185387}
   - component: {fileID: 4238295084370098190}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Settings Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 4301912056497843245}
   - component: {fileID: 5579918019567543029}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1011,7 +1011,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &3999882027504178237
 MonoBehaviour:
@@ -1065,6 +1065,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59a39208977cd842a2bc0e675eb2bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
+  loadingBar: {fileID: 0}
+  animatedIcon: {fileID: 0}
 --- !u!1 &3896912052743520034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,7 +1081,7 @@ GameObject:
   - component: {fileID: 2636393749946141022}
   - component: {fileID: 3643877003975879218}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Resume Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

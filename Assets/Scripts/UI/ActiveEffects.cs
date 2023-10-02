@@ -50,7 +50,7 @@ public class ActiveEffects : MonoBehaviour
             effectSlots[i].gameObject.SetActive(true);
 
             levelText[i].text = buffs[key].ToString();
-            if (levelText[i].text == "4")
+            if (buffs[key] >= 4)
                 levelText[i].text = "MAX";
             levelText[i].gameObject.SetActive(true);
 
@@ -70,7 +70,7 @@ public class ActiveEffects : MonoBehaviour
             effectSlots[i].gameObject.SetActive(true);
 
             levelText[i].text = weapons[key].ToString();
-            if (levelText[i].text == "4")
+            if (weapons[key] >= 4)
                 levelText[i].text = "MAX";
             levelText[i].gameObject.SetActive(true);
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     private PlayerUnit activeUnit;
     private GameObject activeHUD;
     private int numRecruit;
+
+    [SerializeField] private List<Image> buffIcons = new();
 
     public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
 
@@ -178,7 +181,10 @@ public class Player : MonoBehaviour
     public void ApplyAntigenBuffs(AntigenType type, AttributeModifier mod, float duration)
     {
         if (buffCoroutines[type] != null)
+        {
+            buffIcons[(int)type].gameObject.SetActive(false);
             StopCoroutine(buffCoroutines[type]);
+        }
         StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
@@ -195,7 +201,18 @@ public class Player : MonoBehaviour
         macrophage.buffVFX.Play();
         dendritic.buffVFX.Play();
 
-        yield return new WaitForSeconds(duration);
+        float t = 0f;
+
+        // Update buff icon
+        buffIcons[(int)type].gameObject.SetActive(true);
+        while (t < duration)
+        {
+            buffIcons[(int)type].fillAmount = 1f - (t / duration);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+        buffIcons[(int)type].gameObject.SetActive(false);
 
         neutrophil.buffVFX.Stop();
         macrophage.buffVFX.Stop();

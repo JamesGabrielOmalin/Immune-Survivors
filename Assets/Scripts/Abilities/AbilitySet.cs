@@ -61,11 +61,13 @@ public class AbilitySet : MonoBehaviour
 
     public void GrantUltimate()
     {
-        if (ultimateAbility)
+        PlayerUnit player = GetComponent<PlayerUnit>();
+        if (ultimateAbility && player.UnitType == Player.toSpawn)
         {
             ultimateButton.SetActive(true);
             Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
-            abilitySystem.GrantAbility(Ultimate); 
+            abilitySystem.GrantAbility(Ultimate);
+            UpgradeManager.instance.OnUltiGet?.Invoke();
         }
     }
 

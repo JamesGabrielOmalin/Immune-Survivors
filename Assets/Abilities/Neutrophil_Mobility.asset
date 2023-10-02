@@ -15,5 +15,5 @@ MonoBehaviour:
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 5
   <AbilityType>k__BackingField: 1
-  <DashSpeed>k__BackingField: 4
-  <MaxDashTime>k__BackingField: 0.25
+  <DashSpeed>k__BackingField: 8
+  <MaxDashTime>k__BackingField: 0.025
