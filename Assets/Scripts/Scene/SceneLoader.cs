@@ -35,6 +35,7 @@ public class SceneLoader : MonoBehaviour
             GameManager.instance.ResumeGameTime();
         }
 
+        Time.timeScale = 1;
         StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().name));
     }
 
@@ -63,6 +64,8 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadSceneAsync(name));
     }
 
+    private static readonly WaitForSecondsRealtime loadDelay = new(0.25f);
+
     private IEnumerator LoadSceneAsync(string name)
     {
         loadingScreen.SetActive(true);
@@ -70,20 +73,25 @@ public class SceneLoader : MonoBehaviour
         AsyncOperation op = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
         op.allowSceneActivation = false;
 
-        while(loadingBar.fillAmount < 1f)
+       float t = 0f;
+
+        while(t < 1f)
         {
-            loadingBar.fillAmount += Time.fixedDeltaTime / 3f;
+            t += Time.unscaledDeltaTime;
+            loadingBar.fillAmount = t;
             yield return null;
         }
 
         yield return new WaitUntil(() => op.progress >= 0.9f);
+        Debug.Log("Done loading");
 
         loadingBar.transform.parent.gameObject.SetActive(false);
         animatedIcon.SetActive(true);
 
-        yield return new WaitForSeconds(0.25f);
+        yield return loadDelay;
 
         op.allowSceneActivation = true;
+        Debug.Log("Activating scene");
     }
 
     public void ExitGame()

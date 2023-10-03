@@ -33,7 +33,8 @@ public class XPBar : MonoBehaviour
         {
             StopCoroutine(lerpCoroutine);
         }
-        RecruitManager.instance.OnThreshholdUpdate -= UpdateBar;
+        if (RecruitManager.instance)
+            RecruitManager.instance.OnThreshholdUpdate -= UpdateBar;
     }
 
     public void UpdateBar()
