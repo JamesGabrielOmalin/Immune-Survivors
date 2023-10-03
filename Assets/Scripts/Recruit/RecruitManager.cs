@@ -182,7 +182,7 @@ public class RecruitManager : MonoBehaviour
 
             if (isColliding)
             {
-                Debug.Log("has Collision");
+                //Debug.Log("has Collision");
                 position = RandomPointInBounds(spawnArea.bounds);
                 position.y = 0;
                 nChecks++;
@@ -191,7 +191,7 @@ public class RecruitManager : MonoBehaviour
             {
                 canSpawn = true;
             }
-            Debug.Log(isColliding);
+            //Debug.Log(isColliding);
 
         } while (!canSpawn && nChecks < maxChecks);
 
