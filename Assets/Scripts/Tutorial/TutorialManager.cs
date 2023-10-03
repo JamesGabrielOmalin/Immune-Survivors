@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     public static TutorialManager instance;
 
     [SerializeField] private GameObject dynamicPrompt;
+    [SerializeField] private List<GameObject> dynamicPrompts = new();
     [SerializeField] private float dynamicPromptDuration;
     private Queue<string> dynamicPromptTextQueue = new();
     private Coroutine dynamicPromptCoroutine;
@@ -127,27 +128,27 @@ public class TutorialManager : MonoBehaviour
     {
         dynamicPromptTextQueue.Enqueue(text);
 
-        if (dynamicPromptCoroutine == null)
-            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
+        StartCoroutine(DynamicPrompt());
     }
 
     private IEnumerator DynamicPrompt()
     {
         while (dynamicPromptTextQueue.Count > 0)
         {
-            ShowDynamicPrompt();
+            yield return new WaitWhile(() => dynamicPrompts.TrueForAll((prompt) => prompt.activeInHierarchy));
+            var prompt = dynamicPrompts.Find((p) => !p.activeInHierarchy);
+            ShowDynamicPrompt(prompt);
             yield return new WaitForSeconds(dynamicPromptDuration);
             dynamicPrompt.SetActive(false);
         }
 
-        dynamicPromptCoroutine = null;
         yield break;
     }
 
-    public void ShowDynamicPrompt()
+    private void ShowDynamicPrompt(in GameObject prompt)
     {
-        dynamicPrompt.SetActive(true);
-        dynamicPrompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTextQueue.Peek());
+        prompt.SetActive(true);
+        prompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTextQueue.Peek());
         dynamicPromptTextQueue.Dequeue();
     }
 }
