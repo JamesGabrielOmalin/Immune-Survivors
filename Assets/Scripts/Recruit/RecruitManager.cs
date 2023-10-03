@@ -38,6 +38,11 @@ public class RecruitManager : MonoBehaviour
     [Header("Base Spawning Attributes")]
     [SerializeField] private BoxCollider spawnArea;
     [SerializeField] private int initialAmountToSpawn;
+    [SerializeField] private LayerMask layersToCheck;
+    [SerializeField] private float collisionCheckerRadius;
+    [SerializeField] private int maxChecks;
+
+
 
     [Header(" Timed Spawning")]
     [SerializeField] private bool EnableIntervalSpawning = false;
@@ -127,76 +132,13 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
-        //float angle;
-        //Vector3 dir;
+
         for (int i = 0; i < amount; i++)
         {
-            // spawn point around the player
-            //angle = Random.Range(0f, 360f);
 
-            //dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
             Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
             spawnPoint.y = 0;
-            //spawnPoint = new Vector3(spawnPoint.x, 0, spawnPoint.z);
-
-            bool positiveX = Random.value < 0.5f;
-            bool positiveZ = Random.value < 0.5f;
-
-            //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
-
-
-            //Vector3 recruitPos = cam.WorldToViewportPoint(spawnPoint);
-
-            //Vector3 ScreenToWorldPos = recruitPos;
-
-            ////if ((recruitPos.x >= minBounds.x && recruitPos.x <= maxBounds.x) && (recruitPos.y >= minBounds.y && recruitPos.y <= maxBounds.y))
-            ////{
-            ////    continue;
-            ////}
-
-            //if (recruitPos.x < minBounds.x)
-            //{
-            //    ScreenToWorldPos.x = -spawnThreshold;
-            //    ScreenToWorldPos.y = Random.value;
-            //}
-            //else if (recruitPos.x > maxBounds.x)
-            //{
-            //    ScreenToWorldPos.x = spawnThreshold;
-            //    ScreenToWorldPos.y = Random.value;
-            //}
-
-            //if (recruitPos.y < minBounds.y)
-            //{
-            //    ScreenToWorldPos.y = -spawnThreshold;
-            //    ScreenToWorldPos.x = Random.value;
-            //}
-            //else if (recruitPos.y > maxBounds.y)
-            //{
-            //    ScreenToWorldPos.y = spawnThreshold;
-            //    ScreenToWorldPos.x = Random.value;
-
-            //}
-
-
-            //Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ScreenToWorldPos.x, ScreenToWorldPos.y, Vector3.Distance(cam.transform.position, spawnPoint)));
-
-            //spawnPoint = new Vector3(newPos.x, spawnPoint.y, newPos.y);
-
-            //Debug.Log("Reloc: " + newPos);
-
-            if (!spawnArea.bounds.Contains(spawnPoint))
-            {
-                positiveX = Random.value < 0.5f;
-                positiveZ = Random.value < 0.5f;
-
-                //spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
-                spawnPoint = RandomPointInBounds(spawnArea.bounds);
-                spawnPoint.y = 0;
-
-                Debug.Log($"Recruit Out of bounds, moving to: {spawnPoint}");
-
-
-            }
+ 
 
             PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
             //float rand = Random.value;
@@ -214,7 +156,7 @@ public class RecruitManager : MonoBehaviour
             //    toSpawn = PlayerUnitType.Neutrophil;
             //}
 
-            SpawnRecruit(spawnPoint, toSpawn);
+            StartCoroutine(SpawnRecruit(spawnPoint, toSpawn));
         }
     }
 
@@ -227,14 +169,38 @@ public class RecruitManager : MonoBehaviour
         );
     }
 
-    public void SpawnRecruit(Vector3 position, PlayerUnitType type)
+    public IEnumerator SpawnRecruit(Vector3 position, PlayerUnitType type)
     {
+
+        yield return new WaitForSeconds(0.25f);
+
+        bool canSpawn = false;
+        int nChecks = 0;
+        do
+        {
+            bool isColliding = Physics.CheckSphere(position, collisionCheckerRadius, layersToCheck);
+
+            if (isColliding)
+            {
+                Debug.Log("has Collision");
+                position = RandomPointInBounds(spawnArea.bounds);
+                position.y = 0;
+                nChecks++;
+            }
+            else
+            {
+                canSpawn = true;
+            }
+            Debug.Log(isColliding);
+
+        } while (!canSpawn && nChecks < maxChecks);
+
         GameObject recruit = recruitPools[(int)type].RequestPoolable(position);
 
         if (!recruit)
         {
             Debug.LogWarning("No recruit found in object pool!");
-            return;
+            yield return null;
         }
 
         Debug.Log("Recruit Spawned");
