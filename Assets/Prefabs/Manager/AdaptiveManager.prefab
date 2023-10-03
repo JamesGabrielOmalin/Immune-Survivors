@@ -245,3 +245,5 @@ MonoBehaviour:
   cytokinePool: {fileID: 7567702695360082397}
   antibodyPool: {fileID: 7567702695473595666}
   maxSpawnDistance: 50
+  spawnInterval: 0
+  spawnArea: {fileID: 0}

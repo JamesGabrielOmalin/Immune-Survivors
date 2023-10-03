@@ -65,7 +65,8 @@ public class Macrophage_UltimateSpec : AbilitySpec
         AttributeModifier dotMod = new(3f, AttributeModifierType.Multiply);
         dotAmount.AddModifier(dotMod);
         dotDuration.AddModifier(dotMod);
-
+        
+        AudioManager.instance.Play("MacrophageUltimate", owner.transform.position);
         yield return new WaitForSeconds(ultimate.Duration);
 
         foreach (Transform child in sprite.transform)

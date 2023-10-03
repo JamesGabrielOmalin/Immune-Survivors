@@ -46,7 +46,9 @@ public class Dendritic_UltimateSpec : AbilitySpec
 
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
-
+       
+        AudioManager.instance.Play("DentriticUltimate", owner.transform.position);
+        
         WaitForSecondsRealtime wait = new(5f);
 
         // Vergil: You shall die!

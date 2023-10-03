@@ -29,8 +29,6 @@ public class TutorialManager : MonoBehaviour
         {
             Destroy(instance.gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -53,12 +51,16 @@ public class TutorialManager : MonoBehaviour
         {
             case 1:
                 Instantiate(StaticPrompts[0]);
+                //Replace into dynamic
                 AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
+                //Replace into dynamic
                 RecruitManager.instance.OnRecruitSpawn += EnablePromptOnThresholdUpdate;
                 UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
+                //Replace into dynamic
                 UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
                 break;
             case 2:
+                //Replace into dynamic
                 SymptomManager.instance.OnActivateSymptom += EnablePromptOnSymptom;
                 break;
             default:
@@ -74,13 +76,23 @@ public class TutorialManager : MonoBehaviour
 
     public void EnablePromptOnAntigenPickup()
     {
-        Instantiate(StaticPrompts[1]);
+        //Instantiate(StaticPrompts[1]);
+        AddDynamicPrompt("You just picked up an antigen");
+        AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
+        AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
+        AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
+
         AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
     }
 
     public void EnablePromptOnThresholdUpdate()
     {
-        Instantiate(StaticPrompts[2]);
+        //Instantiate(StaticPrompts[2]);
+        AddDynamicPrompt("Backup has arrived!");
+        AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
+        AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
+        AddDynamicPrompt("Once you recruit them, you will become stronger!");
+
         RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
     }
 
@@ -92,13 +104,23 @@ public class TutorialManager : MonoBehaviour
 
     public void EnablePromptOnUltiGet()
     {
-        Instantiate(StaticPrompts[4]);
+        //Instantiate(StaticPrompts[4]);
+        AddDynamicPrompt("You just unlocked your ultimate!");
+        AddDynamicPrompt("You unlock your ultimate anytime you recruit 4 of your main unit");
+        AddDynamicPrompt("Press Q to use your ultimate");
+
         UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
     }
 
     public void EnablePromptOnSymptom()
     {
-        Instantiate(StaticPrompts[5]);
+        //Instantiate(StaticPrompts[5]);
+        AddDynamicPrompt("A symptom has just occurred!");
+        AddDynamicPrompt("This symptom right now is a Fever");
+        AddDynamicPrompt("With fever, everyone gets damaged over time, while you increase speed");
+        AddDynamicPrompt("Symptoms will be different each level");
+        AddDynamicPrompt("Some levels might not even have symptoms");
+
         SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
     }
 
