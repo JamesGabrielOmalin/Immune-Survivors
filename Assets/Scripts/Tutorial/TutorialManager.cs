@@ -138,7 +138,8 @@ public class TutorialManager : MonoBehaviour
     {
         dynamicPromptTextQueue.Enqueue(text);
 
-        StartCoroutine(DynamicPrompt());
+        if (dynamicPromptCoroutine == null)
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
     }
 
     public void AddDynamicPrompt(string text, GameObject staticPrompt)
@@ -152,8 +153,6 @@ public class TutorialManager : MonoBehaviour
     {
         while (dynamicPromptTextQueue.Count > 0)
         {
-            yield return new WaitWhile(() => dynamicPrompt.activeInHierarchy);
-            var prompt = dynamicPrompts.Find((p) => !p.activeInHierarchy);
             ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
             dynamicPrompt.SetActive(false);
