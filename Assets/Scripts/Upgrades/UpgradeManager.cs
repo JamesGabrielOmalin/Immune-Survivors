@@ -104,14 +104,29 @@ public class UpgradeManager : MonoBehaviour
         if (CanEquipWeapons)
         {
             n.AddRange(neutrophilWeapons);
+            n.Add(defaultWeapons[0]);
             m.AddRange(macrophageWeapons);
+            m.Add(defaultWeapons[1]);
             d.AddRange(dendriticWeapons);
+            d.Add(defaultWeapons[2]);
         }
         else
         {
             n.AddRange(neutrophilWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            if (grantedDefaultWeapons.ContainsKey(defaultWeapons[0]))
+            {
+                n.Add(defaultWeapons[0]);
+            }
             m.AddRange(macrophageWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            if (grantedDefaultWeapons.ContainsKey(defaultWeapons[1]))
+            {
+                m.Add(defaultWeapons[1]);
+            }
             d.AddRange(dendriticWeapons.Intersect(grantedWeapons.Keys.ToList()));
+            if (grantedDefaultWeapons.ContainsKey(defaultWeapons[2]))
+            {
+                d.Add(defaultWeapons[2]);
+            }
         }
 
         return type switch
