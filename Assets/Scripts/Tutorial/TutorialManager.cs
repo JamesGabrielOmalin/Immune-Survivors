@@ -109,7 +109,7 @@ public class TutorialManager : MonoBehaviour
         //Instantiate(StaticPrompts[4]);
         AddDynamicPrompt("You just unlocked your ultimate!");
         AddDynamicPrompt("You unlock your ultimate anytime you recruit 4 of your main unit");
-        AddDynamicPrompt("Press Q to use your ultimate");
+        AddDynamicPrompt("Press <color=yellow>Q</color> to use your ultimate");
 
         UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
     }
@@ -117,11 +117,11 @@ public class TutorialManager : MonoBehaviour
     public void EnablePromptOnSymptom()
     {
         //Instantiate(StaticPrompts[5]);
-        AddDynamicPrompt("A symptom has just occurred!");
-        AddDynamicPrompt("This symptom right now is a Fever");
-        AddDynamicPrompt("With fever, everyone gets damaged over time, while you increase speed");
-        AddDynamicPrompt("Symptoms will be different each level");
-        AddDynamicPrompt("Some levels might not even have symptoms");
+        AddDynamicPrompt("A <color=yellow>symptom</color> has just occurred!");
+        AddDynamicPrompt("This symptom right now is a <color=red>Fever</color>");
+        AddDynamicPrompt("With <color=red>fever</color>, everyone gets damaged over time, while you increase speed");
+        AddDynamicPrompt("<color=yellow>Symptoms</color> will be different each level");
+        AddDynamicPrompt("Some levels might not even have <color=yellow>symptoms</color>");
 
         SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
     }
@@ -129,6 +129,8 @@ public class TutorialManager : MonoBehaviour
     public void EnablePromptOnAntigenThreshold()
     {
         AddDynamicPrompt("Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
+        AddDynamicPrompt("T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
+        AddDynamicPrompt("However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
 
         for (int i = 0; i < 3; i++)
             AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] -= EnablePromptOnAntigenThreshold;
