@@ -174,8 +174,7 @@ public class TutorialManager : MonoBehaviour
         while (dynamicPromptTextQueue.Count > 0)
         {
             ShowDynamicPrompt();
-            //yield return new WaitForSeconds(dynamicPromptDuration);
-            yield return testCoroutine();
+            yield return new WaitForSeconds(dynamicPromptDuration);
             dynamicPrompt.SetActive(false);
             if(staticPrompt)
                 Instantiate(staticPrompt);
@@ -186,7 +185,7 @@ public class TutorialManager : MonoBehaviour
         yield break;
     }
 
-    private IEnumerator testCoroutine()
+    private IEnumerator TestCoroutine()
     {
 
 
