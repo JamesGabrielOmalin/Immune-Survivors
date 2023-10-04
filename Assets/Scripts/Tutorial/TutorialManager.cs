@@ -135,9 +135,9 @@ public class TutorialManager : MonoBehaviour
     {
         while (dynamicPromptTextQueue.Count > 0)
         {
-            yield return new WaitWhile(() => dynamicPrompts.TrueForAll((prompt) => prompt.activeInHierarchy));
+            yield return new WaitWhile(() => dynamicPrompt.activeInHierarchy);
             var prompt = dynamicPrompts.Find((p) => !p.activeInHierarchy);
-            ShowDynamicPrompt(prompt);
+            ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
             dynamicPrompt.SetActive(false);
         }
@@ -145,10 +145,10 @@ public class TutorialManager : MonoBehaviour
         yield break;
     }
 
-    private void ShowDynamicPrompt(in GameObject prompt)
+    private void ShowDynamicPrompt()
     {
-        prompt.SetActive(true);
-        prompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTextQueue.Peek());
+        dynamicPrompt.SetActive(true);
+        dynamicPrompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTextQueue.Peek());
         dynamicPromptTextQueue.Dequeue();
     }
 }
