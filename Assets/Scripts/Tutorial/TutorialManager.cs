@@ -79,10 +79,10 @@ public class TutorialManager : MonoBehaviour
     public void EnablePromptOnAntigenPickup()
     {
         //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt("You just picked up an antigen");
-        AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
-        AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
-        AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
+        AddDynamicPrompt("You just picked up an antigen!", StaticPrompts[1]);
+        //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
+        //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
+        //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
 
         AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
     }
@@ -90,10 +90,10 @@ public class TutorialManager : MonoBehaviour
     public void EnablePromptOnThresholdUpdate()
     {
         //Instantiate(StaticPrompts[2]);
-        AddDynamicPrompt("Backup has arrived!");
-        AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
-        AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
-        AddDynamicPrompt("Once you recruit them, you will become stronger!");
+        AddDynamicPrompt("Backup has arrived!", StaticPrompts[2]);
+        //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
+        //AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
+        //AddDynamicPrompt("Once you recruit them, you will become stronger!");
 
         RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
     }
@@ -141,6 +141,13 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(DynamicPrompt());
     }
 
+    public void AddDynamicPrompt(string text, GameObject staticPrompt)
+    {
+        dynamicPromptTextQueue.Enqueue(text);
+
+        StartCoroutine(DynamicPrompt(staticPrompt));
+    }
+
     private IEnumerator DynamicPrompt()
     {
         while (dynamicPromptTextQueue.Count > 0)
@@ -150,6 +157,21 @@ public class TutorialManager : MonoBehaviour
             ShowDynamicPrompt(prompt);
             yield return new WaitForSeconds(dynamicPromptDuration);
             dynamicPrompt.SetActive(false);
+        }
+
+        yield break;
+    }
+
+    private IEnumerator DynamicPrompt(GameObject staticPrompt)
+    {
+        while (dynamicPromptTextQueue.Count > 0)
+        {
+            yield return new WaitWhile(() => dynamicPrompts.TrueForAll((prompt) => prompt.activeInHierarchy));
+            var prompt = dynamicPrompts.Find((p) => !p.activeInHierarchy);
+            ShowDynamicPrompt(prompt);
+            yield return new WaitForSeconds(dynamicPromptDuration);
+            dynamicPrompt.SetActive(false);
+            Instantiate(staticPrompt);
         }
 
         yield break;
