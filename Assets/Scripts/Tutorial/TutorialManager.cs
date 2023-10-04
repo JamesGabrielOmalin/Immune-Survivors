@@ -165,8 +165,6 @@ public class TutorialManager : MonoBehaviour
     {
         while (dynamicPromptTextQueue.Count > 0)
         {
-            yield return new WaitWhile(() => dynamicPrompt.activeInHierarchy);
-            var prompt = dynamicPrompts.Find((p) => !p.activeInHierarchy);
             ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
             dynamicPrompt.SetActive(false);
