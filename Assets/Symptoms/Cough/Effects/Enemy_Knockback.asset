@@ -15,8 +15,8 @@ MonoBehaviour:
   AffectedUnit: 2
   EffectType: 1
   ActivationType: 1
-  ActivationDelay: 5
-  KnockbackIntensity: 1
+  ActivationDelay: 1
+  KnockbackIntensity: 2
   Direction: 3
   KnockbackCount: 3
   KnockbackInterval: 1

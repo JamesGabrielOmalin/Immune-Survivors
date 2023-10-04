@@ -196,7 +196,7 @@ MonoBehaviour:
   - {fileID: 4002297422147529661}
   - {fileID: 4002297420718063644}
   spawnArea: {fileID: 0}
-  initialAmountToSpawn: 20
+  initialAmountToSpawn: 0
   layersToCheck:
     serializedVersion: 2
     m_Bits: 128

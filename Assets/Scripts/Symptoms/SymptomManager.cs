@@ -10,10 +10,18 @@ public class SymptomAttribute
     public Symptom symptom;
     public int activationTimestamp = 0;
 }
+
+public enum SymptomType
+{
+    Fever,
+    Cough,
+}
+
 public class SymptomManager : MonoBehaviour
 {
     public GameObject player;
     public static SymptomManager instance;
+    [SerializeField] SymptomType symptomType = SymptomType.Fever;
     public bool isActive = false;
     [SerializeField] private List<SymptomAttribute> SymptomList;
     [SerializeField] private int SymptomLevel = 1;
@@ -46,7 +54,17 @@ public class SymptomManager : MonoBehaviour
     private void ActivateSymptoms()
     {
         OnActivateSymptom?.Invoke();
-        HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
+        switch(symptomType)
+        {
+            case SymptomType.Fever:
+                HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
+
+                break;
+            case SymptomType.Cough:
+
+                break;
+        }
+
         foreach(SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
         {
             StartCoroutine(se.SymptomCoroutine());
