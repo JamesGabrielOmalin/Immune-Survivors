@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GameTimer());
+        StartCoroutine(LastMinute());
 
         if (Player)
         {
@@ -82,10 +83,9 @@ public class GameManager : MonoBehaviour
 
         OnGameResumed?.Invoke();
     }
-
+    private WaitForSeconds wait = new(1f);
     private IEnumerator GameTimer()
     {
-        WaitForSeconds wait = new(1f);
         
         while (GameTime.TotalSeconds < TimeToWin)
         {
@@ -99,5 +99,17 @@ public class GameManager : MonoBehaviour
         //Do win here
         Player.SetActive(false); HUD.SetActive(false);
         OnGameWin?.Invoke();
+    }
+
+    // Not literal last minute, just 8 minutes lmao
+    private readonly WaitForSeconds lastMinuteTimer = new(480);
+    public System.Action OnLastMinuteReached;
+    public bool LastMinuteReached { get; private set; }  = false;
+
+    private IEnumerator LastMinute()
+    {
+        yield return lastMinuteTimer;
+        OnLastMinuteReached?.Invoke();
+        LastMinuteReached = true;
     }
 }
