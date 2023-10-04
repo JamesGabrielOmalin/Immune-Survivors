@@ -57,6 +57,8 @@ public class TutorialManager : MonoBehaviour
                 UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
                 //Replace into dynamic
                 UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
+                for (int i = 0; i < 3; i++)
+                    AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] += EnablePromptOnAntigenThreshold;
                 break;
             case 2:
                 //Replace into dynamic
@@ -121,6 +123,14 @@ public class TutorialManager : MonoBehaviour
         AddDynamicPrompt("Some levels might not even have symptoms");
 
         SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
+    }
+
+    public void EnablePromptOnAntigenThreshold()
+    {
+        AddDynamicPrompt("Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
+
+        for (int i = 0; i < 3; i++)
+            AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] -= EnablePromptOnAntigenThreshold;
     }
 
     public void AddDynamicPrompt(string text)

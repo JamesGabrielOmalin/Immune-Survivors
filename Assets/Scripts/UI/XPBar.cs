@@ -18,6 +18,7 @@ public class XPBar : MonoBehaviour
     private void OnDestroy()
     {
         //RecruitManager.instance.OnThreshholdUpdate -= UpdateBar;
+        OnDisable();
         StopAllCoroutines();
     }
 
