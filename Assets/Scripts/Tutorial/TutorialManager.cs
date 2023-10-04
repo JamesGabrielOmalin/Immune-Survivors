@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
@@ -71,6 +72,19 @@ public class TutorialManager : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            AntigenManager.instance.OnAntigenPickup?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            RecruitManager.instance.OnRecruitSpawn?.Invoke();
+        }
+    }
+
     private void OnDestroy()
     {
         instance = null;
@@ -78,62 +92,65 @@ public class TutorialManager : MonoBehaviour
 
     public void EnablePromptOnAntigenPickup()
     {
+        AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
+
         //Instantiate(StaticPrompts[1]);
         AddDynamicPrompt("You just picked up an antigen!", StaticPrompts[1]);
         //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
         //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
         //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
-
-        AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
     }
 
     public void EnablePromptOnThresholdUpdate()
     {
+        RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
+
         //Instantiate(StaticPrompts[2]);
         AddDynamicPrompt("Backup has arrived!", StaticPrompts[2]);
         //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
         //AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
         //AddDynamicPrompt("Once you recruit them, you will become stronger!");
 
-        RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
+        
     }
 
     public void EnablePromptOnUpgrade()
     {
-        Instantiate(StaticPrompts[3]);
         UpgradeManager.instance.OnUpgradeScreen -= EnablePromptOnUpgrade;
+
+        Instantiate(StaticPrompts[3]);
     }
 
     public void EnablePromptOnUltiGet()
     {
+        UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
+
         //Instantiate(StaticPrompts[4]);
         AddDynamicPrompt("You just unlocked your ultimate!");
         AddDynamicPrompt("You unlock your ultimate anytime you recruit 4 of your main unit");
         AddDynamicPrompt("Press <color=yellow>Q</color> to use your ultimate");
-
-        UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
     }
 
     public void EnablePromptOnSymptom()
     {
+        SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
+
         //Instantiate(StaticPrompts[5]);
         AddDynamicPrompt("A <color=yellow>symptom</color> has just occurred!");
         AddDynamicPrompt("This symptom right now is a <color=red>Fever</color>");
         AddDynamicPrompt("With <color=red>fever</color>, everyone gets damaged over time, while you increase speed");
         AddDynamicPrompt("<color=yellow>Symptoms</color> will be different each level");
         AddDynamicPrompt("Some levels might not even have <color=yellow>symptoms</color>");
-
-        SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
     }
 
     public void EnablePromptOnAntigenThreshold()
     {
+        for (int i = 0; i < 3; i++)
+            AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] -= EnablePromptOnAntigenThreshold;
+
         AddDynamicPrompt("Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
         AddDynamicPrompt("T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
         AddDynamicPrompt("However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
-
-        for (int i = 0; i < 3; i++)
-            AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] -= EnablePromptOnAntigenThreshold;
     }
 
     public void AddDynamicPrompt(string text)
@@ -141,26 +158,15 @@ public class TutorialManager : MonoBehaviour
         dynamicPromptTextQueue.Enqueue(text);
 
         if (dynamicPromptCoroutine == null)
-            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt(null));
     }
 
     public void AddDynamicPrompt(string text, GameObject staticPrompt)
     {
         dynamicPromptTextQueue.Enqueue(text);
 
-        StartCoroutine(DynamicPrompt(staticPrompt));
-    }
-
-    private IEnumerator DynamicPrompt()
-    {
-        while (dynamicPromptTextQueue.Count > 0)
-        {
-            ShowDynamicPrompt();
-            yield return new WaitForSeconds(dynamicPromptDuration);
-            dynamicPrompt.SetActive(false);
-        }
-
-        yield break;
+        if (dynamicPromptCoroutine == null)
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt(staticPrompt));
     }
 
     private IEnumerator DynamicPrompt(GameObject staticPrompt)
@@ -168,10 +174,21 @@ public class TutorialManager : MonoBehaviour
         while (dynamicPromptTextQueue.Count > 0)
         {
             ShowDynamicPrompt();
-            yield return new WaitForSeconds(dynamicPromptDuration);
+            //yield return new WaitForSeconds(dynamicPromptDuration);
+            yield return testCoroutine();
             dynamicPrompt.SetActive(false);
-            Instantiate(staticPrompt);
+            if(staticPrompt)
+                Instantiate(staticPrompt);
         }
+
+        dynamicPromptCoroutine = null;
+
+        yield break;
+    }
+
+    private IEnumerator testCoroutine()
+    {
+
 
         yield break;
     }
