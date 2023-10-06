@@ -36,8 +36,10 @@ public class SymptomEffect: ScriptableObject
     {
         Left = 0,
         Right = 1,
-        Away = 2,
-        Random = 3,
+        Top = 2,
+        Bottom = 3,
+        Away = 4,
+        Random = 5,
 
     }
 
@@ -54,7 +56,7 @@ public class SymptomEffect: ScriptableObject
     [Header ("Effect Attributes")]
     //knockback
     [field: SerializeField] float KnockbackIntensity;
-    [field: SerializeField] KnockbackDirection Direction;
+    public KnockbackDirection KnockDirection;
     [field: SerializeField] int KnockbackCount;
     [field: SerializeField] float KnockbackInterval;
      Vector3 dir = Vector3.right;
@@ -82,22 +84,7 @@ public class SymptomEffect: ScriptableObject
         {
             case SymptomEffectType.Knockback:
 
-                switch (Direction)
-                {
-                    case KnockbackDirection.Left:
-                        CoughPingController.instance.StartCoroutine(CoughPingController.instance.ActivatePing("RIGHT", ActivationDelay - 1));
-                        dir = Vector3.left;
-                        break;
-
-                    case KnockbackDirection.Right:
-                        CoughPingController.instance.StartCoroutine(CoughPingController.instance.ActivatePing("LEFT", ActivationDelay - 1));
-                        dir = Vector3.right;
-                        break;
-
-                    case KnockbackDirection.Random:
-                        dir = RandomizeKnockbackDirection();
-                        break;
-                }
+                dir = GetKnockbackDirection(KnockDirection);
 
                 if (AffectedUnit == TargetUnit.Player)
                 {
@@ -115,7 +102,7 @@ public class SymptomEffect: ScriptableObject
                     {
                         if (enemy.TryGetComponent<Enemy>(out Enemy eu))
                         {
-                            if (Direction == KnockbackDirection.Away)
+                            if (KnockDirection == KnockbackDirection.Away)
                             {
                                 dir = enemy.transform.position - player.transform.position;
                             }
@@ -143,7 +130,7 @@ public class SymptomEffect: ScriptableObject
                     {
                         if (enemy.TryGetComponent<Enemy>(out Enemy enemyComp))
                         {
-                            if (Direction == KnockbackDirection.Away)
+                            if (KnockDirection == KnockbackDirection.Away)
                             {
                                 dir = enemy.transform.position - player.transform.position;
                             }
@@ -214,39 +201,43 @@ public class SymptomEffect: ScriptableObject
         do
         {
             yield return new WaitForSeconds(ActivationDelay);
-
             ActivateSymptom();
 
         }
         while (ActivationType == SymptomActivationType.Loop);
     }
 
-    private Vector3 RandomizeKnockbackDirection()
+    private Vector3 GetKnockbackDirection(KnockbackDirection kdir)
     {
         Vector3 direction = Vector3.zero;
         int index = Random.Range(1, 4);
 
         Debug.Log(index);
-        switch (index)
+        switch (kdir)
         {
-            case 1:
-                direction = Vector3.left;
-                CoughPingController.instance.StartCoroutine(CoughPingController.instance.ActivatePing("RIGHT", ActivationDelay-1));
-                break;
-
-            case 2:
+            case KnockbackDirection.Left:
                 direction = Vector3.right;
-                CoughPingController.instance.StartCoroutine(CoughPingController.instance.ActivatePing("LEFT", ActivationDelay-1));
+                //CoughPingController.instance.StartCoroutine(CoughPingController.instance.PingCoroutine("RIGHT", ActivationDelay-1));
                 break;
 
-            case 3:
+            case KnockbackDirection.Right:
+                direction = Vector3.left;
+                //CoughPingController.instance.StartCoroutine(CoughPingController.instance.PingCoroutine("LEFT", ActivationDelay-1));
+                break;
+
+            case KnockbackDirection.Bottom:
                 direction = Vector3.forward;
-                CoughPingController.instance.StartCoroutine(CoughPingController.instance.ActivatePing("BOTTOM", ActivationDelay-1));
+                //CoughPingController.instance.StartCoroutine(CoughPingController.instance.PingCoroutine("BOTTOM", ActivationDelay-1));
                 break;
 
-            case 4:
+            case KnockbackDirection.Top:
                 direction = -Vector3.forward;
-                CoughPingController.instance.StartCoroutine(CoughPingController.instance.ActivatePing("TOP", ActivationDelay-1));
+                //CoughPingController.instance.StartCoroutine(CoughPingController.instance.PingCoroutine("TOP", ActivationDelay-1));
+                break;
+
+
+            case KnockbackDirection.Random:
+                direction = GetKnockbackDirection((KnockbackDirection)Random.Range(0, 3));
                 break;
         }
 

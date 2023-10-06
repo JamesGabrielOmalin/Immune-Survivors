@@ -6,7 +6,7 @@ public class CoughPingController : MonoBehaviour
 {
     public static CoughPingController instance;
     [SerializeField] List<GameObject> pingList;
-    Dictionary<string, GameObject> pingDictionary;
+    Dictionary<SymptomEffect.KnockbackDirection, GameObject> pingDictionary;
     private void Awake()
     {
         if (instance == null)
@@ -21,12 +21,12 @@ public class CoughPingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pingDictionary = new Dictionary<string, GameObject>()
+        pingDictionary = new Dictionary<SymptomEffect.KnockbackDirection, GameObject>()
         {
-            {"LEFT",pingList[0]},
-            {"RIGHT",pingList[1]},
-            {"TOP",pingList[2]},
-            {"BOTTOM",pingList[3]}
+            {SymptomEffect.KnockbackDirection.Left,pingList[0]},
+            {SymptomEffect.KnockbackDirection.Right,pingList[1]},
+            {SymptomEffect.KnockbackDirection.Top,pingList[2]},
+            {SymptomEffect.KnockbackDirection.Bottom,pingList[3]}
         };
     }
 
@@ -36,7 +36,12 @@ public class CoughPingController : MonoBehaviour
         
     }
 
-    public IEnumerator ActivatePing(string direction,float delay)
+
+    public void ActivatePing(SymptomEffect.KnockbackDirection direction, float delay)
+    {
+        StartCoroutine(PingCoroutine(direction, delay));
+    }
+    public IEnumerator PingCoroutine(SymptomEffect.KnockbackDirection direction,float delay)
     {
         Debug.Log("Direction: " + direction);
         pingDictionary[direction].SetActive(true);

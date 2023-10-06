@@ -21,7 +21,7 @@ public class SymptomManager : MonoBehaviour
 {
     public GameObject player;
     public static SymptomManager instance;
-    [SerializeField] SymptomType symptomType = SymptomType.Fever;
+    public SymptomType symptomType = SymptomType.Fever;
     public bool isActive = false;
     [SerializeField] private List<SymptomAttribute> SymptomList;
     [SerializeField] private int SymptomLevel = 1;
@@ -54,19 +54,19 @@ public class SymptomManager : MonoBehaviour
     private void ActivateSymptoms()
     {
         OnActivateSymptom?.Invoke();
-        switch(symptomType)
+
+        if (symptomType == SymptomType.Fever)
         {
-            case SymptomType.Fever:
-                HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
-
-                break;
-            case SymptomType.Cough:
-
-                break;
+            HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
         }
 
         foreach(SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
         {
+
+            if (symptomType == SymptomType.Cough)
+            {
+                CoughPingController.instance.ActivatePing(se.KnockDirection, se.ActivationDelay);
+            }
             StartCoroutine(se.SymptomCoroutine());
         }
     }
