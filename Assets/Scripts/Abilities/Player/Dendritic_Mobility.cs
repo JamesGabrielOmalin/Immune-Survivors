@@ -57,6 +57,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
         Physics.IgnoreLayerCollision(6, 11, false);
 
+        AudioManager.instance.Play("DentriticMovement", owner.transform.position);
         movement.transform.position = endPos;
 
         var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, LayerMask.GetMask("Enemy"));

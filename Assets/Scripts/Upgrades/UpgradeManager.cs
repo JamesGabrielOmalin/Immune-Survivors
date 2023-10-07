@@ -140,6 +140,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void OpenUpgradeScreen(PlayerUnitType type)
     {
+        AudioManager.instance.Play("UpgradePrompt", transform.position);
         GameManager.instance.PauseGameTime();
         GameManager.instance.HUD.SetActive(false);
         GameManager.instance.Player.GetComponent<Player>().EnableHUD(false);

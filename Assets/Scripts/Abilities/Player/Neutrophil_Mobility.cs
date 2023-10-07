@@ -56,6 +56,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
         var velocity = direction *mobility.DashSpeed;
         var deltaPos = direction * (mobility.DashSpeed * Time.fixedDeltaTime);
 
+        AudioManager.instance.Play("NeutrophilMovement", owner.transform.position);
         rigidbody.AddForce(direction * mobility.DashSpeed, ForceMode.VelocityChange);
 
         while (tick < mobility.MaxDashTime)

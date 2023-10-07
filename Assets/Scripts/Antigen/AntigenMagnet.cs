@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class AntigenMagnet : MonoBehaviour, IBodyColliderListener
 {
@@ -29,6 +30,7 @@ public class AntigenMagnet : MonoBehaviour, IBodyColliderListener
             antigen.transform.position = Vector3.Lerp(antigen.transform.position, this.transform.position, t);
             yield return null;
         }
+        AudioManager.instance.Play("PlayerPickUp", transform.position);
 
         AntigenManager.instance.AddAntigen(antigen.Type);
         AntigenManager.instance.OnAntigenPickup?.Invoke();

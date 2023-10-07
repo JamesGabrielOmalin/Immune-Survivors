@@ -1,5 +1,133 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &786360789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786360791}
+  - component: {fileID: 786360790}
+  m_Layer: 0
+  m_Name: BGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &786360791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786360789}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 843835076022780135}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &786360790
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786360789}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: abd566dc643bacc4cbeed0a127833952, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &909216804196457425
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +206,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 134570929781617728}
+  - {fileID: 786360791}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -94,6 +223,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - name: Button
+    clips:
+    - {fileID: 8300000, guid: 902471143d5cc7548956878f024f86d4, type: 3}
+    - {fileID: 8300000, guid: 867aaf474f30d3e40835f0da24362c0f, type: 3}
+    - {fileID: 8300000, guid: bd669c6bad74ddc42817b9e0e11cf6b8, type: 3}
+    - {fileID: 8300000, guid: 8bbec16bc7c418e44af91a40f5eaf7af, type: 3}
+    - {fileID: 8300000, guid: bd951d653e056e247a074c037405b74f, type: 3}
+    - {fileID: 8300000, guid: 77be9bcd91e43dc4b877a57353009006, type: 3}
+    - {fileID: 8300000, guid: f13160d956b68784585cdbd7b47d9f00, type: 3}
+    - {fileID: 8300000, guid: 08aa3c172e23a7c4d96d61516fc5704e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradePrompt
+    clips:
+    - {fileID: 8300000, guid: da7858fab5bd772499bbcdb6c7fb9396, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerPickUp
+    clips:
+    - {fileID: 8300000, guid: 0f50fe9146773f94780ca41187336c63, type: 3}
+    - {fileID: 8300000, guid: 51e4083ec3401ca448d3aee7baaac083, type: 3}
+    - {fileID: 8300000, guid: eaecf3e6ad30ea14881c760f5e6778b6, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerHit
+    clips:
+    - {fileID: 8300000, guid: 993b54de5fbe09b49a1c00f388dedaaa, type: 3}
+    - {fileID: 8300000, guid: fde4edad0a96b4e47843741a8e43c537, type: 3}
+    - {fileID: 8300000, guid: 0624505c9bc20ac4e9438e32c3ca09ba, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PlayerRecruit
+    clips:
+    - {fileID: 8300000, guid: e7204676112f88940bde32ac10cf3e75, type: 3}
+    - {fileID: 8300000, guid: 42b9589fbf8413041836656b34ed60c4, type: 3}
+    - {fileID: 8300000, guid: 1fc837e4bb0f35142b64f53891154bcd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: NeutrophilAttack
     clips:
     - {fileID: 8300000, guid: a1be521eb27ddbd4f8b028138e57e27c, type: 3}
@@ -121,6 +298,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: NeutrophilMovement
+    clips:
+    - {fileID: 8300000, guid: c78f69b7074c0314baad749c4c8391b3, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: NeutrophilUltimate
     clips:
     - {fileID: 8300000, guid: 34fc9f953f9ff4745a518698b3c3a589, type: 3}
@@ -128,9 +312,36 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: DentriticUltimate
+  - name: MacrophageCircle
     clips:
-    - {fileID: 8300000, guid: 4a20b0973f1876b43a785e4c581e64b9, type: 3}
+    - {fileID: 8300000, guid: ac080fb13ea4d2a48849c8309fe6830a, type: 3}
+    - {fileID: 8300000, guid: 8dc3ef0e62c0df04192c68d7d89c0f15, type: 3}
+    - {fileID: 8300000, guid: 70d5067c9adceea4baf3ebe616193444, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MacrophageCone
+    clips:
+    - {fileID: 8300000, guid: 311c499dc25888648816217f0516b911, type: 3}
+    - {fileID: 8300000, guid: cf0d52141e926ce4e8b0e989446ba3db, type: 3}
+    - {fileID: 8300000, guid: a826469410c2db6478333107223e2c0e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MacrophageLine
+    clips:
+    - {fileID: 8300000, guid: 6cedeb226a21fac4e8c163dfd421e956, type: 3}
+    - {fileID: 8300000, guid: 007bf1cb223328a44aadcf83f61e5234, type: 3}
+    - {fileID: 8300000, guid: 44e03c9d96d8b6a46af8876f10710ce5, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MacrophageMovement
+    clips:
+    - {fileID: 8300000, guid: a78dd36ce91472a449b3daed9b9f209d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -138,6 +349,47 @@ MonoBehaviour:
   - name: MacrophageUltimate
     clips:
     - {fileID: 8300000, guid: 15449aa16fddc7e4fb924514b56a0c81, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DentriticBlade
+    clips:
+    - {fileID: 8300000, guid: f97c9ad18254701478f4cb0840695730, type: 3}
+    - {fileID: 8300000, guid: f1137f07521796f41b47098393feb86e, type: 3}
+    - {fileID: 8300000, guid: 971e8c48e122f5848b6daa015743b622, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DentriticSlash
+    clips:
+    - {fileID: 8300000, guid: 3022b449a7d2523478cbf99d611853c0, type: 3}
+    - {fileID: 8300000, guid: 186a6e2d5329a2042ad2a4f7dc789723, type: 3}
+    - {fileID: 8300000, guid: a51057fcbdd58ae4a8b96a7a90c6e64e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DentriticJN
+    clips:
+    - {fileID: 8300000, guid: a56e285df53595a4cb875e53fe1543b6, type: 3}
+    - {fileID: 8300000, guid: 396c1ff7299e0e24dbd9f76e71b02a5a, type: 3}
+    - {fileID: 8300000, guid: 5aff7b12dae66be47b57632d712adfdf, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DentriticMovement
+    clips:
+    - {fileID: 8300000, guid: 07a6c66ec33eee747ab7859ba241b215, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DentriticUltimate
+    clips:
+    - {fileID: 8300000, guid: 4a20b0973f1876b43a785e4c581e64b9, type: 3}
     volume: 1
     pitch: 1
     loop: 0
