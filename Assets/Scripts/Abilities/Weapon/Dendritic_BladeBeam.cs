@@ -53,7 +53,7 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
             IsAttacking = true;
 
             // Wait before shooting                                                          // Level 3 and higher: Increase ATK SPD by 20%
-            yield return new WaitForSeconds(basicAttack.AttackInterval / attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f));
+            yield return new WaitForSeconds(basicAttack.AttackInterval / (attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f)));
 
             // start slashing
             if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
@@ -72,8 +72,9 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
     }
 
     private IEnumerator Slash()
-    {
-        WaitForSeconds wait = new(0.25f);
+    { 
+                                                                // Level 3 and higher: Increase ATK SPD by 20%
+        WaitForSeconds wait = new(0.25f / (attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f)));
 
         float AD = attackDamage.Value;
                                         // Level 4 or higher: Increase range by 25%
@@ -87,32 +88,44 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
 
         int AC = (int)attackCount.Value;
 
+        Vector3 dir = Vector3.forward;
         for (int i = 0; i < AC; i++)
         {
-            // implement basic shooting towards target
-            GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
-            if (target == null)
+            for (int j = 0; j < 4; j++)
             {
-                continue;
+                switch (j)
+                {
+                    // If odd cycle, + pattern. Otherwise, x pattern
+                    case 0:
+                        dir = i % 2 == 0 ? Vector3.forward : (Vector3.forward + Vector3.right).normalized;
+                        break;
+                    case 1:
+                        dir = i % 2 == 0 ? Vector3.right : (Vector3.right + Vector3.back).normalized;
+                        break;
+                    case 2:
+                        dir = i % 2 == 0 ? Vector3.back : (Vector3.back + Vector3.left).normalized;
+                        break;
+                    case 3:
+                        dir = i % 2 == 0 ? Vector3.left : (Vector3.left + Vector3.forward).normalized;
+                        break;
+                }
+
+                GameObject projectile = bladeBeams.RequestPoolable(owner.transform.position);
+                if (projectile == null)
+                    continue;
+                DendriticBladeBeam cut = projectile.GetComponent<DendriticBladeBeam>();
+                cut.transform.forward = dir;
+
+                // Snapshot attributes
+                cut.attackDamage = AD;
+                cut.critRate = CRIT_RATE;
+                cut.critDMG = CRIT_DMG;
+                cut.attackRange = AR;
+
+                cut.transform.localScale = scale;
+
+                yield return wait;
             }
-
-            Vector3 dir = (target.transform.position - owner.transform.position).normalized;
-
-            GameObject projectile = bladeBeams.RequestPoolable(owner.transform.position);
-            if (projectile == null)
-                continue;
-            DendriticBladeBeam cut = projectile.GetComponent<DendriticBladeBeam>();
-            cut.transform.forward = dir;
-
-            // Snapshot attributes
-            cut.attackDamage = AD;
-            cut.critRate = CRIT_RATE;
-            cut.critDMG = CRIT_DMG;
-            cut.attackRange = AR;
-
-            cut.transform.localScale = scale;
-
-            yield return wait;
         }
     }
 
