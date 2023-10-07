@@ -57,7 +57,7 @@ public class SymptomEffect: ScriptableObject
     //knockback
     [field: SerializeField] float KnockbackIntensity;
     public KnockbackDirection KnockDirection;
-    [field: SerializeField] int KnockbackCount;
+    public int KnockbackCount;
     [field: SerializeField] float KnockbackInterval;
      Vector3 dir = Vector3.right;
 
