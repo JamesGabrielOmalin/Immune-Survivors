@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private List<GameObject> dynamicPrompts = new();
     [SerializeField] private float dynamicPromptDuration;
     private Queue<string> dynamicPromptTextQueue = new();
+    private Queue<GameObject> staticPromptQueue = new();
     private Coroutine dynamicPromptCoroutine;
 
     public static bool isFirstTime = true;
@@ -156,38 +157,32 @@ public class TutorialManager : MonoBehaviour
     public void AddDynamicPrompt(string text)
     {
         dynamicPromptTextQueue.Enqueue(text);
+        staticPromptQueue.Enqueue(null);
 
         if (dynamicPromptCoroutine == null)
-            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt(null));
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
     }
 
     public void AddDynamicPrompt(string text, GameObject staticPrompt)
     {
         dynamicPromptTextQueue.Enqueue(text);
+        staticPromptQueue.Enqueue(staticPrompt);
 
         if (dynamicPromptCoroutine == null)
-            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt(staticPrompt));
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
     }
 
-    private IEnumerator DynamicPrompt(GameObject staticPrompt)
+    private IEnumerator DynamicPrompt()
     {
         while (dynamicPromptTextQueue.Count > 0)
         {
             ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
+            ShowStaticPrompt();
             dynamicPrompt.SetActive(false);
-            if(staticPrompt)
-                Instantiate(staticPrompt);
         }
 
         dynamicPromptCoroutine = null;
-
-        yield break;
-    }
-
-    private IEnumerator TestCoroutine()
-    {
-
 
         yield break;
     }
@@ -197,5 +192,15 @@ public class TutorialManager : MonoBehaviour
         dynamicPrompt.SetActive(true);
         dynamicPrompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTextQueue.Peek());
         dynamicPromptTextQueue.Dequeue();
+    }
+
+    private void ShowStaticPrompt()
+    {
+        GameObject prompt = staticPromptQueue.Dequeue();
+
+        if (!prompt)
+            return;
+
+        Instantiate(prompt);
     }
 }
