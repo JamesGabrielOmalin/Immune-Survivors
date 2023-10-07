@@ -73,19 +73,6 @@ public class TutorialManager : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AntigenManager.instance.OnAntigenPickup?.Invoke();
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            RecruitManager.instance.OnRecruitSpawn?.Invoke();
-        }
-    }
-
     private void OnDestroy()
     {
         instance = null;
