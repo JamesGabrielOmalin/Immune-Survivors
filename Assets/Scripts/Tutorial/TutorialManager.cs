@@ -178,8 +178,8 @@ public class TutorialManager : MonoBehaviour
         {
             ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
-            ShowStaticPrompt();
             dynamicPrompt.SetActive(false);
+            ShowStaticPrompt();
         }
 
         dynamicPromptCoroutine = null;
