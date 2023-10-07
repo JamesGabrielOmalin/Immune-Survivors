@@ -439,11 +439,11 @@ MonoBehaviour:
   - {fileID: 3953174568923334222}
   - {fileID: 3555839980162804406}
   - {fileID: 2656879081483028529}
-  m_FixedDuration: 0
+  m_FixedDuration: 27
   m_EditorSettings:
     m_Framerate: 60
     m_ScenePreview: 1
-  m_DurationMode: 0
+  m_DurationMode: 1
   m_MarkerTrack: {fileID: -2174538841501922122}
 --- !u!114 &2656879081483028529
 MonoBehaviour:
@@ -563,7 +563,7 @@ MonoBehaviour:
     m_Start: 26.483333333333334
     m_ClipIn: 0
     m_Asset: {fileID: 4139127628036795349}
-    m_Duration: 0.016666666666666666
+    m_Duration: 0.5166666666666657
     m_TimeScale: 1
     m_ParentTrack: {fileID: 3555839980162804406}
     m_EaseInDuration: 0
