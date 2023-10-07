@@ -262,6 +262,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: PlayerRecruit
+    clips:
+    - {fileID: 8300000, guid: e7204676112f88940bde32ac10cf3e75, type: 3}
+    - {fileID: 8300000, guid: 42b9589fbf8413041836656b34ed60c4, type: 3}
+    - {fileID: 8300000, guid: 1fc837e4bb0f35142b64f53891154bcd, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   - name: NeutrophilAttack
     clips:
     - {fileID: 8300000, guid: a1be521eb27ddbd4f8b028138e57e27c, type: 3}

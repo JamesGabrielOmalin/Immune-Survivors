@@ -41,6 +41,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
         AttributeModifier mod = new(mobility.MoveSpeedBonus, AttributeModifierType.Multiply);
         moveSpeed.AddModifier(mod);
+        AudioManager.instance.Play("MacrophageMovement", owner.transform.position);
 
         yield return wait;
 

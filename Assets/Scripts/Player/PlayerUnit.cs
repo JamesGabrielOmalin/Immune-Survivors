@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.VFX;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public enum PlayerUnitType
 {
@@ -86,8 +87,9 @@ public class PlayerUnit : Unit, IDamageInterface
         OnTakeDamage?.Invoke();
 
         Debug.Log("Take Damage");
-        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add)); 
-        
+        HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add));
+        AudioManager.instance.Play("PlayerHit", transform.position);
+
         if (HP.Value <= 0f)
         {
             //RemoveFromDetectedList();

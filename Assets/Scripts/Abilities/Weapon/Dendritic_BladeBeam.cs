@@ -57,7 +57,11 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
 
             // start slashing
             if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
+            {
+                AudioManager.instance.Play("DentriticBlade", owner.transform.position);
                 yield return Slash();
+            }
+                
         }
     }
 
