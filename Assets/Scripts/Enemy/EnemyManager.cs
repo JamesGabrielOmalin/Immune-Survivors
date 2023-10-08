@@ -101,6 +101,8 @@ public class EnemyManager : MonoBehaviour
         waveCoroutine = StartCoroutine(WaveCoroutine());
         spawnCoroutine = StartCoroutine(BasicEnemySpawnCoroutine());
 
+
+        OnMaxInfectionReached += GameManager.instance.OnGameLose;
         //StartCoroutine(RelocateEnemies());
 
     }
@@ -290,7 +292,7 @@ public class EnemyManager : MonoBehaviour
         } while (!canSpawn && nChecks < maxChecks);
 
         GameObject enemy = RequestFromPool(position, poolName);
-        StartCoroutine(RelocateEnemy(enemy));
+        //StartCoroutine(RelocateEnemy(enemy));
 
         if (!enemy)
         {

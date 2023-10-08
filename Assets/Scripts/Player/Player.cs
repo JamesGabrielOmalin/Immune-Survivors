@@ -82,7 +82,8 @@ public class Player : MonoBehaviour
 
         input.Controls.Abilities.Mobility.started += mobilityHandler;
         input.Controls.Abilities.Ultimate.started += ultimateHandler;  
-
+        GameManager.instance.OnGameLose += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
+        GameManager.instance.OnGameWin += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
         activeUnit.OnDeath += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
         activeUnit.OnDeath += GameManager.instance.OnGameLose.Invoke;
     }
