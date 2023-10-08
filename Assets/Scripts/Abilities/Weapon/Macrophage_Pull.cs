@@ -93,12 +93,15 @@ public class Macrophage_PullSpec : AbilitySpec
         {
             case MacrophagePullType.Line:
                 pullEffect.transform.forward = dir;
+                AudioManager.instance.Play("MacrophageLine", owner.transform.position);
                 break;
             case MacrophagePullType.Cone:
                 pullEffect.transform.forward = dir;
                 pull.transform.position = target.transform.position;
+                AudioManager.instance.Play("MacrophageCone", owner.transform.position);
                 break;
             case MacrophagePullType.Circle:
+                AudioManager.instance.Play("MacrophageCircle", owner.transform.position);
                 break;
         }
     }

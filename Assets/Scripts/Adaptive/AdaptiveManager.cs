@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AdaptiveManager : MonoBehaviour
 {
+    [Header("Object Pools")]
     [SerializeField] private ObjectPool helperTCellPool;
     [SerializeField] private ObjectPool BCellPool;
     [SerializeField] public ObjectPool cytokinePool;
     [SerializeField] public ObjectPool antibodyPool;
 
-    [SerializeField] private float maxSpawnDistance;
+    [Header("Basic Spawning Attributes")]
 
-    [SerializeField] private float spawnInterval;
-
+    //[SerializeField] private float maxSpawnDistance;
+    //[SerializeField] private float spawnInterval;
     [SerializeField] private BoxCollider spawnArea;
+    [SerializeField] private LayerMask layersToCheck;
+    [SerializeField] private float collisionCheckerRadius;
+    [SerializeField] private int maxChecks;
+
 
     public static AdaptiveManager instance; 
 
@@ -109,29 +115,33 @@ public class AdaptiveManager : MonoBehaviour
     //}
 
     private IEnumerator SpawnCoroutine(AntigenType type)
-    { 
+    {
+        yield return new WaitForSeconds(0.25f);
+
         bool canSpawn = false;
-        Vector3 spawnPoint = Vector3.zero;
+        int nChecks = 0;
+
+        Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+        spawnPoint.y = 0;
 
         do
         {
-            yield return new WaitForSeconds(1f);
-            spawnPoint = RandomPointInBounds(spawnArea.bounds);
-            spawnPoint.y = 0;
-
-
-            bool isColliding = Physics.CheckSphere(spawnPoint, 2, LayerMask.NameToLayer("Adaptive"));
+            bool isColliding = Physics.CheckSphere(spawnPoint, collisionCheckerRadius, layersToCheck);
 
             if (isColliding)
             {
-                Debug.Log("Spheres are colliding!");
-                // You can add your collision logic here
+                //Debug.Log("has Collision");
+                spawnPoint = RandomPointInBounds(spawnArea.bounds);
+                spawnPoint.y = 0;
+                nChecks++;
             }
             else
             {
-                canSpawn= true;
+                canSpawn = true;
             }
-        } while (canSpawn == false);
+            //Debug.Log(isColliding);
+
+        } while (!canSpawn && nChecks < maxChecks);
 
         GameObject helperTCell = helperTCellPool.RequestPoolable(spawnPoint);
         helperTCell.GetComponent<AdaptiveCell>().SetType(type);
