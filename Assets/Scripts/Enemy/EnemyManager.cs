@@ -125,6 +125,7 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
+                StopCoroutine(waveCoroutine);
                 Debug.Log(" Last Wave Ended");
             }
 
@@ -182,7 +183,13 @@ public class EnemyManager : MonoBehaviour
                 else
                 {
                     StopCoroutine(waveCoroutine);
-                    StopCoroutine(spawnCoroutine);
+
+                    if (totalEnemyCount <= 0 )
+                    {
+                        GameManager.instance.OnGameWin?.Invoke();
+                        StopCoroutine(spawnCoroutine);
+
+                    }
                 }
             }
         }
