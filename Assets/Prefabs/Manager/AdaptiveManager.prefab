@@ -244,6 +244,9 @@ MonoBehaviour:
   BCellPool: {fileID: 7567702695574901225}
   cytokinePool: {fileID: 7567702695360082397}
   antibodyPool: {fileID: 7567702695473595666}
-  maxSpawnDistance: 50
-  spawnInterval: 0
   spawnArea: {fileID: 0}
+  layersToCheck:
+    serializedVersion: 2
+    m_Bits: 16384
+  collisionCheckerRadius: 5
+  maxChecks: 10

@@ -82,6 +82,7 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         int AC = (int)attackCount.Value;
                                             // Level 3 and higher: Increase slash count by 3
         int count = basicAttack.AttackCount + (abilityLevel >= 3f ? 3 : 0);
+
         // implement basic shooting towards target
         for (int i = 0; i < AC; i++)
         {
@@ -103,6 +104,7 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
             slash.critRate = CRIT_RATE;
             slash.critDMG = CRIT_DMG;
             slash.attackCount = count;
+            AudioManager.instance.Play("DentriticSlash", owner.transform.position);
 
             yield return wait;
         }

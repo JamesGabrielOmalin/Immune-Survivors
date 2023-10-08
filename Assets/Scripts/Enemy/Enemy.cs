@@ -153,7 +153,7 @@ public class Enemy : Unit, IDamageInterface
         }
         else
         {
-            Debug.Log("tag: " + other.tag + "Name: " + other.name);
+            //Debug.Log("tag: " + other.tag + "Name: " + other.name);
         }
     }
 
