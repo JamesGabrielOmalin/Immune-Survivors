@@ -43,6 +43,8 @@ public class HelperTCell : AdaptiveCell
                 yield return null;
             }
 
+            AudioManager.instance.Play("BuffGenerate", transform.position);
+
             GameObject cytokine = cytokinePool.RequestPoolable(transform.position + Vector3.up);
             cytokine.GetComponent<Cytokine>().SetType(Type);
 

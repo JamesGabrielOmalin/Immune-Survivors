@@ -265,6 +265,13 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: BuffGenerate
+    clips:
+    - {fileID: 8300000, guid: 6a0920e9d5fe12e4286eab9cbe0060f0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   musicSource: {fileID: 0}
   audiosource: {fileID: 285206030483098560, guid: 0c61a735aeca4ab4db6910c5cde198b0,
     type: 3}
