@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -109,7 +121,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -130,7 +142,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -151,7 +163,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -172,7 +184,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 128
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -192,8 +204,8 @@ TextureImporter:
       name: UI_infectionBar_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 128
+        x: 0
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -213,8 +225,8 @@ TextureImporter:
       name: UI_infectionBar_5
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
+        x: 32
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -234,8 +246,8 @@ TextureImporter:
       name: UI_infectionBar_6
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
+        x: 64
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -255,8 +267,8 @@ TextureImporter:
       name: UI_infectionBar_7
       rect:
         serializedVersion: 2
-        x: 64
-        y: 96
+        x: 96
+        y: 64
         width: 32
         height: 32
       alignment: 0
@@ -276,8 +288,8 @@ TextureImporter:
       name: UI_infectionBar_8
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
+        x: 0
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -297,8 +309,8 @@ TextureImporter:
       name: UI_infectionBar_9
       rect:
         serializedVersion: 2
-        x: 128
-        y: 96
+        x: 32
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -318,8 +330,8 @@ TextureImporter:
       name: UI_infectionBar_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
+        x: 64
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -339,8 +351,8 @@ TextureImporter:
       name: UI_infectionBar_11
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
+        x: 96
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -360,8 +372,8 @@ TextureImporter:
       name: UI_infectionBar_12
       rect:
         serializedVersion: 2
-        x: 64
-        y: 64
+        x: 0
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -381,8 +393,8 @@ TextureImporter:
       name: UI_infectionBar_13
       rect:
         serializedVersion: 2
-        x: 96
-        y: 64
+        x: 32
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -402,8 +414,8 @@ TextureImporter:
       name: UI_infectionBar_14
       rect:
         serializedVersion: 2
-        x: 128
-        y: 64
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -423,8 +435,8 @@ TextureImporter:
       name: UI_infectionBar_15
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
+        x: 96
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -436,111 +448,6 @@ TextureImporter:
       bones: []
       spriteID: 2e3c6d74dcf338844b461b0e6c592e9a
       internalID: 586632245
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_infectionBar_16
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 70e2f69c89edaa647bb58b3812b32201
-      internalID: -1845829327
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_infectionBar_17
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc07889974076324bb29ca48d3a7f4a3
-      internalID: 2052342922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_infectionBar_18
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2258201f34987584aace009847ad5217
-      internalID: -1411461705
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_infectionBar_19
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 805066aa959534b40a3dadaf524f15cb
-      internalID: -658438116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_infectionBar_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: da0f04d867e1c6645845afd7529fadf0
-      internalID: -765448293
       vertices: []
       indices: 
       edges: []
@@ -564,12 +471,7 @@ TextureImporter:
       UI_infectionBar_13: -70829491
       UI_infectionBar_14: -1116812443
       UI_infectionBar_15: 586632245
-      UI_infectionBar_16: -1845829327
-      UI_infectionBar_17: 2052342922
-      UI_infectionBar_18: -1411461705
-      UI_infectionBar_19: -658438116
       UI_infectionBar_2: -793117281
-      UI_infectionBar_20: -765448293
       UI_infectionBar_3: 1769030346
       UI_infectionBar_4: -201093695
       UI_infectionBar_5: -325104688
