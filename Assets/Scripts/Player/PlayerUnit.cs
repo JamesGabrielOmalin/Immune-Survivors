@@ -81,9 +81,13 @@ public class PlayerUnit : Unit, IDamageInterface
 
         StartCoroutine(Regen());
     }
+    private bool isInvulnerable = false;
 
     public void TakeDamage(float amount)
     {
+        if (isInvulnerable)
+            return;
+
         OnTakeDamage?.Invoke();
 
         Debug.Log("Take Damage");
@@ -95,6 +99,16 @@ public class PlayerUnit : Unit, IDamageInterface
             //RemoveFromDetectedList();
             OnDeath?.Invoke();
         }
+        StartCoroutine(IFrames());
+    }
+
+    private readonly WaitForSeconds iframeDuration = new (0.25f);
+
+    private IEnumerator IFrames()
+    {
+        isInvulnerable = true;
+        yield return iframeDuration;
+        isInvulnerable = false;
     }
 
     public void Heal(float amount)
