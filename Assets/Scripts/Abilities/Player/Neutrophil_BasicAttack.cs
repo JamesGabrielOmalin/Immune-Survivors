@@ -130,7 +130,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
             angle = 0;
 
             // Fires 2 more bullets per level
-            for (int j = 0; j < abilityLevel; j++)
+            for (int j = 0; j < abilityLevel * 2 - 1; j++)
             {
                 GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
                 if (bulletObject == null)

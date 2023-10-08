@@ -19,6 +19,9 @@ public class EndScreen : MonoBehaviour
 
     private void ShowWinScreen()
     {
+        GameManager.instance.HUD.SetActive(false);
+        TutorialManager.instance.dynamicPrompt.SetActive(false);
+        GameManager.instance.Player.GetComponent<Player>().activeHUD.SetActive(false);
         winScreen.SetActive(true);
         GameManager.instance.PauseGame();
         GameManager.instance.PauseGameTime();
@@ -26,6 +29,9 @@ public class EndScreen : MonoBehaviour
 
     private void ShowLoseScreen()
     {
+        GameManager.instance.HUD.SetActive(false);
+        TutorialManager.instance.dynamicPrompt.SetActive(false);
+        GameManager.instance.Player.GetComponent<Player>().activeHUD.SetActive(false);
         loseScreen.SetActive(true);
         GameManager.instance.PauseGame();
         GameManager.instance.PauseGameTime();

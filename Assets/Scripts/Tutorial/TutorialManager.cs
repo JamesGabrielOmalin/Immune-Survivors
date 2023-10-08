@@ -10,7 +10,7 @@ public class TutorialManager : MonoBehaviour
 { 
     public static TutorialManager instance;
 
-    [SerializeField] private GameObject dynamicPrompt;
+    public GameObject dynamicPrompt;
     [SerializeField] private List<GameObject> dynamicPrompts = new();
     [SerializeField] private float dynamicPromptDuration;
     private Queue<string> dynamicPromptTextQueue = new();

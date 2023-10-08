@@ -19,12 +19,12 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject dendriticHUD;
 
     [Header("Slots")]
-    [SerializeField] private Transform activeSlot;
+    [SerializeField] Transform activeSlot;
     [SerializeField] private Transform slot1;
     [SerializeField] private Transform slot2;
 
     private PlayerUnit activeUnit;
-    private GameObject activeHUD;
+    [HideInInspector] public GameObject activeHUD;
     private int numRecruit;
 
     [SerializeField] private List<Image> buffIcons = new();
@@ -82,8 +82,7 @@ public class Player : MonoBehaviour
 
         input.Controls.Abilities.Mobility.started += mobilityHandler;
         input.Controls.Abilities.Ultimate.started += ultimateHandler;  
-        GameManager.instance.OnGameLose += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
-        GameManager.instance.OnGameWin += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
+
         activeUnit.OnDeath += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
         activeUnit.OnDeath += GameManager.instance.OnGameLose.Invoke;
     }
