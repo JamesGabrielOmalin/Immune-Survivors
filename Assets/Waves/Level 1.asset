@@ -18,13 +18,13 @@ MonoBehaviour:
   - waveName: 'Wave 1: A'
     ID: 1
     spawnInterval: 1
-    waveSpawnCounter: 59
+    waveSpawnCounter: 27
     waveSpawnQuota: 60
     enemyGroups:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 59
+      enemySpawnCounter: 27
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -39,11 +39,11 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 61
+      enemySpawnCounter: 62
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 30
-      enemySpawnCounter: 34
+      enemySpawnCounter: 33
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -58,15 +58,15 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 63
+      enemySpawnCounter: 64
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 64
+      enemySpawnCounter: 65
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 30
-      enemySpawnCounter: 33
+      enemySpawnCounter: 31
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -85,15 +85,15 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 65
+      enemySpawnCounter: 64
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 65
+      enemySpawnCounter: 62
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 60
-      enemySpawnCounter: 63
+      enemySpawnCounter: 67
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -109,22 +109,22 @@ MonoBehaviour:
       bossSpawnCounter: 0
   - waveName: 'Wave 5: AABC'
     ID: 5
-    spawnInterval: 0.75
+    spawnInterval: 0.8
     waveSpawnCounter: 240
     waveSpawnQuota: 240
     enemyGroups:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 64
+      enemySpawnCounter: 63
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 63
+      enemySpawnCounter: 62
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 65
+      enemySpawnCounter: 62
     - enemyName: Bacteria C
       poolName: Bacteria c
       enemyQuota: 60
@@ -132,7 +132,7 @@ MonoBehaviour:
     BossEnemyGroups: []
   - waveName: 'Wave 6: ABBC'
     ID: 6
-    spawnInterval: 0.75
+    spawnInterval: 0.8
     waveSpawnCounter: 240
     waveSpawnQuota: 240
     enemyGroups:
@@ -143,15 +143,15 @@ MonoBehaviour:
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 61
+      enemySpawnCounter: 62
     - enemyName: Bacteria B
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 68
+      enemySpawnCounter: 66
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 60
-      enemySpawnCounter: 66
+      enemySpawnCounter: 63
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -174,19 +174,19 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 66
+      enemySpawnCounter: 64
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 63
-    - enemyName: Bacteria C
-      poolName: Bacteria C
-      enemyQuota: 60
-      enemySpawnCounter: 63
-    - enemyName: Bacteria C
-      poolName: Bacteria C
-      enemyQuota: 60
       enemySpawnCounter: 62
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 60
+      enemySpawnCounter: 63
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 60
+      enemySpawnCounter: 64
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -209,7 +209,7 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 63
+      enemySpawnCounter: 62
     - enemyName: Bacteria A
       poolName: Bacteria B
       enemyQuota: 60
@@ -221,7 +221,7 @@ MonoBehaviour:
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 64
+      enemySpawnCounter: 65
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 60
@@ -248,11 +248,11 @@ MonoBehaviour:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 60
-      enemySpawnCounter: 61
+      enemySpawnCounter: 62
     - enemyName: Bacteria A
       poolName: Bacteria B
       enemyQuota: 60
-      enemySpawnCounter: 63
+      enemySpawnCounter: 64
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 60
@@ -264,11 +264,11 @@ MonoBehaviour:
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 60
-      enemySpawnCounter: 62
+      enemySpawnCounter: 61
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 60
-      enemySpawnCounter: 62
+      enemySpawnCounter: 61
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A
@@ -285,33 +285,33 @@ MonoBehaviour:
   - waveName: 'Wave 10: AABBCC'
     ID: 10
     spawnInterval: 0.8
-    waveSpawnCounter: 600
+    waveSpawnCounter: 420
     waveSpawnQuota: 600
     enemyGroups:
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 100
-      enemySpawnCounter: 100
+      enemySpawnCounter: 70
     - enemyName: Bacteria A
       poolName: Bacteria A
       enemyQuota: 100
-      enemySpawnCounter: 100
+      enemySpawnCounter: 70
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 100
-      enemySpawnCounter: 100
+      enemySpawnCounter: 70
     - enemyName: Bacteria B
       poolName: Bacteria B
       enemyQuota: 100
-      enemySpawnCounter: 100
+      enemySpawnCounter: 70
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 100
-      enemySpawnCounter: 100
+      enemySpawnCounter: 70
     - enemyName: Bacteria C
       poolName: Bacteria C
       enemyQuota: 100
-      enemySpawnCounter: 100
+      enemySpawnCounter: 70
     BossEnemyGroups:
     - enemyName: Bacteria Boss A
       poolName: Bacteria Boss A

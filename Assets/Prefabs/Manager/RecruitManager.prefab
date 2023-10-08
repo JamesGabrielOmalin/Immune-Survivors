@@ -199,7 +199,7 @@ MonoBehaviour:
   initialAmountToSpawn: 0
   layersToCheck:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 524416
   collisionCheckerRadius: 10
   maxChecks: 10
   EnableIntervalSpawning: 0
