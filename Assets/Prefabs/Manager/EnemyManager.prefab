@@ -259,10 +259,8 @@ MonoBehaviour:
   activeEnemies: []
   <MinInfectionRate>k__BackingField: 0
   <MaxInfectionRate>k__BackingField: 100
-  <SymptomThreshold>k__BackingField: 5
   spawnArea: {fileID: 0}
   maxSpawnDistance: 50
-  track: {fileID: 0}
   level: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3, type: 2}
   waveIndex: 0
   currentWave:
@@ -273,8 +271,12 @@ MonoBehaviour:
     waveSpawnQuota: 0
     enemyGroups: []
     BossEnemyGroups: []
+  layersToCheck:
+    serializedVersion: 2
+    m_Bits: 524352
+  collisionCheckerRadius: 5
+  maxChecks: 10
   boundsThreshold: {x: 0, y: 0}
-  spawnThreshold: 0
 --- !u!1 &8919689434991410157
 GameObject:
   m_ObjectHideFlags: 0
