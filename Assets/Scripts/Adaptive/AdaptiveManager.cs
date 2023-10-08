@@ -36,6 +36,7 @@ public class AdaptiveManager : MonoBehaviour
 
     private void Start()
     {
+        spawnArea = GameObject.FindGameObjectWithTag("SpawnArea").GetComponent<BoxCollider>();
         AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_1] += (() => SpawnAdaptiveCell(AntigenType.Type_1));
         AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_2] += (() => SpawnAdaptiveCell(AntigenType.Type_2));
         AntigenManager.instance.OnAntigenThresholdReached[AntigenType.Type_3] += (() => SpawnAdaptiveCell(AntigenType.Type_3));

@@ -100,6 +100,8 @@ public class RecruitManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        spawnArea = GameObject.FindGameObjectWithTag("SpawnArea").GetComponent<BoxCollider>();
+
         cam = Camera.main;
         player = GameManager.instance.Player;
 

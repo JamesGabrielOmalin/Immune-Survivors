@@ -83,6 +83,8 @@ public class EnemyManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        spawnArea = GameObject.FindGameObjectWithTag("SpawnArea").GetComponent<BoxCollider>();
+
         cam = Camera.main;
 
         minBounds -= boundsThreshold;
