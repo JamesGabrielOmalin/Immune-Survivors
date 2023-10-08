@@ -19,15 +19,9 @@ public class EnemyManager : MonoBehaviour
     [field: SerializeField]
     public int MaxInfectionRate { get; private set; }
 
-    [field: SerializeField]
-    public int SymptomThreshold { get; private set; }
-
+    [Header ("Spawning")]
     [SerializeField] private BoxCollider spawnArea;
-
     [SerializeField] private float maxSpawnDistance;
-
-    [SerializeField] private GameObject track;
-
 
     [field: Header("Wave")]
     [SerializeField] LevelWaveData level;
@@ -39,13 +33,17 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int waveIndex = 0;
     [SerializeField] private Wave currentWave;
 
+    [SerializeField] private LayerMask layersToCheck;
+    [SerializeField] private float collisionCheckerRadius;
+    [SerializeField] private int maxChecks;
+
     [Header("Viewport Bounds Threshold")]
 
     [Tooltip("Relocate objects when the x units away from the viewport screen")]
     [SerializeField] private Vector2 boundsThreshold;
 
-    [Tooltip("Relocate objects by x units outside of the viewport screen (must be less than bouds threshold)")]
-    [SerializeField] private float spawnThreshold;
+    //[Tooltip("Relocate objects by x units outside of the viewport screen (must be less than bouds threshold)")]
+    //[SerializeField] private float spawnThreshold;
 
     [Tooltip("Within (0-1)  LL Viewing fustrum (0,0) ")]
     private Vector2 minBounds = new Vector2(0, 0);
@@ -127,6 +125,7 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
+                StopCoroutine(waveCoroutine);
                 Debug.Log(" Last Wave Ended");
             }
 
@@ -184,7 +183,13 @@ public class EnemyManager : MonoBehaviour
                 else
                 {
                     StopCoroutine(waveCoroutine);
-                    StopCoroutine(spawnCoroutine);
+
+                    if (totalEnemyCount <= 0 )
+                    {
+                        GameManager.instance.OnGameWin?.Invoke();
+                        StopCoroutine(spawnCoroutine);
+
+                    }
                 }
             }
         }
@@ -207,43 +212,45 @@ public class EnemyManager : MonoBehaviour
         GameObject player = GameManager.instance.Player;
         for (int i = 0; i < amount; i++)
         {
+            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+            spawnPoint.y = 0;
             // spawn point around the player
-            float angle = Random.Range(0f, 360f);
-            Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-            Vector3 spawnPoint = player.transform.position + dir * Random.Range(30f, 40f);
+            //float angle = Random.Range(0f, 360f);
+            //Vector3 dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            //Vector3 spawnPoint = player.transform.position + dir * Random.Range(30f, 40f);
 
-            bool positiveX = Random.value < 0.5f;
-            bool positiveZ = Random.value < 0.5f;
+            //bool positiveX = Random.value < 0.5f;
+            //bool positiveZ = Random.value < 0.5f;
 
             //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 32f) : Random.Range(-9f, -10f));
 
 
-            // Limit spawn position
-            if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-            {
-                spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-            }
+            //// Limit spawn position
+            //if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+            //{
+            //    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+            //}
 
-            if (!spawnArea.bounds.Contains(spawnPoint))
-            {
-                angle = Random.Range(0f, 360f);
-                dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
-                spawnPoint = player.transform.position + dir * Random.Range(30f, 40f);
+            //if (!spawnArea.bounds.Contains(spawnPoint))
+            //{
+            //    angle = Random.Range(0f, 360f);
+            //    dir = new(Mathf.Cos(angle), 0f, Mathf.Sin(angle));
+            //    spawnPoint = player.transform.position + dir * Random.Range(30f, 40f);
 
-                // Limit spawn position
-                if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
-                {
-                    spawnPoint = spawnPoint.normalized * maxSpawnDistance;
-                }
+            //    // Limit spawn position
+            //    if (spawnPoint.sqrMagnitude > Mathf.Pow(maxSpawnDistance, 2))
+            //    {
+            //        spawnPoint = spawnPoint.normalized * maxSpawnDistance;
+            //    }
 
-                //Debug.Log($" Enemy Out of bounds, moving to: {spawnPoint}");
+            //    //Debug.Log($" Enemy Out of bounds, moving to: {spawnPoint}");
 
-            }
-            else
-            {
-                SpawnEnemy(spawnPoint, poolName);
+            //}
+            //else
+            //{
+            StartCoroutine(SpawnEnemy(spawnPoint, poolName));
 
-            }
+            //}
 
             //float x = Random.Range(-50f, 50f);
             //float z = Random.Range(-50f, 50f);
@@ -254,15 +261,39 @@ public class EnemyManager : MonoBehaviour
     {
     }
 
-    public void SpawnEnemy(Vector3 position, string poolName)
+    public IEnumerator SpawnEnemy(Vector3 position, string poolName)
     {
+
+        yield return new WaitForSeconds(0.25f);
+
+        bool canSpawn = false;
+        int nChecks = 0;
+        do
+        {
+            bool isColliding = Physics.CheckSphere(position, collisionCheckerRadius, layersToCheck);
+
+            if (isColliding)
+            {
+                //Debug.Log("has Collision");
+                position = RandomPointInBounds(spawnArea.bounds);
+                position.y = 0;
+                nChecks++;
+            }
+            else
+            {
+                canSpawn = true;
+            }
+            //Debug.Log(isColliding);
+
+        } while (!canSpawn && nChecks < maxChecks);
+
         GameObject enemy = RequestFromPool(position, poolName);
         StartCoroutine(RelocateEnemy(enemy));
 
         if (!enemy)
         {
             Debug.LogWarning("No enemy found in object pool!");
-            return;
+            yield return null;
         }
 
         if (enemy.TryGetComponent<Collider>(out Collider cc))
@@ -300,104 +331,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private IEnumerator RelocateEnemies()
-    {
-        WaitForSeconds wait = new(1.0f);
-        //WaitForFixedUpdate wait = new();
-
-        while (this)
-        {
-            yield return wait;
-
-            activeEnemies.RemoveAll((recruit) => !recruit.activeInHierarchy);
-            activeEnemies.TrimExcess();
-
-            foreach (GameObject enemy in activeEnemies)
-            {
-                // Translate World to Viewport
-                Vector3 enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
-
-                Vector3 ViewportToWorldPos = enemyPos;
-
-                // Proceed to next iteration if is within bounds
-                if ((enemyPos.x >= minBounds.x && enemyPos.x <= maxBounds.x) && (enemyPos.y >= minBounds.y && enemyPos.y <= maxBounds.y))
-                {
-                    //Debug.Log("In range: " + enemyPos);
-
-                    continue;
-                }
-
-                if (enemyPos.x < minBounds.x)
-                {
-                    // Left side of the screen
-                    ViewportToWorldPos.x = -spawnThreshold;
-                    ViewportToWorldPos.y = Random.Range(-spawnThreshold, 1 + spawnThreshold);
-                }
-                else if (enemyPos.x > maxBounds.x)
-                {
-                    // Right side of the screen
-                    ViewportToWorldPos.x = 1 + spawnThreshold;
-                    ViewportToWorldPos.y = Random.Range(-spawnThreshold, 1 + spawnThreshold); ;
-                }
-                else if (enemyPos.y < minBounds.y)
-                {
-                    // Bottom side of the screen
-                    ViewportToWorldPos.y = -spawnThreshold;
-                    ViewportToWorldPos.x = Random.Range(-spawnThreshold, 1 + spawnThreshold);
-                }
-                else if (enemyPos.y > maxBounds.y)
-                {
-                    // Top side of the screen
-                    ViewportToWorldPos.y = 1 + spawnThreshold;
-                    ViewportToWorldPos.x = Random.Range(-spawnThreshold, 1 + spawnThreshold);
-                }
-
-                Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z));
-
-                enemy.transform.position = new Vector3(newPos.x, enemy.transform.position.y, newPos.z);
-
-                //Debug.Log("Not in range: " + enemyPos);
-
-            }
-
-            //foreach (var recruit in activeRecruits)
-            //{
-            //    if (Vector3.Distance(player.transform.position, recruit.transform.position) > 30f)
-            //    {
-            //        Vector3 spawnPoint = (recruit.transform.position - player.transform.position).normalized;
-
-            //        if (spawnPoint.z > 0f)
-            //        {
-            //            spawnPoint *= 30f;
-            //        }
-            //        else
-            //        {
-            //            spawnPoint *= 12f;
-            //        }
-
-            //        //bool positiveX = Random.value < 0.5f;
-            //        //bool positiveZ = Random.value < 0.5f;
-
-            //        //Vector3 spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
-
-            //        //while (!spawnArea.bounds.Contains(spawnPoint))
-            //        //{
-            //        //    positiveX = Random.value < 0.5f;
-            //        //    positiveZ = Random.value < 0.5f;
-
-            //        //    spawnPoint = player.transform.position + new Vector3(Random.Range(16f, 17f) * (positiveX ? 1 : -1), 0f, positiveZ ? Random.Range(30f, 31f) : Random.Range(-9f, -10f));
-            //        //    Debug.Log($"Out of bounds, moving to: {spawnPoint}"); 
-            //        //    //yield return null;
-            //        //}
-
-            //        recruit.transform.position = player.transform.position + spawnPoint;
-            //        Debug.Log("Relocated " + recruit.name);
-            //    }
-            //}
-
-        }
-    }
-
     public IEnumerator RelocateEnemy(GameObject enemy)
     {
         Vector3 enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
@@ -408,13 +341,6 @@ public class EnemyManager : MonoBehaviour
 
         Vector3 ViewportToWorldPos = enemyPos;
 
-        // Proceed to next iteration if is within bounds
-        //if ((enemyPos.x >= minBounds.x && enemyPos.x <= maxBounds.x) && (enemyPos.y >= minBounds.y && enemyPos.y <= maxBounds.y))
-        //{
-        //    Debug.Log("In range: " + enemyPos);
-
-            //    return;
-            //}
         if (enemyPos.y > maxBounds.y)
         {
             // Top side of the screen
@@ -427,8 +353,6 @@ public class EnemyManager : MonoBehaviour
             ViewportToWorldPos.y = 0.6f;
             ViewportToWorldPos.x = Random.Range(0f, 1f);
         }
-
-        //enemyPos = cam.WorldToViewportPoint(cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z)));
 
         else if (enemyPos.x < minBounds.x)
         {
@@ -542,5 +466,14 @@ public class EnemyManager : MonoBehaviour
         }
 
         return furthest;
+    }
+
+    private Vector3 RandomPointInBounds(in Bounds bounds)
+    {
+        return new Vector3(
+            Random.Range(bounds.min.x, bounds.max.x),
+            Random.Range(bounds.min.y, bounds.max.y),
+            Random.Range(bounds.min.z, bounds.max.z)
+        );
     }
 }

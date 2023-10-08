@@ -247,6 +247,6 @@ MonoBehaviour:
   spawnArea: {fileID: 0}
   layersToCheck:
     serializedVersion: 2
-    m_Bits: 16384
-  collisionCheckerRadius: 5
+    m_Bits: 540736
+  collisionCheckerRadius: 4
   maxChecks: 10

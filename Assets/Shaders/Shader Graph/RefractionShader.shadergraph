@@ -167,6 +167,9 @@
         },
         {
             "m_Id": "d7ab5183e65d47afb69c62b781e24ed6"
+        },
+        {
+            "m_Id": "df8faf5473d94fbfa9a75b4ea96b7b6c"
         }
     ],
     "m_GroupDatas": [],
@@ -343,6 +346,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "5063974b5dac4366b8d530245d1166fb"
+                },
+                "m_SlotId": 1
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a3607ddf0be240df81714ab736e4a710"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "5c7af66929f74787ae0e78894e0ebf75"
                 },
                 "m_SlotId": 2
@@ -503,9 +520,9 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "d7ab5183e65d47afb69c62b781e24ed6"
+                    "m_Id": "df8faf5473d94fbfa9a75b4ea96b7b6c"
                 },
-                "m_SlotId": 1
+                "m_SlotId": 0
             }
         },
         {
@@ -749,13 +766,13 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "ddbd909e92f741eb8dd2e5571e48ae6e"
+                    "m_Id": "df8faf5473d94fbfa9a75b4ea96b7b6c"
                 },
-                "m_SlotId": 2
+                "m_SlotId": 1
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "a3607ddf0be240df81714ab736e4a710"
+                    "m_Id": "d7ab5183e65d47afb69c62b781e24ed6"
                 },
                 "m_SlotId": 1
             }
@@ -2255,6 +2272,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "5eac910960cf45fbb4b01f5bddb5409a",
+    "m_Id": 1,
+    "m_DisplayName": "Out",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "5f7780c781d044e987161418c9e513d7",
     "m_Id": 2,
@@ -2638,6 +2678,29 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Position"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "6ddb3938c5c74b128777a4302dfc1074",
+    "m_Id": 0,
+    "m_DisplayName": "In",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "In",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {
@@ -3157,10 +3220,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1453.0,
-            "y": -572.0,
-            "width": 208.0,
-            "height": 302.0
+            "x": -1639.0,
+            "y": -508.0000305175781,
+            "width": 130.0,
+            "height": 118.0
         }
     },
     "m_Slots": [
@@ -5329,6 +5392,53 @@
     "m_CustomColors": {
         "m_SerializableColors": []
     }
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.TransformNode",
+    "m_ObjectId": "df8faf5473d94fbfa9a75b4ea96b7b6c",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Transform",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1428.5626220703125,
+            "y": -516.5626220703125,
+            "width": 213.0,
+            "height": 341.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "6ddb3938c5c74b128777a4302dfc1074"
+        },
+        {
+            "m_Id": "5eac910960cf45fbb4b01f5bddb5409a"
+        }
+    ],
+    "synonyms": [
+        "world",
+        "tangent",
+        "object",
+        "view",
+        "screen",
+        "convert"
+    ],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Conversion": {
+        "from": 3,
+        "to": 1
+    },
+    "m_ConversionType": 1
 }
 
 {
