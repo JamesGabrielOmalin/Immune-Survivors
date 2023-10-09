@@ -17,11 +17,13 @@ MonoBehaviour:
   ActivationType: 0
   ActivationDelay: 0
   KnockbackIntensity: 0
-  Direction: 0
+  KnockDirection: 0
+  KnockbackCount: 0
+  KnockbackInterval: 0
   DotDamage: 0
   DotDuration: 0
   DotTickRate: 0
-  MoveSpeedModifierAmount: 0.5
+  MoveSpeedModifierAmount: 0.25
   ModifierType: 1
   IsInfiniteDuration: 0
-  MoveSpeedModifierDuration: 5
+  MoveSpeedModifierDuration: 3
