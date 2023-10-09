@@ -200,7 +200,7 @@ MonoBehaviour:
   layersToCheck:
     serializedVersion: 2
     m_Bits: 524416
-  collisionCheckerRadius: 10
+  collisionCheckerRadius: 5
   maxChecks: 10
   EnableIntervalSpawning: 0
   spawnInterval: 60
