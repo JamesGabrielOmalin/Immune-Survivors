@@ -5160,6 +5160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character Select (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7668032386126680587, guid: 8e60b506cea67a34782a1fcb47bd253b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7668032386126680629, guid: 8e60b506cea67a34782a1fcb47bd253b,
         type: 3}
       propertyPath: m_RootOrder
@@ -5218,7 +5223,7 @@ PrefabInstance:
     - target: {fileID: 7668032386236457351, guid: 8e60b506cea67a34782a1fcb47bd253b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7668032387008475278, guid: 8e60b506cea67a34782a1fcb47bd253b,
         type: 3}
@@ -7044,11 +7049,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7119007286348180611, guid: 7dd91880d0becce4699baad422b041d2,
-        type: 3}
-      propertyPath: musicSource
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8750247663846281659, guid: 7dd91880d0becce4699baad422b041d2,
         type: 3}
