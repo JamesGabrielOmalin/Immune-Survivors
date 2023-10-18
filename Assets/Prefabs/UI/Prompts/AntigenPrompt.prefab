@@ -1054,8 +1054,16 @@ PrefabInstance:
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
-      value: These little guys drop whenever a bacteria dies.
+      value: These little guys drop whenever a bacteria dies. They are remains of
+        the bacteria that just died, which is required for us to activate the corresponding
+        T-Cell and B-cell.
       objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+        type: 2}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_HorizontalAlignment
@@ -1174,13 +1182,19 @@ PrefabInstance:
     - target: {fileID: 1200793208199722628, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6710077253920905421, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
       value: You Just Picked up an Antigen!
       objectReference: {fileID: 0}
+    - target: {fileID: 6710077253920905421, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b8b1d973a6d4e4988fe84986ec7b82, type: 3}
 --- !u!224 &3454228567052005303 stripped
@@ -1205,8 +1219,15 @@ PrefabInstance:
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
-      value: Collect them in order to get backup from the T-Cells and B-Cells!
+      value: Collecting enough antigens of the same type will activate the corresponding
+        T-Cells and B-Cells, which will work with you in the level.
       objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+        type: 2}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_HorizontalAlignment
@@ -1332,6 +1353,12 @@ PrefabInstance:
       propertyPath: m_text
       value: You Just Picked up an Antigen!
       objectReference: {fileID: 0}
+    - target: {fileID: 6710077253920905421, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b8b1d973a6d4e4988fe84986ec7b82, type: 3}
 --- !u!1 &4681301420826457199 stripped
