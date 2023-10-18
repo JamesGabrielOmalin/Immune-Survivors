@@ -172,7 +172,7 @@ MonoBehaviour:
   - name: NeutrophilMovement
     clips:
     - {fileID: 8300000, guid: c78f69b7074c0314baad749c4c8391b3, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -213,7 +213,7 @@ MonoBehaviour:
   - name: MacrophageMovement
     clips:
     - {fileID: 8300000, guid: a78dd36ce91472a449b3daed9b9f209d, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   - name: DentriticMovement
     clips:
     - {fileID: 8300000, guid: 07a6c66ec33eee747ab7859ba241b215, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}
