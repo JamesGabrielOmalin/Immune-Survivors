@@ -27,7 +27,7 @@ public class SymptomEffectEditor : Editor
         {
             case SymptomEffect.SymptomEffectType.Knockback:
 
-                var Direction = serializedObject.FindProperty("Direction");
+                var Direction = serializedObject.FindProperty("KnockDirection");
                 EditorGUILayout.PropertyField(Direction);
 
                 var KnockIntensity = serializedObject.FindProperty("KnockbackIntensity");

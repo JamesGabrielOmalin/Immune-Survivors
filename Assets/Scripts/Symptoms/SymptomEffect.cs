@@ -91,12 +91,19 @@ public class SymptomEffect: ScriptableObject
                     if(GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
                     {
 
-                        SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu,dir));
+                        SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu,dir, KnockbackIntensity));
                         //pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
                     }
                 }
                 else if (AffectedUnit == TargetUnit.Enemy)
                 {
+
+                    if (GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
+                    {
+
+                        SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu, dir, KnockbackIntensity/2));
+                        //pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+                    }
 
                     foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
                     {
@@ -106,7 +113,7 @@ public class SymptomEffect: ScriptableObject
                             {
                                 dir = enemy.transform.position - player.transform.position;
                             }
-                            SymptomManager.instance.StartCoroutine(KnockbackCoroutine(eu, dir));
+                            SymptomManager.instance.StartCoroutine(KnockbackCoroutine(eu, dir, KnockbackIntensity));
 
                             //eu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
                         }
@@ -186,14 +193,20 @@ public class SymptomEffect: ScriptableObject
         }
     }
 
-    private IEnumerator KnockbackCoroutine(Unit unit, Vector3 dir)
+    private IEnumerator KnockbackCoroutine(Unit unit, Vector3 dir, float intensity)
     {
-         for (int i = 0; i < KnockbackCount; i++)
-         {
+
+        for (int i = 0; i < KnockbackCount; i++)
+        {
+            CoughPingController.instance.ActivatePing(KnockDirection, KnockbackInterval*0.7f);
+
             yield return new WaitForSeconds(KnockbackInterval);
 
-            unit.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+
+            unit.ApplyKnockback(dir * intensity, ForceMode.Impulse);
          }
+        Debug.Log("Shsssssssssssssssssssssssssssssssss");
+        SymptomManager.instance.ActivateCoughCameraCue(false,2);
     }
 
     public IEnumerator SymptomCoroutine()
