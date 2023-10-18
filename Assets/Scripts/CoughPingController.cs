@@ -37,16 +37,16 @@ public class CoughPingController : MonoBehaviour
     }
 
 
-    public void ActivatePing(SymptomEffect.KnockbackDirection direction, float delay)
+    public void ActivatePing(SymptomEffect.KnockbackDirection direction, float duration)
     {
-        StartCoroutine(PingCoroutine(direction, delay));
+        StartCoroutine(PingCoroutine(direction, duration));
     }
-    public IEnumerator PingCoroutine(SymptomEffect.KnockbackDirection direction,float delay)
+    public IEnumerator PingCoroutine(SymptomEffect.KnockbackDirection direction,float duration)
     {
         Debug.Log("Direction: " + direction);
         pingDictionary[direction].SetActive(true);
 
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(duration);
 
         pingDictionary[direction].SetActive(false);
     }

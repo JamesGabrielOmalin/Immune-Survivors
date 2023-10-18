@@ -15,11 +15,11 @@ MonoBehaviour:
   AffectedUnit: 2
   EffectType: 1
   ActivationType: 0
-  ActivationDelay: 4
+  ActivationDelay: 2
   KnockbackIntensity: 4
-  Direction: 3
+  KnockDirection: 0
   KnockbackCount: 3
-  KnockbackInterval: 2
+  KnockbackInterval: 3
   DotDamage: 0
   DotDuration: 0
   DotTickRate: 0

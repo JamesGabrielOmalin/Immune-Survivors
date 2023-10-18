@@ -32,8 +32,7 @@ public class SymptomManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera vCam;
     [SerializeField] private float transitionDuration;
     [SerializeField] private float defaultFOV;
-    [SerializeField] private float zoomedInFOV;
-    [SerializeField] private float zoomedOutFOV;
+    [SerializeField] private float zoomedAmount;
 
 
     public System.Action OnActivateSymptom;
@@ -57,6 +56,7 @@ public class SymptomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        defaultFOV = vCam.m_Lens.FieldOfView;
         StartCoroutine(SymptomTimerCoroutine());
     }
 
@@ -68,16 +68,13 @@ public class SymptomManager : MonoBehaviour
         {
             HeatDistortionController.instance.ChangeVFXIntensity(SymptomLevel);
         }
-
-        foreach(SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
+        else if (symptomType == SymptomType.Cough)
         {
+            SymptomManager.instance.ActivateCoughCameraCue(true, 0);
+        }
 
-            if (symptomType == SymptomType.Cough)
-            {
-                CoughPingController.instance.ActivatePing(se.KnockDirection, se.ActivationDelay);
-                ActivateCoughVisualCue(se.ActivationDelay,se.KnockbackCount);
-
-            }
+        foreach (SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
+        {
             StartCoroutine(se.SymptomCoroutine());
         }
     }
@@ -98,7 +95,9 @@ public class SymptomManager : MonoBehaviour
 
             symptomTimer++;
 
-            if (symptomTimer == SymptomList[SymptomLevel - 1].activationTimestamp)
+            float activationTime = SymptomList[SymptomLevel - 1].activationTimestamp;
+
+            if (symptomTimer == activationTime)
             {
                 Debug.Log("Activate symptoms");
                 ActivateSymptoms();
@@ -114,56 +113,91 @@ public class SymptomManager : MonoBehaviour
     }
 
 
-    private void ActivateCoughVisualCue(float delay, float cycle)
+    public void ActivateCoughCameraCue( bool isZoomOut, float delay)
     {
-        StartCoroutine(CoughCameraEffectCoroutine(delay, cycle));
+        StartCoroutine(CoughCameraZoomCoroutine( isZoomOut, delay));
     }
 
-    private IEnumerator CoughCameraEffectCoroutine(float delay, float cycle)
+    private IEnumerator CoughCameraZoomCoroutine( bool isZoomOut, float delay)
     {
-        defaultFOV = vCam.m_Lens.FieldOfView;
-        float startingFOV = defaultFOV;
+ 
         float time = 0;
 
+        float startingFOV;
+
+
         Debug.Log("FOV: " + vCam.m_Lens.FieldOfView);
-        // Starting Zoom Out
-        while (time < transitionDuration)
+
+        yield return new WaitForSeconds(delay);
+
+        if (isZoomOut)
         {
-            vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, defaultFOV+zoomedOutFOV, time / (delay*0.25f));
-
-            time += Time.deltaTime;
-            yield return null;
-        }
-
-        vCam.m_Lens.FieldOfView = defaultFOV + zoomedOutFOV;
-        startingFOV = defaultFOV + zoomedOutFOV;
-
-        for (int i = 0; i < cycle; i++)
-        {
-            time = 0;
-
-            // Zoom In
-            while (time < 1)
+            startingFOV = vCam.m_Lens.FieldOfView;
+            float targetFOV = defaultFOV + zoomedAmount;
+            // Starting Zoom Out
+            while (time < transitionDuration)
             {
-                vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, defaultFOV - zoomedInFOV, time / 0.1f);
-
-                time += Time.deltaTime;
-                //yield return null;
-            }
-            vCam.m_Lens.FieldOfView = defaultFOV - zoomedInFOV;
-            startingFOV = defaultFOV - zoomedInFOV;
-
-            time = 0;
-            while (time < 1)
-            {
-                vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, defaultFOV, time / 0.5f);
+                vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, targetFOV, time);
 
                 time += Time.deltaTime;
                 yield return null;
             }
-            vCam.m_Lens.FieldOfView = defaultFOV;
-            startingFOV = defaultFOV;
+
+            vCam.m_Lens.FieldOfView = targetFOV;
         }
+        else
+        {
+            startingFOV = vCam.m_Lens.FieldOfView;
+            float targetFOV = defaultFOV - zoomedAmount;
+
+            // Zoom In
+            while (time < transitionDuration)
+            {
+                vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, targetFOV, time );
+
+                time += Time.deltaTime;
+                yield return null;
+            }
+            vCam.m_Lens.FieldOfView = targetFOV;
+        }
+        //// Starting Zoom Out
+        //while (time < transitionDuration)
+        //{
+        //    vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, defaultFOV+zoomedOutFOV, time / (delay*0.25f));
+
+        //    time += Time.deltaTime;
+        //    yield return null;
+        //}
+
+        //vCam.m_Lens.FieldOfView = defaultFOV + zoomedOutFOV;
+        //startingFOV = defaultFOV + zoomedOutFOV;
+
+        //for (int i = 0; i < cycle; i++)
+        //{
+        //    time = 0;
+
+        //    // Zoom In
+        //    while (time < 1)
+        //    {
+        //        vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, defaultFOV - zoomedInFOV, time / 0.1f);
+
+        //        time += Time.deltaTime;
+        //        //yield return null;
+        //    }
+        //    vCam.m_Lens.FieldOfView = defaultFOV - zoomedInFOV;
+        //    startingFOV = defaultFOV - zoomedInFOV;
+
+        //    time = 0;
+        //    while (time < 1)
+        //    {
+        //        vCam.m_Lens.FieldOfView = Mathf.Lerp(startingFOV, defaultFOV, time / 0.5f);
+
+        //        time += Time.deltaTime;
+        //        yield return null;
+        //    }
+        //    vCam.m_Lens.FieldOfView = defaultFOV;
+        //    startingFOV = defaultFOV;
+        //}
     }
 
    
