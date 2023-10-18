@@ -34,7 +34,8 @@ public class MusicManager : MonoBehaviour
             AudioSettings.settings.OnMusicVolumeChanged += OnVolumeChanged;
         }
 
-        GameManager.instance.OnLastMinuteReached += TransitionToLastMinuteBGM;
+        if (GameManager.instance)
+            GameManager.instance.OnLastMinuteReached += TransitionToLastMinuteBGM;
 
         activeBGM = mainBGM;
     }
