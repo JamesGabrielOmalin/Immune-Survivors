@@ -198,7 +198,7 @@ public class SymptomEffect: ScriptableObject
 
         for (int i = 0; i < KnockbackCount; i++)
         {
-            CoughPingController.instance.ActivatePing(KnockDirection, KnockbackInterval*0.7f);
+            CoughPingController.instance.ActivatePing(KnockDirection, KnockbackInterval-1);
 
             yield return new WaitForSeconds(KnockbackInterval);
 
@@ -207,7 +207,6 @@ public class SymptomEffect: ScriptableObject
 
             unit.ApplyKnockback(dir * intensity, ForceMode.Impulse);
          }
-        Debug.Log("Shsssssssssssssssssssssssssssssssss");
         SymptomManager.instance.ActivateCoughCameraCue(false,2);
     }
 
