@@ -285,7 +285,7 @@ public class Enemy : Unit, IDamageInterface
         if (gameObject.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.AddForce(force, forceMode);
-
+            ApplyStun(0.6f);
         }
     }
 

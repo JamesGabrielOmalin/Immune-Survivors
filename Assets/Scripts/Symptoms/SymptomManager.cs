@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.VFX;  
 
 [Serializable]
 public class SymptomAttribute
@@ -33,6 +34,7 @@ public class SymptomManager : MonoBehaviour
     [SerializeField] private float transitionDuration;
     [SerializeField] private float defaultFOV;
     [SerializeField] private float zoomedAmount;
+    [SerializeField] public VisualEffect coughVFX;
 
 
     public System.Action OnActivateSymptom;
@@ -76,6 +78,31 @@ public class SymptomManager : MonoBehaviour
         foreach (SymptomEffect se in SymptomList[SymptomLevel-1].symptom.symptomEffects)
         {
             StartCoroutine(se.SymptomCoroutine());
+
+            if (symptomType == SymptomType.Cough)
+            {
+                switch (se.KnockDirection)
+                {
+                    case SymptomEffect.KnockbackDirection.Left:
+                        coughVFX.transform.forward = Vector3.right;
+                        break;
+                    case SymptomEffect.KnockbackDirection.Right:
+                        coughVFX.transform.forward = Vector3.left;
+                        break;
+                    case SymptomEffect.KnockbackDirection.Top:
+                        coughVFX.transform.forward = Vector3.back;
+                        break;
+                    case SymptomEffect.KnockbackDirection.Bottom:
+                        coughVFX.transform.forward = Vector3.forward;
+                        break;
+                    case SymptomEffect.KnockbackDirection.Away:
+                        break;
+                    case SymptomEffect.KnockbackDirection.Random:
+                        var rand = UnityEngine.Random.insideUnitCircle;
+                        coughVFX.transform.forward = new(rand.x, 0f, rand.y);
+                        break;
+                }
+            }
         }
     }
 
@@ -200,5 +227,5 @@ public class SymptomManager : MonoBehaviour
         //}
     }
 
-   
+
 }
