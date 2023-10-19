@@ -1080,7 +1080,6 @@ GameObject:
   - component: {fileID: 4706837312113311365}
   - component: {fileID: 3999882027504178237}
   - component: {fileID: 5838021320350005382}
-  - component: {fileID: 2685113352066342024}
   - component: {fileID: 1111161617203114382}
   m_Layer: 5
   m_Name: Pause Menu
@@ -1172,21 +1171,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2685113352066342024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3323626867959491516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59a39208977cd842a2bc0e675eb2bef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
-  loadingBar: {fileID: 0}
-  animatedIcon: {fileID: 0}
 --- !u!114 &1111161617203114382
 MonoBehaviour:
   m_ObjectHideFlags: 0
