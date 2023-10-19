@@ -434,4 +434,4 @@ MonoBehaviour:
   mainBGM: {fileID: 1400848767552059683}
   lastMinuteBGM: {fileID: 1400848768444496040}
   infectionBGM: {fileID: 1400848768322125314}
-  crossfadeDuration: 3
+  crossfadeDuration: 5
