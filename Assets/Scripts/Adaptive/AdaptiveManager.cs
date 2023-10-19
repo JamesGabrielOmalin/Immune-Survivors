@@ -49,7 +49,7 @@ public class AdaptiveManager : MonoBehaviour
 
     private void SpawnAdaptiveCell(AntigenType type)
     {
-        StartCoroutine(SpawnCoroutine(type));
+        StartSpawnCoroutines(type);
         GameObject player = GameManager.instance.Player;
         
         
@@ -115,7 +115,15 @@ public class AdaptiveManager : MonoBehaviour
     //    }
     //}
 
-    private IEnumerator SpawnCoroutine(AntigenType type)
+    private IEnumerator StartSpawnCoroutines(AntigenType type)
+    {
+        yield return new WaitForSeconds(0.25f);
+        StartCoroutine(SpawnTCellCoroutine(type));
+        StartCoroutine(SpawnBCellCoroutine(type));
+
+    }
+
+    private IEnumerator SpawnTCellCoroutine(AntigenType type)
     {
         yield return new WaitForSeconds(0.25f);
 
@@ -146,10 +154,41 @@ public class AdaptiveManager : MonoBehaviour
 
         GameObject helperTCell = helperTCellPool.RequestPoolable(spawnPoint);
         helperTCell.GetComponent<AdaptiveCell>().SetType(type);
+    }
+
+    private IEnumerator SpawnBCellCoroutine(AntigenType type)
+    {
+        yield return new WaitForSeconds(0.25f);
+
+        bool canSpawn = false;
+        int nChecks = 0;
+
+        Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+        spawnPoint.y = 0;
+
+        do
+        {
+            bool isColliding = Physics.CheckSphere(spawnPoint, collisionCheckerRadius, layersToCheck);
+
+            if (isColliding)
+            {
+                //Debug.Log("has Collision");
+                spawnPoint = RandomPointInBounds(spawnArea.bounds);
+                spawnPoint.y = 0;
+                nChecks++;
+            }
+            else
+            {
+                canSpawn = true;
+            }
+            //Debug.Log(isColliding);
+
+        } while (!canSpawn && nChecks < maxChecks);
 
         GameObject bCell = BCellPool.RequestPoolable(spawnPoint);
         bCell.GetComponent<AdaptiveCell>().SetType(type);
     }
+
 
     private Vector3 RandomPointInBounds(in Bounds bounds)
     {
