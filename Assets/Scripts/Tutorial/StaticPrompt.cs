@@ -20,7 +20,8 @@ public class StaticPrompt : MonoBehaviour
 
     public void OnDisable()
     {
-        GameManager.instance.ResumeGame();
+        if(GameManager.instance)
+            GameManager.instance.ResumeGame();
         StopAllCoroutines();
     }
 

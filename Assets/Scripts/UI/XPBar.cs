@@ -45,8 +45,10 @@ public class XPBar : MonoBehaviour
             StopCoroutine(lerpCoroutine);
         }
 
-        if (this.enabled)
+        if (this.gameObject.activeInHierarchy)
+        {
             lerpCoroutine = StartCoroutine(Lerp());
+        }
     }
 
     private IEnumerator Lerp()

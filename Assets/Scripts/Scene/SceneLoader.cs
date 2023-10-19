@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Rendering;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -25,6 +26,11 @@ public class SceneLoader : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+    }
+
+    private void Start()
+    {
+        Time.timeScale = 1.0f;
     }
 
     private void OnDestroy()

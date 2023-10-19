@@ -99,7 +99,8 @@ public class PlayerUnit : Unit, IDamageInterface
             //RemoveFromDetectedList();
             OnDeath?.Invoke();
         }
-        StartCoroutine(IFrames());
+        else
+            StartCoroutine(IFrames());
     }
 
     private readonly WaitForSeconds iframeDuration = new (0.25f);
