@@ -220,7 +220,7 @@ MonoBehaviour:
   - name: MacrophageUltimate
     clips:
     - {fileID: 8300000, guid: 15449aa16fddc7e4fb924514b56a0c81, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}

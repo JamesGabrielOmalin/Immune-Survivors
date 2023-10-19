@@ -268,4 +268,12 @@ public class Player : MonoBehaviour
         activeHUD.SetActive(enabled);
     }
 
+    public void OnEnableBuffHUD(bool enabled)
+    {
+        for (int i = 0; i < buffIcons.Count; i++)
+        {
+            buffIcons[i].gameObject.SetActive(enabled);
+        }
+    }
+
 }
