@@ -115,9 +115,8 @@ public class AdaptiveManager : MonoBehaviour
     //    }
     //}
 
-    private IEnumerator StartSpawnCoroutines(AntigenType type)
+    private void StartSpawnCoroutines(AntigenType type)
     {
-        yield return new WaitForSeconds(0.25f);
         StartCoroutine(SpawnTCellCoroutine(type));
         StartCoroutine(SpawnBCellCoroutine(type));
 
