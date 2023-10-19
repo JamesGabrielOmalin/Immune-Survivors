@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         input.Controls.Abilities.Ultimate.started += ultimateHandler;  
 
         activeUnit.OnDeath += delegate { this.gameObject.SetActive(false); GameManager.instance.HUD.SetActive(false); };
-        activeUnit.OnDeath += GameManager.instance.OnGameLose.Invoke;
+        activeUnit.OnDeath += delegate { GameManager.instance.OnGameLose?.Invoke(); };
     }
 
     private void OnDestroy()
