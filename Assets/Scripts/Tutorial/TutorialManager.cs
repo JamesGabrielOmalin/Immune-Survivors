@@ -35,9 +35,6 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        AddDynamicPrompt("you know what's funny?");
-        AddDynamicPrompt("confidently says something wrong");
-        AddDynamicPrompt("imagine");
 
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
