@@ -272,7 +272,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < buffIcons.Count; i++)
         {
-            buffIcons[i].gameObject.SetActive(false);
+            buffIcons[i].gameObject.SetActive(enabled);
         }
     }
 
