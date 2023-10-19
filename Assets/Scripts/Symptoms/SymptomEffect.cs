@@ -202,6 +202,8 @@ public class SymptomEffect: ScriptableObject
 
             yield return new WaitForSeconds(KnockbackInterval);
 
+            SymptomManager.instance.coughVFX.transform.position = GameManager.instance.Player.transform.position;
+            SymptomManager.instance.coughVFX.Play();
 
             unit.ApplyKnockback(dir * intensity, ForceMode.Impulse);
          }
