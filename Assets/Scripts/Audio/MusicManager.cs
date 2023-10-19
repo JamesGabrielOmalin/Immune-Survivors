@@ -37,7 +37,9 @@ public class MusicManager : MonoBehaviour
         if (GameManager.instance)
             GameManager.instance.OnLastMinuteReached += TransitionToLastMinuteBGM;
 
+        float volume = (AudioSettings.settings.volume / 100f) * (AudioSettings.settings.musicVolume / 100f);
         activeBGM = mainBGM;
+        activeBGM.volume = volume;
     }
 
     private void OnDestroy()
