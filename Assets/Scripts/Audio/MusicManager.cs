@@ -80,8 +80,8 @@ public class MusicManager : MonoBehaviour
         {
             float ratio = t / crossfadeDuration;
             float volume = (AudioSettings.settings.volume / 100f) * (AudioSettings.settings.musicVolume / 100f);
-            activeBGM.volume = ratio * volume;
-            lastMinuteBGM.volume = (1f - ratio) * volume;
+            newBGM.volume = ratio * volume;
+            activeBGM.volume = (1f - ratio) * volume;
 
             t += Time.deltaTime;
             yield return null;
