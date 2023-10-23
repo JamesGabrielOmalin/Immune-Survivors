@@ -13,6 +13,7 @@ public class UpgradeManager : MonoBehaviour
     public System.Action OnUltiGet;
 
     [SerializeField] private UpgradeSelect upgradeScreen;
+    public bool IsUpgradeScreenOpen => upgradeScreen.gameObject.activeInHierarchy;
 
     [Header("Buffs")]
     [SerializeField] private List<Effect> neutrophilUpgrades = new();
