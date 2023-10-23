@@ -26,8 +26,11 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
     private AttributeSet attributes;
     private Attribute attackDamage;
+    private Attribute critRate;
     private Attribute critDMG;
     private Attribute CDReduction;
+
+    private readonly LayerMask layerMask = LayerMask.GetMask("Enemy");
 
     public bool IsDashing { get; private set; } = false;
 
@@ -60,13 +63,10 @@ public class Dendritic_MobilitySpec : AbilitySpec
         AudioManager.instance.Play("DentriticMovement", owner.transform.position);
         movement.transform.position = endPos;
 
-        var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, LayerMask.GetMask("Enemy"));
-
-        // Guaranteed CRIT
-        //float damage = DamageCalculator.CalcDamage(attackDamage.Value, 1f, critDMG.Value);
+        var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, layerMask);
 
         float AD = attackDamage.Value;
-        float CRIT_RATE = 1f;
+        float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
 
         foreach (var hit in hits)
@@ -81,17 +81,17 @@ public class Dendritic_MobilitySpec : AbilitySpec
         }
 
         bool resetCD = false;
+
         // Check for dead enemies
         foreach (var hit in hits)
         {
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                // Get bonus Antigen
-                AntigenManager.instance.AddAntigen(enemy.Type);
-
                 // If at least 1 enemy was killed, reset cooldown
                 if (!resetCD && enemy.IsDead)
                 {
+                    // Get bonus Antigen
+                    AntigenManager.instance.AddAntigen(enemy.Type);
                     resetCD = true;
                 }
             }
@@ -107,6 +107,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
         // If no enemy was killed, do not reset CD
         if (!resetCD)
         {
+            AudioManager.instance.Play("PlayerPickUp", owner.transform.position);
             CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
             owner.StartCoroutine(UpdateCD());
         }
@@ -130,6 +131,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
         attackDamage = attributes.GetAttribute("Attack Damage");
+        critRate = attributes.GetAttribute("Critical Rate");
         critDMG = attributes.GetAttribute("Critical Damage");
         CDReduction = attributes.GetAttribute("CD Reduction");
 
