@@ -92,7 +92,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
                     float armor = enemy.attributes.GetAttribute(armor_string).Value;
                     DamageCalculator.ApplyDamage(AD * (AS), CRIT_RATE, CRIT_DMG, armor, enemy);
 
-                    enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
+                    //enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
                 }
             }
 

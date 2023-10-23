@@ -68,6 +68,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
                 continue;
 
             enemy.TakeDamage(999999);
+            AntigenManager.instance.AddAntigen(enemy.Type);
         }
 
         GameManager.instance.HUD.SetActive(true);

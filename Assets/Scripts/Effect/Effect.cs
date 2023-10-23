@@ -6,6 +6,7 @@ public enum EffectType
 {
     Buff,
     Weapon,
+    Lifestyle,
 }
 
 public enum EffectDurationType

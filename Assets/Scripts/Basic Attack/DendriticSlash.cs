@@ -38,11 +38,31 @@ public class DendriticSlash : MonoBehaviour
         vfx.Play();
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
+        float MaxHP = target.attributes.GetAttribute("Max HP").Value;
+        float HP = target.attributes.GetAttribute("HP").Value;
+
         float armor = target.attributes.GetAttribute("Armor").Value;
+
+        float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
+
+        // Quarter damage against full health, double damage
+        float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
+        Debug.Log($"Bonus DMG: {missingHPBonusDMG}");
+
+        float damage = attackDamage * missingHPBonusDMG;
 
         for (int i = 0; i < attackCount; i++)
         {
-            DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
+            DamageCalculator.ApplyDamage(damage, critRate, critDMG, armor, target);
+
+            // Gain bonus Antigen if enemy is killed
+            if (target.IsDead)
+            {
+                AudioManager.instance.Play("PlayerPickUp", transform.position);
+                AntigenManager.instance.AddAntigen(target.Type);
+                break;
+            }
+
             //target.TakeDamage(damage);
 
             yield return wait;

@@ -25,11 +25,24 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
+            float MaxHP = enemy.attributes.GetAttribute("Max HP").Value;
+            float HP = enemy.attributes.GetAttribute("HP").Value;
+
+            float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
+            float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
+
             // Reduce damage based on hit count, up to 50% reduction
-            float damage = attackDamage * (1f - Mathf.Min(0.1f * hitCount, 0.5f));
+            float damage = attackDamage * missingHPBonusDMG * (1f - Mathf.Min(0.1f * hitCount, 0.5f));
+
             float armor = enemy.attributes.GetAttribute("Armor").Value;
 
-            DamageCalculator.ApplyDamage(damage, critRate, critDMG, armor, enemy);
+            DamageCalculator.ApplyDamage(damage * ratio, critRate, critDMG, armor, enemy);
+
+            if (enemy.IsDead)
+            {
+                AudioManager.instance.Play("PlayerPickUp", transform.position);
+                AntigenManager.instance.AddAntigen(enemy.Type);
+            }
 
             hitCount++;
             var evt = vfx.CreateVFXEventAttribute();
