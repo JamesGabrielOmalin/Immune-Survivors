@@ -78,7 +78,7 @@ public class AntigenManager : MonoBehaviour
             if (firstTimeAntigenThresholdReached)
             {
                 if (TutorialManager.instance)
-                    TutorialManager.instance.AddDynamicPrompt("Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
+                    TutorialManager.instance.AddDynamicPrompt("ACTIVATING ADAPTIVE UNITS ", "Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
                 firstTimeAntigenThresholdReached = false;
             }
         }

@@ -13,6 +13,8 @@ public class TutorialManager : MonoBehaviour
     public GameObject dynamicPrompt;
     [SerializeField] private List<GameObject> dynamicPrompts = new();
     [SerializeField] private float dynamicPromptDuration;
+    private Queue<string> dynamicPromptTitleQueue = new();
+
     private Queue<string> dynamicPromptTextQueue = new();
     private Queue<GameObject> staticPromptQueue = new();
     private Coroutine dynamicPromptCoroutine;
@@ -80,7 +82,7 @@ public class TutorialManager : MonoBehaviour
         AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
 
         //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt("You just picked up an antigen!", StaticPrompts[1]);
+        AddDynamicPrompt(" ANTIGENS", "You just picked up an antigen!", StaticPrompts[1]);
         //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
         //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
         //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
@@ -91,7 +93,7 @@ public class TutorialManager : MonoBehaviour
         RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
 
         //Instantiate(StaticPrompts[2]);
-        AddDynamicPrompt("Backup has arrived!", StaticPrompts[2]);
+        AddDynamicPrompt(" RECRUITABLES","Backup has arrived!", StaticPrompts[2]);
         //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
         //AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
         //AddDynamicPrompt("Once you recruit them, you will become stronger!");
@@ -111,9 +113,9 @@ public class TutorialManager : MonoBehaviour
         UpgradeManager.instance.OnUltiGet -= EnablePromptOnUltiGet;
 
         //Instantiate(StaticPrompts[4]);
-        AddDynamicPrompt("You just unlocked your ultimate!");
-        AddDynamicPrompt("You unlock your ultimate anytime you recruit 4 of your main unit");
-        AddDynamicPrompt("Press <color=yellow>Q</color> to use your ultimate");
+        AddDynamicPrompt("ULTIMATE", "You just unlocked your ultimate!");
+        AddDynamicPrompt("ULTIMATE","You unlock your ultimate anytime you recruit 4 of your main unit");
+        AddDynamicPrompt("ULTIMATE","Press <color=yellow>Q</color> to use your ultimate");
     }
 
     public void EnablePromptOnSymptom()
@@ -121,11 +123,11 @@ public class TutorialManager : MonoBehaviour
         SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
 
         //Instantiate(StaticPrompts[5]);
-        AddDynamicPrompt("A <color=yellow>symptom</color> has just occurred!");
-        AddDynamicPrompt("This symptom right now is a <color=red>Fever</color>");
-        AddDynamicPrompt("With <color=red>fever</color>, everyone gets damaged over time, while you increase speed");
-        AddDynamicPrompt("<color=yellow>Symptoms</color> will be different each level");
-        AddDynamicPrompt("Some levels might not even have <color=yellow>symptoms</color>");
+        AddDynamicPrompt("FEVER SYMPTOM", "A <color=yellow>symptom</color> has just occurred!");
+        AddDynamicPrompt("FEVER SYMPTOM", "This symptom right now is a <color=red>Fever</color>");
+        AddDynamicPrompt("FEVER SYMPTOM", "With <color=red>fever</color>, everyone gets damaged over time, while you increase speed");
+        AddDynamicPrompt("FEVER SYMPTOM", "<color=yellow>Symptoms</color> will be different each level");
+        AddDynamicPrompt("FEVER SYMPTOM", "Some levels might not even have <color=yellow>symptoms</color>");
     }
 
     public void EnablePromptOnAntigenThreshold()
@@ -133,13 +135,14 @@ public class TutorialManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
             AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] -= EnablePromptOnAntigenThreshold;
 
-        AddDynamicPrompt("Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
-        AddDynamicPrompt("T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
-        AddDynamicPrompt("However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
+        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
+        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
+        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
     }
 
-    public void AddDynamicPrompt(string text)
+    public void AddDynamicPrompt(string title, string text)
     {
+        dynamicPromptTitleQueue.Enqueue(title);
         dynamicPromptTextQueue.Enqueue(text);
         staticPromptQueue.Enqueue(null);
 
@@ -147,8 +150,9 @@ public class TutorialManager : MonoBehaviour
             dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
     }
 
-    public void AddDynamicPrompt(string text, GameObject staticPrompt)
+    public void AddDynamicPrompt(string title, string text, GameObject staticPrompt)
     {
+        dynamicPromptTitleQueue.Enqueue(title);
         dynamicPromptTextQueue.Enqueue(text);
         staticPromptQueue.Enqueue(staticPrompt);
 
@@ -158,7 +162,7 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator DynamicPrompt()
     {
-        while (dynamicPromptTextQueue.Count > 0)
+        while (dynamicPromptTextQueue.Count > 0 && dynamicPromptTitleQueue.Count > 0)
         {
             ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
@@ -174,7 +178,8 @@ public class TutorialManager : MonoBehaviour
     private void ShowDynamicPrompt()
     {
         dynamicPrompt.SetActive(true);
-        dynamicPrompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTextQueue.Peek());
+        dynamicPrompt.GetComponent<DynamicPrompt>().SetText(dynamicPromptTitleQueue.Peek(),dynamicPromptTextQueue.Peek());
+        dynamicPromptTitleQueue.Dequeue();
         dynamicPromptTextQueue.Dequeue();
     }
 

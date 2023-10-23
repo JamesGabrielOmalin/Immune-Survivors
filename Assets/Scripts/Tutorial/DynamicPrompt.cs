@@ -5,10 +5,13 @@ using TMPro;
 
 public class DynamicPrompt : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text descriptionText;
 
-    public void SetText(string text)
+    public void SetText(string title, string description)
     {
-        this.text.text = text;
+        Debug.Log("PROMPT");
+        this.titleText.text = title;
+        this.descriptionText.text = description;
     }
 }
