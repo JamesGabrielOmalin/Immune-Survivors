@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
-  m_Name: Grenade
+  m_Name: Nets
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Grenade
-  <Description>k__BackingField: Gain the NET Grenade Weapon
+  <Name>k__BackingField: NETs
+  <Description>k__BackingField: Neutrophil Extracellular Trap that binds enemies
   <Descriptions>k__BackingField:
   - Gain the NET Grenade Weapon
   - Increase Size by 10%. Increase DMG by 5.
   - Increase Size by 10%. Increase slow effect by 25%.
   - Increase Size by 10%. Increase slow field duration by 2s.
   - 'Increase Size by 10%. '
+  <EffectDescription>k__BackingField: Gains a NET weapon for trapping and killing
+    enemies
+  <EffectDescriptions>k__BackingField:
+  - Gains a NET weapon for trapping and killing enemies
+  - NET Size + 10%. DMG + 5.
+  - NET Size + 10%. Slow effect + 25%.
+  - NET Size + 10%. Slow field duration + 2s.
+  - 'NET Size + 10%. '
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 217c8cc3fe2808040b5645c1a913b41f,

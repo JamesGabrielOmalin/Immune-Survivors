@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
   m_Name: Attack Speed Up
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Attack Speed Up
-  <Description>k__BackingField: Increases Attack Speed by 12%
+  <Name>k__BackingField: Banana Frenzy
+  <Description>k__BackingField: Go bananas for a berry nutritious banana
   <Descriptions>k__BackingField: []
+  <EffectDescription>k__BackingField: ATK Speed + 12%
+  <EffectDescriptions>k__BackingField: []
   <EffectType>k__BackingField: 0
   <Modifiers>k__BackingField:
   - <Name>k__BackingField: Attack Speed

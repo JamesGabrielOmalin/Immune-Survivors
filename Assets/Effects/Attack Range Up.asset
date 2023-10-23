@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
   m_Name: Attack Range Up
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Attack Range Up
-  <Description>k__BackingField: Increases attack range by 10%
+  <Name>k__BackingField: Micro Scope Expansion
+  <Description>k__BackingField: Expand your reach, Prevent the breach!
   <Descriptions>k__BackingField: []
+  <EffectDescription>k__BackingField: Range + 10%
+  <EffectDescriptions>k__BackingField: []
   <EffectType>k__BackingField: 0
   <Modifiers>k__BackingField:
   - <Name>k__BackingField: Attack Range

@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Slash
-  <Description>k__BackingField: Grants Slash
+  <Name>k__BackingField: Adaptive Slash
+  <Description>k__BackingField: Swift and precise slashes
   <Descriptions>k__BackingField:
   - Grants Slash
   - Increase CRIT Rate by 10%. Increase CRIT DMG by 20%.
   - Increase CRIT Rate by 10%. Increase number of slashes by 3.
   - Increase CRIT Rate by 10%. Increase DMG by 5.
   - Increase CRIT Rate by 10%.
+  <EffectDescription>k__BackingField: Grants Adaptive Slash
+  <EffectDescriptions>k__BackingField:
+  - Grants Adaptive Slash
+  - CRIT Rate + 10%. CRIT DMG + 20%.
+  - CRIT Rate + 10%. Slashes + 3.
+  - CRIT Rate + 10%. DMG + 5.
+  - CRIT Rate + 10%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 48f9a6d3f25ae7448bed383e1f2e1653,

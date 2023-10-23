@@ -10,21 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
-  m_Name: Line
+  m_Name: Viral Vortex (Circle)
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Phagocytosis (Line)
-  <Description>k__BackingField: Peforms Phagocytosis in a straight line
+  <Name>k__BackingField: Viral Vortex (Circle)
+  <Description>k__BackingField: Engulfs all nearby enemies and infects them with
+    DoT
   <Descriptions>k__BackingField:
-  - Peforms Phagocytosis in a straight line
+  - Peforms Phagocytosis in a circle
   - Increase Knockback by 25%. Increase Size by 50%.
   - Increase Knockback by 25%. Increase DoT tick count by 4.
   - Increase Knockback by 25%. Increase DoT by 5.
   - Increase Knockback by 25%.
+  <EffectDescription>k__BackingField: Peforms Phagocytosis in a circle
+  <EffectDescriptions>k__BackingField:
+  - Peforms Phagocytosis in a circle
+  - Knockback + 25%. ATK Size +50%.
+  - Knockback + 25%. DoT tick count + 4.
+  - Knockback + 25%. DoT + 5.
+  - Knockback + 25%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
-  <Sprite>k__BackingField: {fileID: 21300000, guid: ae1d0a0298fc7134ca11c9c61f30bcac,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: e93d61985ca1c0445aa768a64db9424d,
     type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0
   <Abilities>k__BackingField:
-  - {fileID: 11400000, guid: 807535f6b7e14ac4da570b5661f38f4d, type: 2}
+  - {fileID: 11400000, guid: 148b92c110d319c4790a27497323ee4c, type: 2}

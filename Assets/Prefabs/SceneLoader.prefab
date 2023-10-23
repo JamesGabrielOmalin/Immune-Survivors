@@ -397,7 +397,7 @@ MonoBehaviour:
   - name: Dendritic
     description: Lorem Ipsum
   tipNameText: {fileID: 7667370156609360390}
-  tipDescriptionText: {fileID: 7667370157129089536}
+  tipeffectDescriptionText: {fileID: 7667370157129089536}
 --- !u!1 &7667370156508232780
 GameObject:
   m_ObjectHideFlags: 0

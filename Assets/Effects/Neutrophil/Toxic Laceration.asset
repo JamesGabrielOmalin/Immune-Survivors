@@ -10,16 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
-  m_Name: Stab
+  m_Name: Toxic Laceration
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Stab
-  <Description>k__BackingField: Gain the Knife Weapon
+  <Name>k__BackingField: Toxic Laceration
+  <Description>k__BackingField: Stikes enemies with venomous toxins
   <Descriptions>k__BackingField:
   - Gain the Knife Weapon
   - Increase ATK Speed by 10%.  Increase CRIT Rate by 10%.
   - Increase ATK Speed by 10%. Increase DMG by 10.
   - Increase ATK Speed by 10%. Increase Range by 25%.
   - Increase ATK Speed by 10%.
+  <EffectDescription>k__BackingField: Gain the Toxic Laceration
+  <EffectDescriptions>k__BackingField:
+  - Gain the Toxic Laceration
+  - ATK Speed + 10%.  CRIT Rate + 10%.
+  - ATK Speed + 10%. DMG + 10.
+  - ATK Speed + 10%. Range + 25%.
+  - ATK Speed + 10%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
   <Sprite>k__BackingField: {fileID: 21300000, guid: 33748414a0ac86449bb7c5097068b340,

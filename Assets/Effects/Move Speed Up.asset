@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeff34be662700e41a3d2bae277fd490, type: 3}
-  m_Name: Critical Rate Up
+  m_Name: Move Speed Up
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Critical Strike
-  <Description>k__BackingField: Crit like a Marksman
+  <Name>k__BackingField: Lymphatic Overdrive
+  <Description>k__BackingField: Boosts the lympathic system = allows cells to move
+    faster
   <Descriptions>k__BackingField: []
-  <EffectDescription>k__BackingField: CRIT Rate + 15%
+  <EffectDescription>k__BackingField: Move Speed + 5%
   <EffectDescriptions>k__BackingField: []
   <EffectType>k__BackingField: 0
   <Modifiers>k__BackingField:
-  - <Name>k__BackingField: Critical Rate
+  - <Name>k__BackingField: Move Speed
     <Modifier>k__BackingField:
-      <Value>k__BackingField: 0.15
+      <Value>k__BackingField: 0.5
       <Type>k__BackingField: 0
   - <Name>k__BackingField: Projectile Count
     <Modifier>k__BackingField:
       <Value>k__BackingField: 1
       <Type>k__BackingField: 0
-  <Sprite>k__BackingField: {fileID: 21300000, guid: ec138aec422dee446a2fe5fdf71c2380,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: a4fc5b80d9dc7414b85921c161a78472,
     type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0

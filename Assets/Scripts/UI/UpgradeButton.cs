@@ -9,6 +9,8 @@ public class UpgradeButton : MonoBehaviour
     public Effect Upgrade { get; private set; }
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text descriptionText;
+    [SerializeField] private TMP_Text effectDescriptionText;
+
     [SerializeField] private Image icon;
     public Image unitIcon;
     public List<Sprite> unitSprites = new();
@@ -22,26 +24,27 @@ public class UpgradeButton : MonoBehaviour
     {
         Upgrade = inUpgrade;
         nameText.text = inUpgrade.Name;
-
+        descriptionText.text = inUpgrade.Description;
         if (inUpgrade.EffectType == EffectType.Weapon)
         {
 
             if (UpgradeManager.instance.grantedDefaultWeapons.ContainsKey(inUpgrade))
             {
-                descriptionText.text = inUpgrade.Descriptions[Mathf.Min(UpgradeManager.instance.grantedDefaultWeapons[inUpgrade], 4)];
+
+                effectDescriptionText.text = inUpgrade.EffectDescriptions[Mathf.Min(UpgradeManager.instance.grantedDefaultWeapons[inUpgrade], 4)];
             }
             else if (UpgradeManager.instance.grantedWeapons.ContainsKey(inUpgrade))
             {
-                descriptionText.text = inUpgrade.Descriptions[Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4)];
+                effectDescriptionText.text = inUpgrade.EffectDescriptions[Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4)];
             }
             else
             {
-                descriptionText.text = inUpgrade.Descriptions[0];
+                effectDescriptionText.text = inUpgrade.EffectDescriptions[0];
             }
         }
         else
         {
-            descriptionText.text = inUpgrade.Description;
+            effectDescriptionText.text = inUpgrade.EffectDescription;
         }
 
         icon.sprite = inUpgrade.Sprite;

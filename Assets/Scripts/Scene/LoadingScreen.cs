@@ -14,7 +14,7 @@ public class LoadingScreen : MonoBehaviour
 {
     [SerializeField] private List<LoadingScreenTip> tips = new();
     [SerializeField] private TMP_Text tipNameText;
-    [SerializeField] private TMP_Text tipDescriptionText;
+    [SerializeField] private TMP_Text tipeffectDescriptionText;
 
     // Start is called before the first frame update
     private void Start()
@@ -26,6 +26,6 @@ public class LoadingScreen : MonoBehaviour
     {
         LoadingScreenTip tip = tips[Random.Range(0, tips.Count)];
         tipNameText.text = tip.name;
-        tipDescriptionText.text = tip.description;
+        tipeffectDescriptionText.text = tip.description;
     }
 }

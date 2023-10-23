@@ -27,6 +27,9 @@ public class Effect : ScriptableObject
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public string Description { get; private set; }
     [field: SerializeField] public List<string> Descriptions { get; private set; } = new();
+
+    [field: SerializeField] public string EffectDescription { get; private set; }
+    [field: SerializeField] public List<string> EffectDescriptions { get; private set; } = new();
     [field: SerializeField] public EffectType EffectType { get; private set; }
     [field: SerializeField] public List<EffectModifier> Modifiers { get; private set; }
     [field: SerializeField] public Sprite Sprite { get; private set; }

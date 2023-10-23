@@ -13,8 +13,15 @@ MonoBehaviour:
   m_Name: Judgement Cut
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Judgement Cut
-  <Description>k__BackingField: Grants Judgement Cut
+  <Description>k__BackingField: AOE slash attack on a single target
   <Descriptions>k__BackingField:
+  - Grants Judgement Cut
+  - Increase CRIT Rate by 10%. Increase Size by 15%.
+  - Increase CRIT Rate by 10%. Increase CRIT DMG by 50%.
+  - Increase CRIT Rate by 10%. Increase ATK SPD by 30%.
+  - Increase CRIT Rate by 10%.
+  <EffectDescription>k__BackingField: Grants Judgement Cut
+  <EffectDescriptions>k__BackingField:
   - Grants Judgement Cut
   - Increase CRIT Rate by 10%. Increase Size by 15%.
   - Increase CRIT Rate by 10%. Increase CRIT DMG by 50%.
