@@ -182,10 +182,9 @@ public class Player : MonoBehaviour
     {
         if (buffCoroutines[type] != null)
         {
-            buffIcons[(int)type].gameObject.SetActive(false);
             StopCoroutine(buffCoroutines[type]);
         }
-        StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
+        buffCoroutines[type] = StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
     private IEnumerator AntigenBuffCoroutine(AntigenType type, AttributeModifier mod, float duration)
