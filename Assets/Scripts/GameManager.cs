@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
             return;
         Time.timeScale = 1f;
         GameTimePaused = false;
+        Debug.Log("Game Resumed");
+
     }
 
     public void PauseGame()
@@ -73,6 +75,8 @@ public class GameManager : MonoBehaviour
         GamePaused = true;
 
         OnGamePaused?.Invoke();
+
+        Debug.Log("Game paused");
     }
 
     public void ResumeGame()

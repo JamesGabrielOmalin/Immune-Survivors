@@ -51,7 +51,8 @@ public class TutorialManager : MonoBehaviour
         switch (buildIndex)
         {
             case 1:
-                Instantiate(StaticPrompts[0]);
+                EnablePromptOnIntro();
+                GameManager.instance.PauseGame();
                 //Replace into dynamic
                 AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
                 //Replace into dynamic
@@ -75,6 +76,15 @@ public class TutorialManager : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
+    }
+
+    public void EnablePromptOnIntro()
+    {
+        //Instantiate(StaticPrompts[1]);
+        AddDynamicPrompt("INTRODUCTION", "Welcome To Your Immune System", StaticPrompts[0]);
+        //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
+        //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
+        //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
     }
 
     public void EnablePromptOnAntigenPickup()
