@@ -26,6 +26,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private List<GameObject> StaticPrompts = new List<GameObject>();
 
     public System.Action OnEnemyVisible;
+    public System.Action OnPlayerHit;
 
 
     private void Awake()
@@ -62,7 +63,10 @@ public class TutorialManager : MonoBehaviour
                 UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
                 //Replace into dynamic
                 UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
+                LifestyleManager.instance.OnActivateLifestyleScreen += EnablePromptOnLifestyle;
+
                 OnEnemyVisible += EnablePromptOnHUDTutorial;
+                OnPlayerHit += EnablePromptOnPlayerHit;
 
                 for (int i = 0; i < 3; i++)
                     AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] += EnablePromptOnAntigenThreshold;
@@ -70,6 +74,7 @@ public class TutorialManager : MonoBehaviour
             case 2:
                 //Replace into dynamic
                 SymptomManager.instance.OnActivateSymptom += EnablePromptOnSymptom;
+                LifestyleManager.instance.OnActivateLifestyleScreen += EnablePromptOnLifestyle;
                 break;
             default:
                 break;
@@ -121,12 +126,23 @@ public class TutorialManager : MonoBehaviour
         RecruitManager.instance.OnRecruitSpawn -= EnablePromptOnThresholdUpdate;
 
         //Instantiate(StaticPrompts[2]);
-        AddDynamicPrompt(" RECRUITABLES","Backup has arrived!", StaticPrompts[2]);
+        AddDynamicPrompt("BACKUP RECRUITABLES","Backup has arrived!", StaticPrompts[2]);
         //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
         //AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
         //AddDynamicPrompt("Once you recruit them, you will become stronger!");
+    }
 
-        
+    public void EnablePromptOnPlayerHit()
+    {
+        TutorialManager.instance.OnPlayerHit -= EnablePromptOnPlayerHit;
+
+        //Instantiate(StaticPrompts[2]);
+        AddDynamicPrompt("TAKING DAMAGE", " Watch out! Getting hit by enemies will deplete your <color=red>HP Bar (BOTTOM HUD)</color>.",7.0f);
+        AddDynamicPrompt("RESTORING HP", " While your HP can <color=green>regenerate over time</color>. You can also <color=yellow>replenish your HP by recruiting other units</color>.", 7.0f);
+
+        //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
+        //AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
+        //AddDynamicPrompt("Once you recruit them, you will become stronger!");
     }
 
     public void EnablePromptOnUpgrade()
@@ -134,6 +150,11 @@ public class TutorialManager : MonoBehaviour
         UpgradeManager.instance.OnUpgradeScreen -= EnablePromptOnUpgrade;
 
         Instantiate(StaticPrompts[3]);
+    }
+    public void EnablePromptOnLifestyle()
+    {
+        LifestyleManager.instance.OnActivateLifestyleScreen -= EnablePromptOnLifestyle;
+        Instantiate(StaticPrompts[8]);
     }
 
     public void EnablePromptOnUltiGet()

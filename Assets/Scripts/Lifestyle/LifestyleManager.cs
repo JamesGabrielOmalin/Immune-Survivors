@@ -14,6 +14,8 @@ public class LifestyleManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private LifestyleScreen lifestyleScreen;
 
+    public System.Action OnActivateLifestyleScreen;
+
     private void Awake()
     {
         if (instance == null)
@@ -62,16 +64,17 @@ public class LifestyleManager : MonoBehaviour
         grantedLifestyles.Add(effect);
     }
 
-    private readonly WaitForSeconds wait = new(120f);
+    private readonly WaitForSeconds wait = new(10f);
 
     private IEnumerator LifestyleCoroutine()
     {
-        // Wait for 2 minutes
+        // Wait for 3 minutes
         yield return wait;
 
         // Wait in case upgrade screen is open
         yield return new WaitWhile(() => UpgradeManager.instance.IsUpgradeScreenOpen);
 
+        OnActivateLifestyleScreen?.Invoke();
         OpenLifestyleScreen();
     }
 }

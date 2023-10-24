@@ -89,7 +89,7 @@ public class PlayerUnit : Unit, IDamageInterface
             return;
 
         OnTakeDamage?.Invoke();
-
+        TutorialManager.instance.OnPlayerHit?.Invoke();
         Debug.Log("Take Damage");
         HP.ApplyInstantModifier(new(-(amount - Armor.Value), AttributeModifierType.Add));
         AudioManager.instance.Play("PlayerHit", transform.position);

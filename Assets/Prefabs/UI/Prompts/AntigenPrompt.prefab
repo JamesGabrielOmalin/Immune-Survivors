@@ -261,8 +261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 640}
+  m_AnchoredPosition: {x: 0, y: -12.447998}
+  m_SizeDelta: {x: 0, y: 664.896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1182504304451110885
 CanvasRenderer:
@@ -632,7 +632,6 @@ MonoBehaviour:
   pages:
   - {fileID: 3901206190135279650}
   - {fileID: 4681301420826457199}
-  - {fileID: 4608473633686498113}
   previousButton: {fileID: 1182504304561466377}
   nextButton: {fileID: 1182504305084975629}
   closeButton: {fileID: 6819556352159045389}
@@ -1390,7 +1389,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 120}
+  m_AnchoredPosition: {x: 0, y: 99.17}
   m_SizeDelta: {x: 360, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &1908239623961660206
@@ -2642,12 +2641,6 @@ PrefabInstance:
 --- !u!224 &2754138719301043412 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 677281327082871057, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
-    type: 3}
-  m_PrefabInstance: {fileID: 3413312171668479429}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4608473633686498113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1200793208199722628, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
     type: 3}
   m_PrefabInstance: {fileID: 3413312171668479429}
   m_PrefabAsset: {fileID: 0}

@@ -28,6 +28,26 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 769905161036654737, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 769905161036654737, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 769905161036654737, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 769905161036654737, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1580748694748872554, guid: 736e2359f3a24d145a9a5f2d682b60bb,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -36,6 +56,33 @@ PrefabInstance:
     - target: {fileID: 1580748694748872554, guid: 736e2359f3a24d145a9a5f2d682b60bb,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630368258259948924, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+        type: 2}
+    - target: {fileID: 1630368258259948924, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1839407497239544348, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 22.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1839407497239544348, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+        type: 2}
+    - target: {fileID: 1839407497239544348, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2485087297284400880, guid: 736e2359f3a24d145a9a5f2d682b60bb,
@@ -173,6 +220,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player HUD_Neutrophil
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034865982290971596, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034865982290971596, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034865982290971596, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034865982290971596, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736e2359f3a24d145a9a5f2d682b60bb, type: 3}
