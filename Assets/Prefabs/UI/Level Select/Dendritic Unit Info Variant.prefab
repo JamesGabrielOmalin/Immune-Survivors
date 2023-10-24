@@ -417,7 +417,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: A unit armed with a slashing ability that embodies the relentless pursuit
-        of antigens
+        of collecting antigens
       objectReference: {fileID: 0}
     - target: {fileID: 2193254242988129399, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
