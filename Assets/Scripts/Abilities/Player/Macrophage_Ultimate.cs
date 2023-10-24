@@ -90,7 +90,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
         armor.RemoveModifier(armorMod);
 
-        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
 
         yield break;

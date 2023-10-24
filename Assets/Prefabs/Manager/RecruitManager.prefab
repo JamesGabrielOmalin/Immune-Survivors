@@ -213,6 +213,7 @@ MonoBehaviour:
   cycle: 1
   thresholdIncrement: 0
   amountToSpawn: 1
+  recruitBias: 3
   killThresholdList:
   - startCycle: 1
     endCycle: 5

@@ -45,7 +45,7 @@ public class NeutrophilGrenade : Projectile
 
             if (hit.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                float armor = enemy.Armor.Value;
                 DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
             }
 

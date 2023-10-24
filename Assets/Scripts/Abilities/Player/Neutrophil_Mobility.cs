@@ -66,15 +66,16 @@ public class Neutrophil_MobilitySpec : AbilitySpec
             //rigidbody.AddForce(deltaPos, ForceMode.VelocityChange);
             yield return new WaitForFixedUpdate();
 
-            Debug.Log($"Dash: {rigidbody.velocity}");
+            //Debug.Log($"Dash: {rigidbody.velocity}");
 
             //var newPos = owner.transform.position;
             //newPos.y = y;
             //owner.transform.position = newPos;
         }
         //Physics.IgnoreLayerCollision(6, 11, false);
+        rigidbody.velocity = Vector3.zero;
 
-        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
 
         yield break;

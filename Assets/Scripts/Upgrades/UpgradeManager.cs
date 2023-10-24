@@ -51,7 +51,11 @@ public class UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        grantedDefaultWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
+        //grantedDefaultWeapons.Add(defaultWeapons[(int)Player.toSpawn], 1);
+
+        grantedEffects[PlayerUnitType.Neutrophil].Add(defaultWeapons[0], 1);
+        grantedEffects[PlayerUnitType.Macrophage].Add(defaultWeapons[1], 1);
+        grantedEffects[PlayerUnitType.Dendritic].Add(defaultWeapons[2], 1);
 
         OnEffectAcquired?.Invoke();
     }
@@ -63,28 +67,33 @@ public class UpgradeManager : MonoBehaviour
 
     public void AddUpgrade(Effect effect, PlayerUnitType unit)
     {
-        switch (effect.EffectType)
-        {
-            case EffectType.Buff:
-                if(!grantedEffects[unit].ContainsKey(effect))
-                    grantedEffects[unit].Add(effect, 1);
-                else
-                    grantedEffects[unit][effect] += 1;
-                break;
-            case EffectType.Weapon:
-                if (defaultWeapons.Contains(effect))
-                {
-                    if (!grantedDefaultWeapons.ContainsKey(effect))
-                        grantedDefaultWeapons.Add(effect, 1);
-                    else
-                        grantedDefaultWeapons[effect] += 1;
-                }
-                else if (!grantedWeapons.ContainsKey(effect))
-                    grantedWeapons.Add(effect, 1);
-                else
-                    grantedWeapons[effect] += 1;
-                break;
-        }
+        //switch (effect.EffectType)
+        //{
+        //    case EffectType.Buff:
+        //        if(!grantedEffects[unit].ContainsKey(effect))
+        //            grantedEffects[unit].Add(effect, 1);
+        //        else
+        //            grantedEffects[unit][effect] += 1;
+        //        break;
+        //    case EffectType.Weapon:
+        //        if (defaultWeapons.Contains(effect))
+        //        {
+        //            if (!grantedDefaultWeapons.ContainsKey(effect))
+        //                grantedDefaultWeapons.Add(effect, 1);
+        //            else
+        //                grantedDefaultWeapons[effect] += 1;
+        //        }
+        //        else if (!grantedWeapons.ContainsKey(effect))
+        //            grantedWeapons.Add(effect, 1);
+        //        else
+        //            grantedWeapons[effect] += 1;
+        //        break;
+        //}
+
+        if (!grantedEffects[unit].ContainsKey(effect))
+            grantedEffects[unit].Add(effect, 1);
+        else
+            grantedEffects[unit][effect]++;
 
         OnEffectAcquired?.Invoke();
     }
@@ -102,33 +111,46 @@ public class UpgradeManager : MonoBehaviour
         List<Effect> m = new(macrophageUpgrades);
         List<Effect> d = new(dendriticUpgrades);
 
-        if (CanEquipWeapons)
+        if (grantedEffects[PlayerUnitType.Neutrophil].Count >= 4)
         {
-            n.AddRange(neutrophilWeapons);
-            n.Add(defaultWeapons[0]);
-            m.AddRange(macrophageWeapons);
-            m.Add(defaultWeapons[1]);
-            d.AddRange(dendriticWeapons);
-            d.Add(defaultWeapons[2]);
+            n = new(grantedEffects[PlayerUnitType.Neutrophil].Keys);
         }
-        else
+        if (grantedEffects[PlayerUnitType.Macrophage].Count >= 4)
         {
-            n.AddRange(neutrophilWeapons.Intersect(grantedWeapons.Keys.ToList()));
-            if (grantedDefaultWeapons.ContainsKey(defaultWeapons[0]))
-            {
-                n.Add(defaultWeapons[0]);
-            }
-            m.AddRange(macrophageWeapons.Intersect(grantedWeapons.Keys.ToList()));
-            if (grantedDefaultWeapons.ContainsKey(defaultWeapons[1]))
-            {
-                m.Add(defaultWeapons[1]);
-            }
-            d.AddRange(dendriticWeapons.Intersect(grantedWeapons.Keys.ToList()));
-            if (grantedDefaultWeapons.ContainsKey(defaultWeapons[2]))
-            {
-                d.Add(defaultWeapons[2]);
-            }
+            m = new(grantedEffects[PlayerUnitType.Macrophage].Keys);
         }
+        if (grantedEffects[PlayerUnitType.Dendritic].Count >= 4)
+        {
+            d = new(grantedEffects[PlayerUnitType.Dendritic].Keys);
+        }
+
+        //if (CanEquipWeapons)
+        //{
+        //    n.AddRange(neutrophilWeapons);
+        //    n.Add(defaultWeapons[0]);
+        //    m.AddRange(macrophageWeapons);
+        //    m.Add(defaultWeapons[1]);
+        //    d.AddRange(dendriticWeapons);
+        //    d.Add(defaultWeapons[2]);
+        //}
+        //else
+        //{
+        //    n.AddRange(neutrophilWeapons.Intersect(grantedWeapons.Keys.ToList()));
+        //    if (grantedDefaultWeapons.ContainsKey(defaultWeapons[0]))
+        //    {
+        //        n.Add(defaultWeapons[0]);
+        //    }
+        //    m.AddRange(macrophageWeapons.Intersect(grantedWeapons.Keys.ToList()));
+        //    if (grantedDefaultWeapons.ContainsKey(defaultWeapons[1]))
+        //    {
+        //        m.Add(defaultWeapons[1]);
+        //    }
+        //    d.AddRange(dendriticWeapons.Intersect(grantedWeapons.Keys.ToList()));
+        //    if (grantedDefaultWeapons.ContainsKey(defaultWeapons[2]))
+        //    {
+        //        d.Add(defaultWeapons[2]);
+        //    }
+        //}
 
         return type switch
         {

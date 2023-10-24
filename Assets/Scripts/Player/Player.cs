@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<Image> buffIcons = new();
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -182,10 +182,9 @@ public class Player : MonoBehaviour
     {
         if (buffCoroutines[type] != null)
         {
-            buffIcons[(int)type].gameObject.SetActive(false);
             StopCoroutine(buffCoroutines[type]);
         }
-        StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
+        buffCoroutines[type] = StartCoroutine(AntigenBuffCoroutine(type, mod, duration));
     }
 
     private IEnumerator AntigenBuffCoroutine(AntigenType type, AttributeModifier mod, float duration)

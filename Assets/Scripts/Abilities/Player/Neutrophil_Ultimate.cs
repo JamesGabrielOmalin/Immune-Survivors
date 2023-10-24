@@ -27,6 +27,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
+    public Attribute CDReduction;
 
     private Neutrophil_Ultimate ult;
 
@@ -76,8 +77,6 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
         AudioManager.instance.Play("NeutrophilUltimate", owner.transform.position);
 
-        string armor_string = "Armor";
-
         for (int i = 0; i < 10; i++)
         {
             var hits = Physics.OverlapSphere(owner.transform.position, 5f, ult.LayerMask);
@@ -89,7 +88,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
                     Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
 
                     //enemy.TakeDamage(damage);
-                    float armor = enemy.attributes.GetAttribute(armor_string).Value;
+                    float armor = enemy.Armor.Value;
                     DamageCalculator.ApplyDamage(AD * (AS), CRIT_RATE, CRIT_DMG, armor, enemy);
 
                     //enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
@@ -107,7 +106,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
             spr.gameObject.SetActive(true);
         }
 
-        CurrentCD = ability.Cooldown;
+        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
 
         yield return new WaitForSeconds(1f);
@@ -125,11 +124,12 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         attributes = owner.GetComponent<AttributeSet>();
 
         level = attributes.GetAttribute("Level");
-        attackDamage = owner.GetComponent<AttributeSet>().GetAttribute("Attack Damage");
-        attackSpeed = owner.GetComponent<AttributeSet>().GetAttribute("Attack Speed");
-        critRate = owner.GetComponent<AttributeSet>().GetAttribute("Critical Rate");
-        critDMG = owner.GetComponent<AttributeSet>().GetAttribute("Critical Damage");
-        knockbackPower = owner.GetComponent<AttributeSet>().GetAttribute("Knockback Power");
+        attackDamage = attributes.GetAttribute("Attack Damage");
+        attackSpeed = attributes.GetAttribute("Attack Speed");
+        critRate = attributes.GetAttribute("Critical Rate");
+        critDMG = attributes.GetAttribute("Critical Damage");
+        knockbackPower = attributes.GetAttribute("Knockback Power");
+        CDReduction = attributes.GetAttribute("CD Reduction");
 
         ult = ability as Neutrophil_Ultimate;
     }

@@ -63,6 +63,7 @@ public class RecruitManager : MonoBehaviour
     [SerializeField] private int cycle = 1;
     [SerializeField] private int thresholdIncrement;
     [SerializeField] private int amountToSpawn;
+    [SerializeField] private int recruitBias;
 
     [field: SerializeField]
     public List<KillThreshold> killThresholdList;
@@ -108,7 +109,6 @@ public class RecruitManager : MonoBehaviour
         minBounds-= boundsThreshold;
         maxBounds += boundsThreshold;
         
-
         killThreshold = initialKillRequirement;
         thresholdIncrement = killThresholdList[index].increment;
 
@@ -134,15 +134,22 @@ public class RecruitManager : MonoBehaviour
 
     private void SpawnRecruitBatch(int amount)
     {
-
         for (int i = 0; i < amount; i++)
         {
 
-            Vector3 spawnPoint = RandomPointInBounds(spawnArea.bounds);
+            Vector3 spawnPoint = RandomPointInBounds();
             spawnPoint.y = 0;
  
 
             PlayerUnitType toSpawn = (PlayerUnitType)Random.Range(0, 3);
+
+            // Only spawn the main character for the first few units
+            if (recruitBias > 0)
+            {
+                toSpawn = Player.toSpawn;
+                recruitBias--;
+            }
+
             //float rand = Random.value;
 
             //if (rand < 0.1f)
@@ -162,13 +169,16 @@ public class RecruitManager : MonoBehaviour
         }
     }
 
-    private Vector3 RandomPointInBounds(in Bounds bounds)
+    private Vector3 RandomPointInBounds()
     {
-        return new Vector3(
-            Random.Range(bounds.min.x, bounds.max.x),
-            Random.Range(bounds.min.y, bounds.max.y),
-            Random.Range(bounds.min.z, bounds.max.z)
+        Vector3 extents = spawnArea.size / 2f;
+        Vector3 point = new Vector3(
+            Random.Range(-extents.x, extents.x),
+            Random.Range(-extents.y, extents.y),
+            Random.Range(-extents.z, extents.z)
         );
+
+        return spawnArea.transform.TransformPoint(point);
     }
 
     public IEnumerator SpawnRecruit(Vector3 position, PlayerUnitType type)
@@ -185,7 +195,7 @@ public class RecruitManager : MonoBehaviour
             if (isColliding)
             {
                 //Debug.Log("has Collision");
-                position = RandomPointInBounds(spawnArea.bounds);
+                position = RandomPointInBounds();
                 position.y = 0;
                 nChecks++;
             }

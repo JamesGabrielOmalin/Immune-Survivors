@@ -80,7 +80,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         // MY FAMILY CREST IS A DEMON OF DEATH
 
         playable.Stop();
-        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
     }
 

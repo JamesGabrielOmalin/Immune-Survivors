@@ -70,14 +70,12 @@ public class MacrophagePull : MonoBehaviour
             if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
             {
                 //enemy.TakeDamage(damage);
-                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                float armor = enemy.Armor.Value;
                 DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
                 enemy.ApplyDoT(DoT, 4f, 2f + attackCount);
-                if (enemy.TryGetComponent<ImpactReceiver>(out ImpactReceiver impact))
-                {
-                    Vector3 dir = (enemy.transform.position - transform.position).normalized;
-                    impact.AddImpact(dir, -knockbackPower);
-                }
+
+                Vector3 dir = (enemy.transform.position - transform.position).normalized;
+                enemy.ApplyKnockback(dir * -knockbackPower, ForceMode.VelocityChange);
             }
         }
 

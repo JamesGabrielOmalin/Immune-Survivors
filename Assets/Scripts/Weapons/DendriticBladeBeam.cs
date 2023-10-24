@@ -25,8 +25,8 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
     {
         if (other.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            float MaxHP = enemy.attributes.GetAttribute("Max HP").Value;
-            float HP = enemy.attributes.GetAttribute("HP").Value;
+            float MaxHP = enemy.MaxHP.Value;
+            float HP = enemy.HP.Value;
 
             float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
             float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
@@ -34,7 +34,7 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
             // Reduce damage based on hit count, up to 50% reduction
             float damage = attackDamage * missingHPBonusDMG * (1f - Mathf.Min(0.1f * hitCount, 0.5f));
 
-            float armor = enemy.attributes.GetAttribute("Armor").Value;
+            float armor = enemy.Armor.Value;
 
             DamageCalculator.ApplyDamage(damage * ratio, critRate, critDMG, armor, enemy);
 
