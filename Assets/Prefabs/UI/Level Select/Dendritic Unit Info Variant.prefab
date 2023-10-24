@@ -417,12 +417,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: A unit armed with a slashing ability that embodies the relentless pursuit
-        of antigens and the unwavering commitment to immunity.
+        of antigens
       objectReference: {fileID: 0}
     - target: {fileID: 2193254242988129399, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_fontSize
-      value: 21.7
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2193254242988129399, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -499,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 2828412963332775668, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -153.89514
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2880402982323036814, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -581,6 +581,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411931044788242593, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411931044788242593, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411931044788242593, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411931044788242593, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411931044788242593, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411931044788242593, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3504953516106719109, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -865,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 4434512304969074190, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 143.89514
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4434512304969074190, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1065,7 +1095,7 @@ PrefabInstance:
     - target: {fileID: 5635811830354090566, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 344.50513
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5635811830354090566, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1075,7 +1105,7 @@ PrefabInstance:
     - target: {fileID: 5635811830354090566, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -566.1477
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5706096387995576141, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1153,7 +1183,7 @@ PrefabInstance:
     - target: {fileID: 6175776193191685723, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_fontSize
-      value: 40
+      value: 33.8
       objectReference: {fileID: 0}
     - target: {fileID: 6274070624088478910, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1205,12 +1235,52 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6444781447727061808, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444781447727061808, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.a
+      value: 0.5019608
+      objectReference: {fileID: 0}
     - target: {fileID: 6518429920632191012, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8dfed4fb39ad9fb4fb764b2a6a706dc0,
         type: 3}
+    - target: {fileID: 6599622130307884105, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599622130307884105, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599622130307884105, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599622130307884105, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599622130307884105, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599622130307884105, guid: a51481079c176b1438ede52e4b123f0c,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6693880500794519785, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1619,7 +1689,7 @@ PrefabInstance:
     - target: {fileID: 9061740588625875696, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -373.89514
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9119422601289259453, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
