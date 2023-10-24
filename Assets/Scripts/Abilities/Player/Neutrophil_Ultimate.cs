@@ -106,7 +106,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
             spr.gameObject.SetActive(true);
         }
 
-        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
 
         yield return new WaitForSeconds(1f);

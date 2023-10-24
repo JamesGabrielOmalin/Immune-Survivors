@@ -114,7 +114,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
         if (!resetCD)
         {
             AudioManager.instance.Play("PlayerPickUp", owner.transform.position);
-            CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+            CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
             owner.StartCoroutine(UpdateCD());
         }
 

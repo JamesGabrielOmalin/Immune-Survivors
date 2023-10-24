@@ -50,7 +50,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
         sprite.material.renderQueue = 2450;
         sprite.color = Color.white;
 
-        CurrentCD = ability.Cooldown * (100f / 100f + CDReduction.Value);
+        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
     }
 

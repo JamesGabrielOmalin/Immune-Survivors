@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<Image> buffIcons = new();
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
