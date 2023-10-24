@@ -27,6 +27,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
+    public Attribute CDReduction;
 
     private Neutrophil_Ultimate ult;
 
@@ -123,11 +124,12 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         attributes = owner.GetComponent<AttributeSet>();
 
         level = attributes.GetAttribute("Level");
-        attackDamage = owner.GetComponent<AttributeSet>().GetAttribute("Attack Damage");
-        attackSpeed = owner.GetComponent<AttributeSet>().GetAttribute("Attack Speed");
-        critRate = owner.GetComponent<AttributeSet>().GetAttribute("Critical Rate");
-        critDMG = owner.GetComponent<AttributeSet>().GetAttribute("Critical Damage");
-        knockbackPower = owner.GetComponent<AttributeSet>().GetAttribute("Knockback Power");
+        attackDamage = attributes.GetAttribute("Attack Damage");
+        attackSpeed = attributes.GetAttribute("Attack Speed");
+        critRate = attributes.GetAttribute("Critical Rate");
+        critDMG = attributes.GetAttribute("Critical Damage");
+        knockbackPower = attributes.GetAttribute("Knockback Power");
+        CDReduction = attributes.GetAttribute("CD Reduction");
 
         ult = ability as Neutrophil_Ultimate;
     }
