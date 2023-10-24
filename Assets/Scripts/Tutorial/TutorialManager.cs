@@ -94,8 +94,8 @@ public class TutorialManager : MonoBehaviour
     public void EnablePromptOnPlayerMovement()
     {
         //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt("TUTORIAL", "Press <color=yellow>WASD</color> to move around and <color=yellow>[SPACEBAR]</color> to use your mobility ability", 5.0f);
-        AddDynamicPrompt("TUTORIAL", " As you know, your body is under attack, and not for long <b>bacteria</b> will start to invade.", 7.0f);
+        AddDynamicPrompt("BASIC CONTROLS", "Press <color=yellow>WASD</color> to move around and <color=yellow>[SPACEBAR]</color> to use your mobility ability", 5.0f);
+        AddDynamicPrompt("INVADING BACTERIA", " As you know, your body is under attack, and not for long <b>bacteria</b> will start to invade.", 7.0f);
 
     }
 
@@ -110,7 +110,7 @@ public class TutorialManager : MonoBehaviour
         AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
 
         //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt(" ANTIGENS", "You just picked up an antigen!", StaticPrompts[1]);
+        AddDynamicPrompt(" ANTIGENS", "You just picked up an <color=yellow>antigen</color>!", StaticPrompts[1]);
         //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
         //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
         //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
@@ -143,7 +143,7 @@ public class TutorialManager : MonoBehaviour
         //Instantiate(StaticPrompts[4]);
         AddDynamicPrompt("ULTIMATE", "You just unlocked your ultimate!");
         AddDynamicPrompt("ULTIMATE","You unlock your ultimate anytime you recruit 4 of your main unit");
-        AddDynamicPrompt("ULTIMATE","Press <color=yellow>Q</color> to use your ultimate");
+        AddDynamicPrompt("ULTIMATE","Press <color=yellow>[Q]</color> to use your ultimate");
     }
 
     public void EnablePromptOnSymptom()
@@ -163,9 +163,9 @@ public class TutorialManager : MonoBehaviour
         for (int i = 0; i < 3; i++)
             AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] -= EnablePromptOnAntigenThreshold;
 
-        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.");
-        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
-        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
+        AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "Upon gaining enough antigens, <color=yellow>Helper T Cells</color> and <color=yellow>B Cells</color> will start to spawn.", StaticPrompts[7]);
+        //AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
+        //AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
     }
     public void AddDynamicPrompt(string title, string text, float duration)
     {

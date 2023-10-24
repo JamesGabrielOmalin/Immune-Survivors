@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1182504304561466382
 RectTransform:
   m_ObjectHideFlags: 0
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 1182504304920234993}
   - component: {fileID: 1182504304920234992}
   m_Layer: 5
-  m_Name: HUDPrompt
+  m_Name: InfectionBarPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1182504305084975630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -942,7 +942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 179.92651, y: 0}
+  m_AnchoredPosition: {x: 181.77, y: 0}
   m_SizeDelta: {x: 334.3548, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8300886161851210329
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8980393, g: 0.7490196, b: 0, a: 1}
+  m_Color: {r: 0.9150943, g: 0.7682585, b: 0.030215396, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1153,8 +1153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 372, y: 0}
-  m_SizeDelta: {x: 53.007812, y: -60}
+  m_AnchoredPosition: {x: 370.2, y: 0.5}
+  m_SizeDelta: {x: 53.007812, y: -63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5494161340235137207
 CanvasRenderer:
