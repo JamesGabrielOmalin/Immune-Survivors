@@ -37,13 +37,13 @@ public class DendriticJudgementCut : MonoBehaviour
         {
             if (hit.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                float MaxHP = enemy.attributes.GetAttribute("Max HP").Value;
-                float HP = enemy.attributes.GetAttribute("HP").Value;
+                float MaxHP = enemy.MaxHP.Value;
+                float HP = enemy.HP.Value;
 
                 float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
                 float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
 
-                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                float armor = enemy.Armor.Value;
                 DamageCalculator.ApplyDamage(attackDamage * missingHPBonusDMG, critRate, critDMG, armor, enemy);
 
                 if (enemy.IsDead)

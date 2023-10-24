@@ -38,10 +38,10 @@ public class DendriticSlash : MonoBehaviour
         vfx.Play();
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
-        float MaxHP = target.attributes.GetAttribute("Max HP").Value;
-        float HP = target.attributes.GetAttribute("HP").Value;
+        float MaxHP = target.MaxHP.Value;
+        float HP = target.HP.Value;
 
-        float armor = target.attributes.GetAttribute("Armor").Value;
+        float armor = target.Armor.Value;
 
         float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
 

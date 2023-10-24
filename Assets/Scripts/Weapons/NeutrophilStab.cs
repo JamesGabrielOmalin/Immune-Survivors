@@ -35,7 +35,7 @@ public class NeutrophilStab : MonoBehaviour
         vfx.SetInt("Count", (int)attackCount);
         vfx.Play();
 
-        float armor = target.attributes.GetAttribute("Armor").Value;
+        float armor = target.Armor.Value;
 
         DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
         target.ApplyDoT(DoT, 3f, 4f + attackCount);

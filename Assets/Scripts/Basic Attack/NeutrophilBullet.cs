@@ -24,7 +24,7 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
             //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
             //enemy.TakeDamage(damage);
-            float armor = enemy.attributes.GetAttribute("Armor").Value;
+            float armor = enemy.Armor.Value;
             DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
 
             // Apply knockback

@@ -76,8 +76,6 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
         AudioManager.instance.Play("NeutrophilUltimate", owner.transform.position);
 
-        string armor_string = "Armor";
-
         for (int i = 0; i < 10; i++)
         {
             var hits = Physics.OverlapSphere(owner.transform.position, 5f, ult.LayerMask);
@@ -89,7 +87,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
                     Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
 
                     //enemy.TakeDamage(damage);
-                    float armor = enemy.attributes.GetAttribute(armor_string).Value;
+                    float armor = enemy.Armor.Value;
                     DamageCalculator.ApplyDamage(AD * (AS), CRIT_RATE, CRIT_DMG, armor, enemy);
 
                     //enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
