@@ -160,7 +160,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
                 bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
 
                 // increment angle based on nprojectiles
-                angle += angleSteps;
+                angle = (j % 3) * angleSteps * (j % 2 == 0 ? 1 : -1);
             }
 
             yield return wait;
