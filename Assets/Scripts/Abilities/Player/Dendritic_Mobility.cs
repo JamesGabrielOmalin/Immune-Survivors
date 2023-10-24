@@ -73,9 +73,15 @@ public class Dendritic_MobilitySpec : AbilitySpec
         {
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
+                float MaxHP = enemy.MaxHP.Value;
+                float HP = enemy.HP.Value;
+
+                float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
+                float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
+
                 //enemy.TakeDamage(damage);
-                float armor = enemy.attributes.GetAttribute("Armor").Value;
-                DamageCalculator.ApplyDamage(AD, CRIT_RATE, CRIT_DMG, armor, enemy);
+                float armor = enemy.Armor.Value;
+                DamageCalculator.ApplyDamage(AD * missingHPBonusDMG, CRIT_RATE, CRIT_DMG, armor, enemy);
                 enemy.GetComponent<ImpactReceiver>().AddImpact(rayDir, rayLength);
             }
         }
