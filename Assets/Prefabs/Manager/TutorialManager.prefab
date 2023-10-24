@@ -199,12 +199,12 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 8
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 8.1432495, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -722,3 +722,4 @@ MonoBehaviour:
   - {fileID: 1182504304920234999, guid: 898584534da7fc44aa007d848c8da64f, type: 3}
   - {fileID: 1182504304920234999, guid: ffb0f0a65d9cd234795aac960a8a686c, type: 3}
   - {fileID: 1182504304920234999, guid: 17f23f8c9122ba74489065118d65bdb5, type: 3}
+  - {fileID: 1182504304920234999, guid: 2bccf817523cc474695c8d53c1750eba, type: 3}

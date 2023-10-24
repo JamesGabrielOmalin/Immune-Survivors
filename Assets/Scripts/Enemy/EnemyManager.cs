@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
+    private bool isSpawningTutorial = true;
     [SerializeField] private List<EnemyPool> enemyPools = new();
     public List<GameObject> allEnemies = new();
     public List<GameObject> activeEnemies = new();
@@ -98,8 +99,9 @@ public class EnemyManager : MonoBehaviour
         CalculateWaveQuota();
 
         // Start couroutine for wave and spawning
-        waveCoroutine = StartCoroutine(WaveCoroutine());
-        spawnCoroutine = StartCoroutine(BasicEnemySpawnCoroutine());
+
+        StartCoroutine(StartSpawnerCoroutines());
+
 
 
         OnMaxInfectionReached += GameManager.instance.OnGameLose;
@@ -110,6 +112,21 @@ public class EnemyManager : MonoBehaviour
     private void OnDestroy()
     {
         instance = null;
+    }
+
+    IEnumerator  StartSpawnerCoroutines()
+    {
+        float delay = 0;
+        if(TutorialManager.isFirstTime && isSpawningTutorial)
+        {
+            delay = 10;
+            isSpawningTutorial= false;
+        }
+
+        yield return new WaitForSeconds(delay);
+        Debug.Log("Start Spawning");
+        waveCoroutine = StartCoroutine(WaveCoroutine());
+        spawnCoroutine = StartCoroutine(BasicEnemySpawnCoroutine());
     }
     private IEnumerator WaveCoroutine()
     {

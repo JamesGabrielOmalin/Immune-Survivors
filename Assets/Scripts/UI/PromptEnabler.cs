@@ -11,10 +11,16 @@ public class PromptEnabler : MonoBehaviour
     void Start()
     {
         toggle = GetComponent<Toggle>();
-        toggle.isOn = TutorialManager.isFirstTime;
+        if (toggle != null)
+            toggle.isOn = TutorialManager.isFirstTime;
     }
     public void SetPrompt(bool boolean)
     {
         TutorialManager.isFirstTime = boolean;
+    }
+
+    public void EnableGeneralInstructionStaticPrompt()
+    {
+        TutorialManager.instance.EnablePromptOnPlayerMovement();
     }
 }

@@ -347,6 +347,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 6519717921101814739}
+        m_TargetAssemblyTypeName: PromptEnabler, Assembly-CSharp
+        m_MethodName: EnableGeneralInstructionStaticPrompt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1182504304920234992}
         m_TargetAssemblyTypeName: StaticPrompt, Assembly-CSharp
         m_MethodName: Destroy
@@ -660,6 +672,7 @@ GameObject:
   - component: {fileID: 1182504304920234994}
   - component: {fileID: 1182504304920234993}
   - component: {fileID: 1182504304920234992}
+  - component: {fileID: 6519717921101814739}
   m_Layer: 5
   m_Name: Intro Prompt
   m_TagString: Untagged
@@ -769,6 +782,18 @@ MonoBehaviour:
   previousButton: {fileID: 1182504304561466377}
   nextButton: {fileID: 1182504305084975629}
   closeButton: {fileID: 1182504303897254585}
+--- !u!114 &6519717921101814739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182504304920234999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 588c4be5f068b214296f43558ef230a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1182504305028803076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,10 +1612,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 645c1704bb0786a42918c449de789f42,
+        type: 2}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -9138106079097506394, guid: 82d827c9baa537b439b085f42ce8fb4f,
+      objectReference: {fileID: 8300882698263233675, guid: 645c1704bb0786a42918c449de789f42,
         type: 2}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_HorizontalAlignment
@@ -2078,15 +2129,14 @@ PrefabInstance:
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
-      value: You have 10 minutes to SURVIVE from the bacteria. Kill all the bacteria
-        after 10 minutes have passed to win the game. Use the WASD keys to move around
-        the level. Your units will automatically fire their weapons.
+      value: 'You have 10 minutes to SURVIVE from the bacteria. Kill all the bacteria
+        after 10 minutes have passed to win the game. '
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 82d827c9baa537b439b085f42ce8fb4f,
+      objectReference: {fileID: 11400000, guid: 645c1704bb0786a42918c449de789f42,
         type: 2}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -2096,13 +2146,18 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 677281327082871057, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}

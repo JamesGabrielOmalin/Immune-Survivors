@@ -61,7 +61,6 @@ public class Enemy : Unit, IDamageInterface
 
         // Hide stun indicator
         //stunIndicator.SetActive(false);
-
         EnemyManager.instance.allEnemies.Add(this.gameObject);
 
         attackCoroutine = null;
@@ -109,6 +108,11 @@ public class Enemy : Unit, IDamageInterface
     {
         if (IsDead)
             return;
+
+        if (TutorialManager.isFirstTime)
+        {
+            TutorialManager.instance.OnEnemyVisible?.Invoke();
+        }
 
         HP.ApplyInstantModifier(new(-amount, AttributeModifierType.Add));
 

@@ -25,6 +25,9 @@ public class TutorialManager : MonoBehaviour
     //WARNING: CURRENTLY NO CHECKER FOR IF INDEX IS OVER/UNDER
     [SerializeField] private List<GameObject> StaticPrompts = new List<GameObject>();
 
+    public System.Action OnEnemyVisible;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -52,7 +55,6 @@ public class TutorialManager : MonoBehaviour
         {
             case 1:
                 EnablePromptOnIntro();
-                GameManager.instance.PauseGame();
                 //Replace into dynamic
                 AntigenManager.instance.OnAntigenPickup += EnablePromptOnAntigenPickup;
                 //Replace into dynamic
@@ -60,6 +62,8 @@ public class TutorialManager : MonoBehaviour
                 UpgradeManager.instance.OnUpgradeScreen += EnablePromptOnUpgrade;
                 //Replace into dynamic
                 UpgradeManager.instance.OnUltiGet += EnablePromptOnUltiGet;
+                OnEnemyVisible += EnablePromptOnHUDTutorial;
+
                 for (int i = 0; i < 3; i++)
                     AntigenManager.instance.OnAntigenThresholdReached[(AntigenType)i] += EnablePromptOnAntigenThreshold;
                 break;
@@ -79,14 +83,28 @@ public class TutorialManager : MonoBehaviour
     }
 
     public void EnablePromptOnIntro()
-    {
-        //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt("INTRODUCTION", "Welcome To Your Immune System", StaticPrompts[0]);
+    {   
+        AddDynamicPrompt("INTRODUCTION", "Welcome To Your Immune System", StaticPrompts[0], 0);
         //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
         //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
         //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
+        EnablePromptOnPlayerMovement();
     }
 
+    public void EnablePromptOnPlayerMovement()
+    {
+        //Instantiate(StaticPrompts[1]);
+        AddDynamicPrompt("TUTORIAL", "Press <color=yellow>WASD</color> to move around and <color=yellow>[SPACEBAR]</color> to use your mobility ability", 5.0f);
+        AddDynamicPrompt("TUTORIAL", " As you know, your body is under attack, and not for long <b>bacteria</b> will start to invade.", 7.0f);
+
+    }
+
+    public void EnablePromptOnHUDTutorial()
+    {
+        //Instantiate(StaticPrompts[1]);
+        AddDynamicPrompt("", "", StaticPrompts[6], 0);
+        OnEnemyVisible-= EnablePromptOnHUDTutorial;
+    }
     public void EnablePromptOnAntigenPickup()
     {
         AntigenManager.instance.OnAntigenPickup -= EnablePromptOnAntigenPickup;
@@ -149,7 +167,15 @@ public class TutorialManager : MonoBehaviour
         AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "T Cells will help make you <color=blue>stronger</color> while B Cells make bacteria <color=red>weaker</color>");
         AddDynamicPrompt("ACTIVATING THE ADAPTIVE UNITS", "However, these <color=blue>buffs</color> and <color=red>debuffs</color> only work against bacteria of the same color");
     }
+    public void AddDynamicPrompt(string title, string text, float duration)
+    {
+        dynamicPromptTitleQueue.Enqueue(title);
+        dynamicPromptTextQueue.Enqueue(text);
+        staticPromptQueue.Enqueue(null);
 
+        if (dynamicPromptCoroutine == null)
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt(duration));
+    }
     public void AddDynamicPrompt(string title, string text)
     {
         dynamicPromptTitleQueue.Enqueue(title);
@@ -158,6 +184,16 @@ public class TutorialManager : MonoBehaviour
 
         if (dynamicPromptCoroutine == null)
             dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
+    }
+
+    public void AddDynamicPrompt(string title, string text, GameObject staticPrompt, float duration)
+    {
+        dynamicPromptTitleQueue.Enqueue(title);
+        dynamicPromptTextQueue.Enqueue(text);
+        staticPromptQueue.Enqueue(staticPrompt);
+
+        if (dynamicPromptCoroutine == null)
+            dynamicPromptCoroutine = StartCoroutine(DynamicPrompt(duration));
     }
 
     public void AddDynamicPrompt(string title, string text, GameObject staticPrompt)
@@ -176,6 +212,21 @@ public class TutorialManager : MonoBehaviour
         {
             ShowDynamicPrompt();
             yield return new WaitForSeconds(dynamicPromptDuration);
+            dynamicPrompt.SetActive(false);
+            ShowStaticPrompt();
+        }
+
+        dynamicPromptCoroutine = null;
+
+        yield break;
+    }
+
+    private IEnumerator DynamicPrompt(float duration)
+    {
+        while (dynamicPromptTextQueue.Count > 0 && dynamicPromptTitleQueue.Count > 0)
+        {
+            ShowDynamicPrompt();
+            yield return new WaitForSeconds(duration);
             dynamicPrompt.SetActive(false);
             ShowStaticPrompt();
         }
