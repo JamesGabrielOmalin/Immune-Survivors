@@ -36,17 +36,18 @@ public class DamageNumberManager : MonoBehaviour
         }
 
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
-        text.text.text = Mathf.CeilToInt(amount).ToString();
-        
+
         if (isCrit)
         {
-            text.text.color = Color.red;
-            text.text.fontSize = 0.6f;
+            text.text.fontSize = 1f;
+            text.text.text = $"<color=red>{Mathf.CeilToInt(amount)}!</color>";
+            text.text.sortingOrder = 5;
         }
         else
         {
-            text.text.color = Color.white;
-            text.text.fontSize = 0.5f;
+            text.text.fontSize = 0.75f;
+            text.text.text = $"{Mathf.CeilToInt(amount)}";
+            text.text.sortingOrder = 4;
         }
     }
 
@@ -61,9 +62,8 @@ public class DamageNumberManager : MonoBehaviour
         }
 
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
-        text.text.text = Mathf.CeilToInt(amount).ToString();
-
-        text.text.color = Color.white;
-        text.text.fontSize = 0.3f;
+        text.text.fontSize = 0.5f;
+        text.text.text = $"{Mathf.CeilToInt(amount)}";
+        text.text.sortingOrder = 3;
     }
 }
