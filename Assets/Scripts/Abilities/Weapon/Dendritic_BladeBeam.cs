@@ -29,6 +29,9 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
     public Attribute attackSize;
     public Attribute critRate;
     public Attribute critDMG;
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
     #endregion Attributes
 
     private ObjectPool bladeBeams;
@@ -88,6 +91,10 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
 
         int AC = (int)attackCount.Value;
 
+        float Type_1 = Type_1_DMG_Bonus.Value;
+        float Type_2 = Type_2_DMG_Bonus.Value;
+        float Type_3 = Type_3_DMG_Bonus.Value;
+
         Vector3 dir = Vector3.forward;
         for (int i = 0; i < AC; i++)
         {
@@ -121,6 +128,9 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
                 cut.critRate = CRIT_RATE;
                 cut.critDMG = CRIT_DMG;
                 cut.attackRange = AR;
+                cut.Type_1_DMG_Bonus = Type_1;
+                cut.Type_2_DMG_Bonus = Type_2;
+                cut.Type_3_DMG_Bonus = Type_3;
 
                 cut.transform.localScale = scale;
 
@@ -141,6 +151,10 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
         attackRange = attributes.GetAttribute("Attack Range");
         attackCount = attributes.GetAttribute("Attack Count");
         attackSize = attributes.GetAttribute("Attack Size");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         basicAttack = ability as Dendritic_BladeBeam;
 

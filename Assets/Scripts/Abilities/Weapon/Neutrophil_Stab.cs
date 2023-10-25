@@ -24,8 +24,10 @@ public class Neutrophil_StabSpec : AbilitySpec
     public Attribute attackSize;
     public Attribute attackCount;
     public Attribute critRate;
-    public Attribute critDMG;
-    public Attribute knockbackPower;
+    public Attribute critDMG; 
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
 
     private Neutrophil_Stab basicAttack;
 
@@ -80,7 +82,6 @@ public class Neutrophil_StabSpec : AbilitySpec
 
         Vector3 scale = Vector3.one * AZ;
 
-        
         GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, AR);
 
         if (target == null)
@@ -100,6 +101,7 @@ public class Neutrophil_StabSpec : AbilitySpec
         stabObject.transform.forward = dir;
 
         NeutrophilStab stab = stabObject.GetComponent<NeutrophilStab>();
+        stab.target = target.GetComponent<Enemy>();
         stab.attackDamage = AD;
         stab.attackCount = AC;
         stab.critRate = CRIT_RATE;
@@ -107,7 +109,9 @@ public class Neutrophil_StabSpec : AbilitySpec
                                 // Level 4 and higher: Increase DoT by 5
         stab.DoT = (AD / 4f) + (abilityLevel >= 4 ? 5f : 0f);
 
-        stab.target = target.GetComponent<Enemy>();
+        stab.Type_1_DMG_Bonus = Type_1_DMG_Bonus.Value;
+        stab.Type_2_DMG_Bonus = Type_2_DMG_Bonus.Value;
+        stab.Type_3_DMG_Bonus = Type_3_DMG_Bonus.Value;
 
         stab.transform.localScale = scale;
         Debug.Log("STAB STAB STAB");
@@ -125,7 +129,10 @@ public class Neutrophil_StabSpec : AbilitySpec
         attackRange = attributes.GetAttribute("Attack Range");
         attackCount = attributes.GetAttribute("Attack Count");
         attackSize = attributes.GetAttribute("Attack Size");
-        knockbackPower = attributes.GetAttribute("Knockback Power");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         basicAttack = ability as Neutrophil_Stab;
 

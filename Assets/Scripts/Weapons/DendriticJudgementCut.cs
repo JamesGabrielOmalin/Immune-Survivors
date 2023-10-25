@@ -13,6 +13,9 @@ public class DendriticJudgementCut : MonoBehaviour
     [HideInInspector] public float attackSize;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -35,16 +38,32 @@ public class DendriticJudgementCut : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            if (hit.TryGetComponent<Enemy>(out Enemy enemy))
+            if (hit.TryGetComponent(out Enemy enemy))
             {
                 float MaxHP = enemy.MaxHP.Value;
                 float HP = enemy.HP.Value;
 
+                float DMGBonus = Type_1_DMG_Bonus;
+
+                switch (enemy.Type)
+                {
+                    case AntigenType.Type_1:
+                        DMGBonus = Type_1_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_2:
+                        DMGBonus = Type_2_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_3:
+                        DMGBonus = Type_3_DMG_Bonus;
+                        break;
+                }
+
                 float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
                 float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
 
+                float damage = attackDamage * DMGBonus * missingHPBonusDMG;
                 float armor = enemy.Armor.Value;
-                DamageCalculator.ApplyDamage(attackDamage * missingHPBonusDMG, critRate, critDMG, armor, enemy);
+                DamageCalculator.ApplyDamage(damage, critRate, critDMG, armor, enemy);
 
                 if (enemy.IsDead)
                 {

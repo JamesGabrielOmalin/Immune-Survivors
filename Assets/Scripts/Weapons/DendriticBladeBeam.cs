@@ -11,6 +11,9 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
     [HideInInspector] public float attackRange;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
 
     private int hitCount = 0;
 
@@ -23,16 +26,31 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
 
     public void OnBodyColliderEnter(Collider other)
     {
-        if (other.TryGetComponent<Enemy>(out Enemy enemy))
+        if (other.TryGetComponent(out Enemy enemy))
         {
             float MaxHP = enemy.MaxHP.Value;
             float HP = enemy.HP.Value;
+
+            float DMGBonus = Type_1_DMG_Bonus;
+
+            switch (enemy.Type)
+            {
+                case AntigenType.Type_1:
+                    DMGBonus = Type_1_DMG_Bonus;
+                    break;
+                case AntigenType.Type_2:
+                    DMGBonus = Type_2_DMG_Bonus;
+                    break;
+                case AntigenType.Type_3:
+                    DMGBonus = Type_3_DMG_Bonus;
+                    break;
+            }
 
             float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
             float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
 
             // Reduce damage based on hit count, up to 50% reduction
-            float damage = attackDamage * missingHPBonusDMG * (1f - Mathf.Min(0.1f * hitCount, 0.5f));
+            float damage = attackDamage * DMGBonus  * missingHPBonusDMG * (1f - Mathf.Min(0.1f * hitCount, 0.5f));
 
             float armor = enemy.Armor.Value;
 

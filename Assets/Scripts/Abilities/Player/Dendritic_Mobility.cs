@@ -29,6 +29,9 @@ public class Dendritic_MobilitySpec : AbilitySpec
     private Attribute critRate;
     private Attribute critDMG;
     private Attribute CDReduction;
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
 
     private readonly LayerMask layerMask = LayerMask.GetMask("Enemy");
 
@@ -56,7 +59,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
         Physics.IgnoreLayerCollision(6, 11, true);
         IsDashing = true;
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.2f);
 
         Physics.IgnoreLayerCollision(6, 11, false);
 
@@ -69,19 +72,39 @@ public class Dendritic_MobilitySpec : AbilitySpec
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
 
+        float Type_1 = Type_1_DMG_Bonus.Value;
+        float Type_2 = Type_2_DMG_Bonus.Value;
+        float Type_3 = Type_3_DMG_Bonus.Value;
+
         foreach (var hit in hits)
         {
-            if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+            if (hit.collider.TryGetComponent(out Enemy enemy))
             {
                 float MaxHP = enemy.MaxHP.Value;
                 float HP = enemy.HP.Value;
+
+                float DMGBonus = Type_1_DMG_Bonus.Value;
+
+                switch (enemy.Type)
+                {
+                    case AntigenType.Type_1:
+                        DMGBonus = Type_1;
+                        break;
+                    case AntigenType.Type_2:
+                        DMGBonus = Type_2;
+                        break;
+                    case AntigenType.Type_3:
+                        DMGBonus = Type_3;
+                        break;
+                }
 
                 float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
                 float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
 
                 //enemy.TakeDamage(damage);
+                float damage = AD * DMGBonus * missingHPBonusDMG;
                 float armor = enemy.Armor.Value;
-                DamageCalculator.ApplyDamage(AD * missingHPBonusDMG, CRIT_RATE, CRIT_DMG, armor, enemy);
+                DamageCalculator.ApplyDamage(damage, CRIT_RATE, CRIT_DMG, armor, enemy);
                 enemy.GetComponent<ImpactReceiver>().AddImpact(rayDir, rayLength);
             }
         }
@@ -140,6 +163,10 @@ public class Dendritic_MobilitySpec : AbilitySpec
         critRate = attributes.GetAttribute("Critical Rate");
         critDMG = attributes.GetAttribute("Critical Damage");
         CDReduction = attributes.GetAttribute("CD Reduction");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         mobility = ability as Dendritic_Mobility;
     }

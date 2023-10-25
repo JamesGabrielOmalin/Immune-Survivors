@@ -14,6 +14,10 @@ public class DendriticSlash : MonoBehaviour
     [HideInInspector] public int attackCount;
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
+
 
     private void OnEnable()
     {
@@ -45,11 +49,26 @@ public class DendriticSlash : MonoBehaviour
 
         float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
 
+        float DMGBonus = Type_1_DMG_Bonus;
+
+        switch (target.Type)
+        {
+            case AntigenType.Type_1:
+                DMGBonus = Type_1_DMG_Bonus;
+                break;
+            case AntigenType.Type_2:
+                DMGBonus = Type_2_DMG_Bonus;
+                break;
+            case AntigenType.Type_3:
+                DMGBonus = Type_3_DMG_Bonus;
+                break;
+        }
+
         // Quarter damage against full health, double damage
         float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
         Debug.Log($"Bonus DMG: {missingHPBonusDMG}");
 
-        float damage = attackDamage * missingHPBonusDMG;
+        float damage = attackDamage * DMGBonus * missingHPBonusDMG;
 
         for (int i = 0; i < attackCount; i++)
         {

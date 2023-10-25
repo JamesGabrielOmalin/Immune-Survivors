@@ -29,6 +29,9 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
     public Attribute attackSize;
     public Attribute critRate;
     public Attribute critDMG;
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
     #endregion Attributes
 
     private ObjectPool slashes;
@@ -83,6 +86,10 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
                                             // Level 3 and higher: Increase slash count by 3
         int count = basicAttack.AttackCount + (abilityLevel >= 3f ? 3 : 0);
 
+        float Type_1 = Type_1_DMG_Bonus.Value;
+        float Type_2 = Type_2_DMG_Bonus.Value;
+        float Type_3 = Type_3_DMG_Bonus.Value;
+
         // implement basic shooting towards target
         for (int i = 0; i < AC; i++)
         {
@@ -104,7 +111,11 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
             slash.critRate = CRIT_RATE;
             slash.critDMG = CRIT_DMG;
             slash.attackCount = count;
-            AudioManager.instance.Play("DentriticSlash", owner.transform.position);
+            slash.Type_1_DMG_Bonus = Type_1;
+            slash.Type_2_DMG_Bonus = Type_2;
+            slash.Type_3_DMG_Bonus = Type_3;
+
+            AudioManager.instance.Play("DentriticSlash", slash.transform.position);
 
             yield return wait;
         }
@@ -123,6 +134,10 @@ public class Dendritic_BasicAttackSpec : AbilitySpec
         attackRange = attributes.GetAttribute("Attack Range");
         attackCount = attributes.GetAttribute("Attack Count");
         attackSize = attributes.GetAttribute("Attack Size");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         basicAttack = ability as Dendritic_BasicAttack;
 
