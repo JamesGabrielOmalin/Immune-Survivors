@@ -24,7 +24,6 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
     private AttributeSet attributes;
     private Attribute moveSpeed;
-    private Attribute CDReduction;
 
     public bool IsDashing { get; private set; } = false;
 
@@ -74,7 +73,6 @@ public class Neutrophil_MobilitySpec : AbilitySpec
         Physics.IgnoreLayerCollision(6, 11, false);
         rigidbody.velocity = Vector3.zero;
 
-        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
         owner.StartCoroutine(UpdateCD());
 
         yield break;

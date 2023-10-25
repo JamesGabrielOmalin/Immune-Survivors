@@ -28,6 +28,8 @@ public class AbilitySet : MonoBehaviour
     [SerializeField] private GameObject ultimateButton;
     [SerializeField] private TMP_Text mobilityCDText;
     [SerializeField] private TMP_Text ultimateCDText;
+    [SerializeField] private GameObject mobilityCharges;
+    [SerializeField] private List<Image> mobilityChargeIcons;
 
     private void Awake()
     {
@@ -41,8 +43,26 @@ public class AbilitySet : MonoBehaviour
         {
             Mobility = mobilityAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Mobility);
-            Mobility.OnAbilityCooldownStart += delegate { mobilityCDText.enabled = true; };
-            Mobility.OnAbilityCooldownEnd += delegate { mobilityCDText.enabled = false; };
+            Mobility.OnAbilityCooldownStart += delegate { mobilityCDText.gameObject.SetActive(true); };
+            Mobility.OnAbilityCooldownEnd += delegate { mobilityCDText.gameObject.SetActive(false); };
+
+            mobilityCharges.SetActive(mobilityAbility.HasCharges);
+
+            Mobility.OnChargeGained += UpdateMobilityCharges;
+            Mobility.OnChargeLost += UpdateMobilityCharges;
+        }
+    }
+
+    private void UpdateMobilityCharges()
+    {
+        foreach (var icon in mobilityChargeIcons)
+        {
+            icon.enabled = false;
+        }
+
+        for (int i = 0; i < Mobility.CurrentCharge; i++)
+        {
+            mobilityChargeIcons[i].enabled = true;
         }
     }
 
@@ -78,8 +98,8 @@ public class AbilitySet : MonoBehaviour
             ultimateButton.SetActive(true);
             Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Ultimate);
-            Ultimate.OnAbilityCooldownStart += delegate { ultimateCDText.enabled = true; };
-            Ultimate.OnAbilityCooldownEnd += delegate { ultimateCDText.enabled = false; };
+            Ultimate.OnAbilityCooldownStart += delegate { ultimateCDText.gameObject.SetActive(true); };
+            Ultimate.OnAbilityCooldownEnd += delegate { ultimateCDText.gameObject.SetActive(false); };
             UpgradeManager.instance.OnUltiGet?.Invoke();
         }
     }

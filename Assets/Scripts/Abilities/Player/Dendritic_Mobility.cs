@@ -28,7 +28,6 @@ public class Dendritic_MobilitySpec : AbilitySpec
     private Attribute attackDamage;
     private Attribute critRate;
     private Attribute critDMG;
-    private Attribute CDReduction;
     public Attribute Type_1_DMG_Bonus;
     public Attribute Type_2_DMG_Bonus;
     public Attribute Type_3_DMG_Bonus;
@@ -137,7 +136,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
         if (!resetCD)
         {
             AudioManager.instance.Play("PlayerPickUp", owner.transform.position);
-            CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
+            CurrentCD = MaxCD;
             owner.StartCoroutine(UpdateCD());
         }
 
