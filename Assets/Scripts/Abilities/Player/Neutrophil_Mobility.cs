@@ -51,10 +51,9 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
         IsDashing = true;
 
-        //Physics.IgnoreLayerCollision(6, 11, true);
+        Physics.IgnoreLayerCollision(6, 11, true);
 
         var velocity = direction *mobility.DashSpeed;
-        var deltaPos = direction * (mobility.DashSpeed * Time.fixedDeltaTime);
 
         AudioManager.instance.Play("NeutrophilMovement", owner.transform.position);
         rigidbody.AddForce(direction * mobility.DashSpeed, ForceMode.VelocityChange);
@@ -72,7 +71,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
             //newPos.y = y;
             //owner.transform.position = newPos;
         }
-        //Physics.IgnoreLayerCollision(6, 11, false);
+        Physics.IgnoreLayerCollision(6, 11, false);
         rigidbody.velocity = Vector3.zero;
 
         CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
