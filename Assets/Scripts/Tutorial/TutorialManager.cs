@@ -75,7 +75,10 @@ public class TutorialManager : MonoBehaviour
                 //Replace into dynamic
                 SymptomManager.instance.OnActivateSymptom += EnablePromptOnFeverSymptom;
                 EnablePromptOnFeverIntro();
-                LifestyleManager.instance.OnActivateLifestyleScreen += EnablePromptOnLifestyle;
+                break;
+            case 3:
+                SymptomManager.instance.OnActivateSymptom += EnablePromptOnCoughSymptom;
+                EnablePromptOnCoughIntro();
                 break;
             default:
                 break;
@@ -174,6 +177,9 @@ public class TutorialManager : MonoBehaviour
         //Instantiate(StaticPrompts[5]);
         AddDynamicPrompt("INTRODUCTION", "A fever is our body's defense mechanism to various illnesses and infection");
         AddDynamicPrompt("INTRODUCTION", "it's when your body's temperature rises to fight off invaders like bacteria");
+        AddDynamicPrompt("INTRODUCTION", "Fevers can range from 37.7 degrees Celsius to a life-threatening 41.6 degrees Celsius!");
+        AddDynamicPrompt("INTRODUCTION", "Bear in mind, the average temperature of an adult human is 37 degrees Celsius. That's a 4.6 degree difference!");
+        AddDynamicPrompt("INTRODUCTION", "Your immune cells have your back, but do not be afraid of seeking medical attention when you can't handle the fever");
 
     }
     public void EnablePromptOnFeverSymptom()
@@ -182,8 +188,23 @@ public class TutorialManager : MonoBehaviour
 
         //Instantiate(StaticPrompts[5]);
         AddDynamicPrompt("FEVER SYMPTOM", "This symptom right now is a <color=red>Fever</color>");
-        AddDynamicPrompt("FEVER SYMPTOM", "Fever boosts your immune cells' speed and deals damage over time (DoT) to bacteria");
+        AddDynamicPrompt("FEVER SYMPTOM", "<color=red>Fever</color> boosts your immune cells' speed and deals damage over time (DoT) to bacteria");
         AddDynamicPrompt("FEVER SYMPTOM", "But be careful! Extreme fever can harm your immune cells if it gets too high, causing them to weaken.");
+    }
+
+    public void EnablePromptOnCoughIntro()
+    {
+        AddDynamicPrompt("INTRODUCTION", "Coughing is our body's way of clearing our throat of various irritants");
+        AddDynamicPrompt("INTRODUCTION", "We cough whenever our body detects foreign entities, particularly germs and particles, on our throat");
+        AddDynamicPrompt("INTRODUCTION", "Coughing on occasion is normal. However, there is cause for concern when the coughs become more serious, as whatever is on the throat refuses to leave");
+        AddDynamicPrompt("INTRODUCTION", "Our immune cells are tough, but we can help our immune cells by drinking medicine and getting good sleep.");
+    }
+
+    public void EnablePromptOnCoughSymptom()
+    {
+        AddDynamicPrompt("COUGH SYMPTOM", "The symptom right now is <color=red>Cough</color>");
+        AddDynamicPrompt("COUGH SYMPTOM", "<color=red>Cough</color> pushes around the bacteria based on a random direction");
+        AddDynamicPrompt("COUGH SYMPTOM", "Watch for the warnings and steer clear from the bacteria!");
     }
 
     public void EnablePromptOnAntigenThreshold()
