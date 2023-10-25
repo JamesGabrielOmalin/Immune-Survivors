@@ -73,7 +73,8 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 2:
                 //Replace into dynamic
-                SymptomManager.instance.OnActivateSymptom += EnablePromptOnSymptom;
+                SymptomManager.instance.OnActivateSymptom += EnablePromptOnFeverSymptom;
+                EnablePromptOnFeverIntro();
                 LifestyleManager.instance.OnActivateLifestyleScreen += EnablePromptOnLifestyle;
                 break;
             default:
@@ -167,16 +168,22 @@ public class TutorialManager : MonoBehaviour
         AddDynamicPrompt("ULTIMATE","Press <color=yellow>[Q]</color> to use your ultimate");
     }
 
-    public void EnablePromptOnSymptom()
+    public void EnablePromptOnFeverIntro()
     {
-        SymptomManager.instance.OnActivateSymptom -= EnablePromptOnSymptom;
 
         //Instantiate(StaticPrompts[5]);
-        AddDynamicPrompt("FEVER SYMPTOM", "A <color=yellow>symptom</color> has just occurred!");
+        AddDynamicPrompt("INTRODUCTION", "A fever is our body's defense mechanism to various illnesses and infection");
+        AddDynamicPrompt("INTRODUCTION", "it's when your body's temperature rises to fight off invaders like bacteria");
+
+    }
+    public void EnablePromptOnFeverSymptom()
+    {
+        SymptomManager.instance.OnActivateSymptom -= EnablePromptOnFeverSymptom;
+
+        //Instantiate(StaticPrompts[5]);
         AddDynamicPrompt("FEVER SYMPTOM", "This symptom right now is a <color=red>Fever</color>");
-        AddDynamicPrompt("FEVER SYMPTOM", "With <color=red>fever</color>, everyone gets damaged over time, while you increase speed");
-        AddDynamicPrompt("FEVER SYMPTOM", "<color=yellow>Symptoms</color> will be different each level");
-        AddDynamicPrompt("FEVER SYMPTOM", "Some levels might not even have <color=yellow>symptoms</color>");
+        AddDynamicPrompt("FEVER SYMPTOM", "Fever boosts your immune cells' speed and deals damage over time (DoT) to bacteria");
+        AddDynamicPrompt("FEVER SYMPTOM", "But be careful! Extreme fever can harm your immune cells if it gets too high, causing them to weaken.");
     }
 
     public void EnablePromptOnAntigenThreshold()
