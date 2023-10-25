@@ -116,7 +116,7 @@ MonoBehaviour:
   objectToPool: {fileID: 7900480555764085103, guid: 64f6e269b407fc049909da294fa13cc1,
     type: 3}
   amountToPool: 20
-  addIfNotEnough: 0
+  addIfNotEnough: 1
 --- !u!1 &131008206959386126
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,6 +634,7 @@ MonoBehaviour:
   activeSlot: {fileID: 4782505584109432570}
   slot1: {fileID: 4782505582749511679}
   slot2: {fileID: 4782505583196375619}
+  activeHUD: {fileID: 0}
   buffIcons:
   - {fileID: 1925433847242017446}
   - {fileID: 2611089138282204548}

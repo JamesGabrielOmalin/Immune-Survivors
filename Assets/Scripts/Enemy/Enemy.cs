@@ -103,10 +103,10 @@ public class Enemy : Unit, IDamageInterface
     {
         OnDeath = null;
 
-        dotCoroutine = null;
-        stunCoroutine = null;
-        attackCoroutine = null;
-        armorShredCoroutine = null;
+        //dotCoroutine = null;
+        //stunCoroutine = null;
+        //attackCoroutine = null;
+        //armorShredCoroutine = null;
 
         StopAllCoroutines();
 
