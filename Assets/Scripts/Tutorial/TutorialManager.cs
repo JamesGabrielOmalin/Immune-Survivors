@@ -189,7 +189,7 @@ public class TutorialManager : MonoBehaviour
         //Instantiate(StaticPrompts[5]);
         AddDynamicPrompt("FEVER SYMPTOM", "This symptom right now is a <color=red>Fever</color>");
         AddDynamicPrompt("FEVER SYMPTOM", "<color=red>Fever</color> boosts your immune cells' speed and deals damage over time (DoT) to bacteria");
-        AddDynamicPrompt("FEVER SYMPTOM", "But be careful! Extreme fever can harm your immune cells if it gets too high, causing them to weaken.");
+        AddDynamicPrompt("FEVER SYMPTOM", "But be careful! Extreme fever can harm your immune cells if it gets too high, causing them to weaken and get damaged.");
     }
 
     public void EnablePromptOnCoughIntro()
