@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilitySet : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class AbilitySet : MonoBehaviour
     [SerializeField] private Image mobilityCDIcon;
     [SerializeField] private Image ultimateCDIcon;
     [SerializeField] private GameObject ultimateButton;
+    [SerializeField] private TMP_Text mobilityCDText;
+    [SerializeField] private TMP_Text ultimateCDText;
 
     private void Awake()
     {
@@ -43,14 +46,20 @@ public class AbilitySet : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Mobility != null && mobilityCDIcon != null)
+        if (Mobility != null)
         {
-            mobilityCDIcon.fillAmount = Mobility.CurrentCD / mobilityAbility.Cooldown;
+            if (mobilityCDIcon != null)
+                mobilityCDIcon.fillAmount = Mobility.CurrentCD / mobilityAbility.Cooldown;
+            if (mobilityCDText != null)
+                mobilityCDText.text = Mobility.CurrentCD > 0 ? $"{Mobility.CurrentCD:0.0}" : string.Empty;
         }
 
-        if (Ultimate != null && ultimateCDIcon != null)
+        if (Ultimate != null)
         {
-            ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
+            if (ultimateCDIcon != null)
+                ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
+            if (ultimateCDText != null)
+                ultimateCDText.text = Ultimate.CurrentCD > 0 ? $"{Ultimate.CurrentCD:0.0}" : string.Empty;
         }
     }
 
