@@ -28,12 +28,7 @@ public class UpgradeButton : MonoBehaviour
         if (inUpgrade.EffectType == EffectType.Weapon)
         {
 
-            if (UpgradeManager.instance.grantedDefaultWeapons.ContainsKey(inUpgrade))
-            {
-
-                effectDescriptionText.text = inUpgrade.EffectDescriptions[Mathf.Min(UpgradeManager.instance.grantedDefaultWeapons[inUpgrade], 4)];
-            }
-            else if (UpgradeManager.instance.grantedWeapons.ContainsKey(inUpgrade))
+            if (UpgradeManager.instance.grantedWeapons.ContainsKey(inUpgrade))
             {
                 effectDescriptionText.text = inUpgrade.EffectDescriptions[Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4)];
             }
