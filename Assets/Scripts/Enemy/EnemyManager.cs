@@ -316,8 +316,7 @@ public class EnemyManager : MonoBehaviour
             Debug.LogWarning("No enemy found in object pool!");
             yield return null;
         }
-
-        if (enemy.TryGetComponent<Collider>(out Collider cc))
+        else if(enemy.TryGetComponent<Collider>(out Collider cc))
         {
             cc.enabled = true;
         }

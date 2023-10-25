@@ -1221,9 +1221,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: You can track the number of enemies present in the body by looking at
-        the <color=yellow>INFECTION BAR</color> (TOP HUD). Having a full INFECTION
-        BAR will result into a loss, hence you must <color=red>kill enemies ASAP
-        to prevent then from overpopulating.
+        the <color=yellow>INFECTION BAR</color> (TOP HUD).
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -1236,6 +1234,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300882698263233675, guid: 645c1704bb0786a42918c449de789f42,
         type: 2}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_HorizontalAlignment
