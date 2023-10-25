@@ -64,7 +64,7 @@ public class LifestyleManager : MonoBehaviour
         grantedLifestyles.Add(effect);
     }
 
-    private readonly WaitForSeconds wait = new(10f);
+    private readonly WaitForSeconds wait = new(180f);
 
     private IEnumerator LifestyleCoroutine()
     {
