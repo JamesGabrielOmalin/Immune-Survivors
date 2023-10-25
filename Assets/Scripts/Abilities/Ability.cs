@@ -42,6 +42,8 @@ public abstract class AbilitySpec
     public bool IsActive { get; private set; } = false;
 
     public System.Action OnAbilityActivateFailed;
+    public System.Action OnAbilityCooldownStart;
+    public System.Action OnAbilityCooldownEnd;
 
     public virtual bool CanActivateAbility()
     {
@@ -72,6 +74,7 @@ public abstract class AbilitySpec
 
     protected IEnumerator UpdateCD()
     {
+        OnAbilityCooldownStart?.Invoke();
         while (CurrentCD > 0f)
         {
             CurrentCD -= Time.deltaTime;
@@ -79,5 +82,6 @@ public abstract class AbilitySpec
         }
 
         CurrentCD = 0f;
+        OnAbilityCooldownEnd?.Invoke();
     }
 }

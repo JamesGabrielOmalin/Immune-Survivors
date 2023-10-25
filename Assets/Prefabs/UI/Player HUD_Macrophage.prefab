@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1580748694748872554, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580748694748872554, guid: 736e2359f3a24d145a9a5f2d682b60bb,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2179789978117085125, guid: 736e2359f3a24d145a9a5f2d682b60bb,
         type: 3}
       propertyPath: m_SizeDelta.x

@@ -41,6 +41,8 @@ public class AbilitySet : MonoBehaviour
         {
             Mobility = mobilityAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Mobility);
+            Mobility.OnAbilityCooldownStart += delegate { mobilityCDText.enabled = true; };
+            Mobility.OnAbilityCooldownEnd += delegate { mobilityCDText.enabled = false; };
         }
     }
 
@@ -50,16 +52,16 @@ public class AbilitySet : MonoBehaviour
         {
             if (mobilityCDIcon != null)
                 mobilityCDIcon.fillAmount = Mobility.CurrentCD / mobilityAbility.Cooldown;
-            if (mobilityCDText != null)
-                mobilityCDText.text = Mobility.CurrentCD > 0 ? $"{Mobility.CurrentCD:0.0}" : string.Empty;
+            if (mobilityCDText != null && mobilityCDText.enabled)
+                mobilityCDText.text = $"{Mobility.CurrentCD:0.0}";
         }
 
         if (Ultimate != null)
         {
             if (ultimateCDIcon != null)
                 ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
-            if (ultimateCDText != null)
-                ultimateCDText.text = Ultimate.CurrentCD > 0 ? $"{Ultimate.CurrentCD:0.0}" : string.Empty;
+            if (ultimateCDText != null && ultimateCDText.enabled)
+                ultimateCDText.text = $"{Ultimate.CurrentCD:0.0}";
         }
     }
 
@@ -76,6 +78,8 @@ public class AbilitySet : MonoBehaviour
             ultimateButton.SetActive(true);
             Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Ultimate);
+            Ultimate.OnAbilityCooldownStart += delegate { ultimateCDText.enabled = true; };
+            Ultimate.OnAbilityCooldownEnd += delegate { ultimateCDText.enabled = false; };
             UpgradeManager.instance.OnUltiGet?.Invoke();
         }
     }
