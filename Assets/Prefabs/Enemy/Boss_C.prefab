@@ -142,6 +142,11 @@ PrefabInstance:
       propertyPath: Attributes.Array.data[5].baseValue
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7237207501732077343, guid: 9ab6f0115b3d3d44a87d763d0ab8d0f1,
+        type: 3}
+      propertyPath: Attributes.Array.data[6].baseValue
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8879476525760295788, guid: 9ab6f0115b3d3d44a87d763d0ab8d0f1,
         type: 3}
       propertyPath: m_Sprite
