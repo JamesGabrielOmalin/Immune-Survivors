@@ -258,7 +258,7 @@ MonoBehaviour:
   allEnemies: []
   activeEnemies: []
   <MinInfectionRate>k__BackingField: 0
-  <MaxInfectionRate>k__BackingField: 250
+  <MaxInfectionRate>k__BackingField: 1000
   spawnArea: {fileID: 0}
   maxSpawnDistance: 50
   level: {fileID: 11400000, guid: 8c43c9d108c6c4849bb38ec06e06f1f3, type: 2}

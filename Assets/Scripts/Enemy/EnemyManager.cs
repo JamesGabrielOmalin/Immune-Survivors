@@ -14,7 +14,6 @@ public class EnemyManager : MonoBehaviour
     public List<GameObject> activeEnemies = new();
 
     public int InfectionRate => activeEnemies.FindAll(enemy => enemy.activeInHierarchy).Count;
-    //public int InfectionRate;
     [field: Header("Infection")]
     [field: SerializeField]
     public int MinInfectionRate { get; private set; }
@@ -318,7 +317,7 @@ public class EnemyManager : MonoBehaviour
             yield return null;
         }
         
-        if (enemy && enemy.TryGetComponent<Collider>(out Collider cc))
+        if (enemy.TryGetComponent<Collider>(out Collider cc))
         {
             cc.enabled = true;
         }

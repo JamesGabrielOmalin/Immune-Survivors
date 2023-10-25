@@ -202,6 +202,8 @@ public class TutorialManager : MonoBehaviour
 
     public void EnablePromptOnCoughSymptom()
     {
+        SymptomManager.instance.OnActivateSymptom -= EnablePromptOnCoughSymptom;
+
         AddDynamicPrompt("COUGH SYMPTOM", "The symptom right now is <color=red>Cough</color>");
         AddDynamicPrompt("COUGH SYMPTOM", "<color=red>Cough</color> pushes around the bacteria based on a random direction");
         AddDynamicPrompt("COUGH SYMPTOM", "Watch for the warnings and steer clear from the bacteria!");
