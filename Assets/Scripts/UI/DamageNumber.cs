@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(TMP_Text))]
 public class DamageNumber : MonoBehaviour
 {
-    public TMP_Text text;
+    public TextMeshPro text;
     [SerializeField] private float speed;
     [SerializeField] private float despawnTime;
 
