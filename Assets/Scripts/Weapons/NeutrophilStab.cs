@@ -13,6 +13,9 @@ public class NeutrophilStab : MonoBehaviour
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public float DoT;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
 
 
     private readonly static WaitForSeconds wait = new WaitForSeconds(0.25f);
@@ -35,10 +38,26 @@ public class NeutrophilStab : MonoBehaviour
         vfx.SetInt("Count", (int)attackCount);
         vfx.Play();
 
+        float DMGBonus = Type_1_DMG_Bonus;
+
+        switch (target.Type)
+        {
+            case AntigenType.Type_1:
+                DMGBonus = Type_1_DMG_Bonus;
+                break;
+            case AntigenType.Type_2:
+                DMGBonus = Type_2_DMG_Bonus;
+                break;
+            case AntigenType.Type_3:
+                DMGBonus = Type_3_DMG_Bonus;
+                break;
+        }
+
+        float damage = attackDamage * DMGBonus;
         float armor = target.Armor.Value;
 
-        DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, target);
-        target.ApplyDoT(DoT, 3f, 4f + attackCount);
+        DamageCalculator.ApplyDamage(damage, critRate, critDMG, armor, target);
+        target.ApplyDoT(DoT * DMGBonus, 3f, 4f + attackCount);
 
         yield return wait;
 

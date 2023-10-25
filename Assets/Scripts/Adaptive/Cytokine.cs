@@ -14,7 +14,10 @@ public class Cytokine : MonoBehaviour, IBodyColliderListener
     {
         if (other.TryGetComponent(out Player player))
         {
-            AttributeModifier mod = new(AntigenManager.instance.GetAntigenCount(Type) * 0.01f, AttributeModifierType.Multiply);
+            int antigenCount = AntigenManager.instance.GetAntigenCount(Type);
+
+            // 1% DMG Bonus per antigen against specific enemy
+            AttributeModifier mod = new(antigenCount * 0.01f, AttributeModifierType.Add);
             float duration = 2.5f + AntigenManager.instance.GetAntigenCount(Type) * 0.001f;
             player.ApplyAntigenBuffs(Type, mod, duration);
             this.gameObject.SetActive(false);

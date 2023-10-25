@@ -30,7 +30,10 @@ public class Macrophage_PullSpec : AbilitySpec
     public Attribute attackCount;
     public Attribute critRate;
     public Attribute critDMG;
-    public Attribute knockbackPower;
+    public Attribute knockbackPower; 
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
 
     #endregion Attributes
 
@@ -89,6 +92,10 @@ public class Macrophage_PullSpec : AbilitySpec
 
         pullEffect.transform.localScale = Vector3.one * AZ;
 
+        pullEffect.Type_1_DMG_Bonus = Type_1_DMG_Bonus.Value;
+        pullEffect.Type_2_DMG_Bonus = Type_2_DMG_Bonus.Value;
+        pullEffect.Type_3_DMG_Bonus = Type_3_DMG_Bonus.Value;
+
         switch (basicAttack.PullType)
         {
             case MacrophagePullType.Line:
@@ -104,6 +111,7 @@ public class Macrophage_PullSpec : AbilitySpec
                 AudioManager.instance.Play("MacrophageCircle", owner.transform.position);
                 break;
         }
+
     }
 
     private void Init()
@@ -119,6 +127,10 @@ public class Macrophage_PullSpec : AbilitySpec
         attackSize = attributes.GetAttribute("Attack Size");
         attackCount = attributes.GetAttribute("Attack Count");
         knockbackPower = attributes.GetAttribute("Knockback Power");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         basicAttack = ability as Macrophage_Pull;
         pulls = GameObject.Find("Macrophage " + basicAttack.PullType.ToString() + " Pool").GetComponentInChildren<ObjectPool>();

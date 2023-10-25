@@ -18,6 +18,9 @@ public class NeutrophilGrenade : Projectile
     [HideInInspector] public float critRate;
     [HideInInspector] public float critDMG;
     [HideInInspector] public float slowAmount;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
 
     // Update is called once per frame
     protected override void FixedUpdate()
@@ -43,10 +46,26 @@ public class NeutrophilGrenade : Projectile
         {
             //Enemy enemy = hit.GetComponent<Enemy>();
 
-            if (hit.TryGetComponent<Enemy>(out Enemy enemy))
+            if (hit.TryGetComponent(out Enemy enemy))
             {
+                float DMGBonus = Type_1_DMG_Bonus;
+
+                switch (enemy.Type)
+                {
+                    case AntigenType.Type_1:
+                        DMGBonus = Type_1_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_2:
+                        DMGBonus = Type_2_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_3:
+                        DMGBonus = Type_3_DMG_Bonus;
+                        break;
+                }
+
+                float damage = attackDamage * DMGBonus;
                 float armor = enemy.Armor.Value;
-                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+                DamageCalculator.ApplyDamage(damage, critRate, critDMG, armor, enemy);
             }
 
             //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);

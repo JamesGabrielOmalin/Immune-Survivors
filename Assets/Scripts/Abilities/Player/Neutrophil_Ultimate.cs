@@ -27,7 +27,10 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
-    public Attribute CDReduction;
+    public Attribute CDReduction; 
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
 
     private Neutrophil_Ultimate ult;
 
@@ -44,8 +47,9 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         return level.Value >= 5f && base.CanActivateAbility();
     }
 
-
-    private static readonly WaitForSeconds attackInterval = new(0.25f);
+    private const int MAX_HITS = 25;
+    private const int MAX_TARGETS = 20;
+    private static readonly WaitForSeconds attackInterval = new(1f / MAX_HITS);
 
     public override IEnumerator ActivateAbility()
     {
@@ -67,7 +71,11 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         float AS = attackSpeed.Value;
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
-        float knockBack = knockbackPower.Value / 10f;
+        float knockBack = knockbackPower.Value;
+
+        float Type_1 = Type_1_DMG_Bonus.Value;
+        float Type_2 = Type_2_DMG_Bonus.Value;
+        float Type_3 = Type_3_DMG_Bonus.Value;
 
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
@@ -77,21 +85,38 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
         AudioManager.instance.Play("NeutrophilUltimate", owner.transform.position);
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < MAX_HITS; i++)
         {
             var hits = Physics.OverlapSphere(owner.transform.position, 5f, ult.LayerMask);
 
-            foreach (var hit in hits)
+            for (int j = 0; j < Mathf.Min(MAX_TARGETS, hits.Length); j++)
             {
-                if (hit.TryGetComponent<Enemy>(out Enemy enemy))
+                if (hits[j].TryGetComponent(out Enemy enemy))
                 {
                     Vector3 dir = (enemy.transform.position - owner.transform.position).normalized;
 
                     //enemy.TakeDamage(damage);
-                    float armor = enemy.Armor.Value;
-                    DamageCalculator.ApplyDamage(AD * (AS), CRIT_RATE, CRIT_DMG, armor, enemy);
+                    float DMGBonus = Type_1;
 
-                    //enemy.GetComponent<ImpactReceiver>().AddImpact(dir, knockBack);
+                    switch (enemy.Type)
+                    {
+                        case AntigenType.Type_1:
+                            DMGBonus = Type_1;
+                            break;
+                        case AntigenType.Type_2:
+                            DMGBonus = Type_2;
+                            break;
+                        case AntigenType.Type_3:
+                            DMGBonus = Type_3;
+                            break;
+                    }
+
+                    float damage = AD * AS * DMGBonus;
+                    float armor = enemy.Armor.Value;
+                    DamageCalculator.ApplyDamage(damage, CRIT_RATE, CRIT_DMG, armor, enemy);
+
+                    if (enemy.TryGetComponent(out ImpactReceiver impact))
+                        impact.AddImpact(dir, knockBack);
                 }
             }
 
@@ -130,6 +155,10 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         critDMG = attributes.GetAttribute("Critical Damage");
         knockbackPower = attributes.GetAttribute("Knockback Power");
         CDReduction = attributes.GetAttribute("CD Reduction");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         ult = ability as Neutrophil_Ultimate;
     }

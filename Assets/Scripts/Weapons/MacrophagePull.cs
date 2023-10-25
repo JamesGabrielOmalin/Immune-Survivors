@@ -20,6 +20,9 @@ public class MacrophagePull : MonoBehaviour
     [HideInInspector] public float critDMG;
     [HideInInspector] public float knockbackPower;
     [HideInInspector] public float DoT;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
 
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
@@ -67,12 +70,27 @@ public class MacrophagePull : MonoBehaviour
 
         for (int i = 0; i < hits.Length; i++)
         {
-            if (hits[i].TryGetComponent<Enemy>(out Enemy enemy))
+            if (hits[i].TryGetComponent(out Enemy enemy))
             {
-                //enemy.TakeDamage(damage);
+                float DMGBonus = Type_1_DMG_Bonus;
+
+                switch (enemy.Type)
+                {
+                    case AntigenType.Type_1:
+                        DMGBonus = Type_1_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_2:
+                        DMGBonus = Type_2_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_3:
+                        DMGBonus = Type_3_DMG_Bonus;
+                        break;
+                }
+
+                float damage = attackDamage * DMGBonus;
                 float armor = enemy.Armor.Value;
-                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
-                enemy.ApplyDoT(DoT, 4f, 2f + attackCount);
+                DamageCalculator.ApplyDamage(damage, critRate, critDMG, armor, enemy);
+                enemy.ApplyDoT(DoT * DMGBonus, 4f, 2f + attackCount);
 
                 Vector3 dir = (enemy.transform.position - transform.position).normalized;
                 enemy.ApplyKnockback(dir * -knockbackPower, ForceMode.VelocityChange);

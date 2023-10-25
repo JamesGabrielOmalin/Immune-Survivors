@@ -28,6 +28,9 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
     public Attribute attackSize;
     public Attribute critRate;
     public Attribute critDMG;
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
     #endregion Attributes
 
     private ObjectPool cuts;
@@ -120,6 +123,10 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
         attackRange = attributes.GetAttribute("Attack Range");
         attackCount = attributes.GetAttribute("Attack Count");
         attackSize = attributes.GetAttribute("Attack Size");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         basicAttack = ability as Dendritic_JudgementCut;
 

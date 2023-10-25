@@ -24,7 +24,10 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
     public Attribute attackCount;
     public Attribute critRate;
     public Attribute critDMG;
-    public Attribute knockbackPower;
+
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
 
     #endregion Attributes
 
@@ -79,6 +82,10 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
         int AC = (int)attackCount.Value;
 
+        float Type_1 = Type_1_DMG_Bonus.Value;
+        float Type_2 = Type_2_DMG_Bonus.Value;
+        float Type_3 = Type_3_DMG_Bonus.Value;
+
         for (int i = 0; i < AC; i++)
         {
             GameObject target = EnemyManager.instance.GetNearestEnemy(owner.transform.position, attackRange.Value / 2f);
@@ -107,6 +114,10 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
             grenade.transform.localScale = scale;
 
+            grenade.Type_1_DMG_Bonus = Type_1;
+            grenade.Type_2_DMG_Bonus = Type_2;
+            grenade.Type_3_DMG_Bonus = Type_3;
+
             yield return wait;
             Debug.Log($"GRANADA: {grenadeObject.transform.position}");
         }
@@ -131,7 +142,10 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
         attackRange = attributes.GetAttribute("Attack Range");
         attackCount = attributes.GetAttribute("Attack Count");
         attackSize = attributes.GetAttribute("Attack Size");
-        knockbackPower = attributes.GetAttribute("Knockback Power");
+
+        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
+        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
+        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         basicAttack = ability as Neutrophil_Grenade;
 
