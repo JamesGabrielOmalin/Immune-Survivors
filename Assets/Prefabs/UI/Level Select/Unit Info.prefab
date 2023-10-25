@@ -145,7 +145,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3D render of a Neutrophil
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95b8d2b5b04dd884784c3fc3febf8ac8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82d827c9baa537b439b085f42ce8fb4f, type: 2}
   m_sharedMaterial: {fileID: 6169472973346337717, guid: 95b8d2b5b04dd884784c3fc3febf8ac8,
     type: 2}
   m_fontSharedMaterials: []
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &5366190191304503776
@@ -1040,7 +1040,7 @@ MonoBehaviour:
     chemicals at them, or by even consuming them if possible. During death, they
     secrete even more chemicals around them, Affecting nearby bacteria.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 95b8d2b5b04dd884784c3fc3febf8ac8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 82d827c9baa537b439b085f42ce8fb4f, type: 2}
   m_sharedMaterial: {fileID: 6169472973346337717, guid: 95b8d2b5b04dd884784c3fc3febf8ac8,
     type: 2}
   m_fontSharedMaterials: []
@@ -1105,7 +1105,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &7741878067934171429

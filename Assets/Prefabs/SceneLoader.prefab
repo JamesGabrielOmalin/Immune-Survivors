@@ -390,12 +390,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tips:
-  - name: Neutrophil
-    description: Lorem Ipsum
+  - name: Phagocytosis
+    description: Immune cells do this to engulf and destroy bacteria
+  - name: Fever
+    description: Your body does this to help your immune cells fend off bacteria
+  - name: Antigen
+    description: These drop from bacteria when they are killed. Requried for activation
+      of T-Cells and B-cells
+  - name: Immune System
+    description: Your immune system protects you from foreign entities like bacteria
+      and viruses
   - name: Macrophage
-    description: Lorem Ipsum
-  - name: Dendritic
-    description: Lorem Ipsum
+    description: They destroy bacteria through phagocytosis
+  - name: Dendritic Cell
+    description: They collect antigens in the body, and present them to T-Cells and
+      B-cells to activate them
+  - name: Neutrophil
+    description: Fights off bacteria like Macrophages, but can also make use of NETs
+  - name: Neutrophil Extracellular Traps
+    description: Also knows as NETs. Neutrophils release proteins that trap and kill
+      bacteria
   tipNameText: {fileID: 7667370156609360390}
   tipeffectDescriptionText: {fileID: 7667370157129089536}
 --- !u!1 &7667370156508232780
