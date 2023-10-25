@@ -313,7 +313,7 @@ public class EnemyManager : MonoBehaviour
 
         if (!enemy)
         {
-            Debug.LogWarning("No enemy found in object pool!");
+            Debug.LogWarning("No enemy found in object pool!: " + poolName);
             yield return null;
         }
         
@@ -404,6 +404,7 @@ public class EnemyManager : MonoBehaviour
                 return enpool.enemyPool.RequestPoolable(position);
             }
         }
+        Debug.Log("No pool Name: " + poolName);
         return null;
     }
     private void InitalizeCurrentWave(int waveNum)
