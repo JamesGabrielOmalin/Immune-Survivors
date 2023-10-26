@@ -14,6 +14,8 @@ public class LifestyleManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private LifestyleScreen lifestyleScreen;
 
+    Coroutine LSCor;
+
     public System.Action OnActivateLifestyleScreen;
 
     private void Awake()
@@ -29,7 +31,7 @@ public class LifestyleManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LifestyleCoroutine());
+        LSCor = StartCoroutine(LifestyleCoroutine());
     }
 
     private void OnDestroy()
@@ -64,7 +66,7 @@ public class LifestyleManager : MonoBehaviour
         grantedLifestyles.Add(effect);
     }
 
-    private readonly WaitForSeconds wait = new(180f);
+    private readonly WaitForSeconds wait = new(180.0f);
 
     private IEnumerator LifestyleCoroutine()
     {
