@@ -6,6 +6,7 @@ public class CoughPingController : MonoBehaviour
 {
     public static CoughPingController instance;
     [SerializeField] List<GameObject> pingList;
+    Coroutine pingCoroutine;
     Dictionary<SymptomEffect.KnockbackDirection, GameObject> pingDictionary;
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class CoughPingController : MonoBehaviour
 
     public void ActivatePing(SymptomEffect.KnockbackDirection direction, float duration)
     {
-        StartCoroutine(PingCoroutine(direction, duration));
+        pingCoroutine = StartCoroutine(PingCoroutine(direction, duration));
     }
     public IEnumerator PingCoroutine(SymptomEffect.KnockbackDirection direction,float duration)
     {
@@ -51,5 +52,14 @@ public class CoughPingController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         pingDictionary[direction].SetActive(false);
+    }
+
+    public void DeactivateAllPing()
+    {
+        // Traversing the dictionary
+        foreach (KeyValuePair<SymptomEffect.KnockbackDirection, GameObject> entry in pingDictionary)
+        {
+            entry.Value.SetActive(false);
+        }
     }
 }

@@ -98,12 +98,12 @@ public class SymptomEffect: ScriptableObject
                 else if (AffectedUnit == TargetUnit.Enemy)
                 {
 
-                    if (GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
-                    {
+                    //if (GameManager.instance.Player.GetComponent<Player>().GetActiveUnit().TryGetComponent<PlayerUnit>(out PlayerUnit pu))
+                    //{
 
-                        SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu, dir, KnockbackIntensity/2));
-                        //pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
-                    }
+                    //    SymptomManager.instance.StartCoroutine(KnockbackCoroutine(pu, dir, KnockbackIntensity/2));
+                    //    //pu.ApplyKnockback(dir * KnockbackIntensity, ForceMode.Impulse);
+                    //}
 
                     foreach (GameObject enemy in EnemyManager.instance.activeEnemies)
                     {
