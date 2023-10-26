@@ -104,7 +104,7 @@ public class EnemyManager : MonoBehaviour
 
 
 
-        OnMaxInfectionReached += GameManager.instance.OnGameLose;
+        //OnMaxInfectionReached += GameManager.instance.OnGameLose;
         //StartCoroutine(RelocateEnemies());
 
     }
