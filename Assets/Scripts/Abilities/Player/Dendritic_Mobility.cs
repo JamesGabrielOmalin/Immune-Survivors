@@ -41,10 +41,14 @@ public class Dendritic_MobilitySpec : AbilitySpec
         return base.CanActivateAbility() && !IsDashing;
     }
 
+    private Collider collider;
+    private PlayerMovement movement;
+    private SpriteRenderer sprite;
+    private Animator animator;
+
     public override IEnumerator ActivateAbility()
     {
-        PlayerMovement movement = owner.GetComponentInParent<PlayerMovement>();
-        Collider collider = owner.GetComponent<Collider>();
+        animator.SetTrigger("Mobility");
 
         Vector3 direction = movement.lastInputDir;
         Vector3 startPos = owner.transform.position;
@@ -168,5 +172,10 @@ public class Dendritic_MobilitySpec : AbilitySpec
         Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
 
         mobility = ability as Dendritic_Mobility;
+
+        collider = owner.GetComponent<Collider>(); 
+        movement = owner.GetComponentInParent<PlayerMovement>();
+        sprite = owner.GetComponentInChildren<SpriteRenderer>();
+        animator = sprite.GetComponent<Animator>();
     }
 }
