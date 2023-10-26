@@ -32,6 +32,9 @@ public class Macrophage_UltimateSpec : AbilitySpec
     public Attribute dotDuration;
     public Attribute dotTickRate;
 
+    private SpriteRenderer sprite;
+    private Animator animator;
+
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
     {
@@ -41,11 +44,11 @@ public class Macrophage_UltimateSpec : AbilitySpec
     public override IEnumerator ActivateAbility()
     {
         Macrophage_Ultimate ultimate = ability as Macrophage_Ultimate;
-
-        var sprite = owner.GetComponentInChildren<SpriteRenderer>(); 
         
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
+
+        animator.SetTrigger("Ultimate");
 
         foreach (Transform child in sprite.transform)
         {
@@ -109,5 +112,8 @@ public class Macrophage_UltimateSpec : AbilitySpec
         dotDuration = attributes.GetAttribute("DoT Duration");
         dotTickRate = attributes.GetAttribute("DoT Tick Rate");
         CDReduction = attributes.GetAttribute("CD Reduction");
+
+        sprite = owner.GetComponentInChildren<SpriteRenderer>();
+        animator = sprite.GetComponent<Animator>();
     }
 }
