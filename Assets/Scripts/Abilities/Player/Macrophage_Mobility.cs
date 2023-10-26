@@ -27,7 +27,6 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
     private AttributeSet attributes;
     private Attribute moveSpeed;
-    private Attribute CDReduction;
 
     public override IEnumerator ActivateAbility()
     {
@@ -50,7 +49,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
         sprite.material.renderQueue = 2450;
         sprite.color = Color.white;
 
-        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
+        CurrentCD = MaxCD;
         owner.StartCoroutine(UpdateCD());
     }
 

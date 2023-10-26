@@ -136,8 +136,9 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
         {
             angle = 0;
 
+            int spread = abilityLevel * 2 - 1;
             // Fires 2 more bullets per level
-            for (int j = 0; j < abilityLevel * 2 - 1; j++)
+            for (int j = 0; j < spread; j++)
             {
                 GameObject bulletObject = bullets.RequestPoolable(owner.transform.position);
                 if (bulletObject == null)
@@ -167,11 +168,12 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
                 //Quaternion offsetRotation = Quaternion.Euler(0f, angle, 0f);
 
                 //Vector3 finalForwardDirection = offsetRotation * forwardDir;
+
+                // increment angle based on nprojectiles
+                angle = (j - (spread / 2)) * angleSteps;
                 bulletObject.transform.Rotate(new Vector3(0f, angle, 0f));
                 bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
 
-                // increment angle based on nprojectiles
-                angle = (j % 3) * angleSteps * (j % 2 == 0 ? 1 : -1);
             }
 
             yield return wait;

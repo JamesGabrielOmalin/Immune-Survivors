@@ -31,7 +31,6 @@ public class Macrophage_UltimateSpec : AbilitySpec
     public Attribute dotAmount;
     public Attribute dotDuration;
     public Attribute dotTickRate;
-    public Attribute CDReduction;
 
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
@@ -90,7 +89,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
         armor.RemoveModifier(armorMod);
 
-        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
+        CurrentCD = MaxCD;
         owner.StartCoroutine(UpdateCD());
 
         yield break;

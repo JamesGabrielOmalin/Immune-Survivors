@@ -203,7 +203,7 @@ public class Player : MonoBehaviour
         float t = 0f;
 
         // Update buff icon
-        buffIcons[(int)type].gameObject.SetActive(true);
+        buffIcons[(int)type].transform.parent.gameObject.SetActive(true);
         while (t < duration)
         {
             buffIcons[(int)type].fillAmount = 1f - (t / duration);
@@ -211,7 +211,7 @@ public class Player : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
-        buffIcons[(int)type].gameObject.SetActive(false);
+        buffIcons[(int)type].transform.parent.gameObject.SetActive(false);
 
         neutrophil.buffVFX.Stop();
         macrophage.buffVFX.Stop();

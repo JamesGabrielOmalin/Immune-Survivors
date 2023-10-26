@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 using UnityEngine.UI;
+using TMPro;
 
 public class AbilitySet : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class AbilitySet : MonoBehaviour
     [SerializeField] private Image mobilityCDIcon;
     [SerializeField] private Image ultimateCDIcon;
     [SerializeField] private GameObject ultimateButton;
+    [SerializeField] private TMP_Text mobilityCDText;
+    [SerializeField] private TMP_Text ultimateCDText;
+    [SerializeField] private GameObject mobilityCharges;
+    [SerializeField] private List<Image> mobilityChargeIcons;
 
     private void Awake()
     {
@@ -38,19 +43,45 @@ public class AbilitySet : MonoBehaviour
         {
             Mobility = mobilityAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Mobility);
+            Mobility.OnAbilityCooldownStart += delegate { mobilityCDText.gameObject.SetActive(true); };
+            Mobility.OnAbilityCooldownEnd += delegate { mobilityCDText.gameObject.SetActive(false); };
+
+            mobilityCharges.SetActive(mobilityAbility.HasCharges);
+
+            Mobility.OnChargeGained += UpdateMobilityCharges;
+            Mobility.OnChargeLost += UpdateMobilityCharges;
+        }
+    }
+
+    private void UpdateMobilityCharges()
+    {
+        foreach (var icon in mobilityChargeIcons)
+        {
+            icon.enabled = false;
+        }
+
+        for (int i = 0; i < Mobility.CurrentCharge; i++)
+        {
+            mobilityChargeIcons[i].enabled = true;
         }
     }
 
     private void FixedUpdate()
     {
-        if (Mobility != null && mobilityCDIcon != null)
+        if (Mobility != null)
         {
-            mobilityCDIcon.fillAmount = Mobility.CurrentCD / mobilityAbility.Cooldown;
+            if (mobilityCDIcon != null)
+                mobilityCDIcon.fillAmount = Mobility.CurrentCD / mobilityAbility.Cooldown;
+            if (mobilityCDText != null && mobilityCDText.enabled)
+                mobilityCDText.text = $"{Mobility.CurrentCD:0.0}";
         }
 
-        if (Ultimate != null && ultimateCDIcon != null)
+        if (Ultimate != null)
         {
-            ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
+            if (ultimateCDIcon != null)
+                ultimateCDIcon.fillAmount = Ultimate.CurrentCD / ultimateAbility.Cooldown;
+            if (ultimateCDText != null && ultimateCDText.enabled)
+                ultimateCDText.text = $"{Ultimate.CurrentCD:0.0}";
         }
     }
 
@@ -67,6 +98,8 @@ public class AbilitySet : MonoBehaviour
             ultimateButton.SetActive(true);
             Ultimate = ultimateAbility.CreateSpec(this.abilitySystem);
             abilitySystem.GrantAbility(Ultimate);
+            Ultimate.OnAbilityCooldownStart += delegate { ultimateCDText.gameObject.SetActive(true); };
+            Ultimate.OnAbilityCooldownEnd += delegate { ultimateCDText.gameObject.SetActive(false); };
             UpgradeManager.instance.OnUltiGet?.Invoke();
         }
     }

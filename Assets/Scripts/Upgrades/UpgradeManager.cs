@@ -57,6 +57,10 @@ public class UpgradeManager : MonoBehaviour
         grantedEffects[PlayerUnitType.Macrophage].Add(defaultWeapons[1], 1);
         grantedEffects[PlayerUnitType.Dendritic].Add(defaultWeapons[2], 1);
 
+        grantedWeapons.Add(defaultWeapons[0], 1);
+        grantedWeapons.Add(defaultWeapons[1], 1);
+        grantedWeapons.Add(defaultWeapons[2], 1);
+
         OnEffectAcquired?.Invoke();
     }
 
@@ -94,6 +98,14 @@ public class UpgradeManager : MonoBehaviour
             grantedEffects[unit].Add(effect, 1);
         else
             grantedEffects[unit][effect]++;
+
+        if (effect.EffectType == EffectType.Weapon)
+        {
+            if (!grantedWeapons.ContainsKey(effect))
+                grantedWeapons.Add(effect, 1);
+            else
+                grantedWeapons[effect]++;
+        }
 
         OnEffectAcquired?.Invoke();
     }

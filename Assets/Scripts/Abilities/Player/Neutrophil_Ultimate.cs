@@ -27,7 +27,6 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
-    public Attribute CDReduction; 
     public Attribute Type_1_DMG_Bonus;
     public Attribute Type_2_DMG_Bonus;
     public Attribute Type_3_DMG_Bonus;
@@ -131,7 +130,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
             spr.gameObject.SetActive(true);
         }
 
-        CurrentCD = ability.Cooldown * (100f / (100f + CDReduction.Value));
+        CurrentCD = MaxCD;
         owner.StartCoroutine(UpdateCD());
 
         yield return new WaitForSeconds(1f);
