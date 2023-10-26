@@ -50,10 +50,12 @@ MonoBehaviour:
     m_Bits: 2048
   vfx: {fileID: 5802070256577852339}
   attackDamage: 0
-  attackCount: 0
   attackSize: 0
   critRate: 0
   critDMG: 0
+  Type_1_DMG_Bonus: 0
+  Type_2_DMG_Bonus: 0
+  Type_3_DMG_Bonus: 0
 --- !u!1 &5802070256577852337
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +67,7 @@ GameObject:
   - component: {fileID: 5802070256577852332}
   - component: {fileID: 5802070256577852339}
   - component: {fileID: 5802070256577852338}
-  m_Layer: 10
+  m_Layer: 17
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

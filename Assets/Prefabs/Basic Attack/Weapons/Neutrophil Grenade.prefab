@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 3068340214009737800}
   - component: {fileID: 5227282967138738413}
   - component: {fileID: 4693150900784728958}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Neutrophil Grenade VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   - component: {fileID: 2829267026069287989}
   - component: {fileID: 1400764859571645472}
   - component: {fileID: 7493019523073239320}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Neutrophil Slow Field VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,3 +354,6 @@ MonoBehaviour:
   critRate: 0
   critDMG: 0
   slowAmount: 0
+  Type_1_DMG_Bonus: 0
+  Type_2_DMG_Bonus: 0
+  Type_3_DMG_Bonus: 0

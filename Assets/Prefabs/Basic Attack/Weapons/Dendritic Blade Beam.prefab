@@ -52,9 +52,11 @@ MonoBehaviour:
   vfx: {fileID: 3434505290175863785}
   attackDamage: 0
   attackRange: 0
-  attackCount: 0
   critRate: 0
   critDMG: 0
+  Type_1_DMG_Bonus: 0
+  Type_2_DMG_Bonus: 0
+  Type_3_DMG_Bonus: 0
 --- !u!135 &8323346649790815304
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -91,7 +93,7 @@ GameObject:
   - component: {fileID: 3917548333485323409}
   - component: {fileID: 3434505290175863785}
   - component: {fileID: 130230366282363648}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

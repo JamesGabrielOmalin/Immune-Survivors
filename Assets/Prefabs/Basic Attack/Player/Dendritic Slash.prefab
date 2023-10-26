@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3532568619062338644}
   - component: {fileID: 8653658329853414419}
   - component: {fileID: 2787566600244774612}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,3 +164,6 @@ MonoBehaviour:
   attackCount: 0
   critRate: 0
   critDMG: 0
+  Type_1_DMG_Bonus: 0
+  Type_2_DMG_Bonus: 0
+  Type_3_DMG_Bonus: 0

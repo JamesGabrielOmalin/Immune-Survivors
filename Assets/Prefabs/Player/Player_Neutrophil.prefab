@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8523913719501993922}
   - component: {fileID: 7130608337911910929}
   - component: {fileID: 6627639591196026637}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Neutrophil Dash VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

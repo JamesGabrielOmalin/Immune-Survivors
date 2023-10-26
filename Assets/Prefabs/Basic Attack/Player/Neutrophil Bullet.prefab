@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1540159744105491513}
   - component: {fileID: 7658246759642699300}
   - component: {fileID: 2775350289278424303}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Neutrophil Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,9 @@ MonoBehaviour:
   critRate: 0
   critDMG: 0
   knockbackPower: 0
+  Type_1_DMG_Bonus: 0
+  Type_2_DMG_Bonus: 0
+  Type_3_DMG_Bonus: 0
 --- !u!114 &3556689771692269985
 MonoBehaviour:
   m_ObjectHideFlags: 0

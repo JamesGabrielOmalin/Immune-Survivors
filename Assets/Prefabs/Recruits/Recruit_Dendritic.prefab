@@ -181,10 +181,30 @@ PrefabInstance:
       propertyPath: ultimateAbility
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3153076859667389759, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4616823810211168435, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5287231530607018494, guid: 39fdfac27ea9c764080e6f908e33311f,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742311878495068298, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7464663975235047899, guid: 39fdfac27ea9c764080e6f908e33311f,
+        type: 3}
+      propertyPath: m_SceneBindings.Array.data[4].value
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7514146600056064292, guid: 39fdfac27ea9c764080e6f908e33311f,
         type: 3}
@@ -236,7 +256,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4214253304576206016, guid: 39fdfac27ea9c764080e6f908e33311f, type: 3}
+    - {fileID: 4004734180607615152, guid: 39fdfac27ea9c764080e6f908e33311f, type: 3}
+    - {fileID: 5736428035325596605, guid: 39fdfac27ea9c764080e6f908e33311f, type: 3}
+    - {fileID: 1027479854273150983, guid: 39fdfac27ea9c764080e6f908e33311f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 39fdfac27ea9c764080e6f908e33311f, type: 3}
 --- !u!4 &1279424398825100240 stripped
 Transform:

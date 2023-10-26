@@ -56,13 +56,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilitySystem: {fileID: 487672917330361869}
   attributes: {fileID: 487672917330361874}
+  MaxHP:
+    <Name>k__BackingField: 
+    baseValue: 0
+    <Modifiers>k__BackingField: []
+  HP:
+    <Name>k__BackingField: 
+    baseValue: 0
+    <Modifiers>k__BackingField: []
+  Armor:
+    <Name>k__BackingField: 
+    baseValue: 0
+    <Modifiers>k__BackingField: []
+  dotIndicator: {fileID: 2389302854865863798}
+  stunIndicator: {fileID: 5118249211309275063}
   player: {fileID: 0}
   <AbilitySet>k__BackingField: {fileID: 2060257187554495769}
   <UnitType>k__BackingField: 0
   HPBar: {fileID: 0}
   buffVFX: {fileID: 845904875180468680}
-  dotIndicator: {fileID: 2389302854865863798}
-  stunIndicator: {fileID: 5118249211309275063}
 --- !u!114 &487672917330361869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +106,10 @@ MonoBehaviour:
   mobilityCDIcon: {fileID: 0}
   ultimateCDIcon: {fileID: 0}
   ultimateButton: {fileID: 0}
+  mobilityCDText: {fileID: 0}
+  ultimateCDText: {fileID: 0}
+  mobilityCharges: {fileID: 0}
+  mobilityChargeIcons: []
 --- !u!114 &487672917330361874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,7 +420,7 @@ GameObject:
   - component: {fileID: 7997651493589132322}
   - component: {fileID: 845904875180468680}
   - component: {fileID: 8865886175856644675}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Empower VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

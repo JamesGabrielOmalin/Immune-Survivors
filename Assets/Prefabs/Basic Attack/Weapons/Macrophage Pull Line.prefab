@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b47b3f3dc580bc42b864ea129027267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilityLevel: 0
   attackDamage: 0
   attackRange: 0
   attackSize: 0
@@ -54,6 +55,10 @@ MonoBehaviour:
   critRate: 0
   critDMG: 0
   knockbackPower: 0
+  DoT: 0
+  Type_1_DMG_Bonus: 0
+  Type_2_DMG_Bonus: 0
+  Type_3_DMG_Bonus: 0
   type: 0
   layer:
     serializedVersion: 2
@@ -94,7 +99,7 @@ GameObject:
   - component: {fileID: 7821326586144708433}
   - component: {fileID: 3731493204150216407}
   - component: {fileID: 4062761378240252016}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

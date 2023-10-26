@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3568438153797871647}
   - component: {fileID: 5809984349046298276}
   - component: {fileID: 539938483448921488}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Neturophil_Ultimate_VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
