@@ -104,13 +104,15 @@ public class AudioManager : MonoBehaviour
 
         GameObject temp = Audiopool.RequestPoolable(loc);
         AudioSource audioSource = temp.GetComponent<AudioSource>();
+        temp.GetComponent<SFX>().sound = s;
 
         audioSource.clip = s.clips[randonNumber];
-        audioSource.volume = (s.volume * (AudioSettings.settings.sfxVolume / 100)) * (AudioSettings.settings.volume / 100);
+        audioSource.volume = (s.volume * (AudioSettings.settings.sfxVolume / 100f)) * (AudioSettings.settings.volume / 100f);
         audioSource.pitch = s.pitch;
         audioSource.loop = s.loop;
         audioSource.mute = SFXMasterMute;
         audioSource.Play();
+
         Debug.LogWarning("SFXPlaying");
 
         StartCoroutine(DeleteAudioObject(audioSource, s.clips[randonNumber]));
