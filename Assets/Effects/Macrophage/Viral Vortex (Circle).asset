@@ -15,12 +15,6 @@ MonoBehaviour:
   <Name>k__BackingField: Viral Vortex (Circle)
   <Description>k__BackingField: Engulfs all nearby enemies and infects them with
     DoT
-  <Descriptions>k__BackingField:
-  - Peforms Phagocytosis in a circle
-  - Increase Knockback by 25%. Increase Size by 50%.
-  - Increase Knockback by 25%. Increase DoT tick count by 4.
-  - Increase Knockback by 25%. Increase DoT by 5.
-  - Increase Knockback by 25%.
   <EffectDescription>k__BackingField: Peforms Phagocytosis in a circle
   <EffectDescriptions>k__BackingField:
   - Peforms Phagocytosis in a circle
@@ -30,7 +24,7 @@ MonoBehaviour:
   - Knockback + 25%.
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []
-  <Sprite>k__BackingField: {fileID: 21300000, guid: e93d61985ca1c0445aa768a64db9424d,
+  <Sprite>k__BackingField: {fileID: 21300000, guid: a9e504bcc8db1e94caa5b59428ca0a98,
     type: 3}
   <DurationType>k__BackingField: 0
   <Duration>k__BackingField: 0

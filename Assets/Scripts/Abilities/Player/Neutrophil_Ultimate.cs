@@ -48,7 +48,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
     private const int MAX_HITS = 25;
     private const int MAX_TARGETS = 20;
-    private static readonly WaitForSeconds attackInterval = new(1f / MAX_HITS);
+    private static readonly WaitForSeconds attackInterval = new(2.5f / MAX_HITS);
 
     public override IEnumerator ActivateAbility()
     {

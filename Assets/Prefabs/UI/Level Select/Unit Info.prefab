@@ -2819,6 +2819,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit Profile Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 4289270877416618510, guid: 81c8aa320c01cda40a9c2df59b1cad10,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 37.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289270877416618510, guid: 81c8aa320c01cda40a9c2df59b1cad10,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4661794022665537717, guid: 3692f9fad5a780c4bb0a7f641081e158,
+        type: 2}
     - target: {fileID: 4714094172487965940, guid: 81c8aa320c01cda40a9c2df59b1cad10,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2943,6 +2954,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089115310024927266, guid: 81c8aa320c01cda40a9c2df59b1cad10,
+        type: 3}
+      propertyPath: m_margin.w
+      value: -22.003601
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089115310024927266, guid: 81c8aa320c01cda40a9c2df59b1cad10,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -54.112305
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c8aa320c01cda40a9c2df59b1cad10, type: 3}

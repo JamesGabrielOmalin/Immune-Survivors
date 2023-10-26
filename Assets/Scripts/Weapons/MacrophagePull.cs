@@ -27,7 +27,7 @@ public class MacrophagePull : MonoBehaviour
     [SerializeField] private MacrophagePullType type;
     [SerializeField] private LayerMask layer;
 
-    private WaitForSeconds wait = new WaitForSeconds(0.25f);
+    private readonly WaitForSeconds wait = new(0.5f);
 
     private void OnEnable()
     {
