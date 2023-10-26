@@ -116,7 +116,7 @@ MonoBehaviour:
   objectToPool: {fileID: 7900480555764085103, guid: 64f6e269b407fc049909da294fa13cc1,
     type: 3}
   amountToPool: 20
-  addIfNotEnough: 0
+  addIfNotEnough: 1
 --- !u!1 &131008206959386126
 GameObject:
   m_ObjectHideFlags: 0

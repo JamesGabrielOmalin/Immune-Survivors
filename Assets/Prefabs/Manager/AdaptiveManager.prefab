@@ -46,8 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 8617547465759212648, guid: 80730e2d1e5a0f647b105115c6b2a5d2,
     type: 3}
-  amountToPool: 200
-  addIfNotEnough: 0
+  amountToPool: 500
+  addIfNotEnough: 1
 --- !u!1 &7567702695473595668
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,8 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 8617547465759212648, guid: ebbf36cdec29f59468adb96aa502a520,
     type: 3}
-  amountToPool: 200
-  addIfNotEnough: 0
+  amountToPool: 500
+  addIfNotEnough: 1
 --- !u!1 &7567702695574901227
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 918492881687531126, guid: 3881a649237b1db4cab6d9a3b6cb8209,
     type: 3}
-  amountToPool: 50
-  addIfNotEnough: 0
+  amountToPool: 250
+  addIfNotEnough: 1
 --- !u!1 &7567702696420265975
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPool: {fileID: 8129888467831877975, guid: b3b129f271ad6d44784ad01e80d415e1,
     type: 3}
-  amountToPool: 50
-  addIfNotEnough: 0
+  amountToPool: 250
+  addIfNotEnough: 1
 --- !u!1 &7567702696494562697
 GameObject:
   m_ObjectHideFlags: 0

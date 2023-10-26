@@ -126,7 +126,7 @@ MonoBehaviour:
       enemyQuota: 60
       enemySpawnCounter: 65
     - enemyName: Bacteria C
-      poolName: Bacteria c
+      poolName: Bacteria C
       enemyQuota: 60
       enemySpawnCounter: 65
     BossEnemyGroups: []

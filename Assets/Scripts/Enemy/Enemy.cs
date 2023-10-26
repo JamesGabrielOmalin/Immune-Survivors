@@ -102,6 +102,15 @@ public class Enemy : Unit, IDamageInterface
     private void OnDisable()
     {
         OnDeath = null;
+
+        //dotCoroutine = null;
+        //stunCoroutine = null;
+        //attackCoroutine = null;
+        //armorShredCoroutine = null;
+
+        StopAllCoroutines();
+
+        
     }
 
     public void TakeDamage(float amount)
@@ -133,6 +142,12 @@ public class Enemy : Unit, IDamageInterface
     {
         yield return new WaitForSeconds(0.5f);
         OnDeath?.Invoke();
+
+        IsStunned = false;
+        stunIndicator.SetActive(false);
+
+        dotIndicator.Stop();
+
         this.gameObject.SetActive(false);
     }
 
