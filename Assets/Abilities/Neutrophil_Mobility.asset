@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Neutrophil_Mobility
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
-  <Cooldown>k__BackingField: 5
+  <Cooldown>k__BackingField: 3
   <AbilityType>k__BackingField: 1
   <HasCharges>k__BackingField: 1
   <MaxCharges>k__BackingField: 3
