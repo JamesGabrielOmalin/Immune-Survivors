@@ -20,8 +20,14 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
     protected override void OnEnable()
     {
         lifeSpan = attackRange / projectileSpeed;
-        vfx.SetFloat("Lifetime", lifeSpan);
+        vfx.SetFloat("Lifetime", lifeSpan + 0.25f);
         base.OnEnable();
+    }
+
+    protected void OnDisable()
+    {
+        vfx.Stop();
+        StopAllCoroutines();
     }
 
     public void OnBodyColliderEnter(Collider other)
@@ -67,7 +73,20 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
 
             vfx.SetVector3("Hit Position", enemy.transform.position);
             vfx.SendEvent("OnHit", evt);
+
+            if (SoundCoroutine == null)
+                SoundCoroutine = StartCoroutine(PlaySound());
         }
+    }
+
+    private Coroutine SoundCoroutine;
+    private readonly WaitForSeconds wait = new(0.25f);
+
+    private IEnumerator PlaySound()
+    {
+        AudioManager.instance.Play("DentriticBladeHit", transform.position);
+        yield return wait;
+        SoundCoroutine = null;
     }
 
     //private IEnumerator Stop()
