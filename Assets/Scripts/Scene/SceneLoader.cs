@@ -155,6 +155,7 @@ public class SceneLoader : MonoBehaviour
     {
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
+        Debug.Log("Game Exited");
 #else
         Application.Quit();
 #endif
