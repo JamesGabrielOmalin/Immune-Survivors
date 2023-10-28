@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423197029621527116}
+  - component: {fileID: 3979290127834960611}
   m_Layer: 0
   m_Name: Side Wall B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1423197029621527116
 Transform:
@@ -76,6 +77,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!65 &3979290127834960611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670306679629248112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 5, z: 75}
+  m_Center: {x: 1, y: 1.5, z: -0.5}
 --- !u!1001 &177778296275921126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -138,11 +152,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -172,6 +181,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
@@ -243,11 +257,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -278,6 +287,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant D
       objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
 --- !u!4 &545086919976872529 stripped
@@ -293,11 +307,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -358,6 +367,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -398,11 +412,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -462,6 +471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant C
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
@@ -558,11 +572,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -593,6 +602,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant D
       objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
 --- !u!4 &21117495852047710 stripped
@@ -608,11 +622,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -673,6 +682,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant A
       objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_Mesh
@@ -718,11 +732,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -782,6 +791,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant C
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
@@ -878,11 +892,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -912,6 +921,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
@@ -983,11 +997,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -1018,6 +1027,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant D
       objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
 --- !u!4 &2007934362595871131 stripped
@@ -1033,11 +1047,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -1098,6 +1107,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -1138,11 +1152,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -1203,6 +1212,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -1243,11 +1257,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1307,6 +1316,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
@@ -1408,11 +1422,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -1442,6 +1451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
@@ -1487,6 +1501,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant B
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
@@ -1543,11 +1562,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
 --- !u!4 &7977033899247092863 stripped
@@ -1563,11 +1577,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -1627,6 +1636,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant C
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
@@ -1703,6 +1717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant B
       objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
       propertyPath: m_RootOrder
@@ -1758,11 +1777,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
 --- !u!4 &7834448862363454626 stripped
@@ -1778,11 +1792,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1843,6 +1852,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant A
       objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_Mesh
@@ -1888,11 +1902,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1952,6 +1961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
@@ -2053,11 +2067,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -2092,6 +2101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
@@ -2163,11 +2177,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -2198,6 +2207,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant D
       objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
 --- !u!4 &3549002122160082262 stripped
@@ -2213,11 +2227,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -2278,6 +2287,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -2318,11 +2332,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2382,6 +2391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
@@ -2458,6 +2472,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant B
       objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
       propertyPath: m_RootOrder
@@ -2513,11 +2532,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
 --- !u!4 &1000245246961119517 stripped
@@ -2533,11 +2547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2597,6 +2606,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
@@ -2673,6 +2687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant B
       objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
       propertyPath: m_RootOrder
@@ -2728,11 +2747,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
 --- !u!4 &317383599308235362 stripped
@@ -2748,11 +2762,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -2813,6 +2822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -2853,11 +2867,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -2918,6 +2927,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant A
       objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_Mesh
@@ -2963,11 +2977,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -3028,6 +3037,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -3068,11 +3082,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -3132,6 +3141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant C
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
@@ -3228,11 +3242,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -3262,6 +3271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
@@ -3307,6 +3321,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant B
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
@@ -3362,11 +3381,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
@@ -3438,11 +3452,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -3473,6 +3482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant D
       objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
 --- !u!4 &5949623116157917376 stripped
@@ -3488,11 +3502,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -3553,6 +3562,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -3593,11 +3607,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -3658,6 +3667,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -3703,11 +3717,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -3768,6 +3777,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -3808,11 +3822,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -3873,6 +3882,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -3913,11 +3927,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3978,6 +3987,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant A
       objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_Mesh
@@ -4023,11 +4037,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 597880833865043861, guid: feaea1a61267cee4d923e7d1e860c47d,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3769108050132553897, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
       propertyPath: m_RootOrder
@@ -4087,6 +4096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant A
+      objectReference: {fileID: 0}
+    - target: {fileID: 5650579016768890634, guid: feaea1a61267cee4d923e7d1e860c47d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5965007419928471464, guid: feaea1a61267cee4d923e7d1e860c47d,
         type: 3}
@@ -4188,11 +4202,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -4222,6 +4231,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
@@ -4267,6 +4281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant B
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
@@ -4323,11 +4342,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
 --- !u!4 &2764371720832215940 stripped
@@ -4372,6 +4386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant B
+      objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
@@ -4428,11 +4447,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
 --- !u!4 &2750602964748847096 stripped
@@ -4448,11 +4462,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -4513,6 +4522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant C
       objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_Mesh
@@ -4553,11 +4567,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1423197029621527116}
     m_Modifications:
-    - target: {fileID: 350606756387774952, guid: a5be167c488562f44be695e0c20b4d62,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4098007667612942036, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
       propertyPath: m_RootOrder
@@ -4617,6 +4626,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant C
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826557128545864055, guid: a5be167c488562f44be695e0c20b4d62,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6797749516611471829, guid: a5be167c488562f44be695e0c20b4d62,
         type: 3}
@@ -4688,6 +4702,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cell Variant B
       objectReference: {fileID: 0}
+    - target: {fileID: 3550494902165479490, guid: 5907006eaede2f8428aee1a14c12ed79,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5431772354346145761, guid: 5907006eaede2f8428aee1a14c12ed79,
         type: 3}
       propertyPath: m_RootOrder
@@ -4742,11 +4761,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8602753331010193629, guid: 5907006eaede2f8428aee1a14c12ed79,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5907006eaede2f8428aee1a14c12ed79, type: 3}
@@ -4818,11 +4832,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3737475683942763982, guid: 144d1042ef939a94aa7f153aebdce5c2,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5487826113003744728, guid: 144d1042ef939a94aa7f153aebdce5c2,
         type: 3}
       propertyPath: m_Mesh
@@ -4852,6 +4861,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cell Variant D
+      objectReference: {fileID: 0}
+    - target: {fileID: 8500777991189751121, guid: 144d1042ef939a94aa7f153aebdce5c2,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144d1042ef939a94aa7f153aebdce5c2, type: 3}
