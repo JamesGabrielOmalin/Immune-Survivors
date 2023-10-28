@@ -100,13 +100,12 @@ PrefabInstance:
     - target: {fileID: 426502028351501116, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: Strike at the vital points of the enemies and inject them with venomous
-        toxins that causes DOT.
+      value: Strike an enemy with an engulfing slash and apply DOT.
       objectReference: {fileID: 0}
     - target: {fileID: 473171918129553064, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: NEUTRONOVA [ULT]
+      value: IMMUNE TRIGGER [ULT]
       objectReference: {fileID: 0}
     - target: {fileID: 504393665499239285, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -905,7 +904,7 @@ PrefabInstance:
     - target: {fileID: 4629310875386267937, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: NETs
+      value: NET GRENADE
       objectReference: {fileID: 0}
     - target: {fileID: 4775959561194451668, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1136,7 +1135,7 @@ PrefabInstance:
     - target: {fileID: 6175776193191685723, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_fontSize
-      value: 33.8
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 6274070624088478910, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1618,8 +1617,8 @@ PrefabInstance:
     - target: {fileID: 8431859901756146956, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: Neutrophil Extracellular Traps in an area that can capture and neutralize
-        enemies.
+      value: Lobs a projectile that explodes and lays out a trap that captures and
+        neutralizes enemies.
       objectReference: {fileID: 0}
     - target: {fileID: 8472030324751848981, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
