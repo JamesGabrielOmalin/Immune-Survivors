@@ -1591,13 +1591,14 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: 'These <color=yellow>antigens</color> drop whenever a bacteria dies.
-        They are remains of the bacteria that just died, which are used to <u>recognize
-        the invading pathogens</u> and <u>activate adaptive units like</u> <color=purple>T-Cell</color>
-        and <color=orange>B-Cell</color>.
+        They are remains of the bacteria that just died, which are used to <color=green>recognize
+        the invading pathogens</color> and <color=green>activate adaptive units</color>
+        like <color=#00FFFF>Helper T-Cell</color> and <color=#00FFFF>B-Cell</color>.
 
 
-        <size=80%>Note:The more you collect
-        the more effective you are againts bacteria of the same type'
+        <size=80%><u>Note:The
+        more you collect the more effective you are againts bacteria of the same
+        type.</size></u>'
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -2660,10 +2661,10 @@ PrefabInstance:
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
-      value: There are <u>different types of antigens for different types of bacteria</u>.
-        Collecting enough antigens of the same type will activate the <color=purple>T-Cells</color>
-        and <color=orange>B-Cells </color> of the same type, which will work with
-        you fending off bacteria.
+      value: There are <color=yellow>different types of antigens for different types
+        of bacteria</color>. Collecting enough antigens for a bacteria type will
+        activate the <color=#00FFFF>Helper T-Cells</color> and <color=#00FFFF>B-Cells</color>
+        which will help you fend bacteria of the same type.
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}

@@ -2085,12 +2085,18 @@ PrefabInstance:
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
-      value: "<color=green>Helper T-Cell(Left) </color>and <color=orange>B Cell (Right)</color>
-        releases <color=yellow>antibodies</color> that help fight off bacteria</color>.
-        \n\n<color=green>T Cell</color> also produces <color=yellow>cytokines</color>
-        that <u>buff the Immune cells</u></color> and <color=orange>B Cell</color>
-        can also help <u>immobilize enemies</u>.\n\n<size=80%>Note: They are only
-        effective againts bacteria of the same tupe"
+      value: '<color=#00FFFF>Helper T-Cell(Left)</color> releases <color=yellow>cytokines</color>
+        periodically. <color=yellow>Cytokines</color> <color=green>makes your units
+        stronger.</color>
+
+
+        <color=#00FFFF>T Cell (Right)</color>  produces
+        <color=yellow>antibodies</color> that <color=green>make enemies more vulnerable</color>
+        to your attacks.
+
+
+        <size=80%><u>Note: They are only effective againts
+        bacteria of the same type.</size></u>'
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}

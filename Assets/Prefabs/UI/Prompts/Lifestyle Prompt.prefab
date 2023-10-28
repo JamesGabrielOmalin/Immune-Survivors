@@ -1322,8 +1322,8 @@ PrefabInstance:
         on how it affects your immune system.
 
 
-        <size=80%>Note:Lifestyle
-        effect applies to all immune system units'
+        <u><size=80%>Note:Lifestyle
+        effect applies to all immune system units.</u>'
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
