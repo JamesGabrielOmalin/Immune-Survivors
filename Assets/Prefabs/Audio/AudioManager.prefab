@@ -226,9 +226,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DentriticBlade
     clips:
-    - {fileID: 8300000, guid: f97c9ad18254701478f4cb0840695730, type: 3}
-    - {fileID: 8300000, guid: f1137f07521796f41b47098393feb86e, type: 3}
-    - {fileID: 8300000, guid: 971e8c48e122f5848b6daa015743b622, type: 3}
+    - {fileID: 8300000, guid: e859af0e5b39f2747bc61ab6ef7ccb6d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -268,6 +266,13 @@ MonoBehaviour:
   - name: BuffGenerate
     clips:
     - {fileID: 8300000, guid: 6a0920e9d5fe12e4286eab9cbe0060f0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DentriticBladeHit
+    clips:
+    - {fileID: 8300000, guid: 262f83aa014590542a5b579f86ceb39f, type: 3}
     volume: 1
     pitch: 1
     loop: 0

@@ -55,13 +55,14 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
         {
             IsAttacking = true;
 
-            // Wait before shooting                                                          // Level 3 and higher: Increase ATK SPD by 20%
-            yield return new WaitForSeconds(basicAttack.AttackInterval / (attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f)));
+            float AS = attackSpeed.Value + ((attackSpeed.Value * 0.1f) * (abilityLevel - 1));
+
+            // Wait before shooting                                                          
+            yield return new WaitForSeconds(basicAttack.AttackInterval / AS);
 
             // start slashing
             if (owner.GetComponent<AbilitySet>().CanUseBasicAttack)
             {
-                AudioManager.instance.Play("DentriticBlade", owner.transform.position);
                 yield return Slash();
             }
                 
@@ -75,21 +76,22 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
     }
 
     private IEnumerator Slash()
-    { 
-                                                                // Level 3 and higher: Increase ATK SPD by 20%
-        WaitForSeconds wait = new(0.25f / (attackSpeed.Value * (abilityLevel >= 3f ? 1.2f : 1f)));
+    {
+        // Increase ATK SPD by 10% per lvl
+        float AS = attackSpeed.Value + ((attackSpeed.Value * 0.1f) * (abilityLevel - 1));
+        WaitForSeconds wait = new(0.5f / AS);
 
         float AD = attackDamage.Value;
-                                        // Level 4 or higher: Increase range by 25%
-        float AR = attackRange.Value * (abilityLevel >= 4f ? 1.25f : 1f);
-                                            // Increase CRIT Rate by 10% per level
-        float CRIT_RATE = critRate.Value + ((abilityLevel - 1) * 0.1f);
+                                        // Level 3 or higher: Increase range by 100%
+        float AR = attackRange.Value * (abilityLevel >= 3f ? 2f : 1f);
+        float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
                                         // Level 2 or higher: Increase size by 50%
         float AZ = attackSize.Value * (abilityLevel >= 2f ? 1.5f : 1f);
         Vector3 scale = Vector3.one * AZ;
 
-        int AC = (int)attackCount.Value;
+        // Level 4 and higher: Increase ATK Count by 1
+        int AC = (int)attackCount.Value + (abilityLevel >= 4f ? 1 : 0);
 
         float Type_1 = Type_1_DMG_Bonus.Value;
         float Type_2 = Type_2_DMG_Bonus.Value;
@@ -120,6 +122,8 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
                 GameObject projectile = bladeBeams.RequestPoolable(owner.transform.position);
                 if (projectile == null)
                     continue;
+                AudioManager.instance.Play("DentriticBlade", owner.transform.position);
+                yield return null;
                 DendriticBladeBeam cut = projectile.GetComponent<DendriticBladeBeam>();
                 cut.transform.forward = dir;
 
