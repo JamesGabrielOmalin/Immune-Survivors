@@ -1204,7 +1204,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: Once you see your allies, <color=yellow>go over them in order to recruit
-        them</color>. This will make you stronger. Don't forget to follow the arrows!
+        them</color>. This will help you with the onslaught of enemies. So don't
+        forget to follow those arrows!
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -1365,17 +1366,17 @@ PrefabInstance:
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -1395,7 +1396,7 @@ PrefabInstance:
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -1415,7 +1416,7 @@ PrefabInstance:
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2418642493862583900, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -1547,7 +1548,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 72341083f78a5774fa22f44e25d0381f,
+      objectReference: {fileID: 1913111021, guid: d503f0d8c01a21249a1fbb65f0f71c37,
         type: 3}
     - target: {fileID: 5847643268760306382, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -1655,9 +1656,8 @@ PrefabInstance:
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_text
-      value: As you kill bacteria, somewhere, one of the immune cells have arrived
-        and will now help you! <color=yellow>Follow the arrows around your unit to
-        find them.
+      value: As you kill bacteria, somewhere, an immune cell will respond and come
+        help you! <color=yellow>Follow the arrows around your unit to find them.
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
@@ -2071,6 +2071,11 @@ PrefabInstance:
     - target: {fileID: 6736961134378086695, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7646984599873644233, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8730874048323518079, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
