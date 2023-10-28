@@ -539,16 +539,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2187303042603519442, guid: 190d6fa571b8dc541b853fc04dc99529,
-        type: 3}
-      propertyPath: m_FlexibleWidth
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2187303042603519442, guid: 190d6fa571b8dc541b853fc04dc99529,
-        type: 3}
-      propertyPath: m_PreferredWidth
-      value: 536.79
-      objectReference: {fileID: 0}
     - target: {fileID: 2808881375610333364, guid: 190d6fa571b8dc541b853fc04dc99529,
         type: 3}
       propertyPath: m_Name
