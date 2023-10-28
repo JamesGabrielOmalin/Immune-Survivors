@@ -745,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 3723470858753413765, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: Eliminates all enemies in screen
+      value: Eliminates all enemies in screen.
       objectReference: {fileID: 0}
     - target: {fileID: 3823797799358925264, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1183,7 +1183,7 @@ PrefabInstance:
     - target: {fileID: 6175776193191685723, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_fontSize
-      value: 33.8
+      value: 30.4
       objectReference: {fileID: 0}
     - target: {fileID: 6274070624088478910, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
@@ -1659,7 +1659,8 @@ PrefabInstance:
     - target: {fileID: 9050678901136046580, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: Teleports in the towards the faced direction
+      value: Slashes towards the faced direction. Enemies killed by this resets the
+        cooldown.
       objectReference: {fileID: 0}
     - target: {fileID: 9061740588625875696, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
