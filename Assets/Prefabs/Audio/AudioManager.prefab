@@ -233,26 +233,22 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DentriticSlash
     clips:
-    - {fileID: 8300000, guid: 3022b449a7d2523478cbf99d611853c0, type: 3}
-    - {fileID: 8300000, guid: 186a6e2d5329a2042ad2a4f7dc789723, type: 3}
-    - {fileID: 8300000, guid: a51057fcbdd58ae4a8b96a7a90c6e64e, type: 3}
-    volume: 1
+    - {fileID: 8300000, guid: 3fcca90b291a0734d81624b22101ba5e, type: 3}
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DentriticJN
     clips:
-    - {fileID: 8300000, guid: a56e285df53595a4cb875e53fe1543b6, type: 3}
-    - {fileID: 8300000, guid: 396c1ff7299e0e24dbd9f76e71b02a5a, type: 3}
-    - {fileID: 8300000, guid: 5aff7b12dae66be47b57632d712adfdf, type: 3}
-    volume: 1
+    - {fileID: 8300000, guid: df6409716a44e564c8a61be3cf3a527f, type: 3}
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DentriticMovement
     clips:
-    - {fileID: 8300000, guid: 07a6c66ec33eee747ab7859ba241b215, type: 3}
-    volume: 0.6
+    - {fileID: 8300000, guid: cfb4552b2f78cdc46adf392567746aeb, type: 3}
+    volume: 0.9
     pitch: 1
     loop: 0
     source: {fileID: 0}
