@@ -76,6 +76,7 @@ public class NeutrophilGrenade : Projectile
         vfx.SendEvent("Kill");
 
         slowField.SetActive(true);
+        AudioManager.instance.Play("NeutrophilGrenade", transform.position);
 
         var field = slowField.GetComponent<NeutrophilSlowField>();
 

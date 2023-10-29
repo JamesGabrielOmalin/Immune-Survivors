@@ -144,76 +144,64 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: NeutrophilAttack
     clips:
-    - {fileID: 8300000, guid: a1be521eb27ddbd4f8b028138e57e27c, type: 3}
-    - {fileID: 8300000, guid: 586b0017ddd307e4c9708b4fcd651f09, type: 3}
-    - {fileID: 8300000, guid: 0d3bf9dc3af71e74fbe56c5c84b2d8cc, type: 3}
+    - {fileID: 8300000, guid: ff51575f919a7b943b82f8f533cfe4ee, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NeutrophilGrenade
     clips:
-    - {fileID: 8300000, guid: 24d132c313ab54247b6ac8e7fbac1f4d, type: 3}
-    - {fileID: 8300000, guid: 91618515c0ccd654990e42e9670d12fe, type: 3}
-    - {fileID: 8300000, guid: a1e462908a75aec4286c578d7a7116e2, type: 3}
+    - {fileID: 8300000, guid: 8723b2f6684f54648a124c93d247aa01, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NeutrophilStab
     clips:
-    - {fileID: 8300000, guid: 90bac67a88f98904997feb00d155d70d, type: 3}
-    - {fileID: 8300000, guid: 21a70d6454905c142bec1539d1bbc10f, type: 3}
-    - {fileID: 8300000, guid: cb08b978f6493e54bb80f0a702611248, type: 3}
+    - {fileID: 8300000, guid: fb36ecc36a632944797d05a9d0ec5924, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NeutrophilMovement
     clips:
-    - {fileID: 8300000, guid: c78f69b7074c0314baad749c4c8391b3, type: 3}
-    volume: 0.6
+    - {fileID: 8300000, guid: f391d10db8cdf5e45bde7435cd3ac307, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: NeutrophilUltimate
     clips:
-    - {fileID: 8300000, guid: 34fc9f953f9ff4745a518698b3c3a589, type: 3}
+    - {fileID: 8300000, guid: 48fb0611af35b6f439ea42d820d63c73, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: MacrophageCircle
     clips:
-    - {fileID: 8300000, guid: ac080fb13ea4d2a48849c8309fe6830a, type: 3}
-    - {fileID: 8300000, guid: 8dc3ef0e62c0df04192c68d7d89c0f15, type: 3}
-    - {fileID: 8300000, guid: 70d5067c9adceea4baf3ebe616193444, type: 3}
+    - {fileID: 8300000, guid: edbab5f588cd27d4280d93277af9f2cb, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: MacrophageCone
     clips:
-    - {fileID: 8300000, guid: 311c499dc25888648816217f0516b911, type: 3}
-    - {fileID: 8300000, guid: cf0d52141e926ce4e8b0e989446ba3db, type: 3}
-    - {fileID: 8300000, guid: a826469410c2db6478333107223e2c0e, type: 3}
+    - {fileID: 8300000, guid: 97d93711d55d1cc4583161933b21ca3c, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: MacrophageLine
     clips:
-    - {fileID: 8300000, guid: 6cedeb226a21fac4e8c163dfd421e956, type: 3}
-    - {fileID: 8300000, guid: 007bf1cb223328a44aadcf83f61e5234, type: 3}
-    - {fileID: 8300000, guid: 44e03c9d96d8b6a46af8876f10710ce5, type: 3}
+    - {fileID: 8300000, guid: 18872a67817ba70488ccb8aba12c9f61, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: MacrophageMovement
     clips:
-    - {fileID: 8300000, guid: a78dd36ce91472a449b3daed9b9f209d, type: 3}
-    volume: 0.6
+    - {fileID: 8300000, guid: 6c6db04028f10cd4fac65a2858c87a44, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -254,7 +242,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: DentriticUltimate
     clips:
-    - {fileID: 8300000, guid: 4a20b0973f1876b43a785e4c581e64b9, type: 3}
+    - {fileID: 8300000, guid: bbae50807815145419e2c2adfe77d949, type: 3}
     volume: 1
     pitch: 1
     loop: 0

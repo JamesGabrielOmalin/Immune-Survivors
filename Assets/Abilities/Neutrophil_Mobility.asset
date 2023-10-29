@@ -17,5 +17,5 @@ MonoBehaviour:
   <AbilityType>k__BackingField: 1
   <HasCharges>k__BackingField: 1
   <MaxCharges>k__BackingField: 3
-  <DashSpeed>k__BackingField: 10
+  <DashSpeed>k__BackingField: 20
   <MaxDashTime>k__BackingField: 0.25

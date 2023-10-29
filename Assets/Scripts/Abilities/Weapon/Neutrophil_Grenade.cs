@@ -99,7 +99,6 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
 
             Vector3 targetPos = target.transform.position;
             Vector3 dir = (targetPos - owner.transform.position).normalized;
-            AudioManager.instance.Play("NeutrophilGrenade", owner.transform.position);
 
             grenadeObject.transform.forward = dir;
 

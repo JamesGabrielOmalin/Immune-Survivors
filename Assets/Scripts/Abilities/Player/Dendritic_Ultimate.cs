@@ -58,7 +58,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         // PROVOKING
         // BLACK CLOUDS IN ISOLATION
 
-        var hits = Physics.OverlapSphere(owner.transform.position, 10f);
+        var hits = Physics.OverlapSphere(owner.transform.position, 25f);
 
         foreach (var hit in hits)
         {
