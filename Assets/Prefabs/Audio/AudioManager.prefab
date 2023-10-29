@@ -234,21 +234,21 @@ MonoBehaviour:
   - name: DentriticSlash
     clips:
     - {fileID: 8300000, guid: 3fcca90b291a0734d81624b22101ba5e, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DentriticJN
     clips:
     - {fileID: 8300000, guid: df6409716a44e564c8a61be3cf3a527f, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: DentriticMovement
     clips:
-    - {fileID: 8300000, guid: 07a6c66ec33eee747ab7859ba241b215, type: 3}
-    volume: 0.6
+    - {fileID: 8300000, guid: cfb4552b2f78cdc46adf392567746aeb, type: 3}
+    volume: 0.9
     pitch: 1
     loop: 0
     source: {fileID: 0}
