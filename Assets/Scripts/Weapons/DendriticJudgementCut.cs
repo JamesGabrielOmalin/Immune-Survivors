@@ -28,9 +28,9 @@ public class DendriticJudgementCut : MonoBehaviour
         StopAllCoroutines();
     }
 
+    private readonly WaitForSeconds wait = new(1.25f);
     private IEnumerator Slash()
     {
-        WaitForSeconds wait = new(0.5f);
         vfx.Play();
 
         var hits = Physics.OverlapSphere(transform.position, attackSize * 2.5f, layerMask.value);

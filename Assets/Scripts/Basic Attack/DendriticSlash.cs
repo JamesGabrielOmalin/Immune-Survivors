@@ -29,6 +29,8 @@ public class DendriticSlash : MonoBehaviour
 
     }
 
+    private readonly WaitForSeconds delay = new(0.5f);
+
     private IEnumerator Slash()
     {
         yield return null;
@@ -87,7 +89,7 @@ public class DendriticSlash : MonoBehaviour
             yield return wait;
         }
 
-        yield return null;
+        yield return delay;
         this.gameObject.SetActive(false);
         yield break;
     }

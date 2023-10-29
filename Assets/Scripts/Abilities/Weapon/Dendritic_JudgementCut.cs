@@ -83,7 +83,6 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
                                          // Level 2 and higher: Increase size by 15%
         float SIZE = attackSize.Value * (abilityLevel >= 2 ? 1.15f : 1f);
 
-        AudioManager.instance.Play("DentriticJN", owner.transform.position);
         for (int i = 0; i < AC; i++)
         {
             // implement basic shooting towards target
@@ -105,6 +104,7 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
             cut.attackSize = SIZE;
 
             cut.transform.localScale = Vector3.one * SIZE;
+            AudioManager.instance.Play("DentriticJN", owner.transform.position);
 
             yield return wait;
         }
