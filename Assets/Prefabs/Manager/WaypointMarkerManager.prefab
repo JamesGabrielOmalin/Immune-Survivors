@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8824db1ef753c58469a60ef2dd2def50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerPool: {fileID: 0}
-  activeMarkers: []
-  minBounds: {x: 0.1, y: 0.1}
-  maxBounds: {x: 0.9, y: 0.9}
+  indicatorPool: {fileID: 0}
+  activeIndicators: []
+  offset: 60
