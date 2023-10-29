@@ -12,7 +12,7 @@ public class PlayerRecruitment : MonoBehaviour, IBodyColliderListener
         {
             owningPlayer.RecruitUnit(recruit);
             recruit.gameObject.SetActive(false);
-            WaypointMarkerManager.instance.UnregisterToWaypointMarker(recruit.gameObject);
+            WaypointIndicatorManager.instance.UnregisterToWaypointMarker(recruit.gameObject);
             AudioManager.instance.Play("PlayerRecruit", transform.position);
         }
     }

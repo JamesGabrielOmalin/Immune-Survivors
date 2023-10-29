@@ -217,7 +217,7 @@ public class RecruitManager : MonoBehaviour
 
         Debug.Log("Recruit Spawned");
         activeRecruits.Add(recruit);
-        WaypointMarkerManager.instance.RegisterToWaypointMarker(recruit);
+        WaypointIndicatorManager.instance.RegisterToWaypointMarker(recruit);
     }
 
     public void AddKillCount()
