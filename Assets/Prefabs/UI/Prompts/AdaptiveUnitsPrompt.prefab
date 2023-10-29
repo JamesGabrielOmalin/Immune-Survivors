@@ -2090,13 +2090,18 @@ PrefabInstance:
         stronger.</color>
 
 
-        <color=#00FFFF>T Cell (Right)</color>  produces
+        <color=#00FFFF>B Cell (Right)</color>  produces
         <color=yellow>antibodies</color> that <color=green>make enemies more vulnerable</color>
         to your attacks.
 
 
         <size=80%><u>Note: They are only effective againts
         bacteria of the same type.</size></u>'
+      objectReference: {fileID: 0}
+    - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
+        type: 3}
+      propertyPath: m_lineSpacing
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 311094075754844278, guid: 46b8b1d973a6d4e4988fe84986ec7b82,
         type: 3}
