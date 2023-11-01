@@ -198,12 +198,14 @@ public class SymptomEffect: ScriptableObject
 
         for (int i = 0; i < KnockbackCount; i++)
         {
-            CoughPingController.instance.ActivatePing(KnockDirection, KnockbackInterval-1);
+            CoughPingController.instance.ActivatePing(true, KnockDirection, KnockbackInterval - 0.5f);
 
             yield return new WaitForSeconds(KnockbackInterval);
 
             SymptomManager.instance.coughVFX.transform.position = GameManager.instance.Player.transform.position;
             SymptomManager.instance.coughVFX.Play();
+
+            //CoughPingController.instance.ActivatePing(false, KnockDirection, 0);
 
             unit.ApplyKnockback(dir * intensity, ForceMode.Impulse);
          }

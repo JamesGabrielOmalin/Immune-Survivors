@@ -38,20 +38,23 @@ public class CoughPingController : MonoBehaviour
     }
 
 
-    public void ActivatePing(SymptomEffect.KnockbackDirection direction, float duration)
+    public void ActivatePing(bool status, SymptomEffect.KnockbackDirection direction, float duration)
     {
-        pingCoroutine = StartCoroutine(PingCoroutine(direction, duration));
+       StartCoroutine(PingCoroutine(status, direction, duration));
     }
-    public IEnumerator PingCoroutine(SymptomEffect.KnockbackDirection direction,float duration)
+    public IEnumerator PingCoroutine(bool status, SymptomEffect.KnockbackDirection direction,float duration)
     {
         AudioManager.instance.Play("Ping", transform.position);
 
         Debug.Log("Direction: " + direction);
+
         pingDictionary[direction].SetActive(true);
 
         yield return new WaitForSeconds(duration);
 
-        pingDictionary[direction].SetActive(false);
+        DeactivateAllPing();
+
+
     }
 
     public void DeactivateAllPing()
