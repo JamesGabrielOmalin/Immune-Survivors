@@ -82,10 +82,10 @@ public class Enemy : Unit, IDamageInterface
         // Increase HP and Move Speed by 20% for every minute that has passed
         if (GameManager.instance)
         {
-            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.5f, AttributeModifierType.Multiply));
+            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 1f, AttributeModifierType.Multiply));
 
             //MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
-            MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+            MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.2f, AttributeModifierType.Multiply));
         }
 
         HP.BaseValue = MaxHP.Value;
