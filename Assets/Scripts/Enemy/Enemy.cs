@@ -84,6 +84,7 @@ public class Enemy : Unit, IDamageInterface
         {
             MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 1f, AttributeModifierType.Multiply));
 
+            AttackDamage.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
             //MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
             MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.2f, AttributeModifierType.Multiply));
         }
