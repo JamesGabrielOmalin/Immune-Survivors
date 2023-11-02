@@ -142,7 +142,6 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
                 if (bulletObject == null)
                     continue;
                 NeutrophilBullet bullet = bulletObject.GetComponent<NeutrophilBullet>();
-                AudioManager.instance.Play("NeutrophilAttack", owner.transform.position);
 
                 // Snapshot attributes
                 //bulletObject.name = bulletObject.name + "(" + i.ToString() + ") ";
@@ -174,6 +173,8 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
                 bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
 
             }
+
+            AudioManager.instance.Play("NeutrophilAttack", owner.transform.position);
 
             yield return wait;
         }
