@@ -248,5 +248,5 @@ MonoBehaviour:
   layersToCheck:
     serializedVersion: 2
     m_Bits: 540736
-  collisionCheckerRadius: 5
+  collisionCheckerRadius: 10
   maxChecks: 10
