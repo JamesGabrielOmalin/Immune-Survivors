@@ -254,9 +254,9 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: DentriticBladeHit
+  - name: Ping
     clips:
-    - {fileID: 8300000, guid: 262f83aa014590542a5b579f86ceb39f, type: 3}
+    - {fileID: 8300000, guid: d3524592fbc3e44409531aac1dd4066e, type: 3}
     volume: 1
     pitch: 1
     loop: 0
