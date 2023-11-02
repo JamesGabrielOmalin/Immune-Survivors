@@ -1,0 +1,327 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f854cd394ba6e9f478551db0cfde1747, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  maxActiveEnemyThreshold: 1000
+  waveInterval: 60
+  waveList:
+  - waveName: 'Wave 1: A'
+    ID: 1
+    spawnInterval: 1
+    waveSpawnCounter: 59
+    waveSpawnQuota: 60
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 59
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 2: AB'
+    ID: 2
+    spawnInterval: 0.9
+    waveSpawnCounter: 90
+    waveSpawnQuota: 90
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 64
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 30
+      enemySpawnCounter: 31
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 3: ABC'
+    ID: 3
+    spawnInterval: 0.85
+    waveSpawnCounter: 150
+    waveSpawnQuota: 150
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 62
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 64
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 30
+      enemySpawnCounter: 33
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 1
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 4: ABC'
+    ID: 4
+    spawnInterval: 0.8
+    waveSpawnCounter: 180
+    waveSpawnQuota: 180
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 62
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 64
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 60
+      enemySpawnCounter: 66
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 1
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 1
+      bossSpawnCounter: 0
+    - enemyName: Boss C
+      poolName: Bacteria Boss C
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 5: AABC'
+    ID: 5
+    spawnInterval: 0.8
+    waveSpawnCounter: 208
+    waveSpawnQuota: 240
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 52
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 52
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 52
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 60
+      enemySpawnCounter: 52
+    BossEnemyGroups: []
+  - waveName: 'Wave 6: ABBC'
+    ID: 6
+    spawnInterval: 0.8
+    waveSpawnCounter: 240
+    waveSpawnQuota: 240
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 63
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 65
+    - enemyName: Bacteria B
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 63
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 60
+      enemySpawnCounter: 62
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 1
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 1
+      bossSpawnCounter: 0
+    - enemyName: Boss C
+      poolName: Bacteria Boss C
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 7: ABCC'
+    ID: 7
+    spawnInterval: 0.8
+    waveSpawnCounter: 240
+    waveSpawnQuota: 240
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 50
+      enemySpawnCounter: 64
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 50
+      enemySpawnCounter: 61
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 50
+      enemySpawnCounter: 63
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 50
+      enemySpawnCounter: 65
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 1
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 3
+      bossSpawnCounter: 0
+    - enemyName: Boss C
+      poolName: Bacteria Boss C
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 8: AABBC'
+    ID: 8
+    spawnInterval: 1
+    waveSpawnCounter: 300
+    waveSpawnQuota: 300
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 60
+      enemySpawnCounter: 60
+    - enemyName: Bacteria A
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 61
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 62
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 60
+      enemySpawnCounter: 62
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 60
+      enemySpawnCounter: 60
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 2
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 2
+      bossSpawnCounter: 0
+    - enemyName: Boss C
+      poolName: Bacteria Boss C
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 9: AABBCC'
+    ID: 9
+    spawnInterval: 1
+    waveSpawnCounter: 360
+    waveSpawnQuota: 360
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 50
+      enemySpawnCounter: 61
+    - enemyName: Bacteria A
+      poolName: Bacteria B
+      enemyQuota: 50
+      enemySpawnCounter: 60
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 50
+      enemySpawnCounter: 61
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 50
+      enemySpawnCounter: 61
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 50
+      enemySpawnCounter: 62
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 50
+      enemySpawnCounter: 60
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 2
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 2
+      bossSpawnCounter: 0
+    - enemyName: Boss C
+      poolName: Bacteria Boss C
+      count: 1
+      bossSpawnCounter: 0
+  - waveName: 'Wave 10: AABBCC'
+    ID: 10
+    spawnInterval: 1
+    waveSpawnCounter: 600
+    waveSpawnQuota: 600
+    enemyGroups:
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 80
+      enemySpawnCounter: 100
+    - enemyName: Bacteria A
+      poolName: Bacteria A
+      enemyQuota: 80
+      enemySpawnCounter: 100
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 80
+      enemySpawnCounter: 100
+    - enemyName: Bacteria B
+      poolName: Bacteria B
+      enemyQuota: 80
+      enemySpawnCounter: 100
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 80
+      enemySpawnCounter: 100
+    - enemyName: Bacteria C
+      poolName: Bacteria C
+      enemyQuota: 80
+      enemySpawnCounter: 100
+    BossEnemyGroups:
+    - enemyName: Bacteria Boss A
+      poolName: Bacteria Boss A
+      count: 2
+      bossSpawnCounter: 0
+    - enemyName: Boss B
+      poolName: Bacteria Boss B
+      count: 2
+      bossSpawnCounter: 0
+    - enemyName: Boss C
+      poolName: Bacteria Boss C
+      count: 2
+      bossSpawnCounter: 0
