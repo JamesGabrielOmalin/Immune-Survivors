@@ -714,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dynamicPrompt: {fileID: 6746396932762082365}
   dynamicPrompts: []
-  dynamicPromptDuration: 10
+  dynamicPromptDuration: 5
   StaticPrompts:
   - {fileID: 1182504304920234999, guid: ceea46d41c0a8714693fd54507d81bab, type: 3}
   - {fileID: 1182504304920234999, guid: 80498efccb6b87c469c25cdb71732b66, type: 3}
