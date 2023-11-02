@@ -256,7 +256,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Ping
     clips:
-    - {fileID: 8300000, guid: d3524592fbc3e44409531aac1dd4066e, type: 3}
+    - {fileID: 8300000, guid: 10a8b13bb7cb6ef4ba5cc933d0b49bc5, type: 3}
     volume: 1
     pitch: 1
     loop: 0
