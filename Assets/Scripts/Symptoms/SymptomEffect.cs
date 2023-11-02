@@ -198,7 +198,9 @@ public class SymptomEffect: ScriptableObject
 
         for (int i = 0; i < KnockbackCount; i++)
         {
-            CoughPingController.instance.ActivatePing(true, KnockDirection, KnockbackInterval - 0.5f);
+            float duration = 1;
+            float delay = KnockbackInterval - 1.5f;
+            CoughPingController.instance.ActivatePing(true, KnockDirection,delay, duration);
 
             yield return new WaitForSeconds(KnockbackInterval);
 
