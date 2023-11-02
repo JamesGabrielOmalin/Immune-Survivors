@@ -18,7 +18,7 @@ public class TimerDisplay : MonoBehaviour
 
         while(this)
         {
-            if (600 - GameManager.instance.GameTime.TotalSeconds >= 0)
+            if (660 - GameManager.instance.GameTime.TotalSeconds >= 0)
             {
                 text.text = GameManager.instance.GameTimeDisplay;
             }

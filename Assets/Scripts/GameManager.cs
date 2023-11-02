@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [field: SerializeField] public GameObject HUD { get; private set; }
 
     public System.TimeSpan GameTime { get; private set; }
-    public string GameTimeDisplay => (new System.TimeSpan(0,10,0) - GameTime).ToString(@"mm\:ss");
+    public string GameTimeDisplay => (new System.TimeSpan(0,11,0) - GameTime).ToString(@"mm\:ss");
     public float TimeToWin;
     //public TMP_Text Timer;
 
