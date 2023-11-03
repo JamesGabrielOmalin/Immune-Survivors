@@ -216,12 +216,8 @@ MonoBehaviour:
   recruitBias: 3
   killThresholdList:
   - startCycle: 1
-    endCycle: 5
-    increment: 2
-    nRecruitToSpawn: 1
-  - startCycle: 6
     endCycle: 10
-    increment: 3
+    increment: 2
     nRecruitToSpawn: 1
   - startCycle: 11
     endCycle: 20
