@@ -67,7 +67,7 @@ public class DendriticSlash : MonoBehaviour
         }
 
         // Quarter damage against full health, double damage
-        float missingHPBonusDMG = Mathf.Lerp(2f, 0.25f, ratio);
+        float missingHPBonusDMG = Mathf.Lerp(1f, 0.1f, ratio);
         Debug.Log($"Bonus DMG: {missingHPBonusDMG}");
 
         float damage = attackDamage * DMGBonus * missingHPBonusDMG;

@@ -72,7 +72,7 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
 
     private IEnumerator Slash()
     {
-        WaitForSeconds wait = new(0.25f);
+        WaitForSeconds wait = new(0.25f / (attackSpeed.Value * (abilityLevel >= 4 ? 1.3f : 1f)));
                                            
         int AC = (int)attackCount.Value;
         float AD = attackDamage.Value * basicAttack.AttackDamageScaling;
