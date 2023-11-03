@@ -46,12 +46,6 @@ public class DamageCalculator
         }
 
         float damage = Mathf.Ceil(attackDamage * reduction * (isCrit ? critDMG : 1f));
-
-        if (damage <= float.Epsilon)
-        {
-            return;
-        }
-
         target.TakeDamage(damage);
 
         Vector3 location = (target as MonoBehaviour).transform.position;
