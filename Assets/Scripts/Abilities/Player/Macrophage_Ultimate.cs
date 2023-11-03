@@ -23,9 +23,11 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
     public AttributeSet attributes;
     public Attribute level;
+    public Attribute hpRegen;
     public Attribute attackDamage;
     public Attribute attackSpeed;
     public Attribute attackRange;
+    public Attribute attackSize;
     public Attribute armor;
     public Attribute knockbackPower;
     public Attribute dotAmount;
@@ -55,6 +57,9 @@ public class Macrophage_UltimateSpec : AbilitySpec
             child.gameObject.SetActive(false);
         }
 
+        AttributeModifier regenMod = new(1f, AttributeModifierType.Multiply);
+        hpRegen.AddModifier(regenMod);
+
         // 100% increase in attack values
         AttributeModifier attackMod = new(1f, AttributeModifierType.Multiply);
         attackDamage.AddModifier(attackMod);
@@ -66,6 +71,9 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
         AttributeModifier armorMod = new((level.Value + 1) * 2f, AttributeModifierType.Add);
         armor.AddModifier(armorMod);
+
+        AttributeModifier sizeMod = new(level.Value * 0.1f, AttributeModifierType.Add);
+        attackSize.AddModifier(sizeMod);
 
         // 300% increased DoT
         AttributeModifier dotMod = new(3f, AttributeModifierType.Multiply);
@@ -81,11 +89,14 @@ public class Macrophage_UltimateSpec : AbilitySpec
         }
 
         // Remove all modifiers
+        hpRegen.RemoveModifier(regenMod);
+
         attackDamage.RemoveModifier(attackMod);
         attackSpeed.RemoveModifier(attackMod);
         attackRange.RemoveModifier(attackMod);
 
         knockbackPower.RemoveModifier(knockbackMod);
+        attackSize.RemoveModifier(sizeMod);
 
         dotAmount.RemoveModifier(dotMod);
         dotDuration.RemoveModifier(dotMod);
@@ -103,9 +114,11 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attributes = owner.GetComponent<AttributeSet>();
 
         level = attributes.GetAttribute("Level");
+        hpRegen = attributes.GetAttribute("HP Regen");
         attackDamage = attributes.GetAttribute("Attack Damage");
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
+        attackSize = attributes.GetAttribute("Attack Size");
         knockbackPower = attributes.GetAttribute("Knockback Power");
         armor = attributes.GetAttribute("Armor");
         dotAmount = attributes.GetAttribute("DoT Amount");

@@ -70,7 +70,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         float AD = attackDamage.Value * (level.Value * 0.5f);
         float AS = attackSpeed.Value;
         float CRIT_RATE = critRate.Value * 1.5f;
-        float CRIT_DMG = critDMG.Value * 0.666667f;
+        float CRIT_DMG = critDMG.Value * 0.5f;
         float knockBack = knockbackPower.Value;
 
         float Type_1 = Type_1_DMG_Bonus.Value;
@@ -78,6 +78,8 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         float Type_3 = Type_3_DMG_Bonus.Value;
 
         float attackRadius = 6f + (attackSize.Value * 1.5f);
+
+        int killCount = 0;
 
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
@@ -117,6 +119,9 @@ public class Neutrophil_UltimateSpec : AbilitySpec
                     float armor = enemy.Armor.Value;
                     DamageCalculator.ApplyDamage(damage, CRIT_RATE, CRIT_DMG, armor, enemy);
 
+                    if (enemy.IsDead)
+                        killCount++;
+
                     if (enemy.TryGetComponent(out ImpactReceiver impact))
                         impact.AddImpact(dir, knockBack);
                 }
@@ -133,7 +138,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
             spr.gameObject.SetActive(true);
         }
 
-        CurrentCD = MaxCD;
+        CurrentCD = MaxCD - (killCount * 0.01f);
         owner.StartCoroutine(UpdateCD());
 
         yield return new WaitForSeconds(1f);

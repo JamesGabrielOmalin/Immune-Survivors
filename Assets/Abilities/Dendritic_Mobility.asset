@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Dendritic_Mobility
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
-  <Cooldown>k__BackingField: 5
+  <Cooldown>k__BackingField: 6
   <AbilityType>k__BackingField: 1
+  <HasCharges>k__BackingField: 0
+  <MaxCharges>k__BackingField: 0
   <DashDistance>k__BackingField: 5
