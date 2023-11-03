@@ -24,6 +24,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     public Attribute level; 
     public Attribute attackDamage;
     public Attribute attackSpeed;
+    public Attribute attackSize;
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
@@ -66,15 +67,17 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
-        float AD = attackDamage.Value;
+        float AD = attackDamage.Value * (level.Value * 0.5f);
         float AS = attackSpeed.Value;
-        float CRIT_RATE = critRate.Value;
-        float CRIT_DMG = critDMG.Value;
+        float CRIT_RATE = critRate.Value * 1.5f;
+        float CRIT_DMG = critDMG.Value * 0.666667f;
         float knockBack = knockbackPower.Value;
 
         float Type_1 = Type_1_DMG_Bonus.Value;
         float Type_2 = Type_2_DMG_Bonus.Value;
         float Type_3 = Type_3_DMG_Bonus.Value;
+
+        float attackRadius = 6f + (attackSize.Value * 1.5f);
 
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
@@ -86,7 +89,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
 
         for (int i = 0; i < MAX_HITS; i++)
         {
-            var hits = Physics.OverlapSphere(owner.transform.position, 5f, ult.LayerMask);
+            var hits = Physics.OverlapSphere(owner.transform.position, attackRadius, ult.LayerMask);
 
             for (int j = 0; j < Mathf.Min(MAX_TARGETS, hits.Length); j++)
             {
@@ -150,6 +153,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         level = attributes.GetAttribute("Level");
         attackDamage = attributes.GetAttribute("Attack Damage");
         attackSpeed = attributes.GetAttribute("Attack Speed");
+        attackSize = attributes.GetAttribute("Attack Size");
         critRate = attributes.GetAttribute("Critical Rate");
         critDMG = attributes.GetAttribute("Critical Damage");
         knockbackPower = attributes.GetAttribute("Knockback Power");
