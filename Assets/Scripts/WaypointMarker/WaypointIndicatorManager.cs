@@ -64,7 +64,6 @@ public class WaypointIndicatorManager : MonoBehaviour
             return;
         }
 
-        indicator.SetActive(true);
 
         if (indicator.TryGetComponent<WaypointIndicator>(out WaypointIndicator indicatorComp))
         {
@@ -72,6 +71,9 @@ public class WaypointIndicatorManager : MonoBehaviour
             indicatorComp.TrackUnit(unit);
             indicatorComp.screenOffset = offset;
             Debug.Log(" Unit registered");
+
+            //indicator.SetActive(true);
+
 
 
         }
@@ -107,6 +109,10 @@ public class WaypointIndicatorManager : MonoBehaviour
             {
                 if (indicator.target !=  null) 
                 {
+                    if (!indicator.gameObject.activeInHierarchy)
+                    {
+                        indicator.gameObject.SetActive(true);
+                    }
                     indicator.UpdateIndicator();
                 }
             }

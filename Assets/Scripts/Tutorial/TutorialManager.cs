@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
-{ 
+{
     public static TutorialManager instance;
 
     public GameObject dynamicPrompt;
@@ -20,6 +20,8 @@ public class TutorialManager : MonoBehaviour
     private Coroutine dynamicPromptCoroutine;
 
     public static bool isFirstTime = true;
+
+    [SerializeField] Animator dynamicAnimator;
 
     //StaticPrompt variables here
     //WARNING: CURRENTLY NO CHECKER FOR IF INDEX IS OVER/UNDER
@@ -41,7 +43,10 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-
+        if(dynamicPrompt.TryGetComponent<Animator>(out dynamicAnimator))
+        {
+            Debug.Log("Animator Found");
+        }
         Scene currentScene = SceneManager.GetActiveScene();
         int buildIndex = currentScene.buildIndex;
 
@@ -93,7 +98,7 @@ public class TutorialManager : MonoBehaviour
 
     public void EnablePromptOnIntro()
     {   
-        AddDynamicPrompt("INTRODUCTION", "Welcome To Your Immune System", StaticPrompts[0], 0);
+        Instantiate(StaticPrompts[0]);
         //AddDynamicPrompt("These little guys sometimes drop whenever bacteria dies");
         //AddDynamicPrompt("The color of the bacteria determines the color of the antigen");
         //AddDynamicPrompt("Pick up more so that B-Cells and T-Cells will spawn");
@@ -102,16 +107,14 @@ public class TutorialManager : MonoBehaviour
 
     public void EnablePromptOnPlayerMovement()
     {
-        //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt("BASIC CONTROLS", "Press <color=yellow>WASD</color> to move around and <color=yellow>[SPACEBAR]</color> to use your mobility ability", 5.0f);
-        AddDynamicPrompt("INVADING BACTERIA", " As you know, your body is under attack, and not for long <b>bacteria</b> will start to invade.", 7.0f);
+        AddDynamicPrompt("BASIC CONTROLS", "Press <color=yellow>WASD</color> to move around and <color=yellow>[SPACEBAR]</color> to use your mobility ability");
+        AddDynamicPrompt("INVADING BACTERIA", " As you know, your body is under attack, and not for long <b>bacteria</b> will start to invade.");
 
     }
 
     public void EnablePromptOnHUDTutorial()
     {
         //Instantiate(StaticPrompts[1]);
-        AddDynamicPrompt("", "", StaticPrompts[6], 0);
         OnEnemyVisible-= EnablePromptOnHUDTutorial;
     }
     public void EnablePromptOnAntigenPickup()
@@ -141,8 +144,8 @@ public class TutorialManager : MonoBehaviour
         TutorialManager.instance.OnPlayerHit -= EnablePromptOnPlayerHit;
 
         //Instantiate(StaticPrompts[2]);
-        AddDynamicPrompt("TAKING DAMAGE", " Watch out! Getting hit by enemies will deplete your <color=red>HP Bar (BOTTOM HUD)</color>.",7.0f);
-        AddDynamicPrompt("RESTORING HP", " While your HP can <color=green>regenerate over time</color>. You can also <color=yellow>replenish your HP by recruiting other units</color>.", 7.0f);
+        AddDynamicPrompt("TAKING DAMAGE", " Watch out! Getting hit by enemies will deplete your <color=red>HP Bar (BOTTOM HUD)</color>.");
+        AddDynamicPrompt("RESTORING HP", " While your HP can <color=green>regenerate over time</color>. You can also <color=yellow>replenish your HP by recruiting other units</color>.");
 
         //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
         //AddDynamicPrompt("Follow the arrow to get to your ally and recruit them");
@@ -175,11 +178,11 @@ public class TutorialManager : MonoBehaviour
     {
 
         //Instantiate(StaticPrompts[5]);
-        AddDynamicPrompt("INTRODUCTION", "A fever is our body's defense mechanism to various illnesses and infection");
-        AddDynamicPrompt("INTRODUCTION", "it's when your body's temperature rises to fight off invaders like bacteria");
-        AddDynamicPrompt("INTRODUCTION", "Fevers can range from 37.7 degrees Celsius to a life-threatening 41.6 degrees Celsius!");
-        AddDynamicPrompt("INTRODUCTION", "Bear in mind, the average temperature of an adult human is 37 degrees Celsius. That's a 4.6 degree difference!");
-        AddDynamicPrompt("INTRODUCTION", "Your immune cells have your back, but do not be afraid of seeking medical attention when you can't handle the fever");
+        AddDynamicPrompt("INTRODUCTION", "A fever is our body's defense mechanism to various illnesses and infection", 7);
+        AddDynamicPrompt("INTRODUCTION", "it's when your body's temperature rises to fight off invaders like bacteria", 7);
+        AddDynamicPrompt("INTRODUCTION", "Fevers can range from 37.7 degrees Celsius to a life-threatening 41.6 degrees Celsius!", 7);
+        AddDynamicPrompt("INTRODUCTION", "Bear in mind, the average temperature of an adult human is 37 degrees Celsius. That's a 4.6 degree difference!", 7);
+        AddDynamicPrompt("INTRODUCTION", "Your immune cells have your back, but do not be afraid of seeking medical attention when you can't handle the fever", 7);
 
     }
     public void EnablePromptOnFeverSymptom()
@@ -187,24 +190,24 @@ public class TutorialManager : MonoBehaviour
         SymptomManager.instance.OnActivateSymptom -= EnablePromptOnFeverSymptom;
 
         //Instantiate(StaticPrompts[5]);
-        AddDynamicPrompt("FEVER SYMPTOM", "This symptom right now is a <color=red>Fever</color>");
-        AddDynamicPrompt("FEVER SYMPTOM", "<color=red>Fever</color> boosts your immune cells' speed and deals damage over time (DoT) to bacteria");
-        AddDynamicPrompt("FEVER SYMPTOM", "But be careful! Extreme fever can harm your immune cells if it gets too high, causing them to weaken and get damaged.");
+        AddDynamicPrompt("FEVER SYMPTOM", "This symptom right now is a <color=red>Fever</color>", 7);
+        AddDynamicPrompt("FEVER SYMPTOM", "<color=red>Fever</color> boosts your immune cells' speed and deals damage over time (DoT) to bacteria", 7);
+        AddDynamicPrompt("FEVER SYMPTOM", "But be careful! Extreme fever can harm your immune cells if it gets too high, causing them to weaken and get damaged.", 8);
     }
 
     public void EnablePromptOnCoughIntro()
     {
-        AddDynamicPrompt("INTRODUCTION", "Coughing is our body's way of clearing our throat of various irritants");
-        AddDynamicPrompt("INTRODUCTION", "We cough whenever our body detects foreign entities, particularly germs and particles, on our throat");
-        AddDynamicPrompt("INTRODUCTION", "Coughing on occasion is normal. However, there is cause for concern when the coughs become more serious, as whatever is on the throat refuses to leave");
-        AddDynamicPrompt("INTRODUCTION", "Our immune cells are tough, but we can help our immune cells by drinking medicine and getting good sleep.");
+        AddDynamicPrompt("INTRODUCTION", "Coughing is our body's way of clearing our throat of various irritants",7);
+        AddDynamicPrompt("INTRODUCTION", "We cough whenever our body detects foreign entities, particularly germs and particles, on our throat", 7);
+        AddDynamicPrompt("INTRODUCTION", "Coughing on occasion is normal. However, there is cause for concern when the coughs become more serious, as whatever is on the throat refuses to leave", 10);
+        AddDynamicPrompt("INTRODUCTION", "Our immune cells are tough, but we can help our immune cells by drinking medicine and getting good sleep.", 8);
     }
 
     public void EnablePromptOnCoughSymptom()
     {
         SymptomManager.instance.OnActivateSymptom -= EnablePromptOnCoughSymptom;
 
-        AddDynamicPrompt("COUGH SYMPTOM", "The symptom right now is <color=red>Cough</color>");
+        AddDynamicPrompt("COUGH SYMPTOM", "The symptom right now is <color=red>Cough</color>",7);
         AddDynamicPrompt("COUGH SYMPTOM", "<color=red>Cough</color> pushes around the bacteria based on a random direction");
         AddDynamicPrompt("COUGH SYMPTOM", "Watch for the warnings and steer clear from the bacteria!");
     }
@@ -237,6 +240,12 @@ public class TutorialManager : MonoBehaviour
             dynamicPromptCoroutine = StartCoroutine(DynamicPrompt());
     }
 
+    public void CreateStaticPrompt(GameObject staticPrompt)
+    {
+        staticPromptQueue.Enqueue(staticPrompt);
+        ShowStaticPrompt();
+
+    }
     public void AddDynamicPrompt(string title, string text, GameObject staticPrompt, float duration)
     {
         dynamicPromptTitleQueue.Enqueue(title);
@@ -261,10 +270,18 @@ public class TutorialManager : MonoBehaviour
     {
         while (dynamicPromptTextQueue.Count > 0 && dynamicPromptTitleQueue.Count > 0)
         {
+            
             ShowDynamicPrompt();
+            dynamicAnimator.SetBool("toShow", true);
             yield return new WaitForSeconds(dynamicPromptDuration);
-            dynamicPrompt.SetActive(false);
+            dynamicAnimator.SetBool("toShow", false);
+            yield return new WaitForSeconds(0.3f);
+
+
+            //dynamicPrompt.SetActive(false);
             ShowStaticPrompt();
+            
+           
         }
 
         dynamicPromptCoroutine = null;
@@ -276,10 +293,17 @@ public class TutorialManager : MonoBehaviour
     {
         while (dynamicPromptTextQueue.Count > 0 && dynamicPromptTitleQueue.Count > 0)
         {
+
             ShowDynamicPrompt();
-            yield return new WaitForSeconds(duration);
-            dynamicPrompt.SetActive(false);
+            dynamicAnimator.SetBool("toShow", true);
+            yield return new WaitForSeconds(dynamicPromptDuration);
+            dynamicAnimator.SetBool("toShow", false);
+            yield return new WaitForSeconds(0.3f);
+
+
+            //dynamicPrompt.SetActive(false);
             ShowStaticPrompt();
+
         }
 
         dynamicPromptCoroutine = null;
@@ -302,6 +326,6 @@ public class TutorialManager : MonoBehaviour
         if (!prompt)
             return;
 
-        Instantiate(prompt);
+        GameObject obj = Instantiate(prompt);
     }
 }

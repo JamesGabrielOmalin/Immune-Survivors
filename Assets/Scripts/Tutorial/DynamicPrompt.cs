@@ -10,8 +10,18 @@ public class DynamicPrompt : MonoBehaviour
 
     public void SetText(string title, string description)
     {
-        Debug.Log("PROMPT");
         this.titleText.text = title;
         this.descriptionText.text = description;
+    }
+
+
+    public void ActivatePrompt()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void DeactivatePrompt()
+    {
+        gameObject.SetActive(false);
     }
 }

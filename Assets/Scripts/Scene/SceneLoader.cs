@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
 using UnityEngine.Rendering;
-
+[UnityEngine.DefaultExecutionOrder(-1)]
 public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader instance;
@@ -31,6 +31,8 @@ public class SceneLoader : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
+        Debug.Log("Scene Loader");
+
     }
 
     private void OnDestroy()
@@ -47,6 +49,7 @@ public class SceneLoader : MonoBehaviour
         }
 
         Time.timeScale = 1;
+        Debug.Log("Reloaded a Scene");
         StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().name));
     }
 
@@ -72,6 +75,8 @@ public class SceneLoader : MonoBehaviour
         }
 
         Time.timeScale = 1;
+        Debug.Log("Loaded a Scene");
+
         StartCoroutine(LoadSceneAsync(index));
     }
 
@@ -84,6 +89,8 @@ public class SceneLoader : MonoBehaviour
         }
 
         Time.timeScale = 1;
+        Debug.Log("Loaded a Scene");
+
         StartCoroutine(LoadSceneAsync(name));
     }
 
