@@ -43,6 +43,8 @@ struct Varyings
 sampler2D _MainTex;
 sampler2D _ColorMask;
 CBUFFER_START(UnityPerMaterial)
+float4 _Color;
+float _OutlineThickness;
 float4 _MainTex_ST;
 float4 _ColorMask_ST;
 //float4 _BumpMap_ST;
@@ -185,6 +187,21 @@ half4 GetFinalBaseColor(Varyings input)
     float4 final = tex2Dgrad(_MainTex, uv, ddx(input.uv), ddy(input.uv)) * lerp(1, input.color, tex2Dgrad(_ColorMask, uv, ddx(input.uv), ddy(input.uv)).r);
     
     return final;
+}
+
+half GetOutline(Varyings input)
+{
+    half4 pixelUp = tex2D(_MainTex, saturate(input.uv + half2(0, _MainTex_TexelSize.y) * _OutlineThickness));
+    half4 pixelDown = tex2D(_MainTex, saturate(input.uv - half2(0, _MainTex_TexelSize.y) * _OutlineThickness));
+    half4 pixelRight = tex2D(_MainTex, saturate(input.uv + half2(_MainTex_TexelSize.x, 0) * _OutlineThickness));
+    half4 pixelLeft = tex2D(_MainTex, saturate(input.uv - half2(_MainTex_TexelSize.x, 0) * _OutlineThickness));
+    
+    if (pixelUp.a != 0 || pixelDown.a != 0 || pixelRight.a != 0 || pixelLeft.a != 0)
+    {
+        return 1;
+    }
+    
+    return 0;
 }
 
 void DoClipTestToTargetAlphaValue(half alpha)
@@ -362,6 +379,13 @@ half4 frag_unlit(Varyings input) : SV_Target
     color = ApplyFog(color, input);
     
     return half4(color, alpha);
+}
+
+half4 frag_outline(Varyings input) : SV_Target
+{
+    half4 baseColor = GetFinalBaseColor(input);
+    half alpha = baseColor.a;
+    return half4(_Color.rgb, GetOutline(input));
 }
 
 void BaseColorAlphaClipTest(Varyings i)

@@ -17,6 +17,8 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
 
     private int hitCount = 0;
 
+    private const float DROP_RATE = 0.25f;
+
     protected override void OnEnable()
     {
         lifeSpan = attackRange / projectileSpeed;
@@ -64,8 +66,11 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
 
             if (enemy.IsDead)
             {
-                AudioManager.instance.Play("PlayerPickUp", transform.position);
-                AntigenManager.instance.AddAntigen(enemy.Type);
+                if (Random.value <= DROP_RATE)
+                {
+                    AudioManager.instance.Play("PlayerPickUp", transform.position);
+                    AntigenManager.instance.AddBonusAntigen(enemy.Type);
+                }
             }
 
             hitCount++;

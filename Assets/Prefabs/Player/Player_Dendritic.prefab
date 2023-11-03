@@ -528,3 +528,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 267382003198116202}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4326474191066448435
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4741737944977043579}
+    m_Modifications:
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 128935487641377277, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017346715513677961, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_Name
+      value: Sprite Copy Dendritic
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815083173661837585, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d6f078d46ee4bea4e9e9294b27cd60f4, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b80bbeda8e2f1db44b1e6b09c3881d74, type: 3}

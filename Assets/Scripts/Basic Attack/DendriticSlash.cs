@@ -18,6 +18,7 @@ public class DendriticSlash : MonoBehaviour
     [HideInInspector] public float Type_2_DMG_Bonus;
     [HideInInspector] public float Type_3_DMG_Bonus;
 
+    private const float DROP_RATE = 0.5f;
 
     private void OnEnable()
     {
@@ -79,9 +80,11 @@ public class DendriticSlash : MonoBehaviour
             // Gain bonus Antigen if enemy is killed
             if (target.IsDead)
             {
-                AudioManager.instance.Play("PlayerPickUp", transform.position);
-                AntigenManager.instance.AddAntigen(target.Type);
-                break;
+                if (Random.value <= DROP_RATE)
+                {
+                    AudioManager.instance.Play("PlayerPickUp", transform.position);
+                    AntigenManager.instance.AddBonusAntigen(target.Type);
+                }
             }
 
             //target.TakeDamage(damage);
