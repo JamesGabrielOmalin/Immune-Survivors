@@ -27,6 +27,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
     private AttributeSet attributes;
     private Attribute moveSpeed;
+    private Attribute armor;
 
     public override IEnumerator ActivateAbility()
     {
@@ -42,9 +43,13 @@ public class Macrophage_MobilitySpec : AbilitySpec
         moveSpeed.AddModifier(mod);
         AudioManager.instance.Play("MacrophageMovement", owner.transform.position);
 
+        AttributeModifier armorMod = new(0.1f, AttributeModifierType.Multiply);
+        armor.AddModifier(armorMod);
+
         yield return wait;
 
         moveSpeed.RemoveModifier(mod);
+        armor.RemoveModifier(armorMod);
 
         sprite.material.renderQueue = 2450;
         sprite.color = Color.white;
@@ -63,6 +68,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
         moveSpeed = attributes.GetAttribute("Move Speed");
+        armor = attributes.GetAttribute("Armor");
         CDReduction = attributes.GetAttribute("CD Reduction");
 
         mobility = ability as Macrophage_Mobility;

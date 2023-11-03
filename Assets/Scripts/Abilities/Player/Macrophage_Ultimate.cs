@@ -26,6 +26,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
     public Attribute attackDamage;
     public Attribute attackSpeed;
     public Attribute attackRange;
+    public Attribute attackSize;
     public Attribute armor;
     public Attribute knockbackPower;
     public Attribute dotAmount;
@@ -67,6 +68,9 @@ public class Macrophage_UltimateSpec : AbilitySpec
         AttributeModifier armorMod = new((level.Value + 1) * 2f, AttributeModifierType.Add);
         armor.AddModifier(armorMod);
 
+        AttributeModifier sizeMod = new(level.Value * 0.1f, AttributeModifierType.Add);
+        attackSize.AddModifier(sizeMod);
+
         // 300% increased DoT
         AttributeModifier dotMod = new(3f, AttributeModifierType.Multiply);
         dotAmount.AddModifier(dotMod);
@@ -86,6 +90,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attackRange.RemoveModifier(attackMod);
 
         knockbackPower.RemoveModifier(knockbackMod);
+        attackSize.RemoveModifier(sizeMod);
 
         dotAmount.RemoveModifier(dotMod);
         dotDuration.RemoveModifier(dotMod);
@@ -106,6 +111,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attackDamage = attributes.GetAttribute("Attack Damage");
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
+        attackSize = attributes.GetAttribute("Attack Size");
         knockbackPower = attributes.GetAttribute("Knockback Power");
         armor = attributes.GetAttribute("Armor");
         dotAmount = attributes.GetAttribute("DoT Amount");
