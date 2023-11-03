@@ -19,8 +19,8 @@ public class PromptEnabler : MonoBehaviour
         TutorialManager.isFirstTime = boolean;
     }
 
-    public void EnableGeneralInstructionStaticPrompt()
-    {
-        TutorialManager.instance.EnablePromptOnPlayerMovement();
-    }
+    //public void EnableGeneralInstructionStaticPrompt()
+    //{
+    //    TutorialManager.instance.EnablePromptOnPlayerMovement();
+    //}
 }
