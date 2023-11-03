@@ -26,6 +26,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
     private AttributeSet attributes;
     private Attribute attackDamage;
+    private Attribute attackSpeed;
     private Attribute critRate;
     private Attribute critDMG;
     public Attribute Type_1_DMG_Bonus;
@@ -62,7 +63,8 @@ public class Dendritic_MobilitySpec : AbilitySpec
 
         Physics.IgnoreLayerCollision(6, 11, true);
         IsDashing = true;
-        yield return new WaitForSeconds(0.2f);
+        float AS = attackSpeed.Value;
+        yield return new WaitForSeconds(Mathf.Lerp(0.25f, 0.1f, AS * 0.5f));
 
         Physics.IgnoreLayerCollision(6, 11, false);
 
@@ -163,6 +165,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
         attackDamage = attributes.GetAttribute("Attack Damage");
+        attackSpeed = attributes.GetAttribute("Attack Speed");
         critRate = attributes.GetAttribute("Critical Rate");
         critDMG = attributes.GetAttribute("Critical Damage");
         CDReduction = attributes.GetAttribute("CD Reduction");
