@@ -17,6 +17,8 @@ public class DendriticJudgementCut : MonoBehaviour
     [HideInInspector] public float Type_2_DMG_Bonus;
     [HideInInspector] public float Type_3_DMG_Bonus;
 
+    private const float DROP_RATE = 0.33333f;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -67,8 +69,11 @@ public class DendriticJudgementCut : MonoBehaviour
 
                 if (enemy.IsDead)
                 {
-                    AudioManager.instance.Play("PlayerPickUp", transform.position);
-                    AntigenManager.instance.AddAntigen(enemy.Type);
+                    if (Random.value <= DROP_RATE)
+                    {
+                        AudioManager.instance.Play("PlayerPickUp", transform.position);
+                        AntigenManager.instance.AddBonusAntigen(enemy.Type);
+                    }
                 }
                 //enemy.TakeDamage(damage);
             }

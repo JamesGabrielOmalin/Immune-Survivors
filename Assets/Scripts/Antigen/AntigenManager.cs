@@ -77,6 +77,20 @@ public class AntigenManager : MonoBehaviour
         }
     }
 
+    public void AddBonusAntigen(AntigenType type)
+    {
+        antigenCount[type] += 5;
+        antigenCountTotal[type] += 5;
+        OnAntigenCountChanged[type]?.Invoke();
+
+        if (antigenCount[type] >= antigenThreshold && OnAntigenThresholdReached[type] != null)
+        {
+            OnAntigenThresholdReached[type]?.Invoke();
+            //OnAntigenThresholdReached[type] = null;
+            antigenCount[type] = 0;
+        }
+    }
+
     public int GetAntigenCount(AntigenType type)
     {
         return antigenCountTotal[type];
