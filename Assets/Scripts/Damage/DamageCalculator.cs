@@ -17,6 +17,10 @@ public class DamageCalculator
         }
 
         float reduction = DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
+        if (armor < 0)
+        {
+            reduction = 2 - DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
+        }
         float damage = attackDamage * reduction;
 
         if (damage <= float.Epsilon)
