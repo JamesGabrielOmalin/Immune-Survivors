@@ -23,6 +23,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
     public AttributeSet attributes;
     public Attribute level;
+    public Attribute hpRegen;
     public Attribute attackDamage;
     public Attribute attackSpeed;
     public Attribute attackRange;
@@ -56,6 +57,9 @@ public class Macrophage_UltimateSpec : AbilitySpec
             child.gameObject.SetActive(false);
         }
 
+        AttributeModifier regenMod = new(1f, AttributeModifierType.Multiply);
+        hpRegen.AddModifier(regenMod);
+
         // 100% increase in attack values
         AttributeModifier attackMod = new(1f, AttributeModifierType.Multiply);
         attackDamage.AddModifier(attackMod);
@@ -85,6 +89,8 @@ public class Macrophage_UltimateSpec : AbilitySpec
         }
 
         // Remove all modifiers
+        hpRegen.RemoveModifier(regenMod);
+
         attackDamage.RemoveModifier(attackMod);
         attackSpeed.RemoveModifier(attackMod);
         attackRange.RemoveModifier(attackMod);
@@ -108,6 +114,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attributes = owner.GetComponent<AttributeSet>();
 
         level = attributes.GetAttribute("Level");
+        hpRegen = attributes.GetAttribute("HP Regen");
         attackDamage = attributes.GetAttribute("Attack Damage");
         attackSpeed = attributes.GetAttribute("Attack Speed");
         attackRange = attributes.GetAttribute("Attack Range");
