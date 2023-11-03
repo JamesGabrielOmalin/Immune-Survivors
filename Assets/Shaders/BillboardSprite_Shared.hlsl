@@ -191,10 +191,10 @@ half4 GetFinalBaseColor(Varyings input)
 
 half GetOutline(Varyings input)
 {
-    half4 pixelUp = tex2D(_MainTex, input.uv + half2(0, _MainTex_TexelSize.y) * _OutlineThickness);
-    half4 pixelDown = tex2D(_MainTex, input.uv - half2(0, _MainTex_TexelSize.y) * _OutlineThickness);
-    half4 pixelRight = tex2D(_MainTex, input.uv + half2(_MainTex_TexelSize.x, 0) * _OutlineThickness);
-    half4 pixelLeft = tex2D(_MainTex, input.uv - half2(_MainTex_TexelSize.x, 0) * _OutlineThickness);
+    half4 pixelUp = tex2D(_MainTex, saturate(input.uv + half2(0, _MainTex_TexelSize.y) * _OutlineThickness));
+    half4 pixelDown = tex2D(_MainTex, saturate(input.uv - half2(0, _MainTex_TexelSize.y) * _OutlineThickness));
+    half4 pixelRight = tex2D(_MainTex, saturate(input.uv + half2(_MainTex_TexelSize.x, 0) * _OutlineThickness));
+    half4 pixelLeft = tex2D(_MainTex, saturate(input.uv - half2(_MainTex_TexelSize.x, 0) * _OutlineThickness));
     
     if (pixelUp.a != 0 || pixelDown.a != 0 || pixelRight.a != 0 || pixelLeft.a != 0)
     {
