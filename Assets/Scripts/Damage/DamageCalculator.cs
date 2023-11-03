@@ -38,9 +38,14 @@ public class DamageCalculator
             return;
         }
 
-        bool isCrit = Random.value < critRate;
+        bool isCrit = Random.value < critRate; 
         float reduction = DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
-        float damage = attackDamage * (isCrit ? critDMG : reduction);
+        if (armor < 0)
+        {
+            reduction = 2 - DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
+        }
+
+        float damage = Mathf.Ceil(attackDamage * reduction * (isCrit ? critDMG : 1f));
 
         if (damage <= float.Epsilon)
         {
