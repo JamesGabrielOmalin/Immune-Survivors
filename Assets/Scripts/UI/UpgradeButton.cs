@@ -20,10 +20,10 @@ public class UpgradeButton : MonoBehaviour
 
     }
 
-    public void SetUpgrade(Effect inUpgrade)
+    public void SetUpgrade(in Effect inUpgrade)
     {
         Upgrade = inUpgrade;
-        nameText.text = inUpgrade.Name;
+        nameText.text = inUpgrade.Name + $" <size=24><color=yellow>({inUpgrade.EffectType})</size></color>";
         descriptionText.text = inUpgrade.Description;
         if (inUpgrade.EffectType == EffectType.Weapon)
         {
