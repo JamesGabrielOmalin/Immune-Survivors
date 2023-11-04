@@ -120,6 +120,7 @@ public class PlayerUnit : Unit, IDamageInterface
     {
         HP.ApplyInstantModifier(new(amount, AttributeModifierType.Add));
         HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, MaxHP.Value);
+        DamageNumberManager.instance.SpawnHealNumber(transform.position, amount);
     }
 
     public override void ApplyStun(float duration)

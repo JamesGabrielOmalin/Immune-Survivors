@@ -66,4 +66,20 @@ public class DamageNumberManager : MonoBehaviour
         text.text.text = $"{Mathf.CeilToInt(amount)}";
         text.text.sortingOrder = 3;
     }
+
+    public void SpawnHealNumber(in Vector3 position, in float amount)
+    {
+        GameObject damageNumber = damageNumberPool.RequestPoolable(position);
+
+        if (!damageNumber)
+        {
+            Debug.LogWarning("No damageNumber found in object pool!");
+            return;
+        }
+
+        DamageNumber text = damageNumber.GetComponent<DamageNumber>();
+        text.text.fontSize = 1f;
+        text.text.text = $"<color=#88FF44>+{Mathf.CeilToInt(amount)}</color>";
+        text.text.sortingOrder = 3;
+    }
 }
