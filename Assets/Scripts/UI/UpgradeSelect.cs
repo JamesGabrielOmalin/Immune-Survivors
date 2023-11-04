@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeSelect : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class UpgradeSelect : MonoBehaviour
             buttons[i].SetUpgrade(effects[i]);
             buttons[i].unitIcon.sprite = buttons[i].unitSprites[(int)type];
         }
+
+        buttons[0].GetComponent<Button>().Select();
     }
 
     public void ApplyUpgrade(int index)
