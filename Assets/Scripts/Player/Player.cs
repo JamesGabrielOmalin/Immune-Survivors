@@ -26,10 +26,11 @@ public class Player : MonoBehaviour
     private PlayerUnit activeUnit;
     [HideInInspector] public GameObject activeHUD;
     private int numRecruit;
+    [SerializeField] private GameObject hudParent;
 
     [SerializeField] private List<Image> buffIcons = new();
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -264,7 +265,8 @@ public class Player : MonoBehaviour
 
     public void EnableHUD(bool enabled)
     {
-        activeHUD.SetActive(enabled);
+        hudParent.SetActive(enabled);
+        //activeHUD.SetActive(enabled);
     }
 
     public void OnEnableBuffHUD(bool enabled)

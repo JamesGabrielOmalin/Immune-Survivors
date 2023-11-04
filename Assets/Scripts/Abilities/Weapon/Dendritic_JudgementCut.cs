@@ -83,6 +83,10 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
                                          // Level 2 and higher: Increase size by 15%
         float SIZE = attackSize.Value * (abilityLevel >= 2 ? 1.15f : 1f);
 
+        float Type_1 = Type_1_DMG_Bonus.Value;
+        float Type_2 = Type_2_DMG_Bonus.Value;
+        float Type_3 = Type_3_DMG_Bonus.Value;
+
         for (int i = 0; i < AC; i++)
         {
             // implement basic shooting towards target
@@ -102,6 +106,10 @@ public class Dendritic_JudgementCutSpec : AbilitySpec
             cut.critRate = CRIT_RATE;
             cut.critDMG = CRIT_DMG;
             cut.attackSize = SIZE;
+
+            cut.Type_1_DMG_Bonus = Type_1;
+            cut.Type_2_DMG_Bonus = Type_2;
+            cut.Type_3_DMG_Bonus = Type_3;
 
             cut.transform.localScale = Vector3.one * SIZE;
             AudioManager.instance.Play("DentriticJN", owner.transform.position);

@@ -30,7 +30,7 @@ public class DendriticJudgementCut : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private readonly WaitForSeconds wait = new(1.25f);
+    private readonly WaitForSeconds wait = new(1.5f);
     private IEnumerator Slash()
     {
         vfx.Play();
