@@ -567,7 +567,7 @@ MonoBehaviour:
     baseValue: 3
     <Modifiers>k__BackingField: []
   - <Name>k__BackingField: Antigen Spawn Chance
-    baseValue: 0.1
+    baseValue: 0.125
     <Modifiers>k__BackingField: []
 --- !u!54 &2687134211752357555
 Rigidbody:
