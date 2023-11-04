@@ -64,6 +64,8 @@ public class PlayerUnit : Unit, IDamageInterface
         if (HPBar)
         {
             MaxHP.OnAttributeModified += delegate { HPBar.maxValue = MaxHP.Value; };
+            // Clamp current HP if Max HP is less
+            MaxHP.OnAttributeModified += delegate { HP.BaseValue = Mathf.Min(HP.BaseValue, MaxHP.Value); };
             HP.OnAttributeModified += delegate { HPBar.value = HP.Value; };
 
             HPBar.maxValue = MaxHP.Value;
