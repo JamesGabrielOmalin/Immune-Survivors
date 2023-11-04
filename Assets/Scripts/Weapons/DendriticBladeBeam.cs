@@ -55,7 +55,7 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
             }
 
             float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
-            float missingHPBonusDMG = Mathf.Lerp(1f, 0.1f, ratio);
+            float missingHPBonusDMG = Mathf.Lerp(1.1f, 0.1f, ratio);
 
             // Reduce damage based on hit count, up to 50% reduction
             float damage = attackDamage * DMGBonus  * missingHPBonusDMG * (1f - Mathf.Min(0.1f * hitCount, 0.5f));
