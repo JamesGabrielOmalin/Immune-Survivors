@@ -1018,7 +1018,7 @@ PrefabInstance:
     - target: {fileID: 5235187025910396377, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
       propertyPath: m_text
-      value: GOING GHOST
+      value: AMOEBOID DIVE
       objectReference: {fileID: 0}
     - target: {fileID: 5310611262825338499, guid: a51481079c176b1438ede52e4b123f0c,
         type: 3}
