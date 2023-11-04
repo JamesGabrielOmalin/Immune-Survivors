@@ -144,7 +144,7 @@ public class TutorialManager : MonoBehaviour
         TutorialManager.instance.OnPlayerHit -= EnablePromptOnPlayerHit;
 
         //Instantiate(StaticPrompts[2]);
-        AddDynamicPrompt("TAKING DAMAGE", " Watch out! Getting hit by enemies will deplete your <color=red>HP Bar (BOTTOM HUD)</color>.");
+        AddDynamicPrompt("TAKING DAMAGE", " Watch out! Getting hit by enemies will deplete your <color=yellow>HP Bar (BOTTOM HUD)</color>.");
         AddDynamicPrompt("RESTORING HP", " While your HP can <color=green>regenerate over time</color>. You can also <color=yellow>replenish your HP by recruiting other units</color>.");
 
         //AddDynamicPrompt("Somewhere, an ally has arrived, and will now help you");
