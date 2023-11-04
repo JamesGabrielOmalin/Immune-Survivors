@@ -16,10 +16,14 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
     [HideInInspector] public float Type_3_DMG_Bonus;
 
     private bool hit = false;
+    private int hitCount = 0;
+    [HideInInspector] public int maxHitCount = 1;
 
     public void OnBodyColliderEnter(Collider other)
     {
-        if (hit)
+        if (other.isTrigger)
+            return;
+        if (hitCount >= maxHitCount)
             return;
 
         if (other.TryGetComponent(out Enemy enemy))
@@ -39,7 +43,7 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
                     break;
             }
 
-            float damage = attackDamage * DMGBonus;
+            float damage = attackDamage * DMGBonus * (1f / (hitCount + 1));
 
             //enemy.TakeDamage(damage);
             float armor = enemy.Armor.Value;
@@ -49,11 +53,13 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
             if (enemy.TryGetComponent(out ImpactReceiver impactReceiver))
                 impactReceiver.AddImpact(transform.forward, knockbackPower);
 
-            vfx.SetBool("Alive", false);
-            vfx.SendEvent("Kill");
-            StartCoroutine(Deactivate());
-
-            hit = true;
+            hitCount++;
+            if (hitCount >= maxHitCount)
+            {
+                vfx.SetBool("Alive", false);
+                vfx.SendEvent("Kill");
+                StartCoroutine(Deactivate());
+            }
         }
     }
 
@@ -62,6 +68,7 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
         yield return new WaitForSeconds(0.25f);
         this.gameObject.SetActive(false);
         hit = false;
+        hitCount = 0;
         vfx.SetBool("Alive", true);
     }
 
