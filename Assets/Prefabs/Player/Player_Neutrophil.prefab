@@ -117,6 +117,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 487672917330361868, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 6989257390678351143}
     - target: {fileID: 487672917330361871, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: m_RootOrder
@@ -507,7 +512,12 @@ PrefabInstance:
     - target: {fileID: 1017346715513677961, guid: 655e229485e6cbe4fa52258464f1f262,
         type: 3}
       propertyPath: m_Name
-      value: Sprite Copy Neutrophil
+      value: Outline
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017346715513677961, guid: 655e229485e6cbe4fa52258464f1f262,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1815083173661837585, guid: 655e229485e6cbe4fa52258464f1f262,
         type: 3}
@@ -516,3 +526,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8225e008c091ea94e8acfd0f5c2a9a64, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 655e229485e6cbe4fa52258464f1f262, type: 3}
+--- !u!1 &6989257390678351143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1017346715513677961, guid: 655e229485e6cbe4fa52258464f1f262,
+    type: 3}
+  m_PrefabInstance: {fileID: 7989530747666068910}
+  m_PrefabAsset: {fileID: 0}

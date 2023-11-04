@@ -38,6 +38,8 @@ public class PlayerUnit : Unit, IDamageInterface
     //private Coroutine stunCoroutine;
     //private Coroutine dotCoroutine;
 
+    public GameObject outline;
+
     [Header("UI")]
     [SerializeField] private Slider HPBar;
 

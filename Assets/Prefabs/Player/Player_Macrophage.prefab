@@ -119,6 +119,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 487672917330361868, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 6870168813485510790}
+    - target: {fileID: 487672917330361868, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
       propertyPath: <UnitType>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -444,7 +449,12 @@ PrefabInstance:
     - target: {fileID: 1017346715513677961, guid: 574ffc334e7afca48b54ede5229de029,
         type: 3}
       propertyPath: m_Name
-      value: Sprite Copy Macrophage
+      value: Outline
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017346715513677961, guid: 574ffc334e7afca48b54ede5229de029,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1815083173661837585, guid: 574ffc334e7afca48b54ede5229de029,
         type: 3}
@@ -453,3 +463,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 445530582dbe60e4eae4741695ce8139, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 574ffc334e7afca48b54ede5229de029, type: 3}
+--- !u!1 &6870168813485510790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1017346715513677961, guid: 574ffc334e7afca48b54ede5229de029,
+    type: 3}
+  m_PrefabInstance: {fileID: 5857469321476782095}
+  m_PrefabAsset: {fileID: 0}

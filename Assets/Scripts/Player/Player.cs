@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
                 activeHUD = dendriticHUD;       
                 break;
         }
+
+        activeUnit.outline.SetActive(true);
     }
 
     private System.Action<InputAction.CallbackContext> mobilityHandler;
