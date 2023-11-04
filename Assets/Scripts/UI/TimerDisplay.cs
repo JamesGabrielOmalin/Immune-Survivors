@@ -22,6 +22,11 @@ public class TimerDisplay : MonoBehaviour
             {
                 text.text = GameManager.instance.GameTimeDisplay;
             }
+            else
+            {
+                text.text = "<color=red>LAST STAND</color>";
+                yield break;
+            }
             yield return new WaitForSeconds(1f);
         }
     }
