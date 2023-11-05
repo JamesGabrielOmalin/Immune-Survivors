@@ -14,18 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Lethal Precision
   <Description>k__BackingField: Shoots toxic projectiles
-  <Descriptions>k__BackingField:
-  - Gain the Gun Weapon
-  - Increase bullets fired by 2. Increase DMG by 10.
-  - Increase bullets fired by 2. Increase ATK Speed by 25%.
-  - Increase bullets fired by 2. Increase CRIT Rate by 10%.
-  - 'Increase bullets fired by 2. '
   <EffectDescription>k__BackingField: Gain the Gun Weapon
   <EffectDescriptions>k__BackingField:
   - Gain the Gun Weapon
-  - Projectiles + 2. DMG by 10%.
+  - Projectiles + 2. Pierces through 1 enemy.
   - Projectiles + 2. ATK Speed + 25%.
-  - Projectiles + 2. CRIT Rate +10%.
+  - Projectiles + 2. ATK DMG + 20%.
   - Projectiles +2
   <EffectType>k__BackingField: 1
   <Modifiers>k__BackingField: []

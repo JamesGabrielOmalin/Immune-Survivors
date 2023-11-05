@@ -28,6 +28,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     public Attribute critRate;
     public Attribute critDMG;
     public Attribute knockbackPower;
+    public Attribute armor;
     public Attribute Type_1_DMG_Bonus;
     public Attribute Type_2_DMG_Bonus;
     public Attribute Type_3_DMG_Bonus;
@@ -80,6 +81,9 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         float attackRadius = 6f + (attackSize.Value * 1.5f);
 
         int killCount = 0;
+
+        AttributeModifier armorMod = new(999, AttributeModifierType.Override);
+        armor.AddModifier(armorMod);
 
         //vfxInstance = GameObject.Instantiate(ult.ultimateVFX, owner.transform);
         //vfxInstance.GetComponent<VisualEffect>().Play();
@@ -137,8 +141,9 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         {
             spr.gameObject.SetActive(true);
         }
+        armor.RemoveModifier(armorMod);
 
-        CurrentCD = MaxCD - (killCount * 0.01f);
+        CurrentCD = MaxCD - (killCount * 0.02f);
         owner.StartCoroutine(UpdateCD());
 
         yield return new WaitForSeconds(1f);
@@ -163,6 +168,7 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         critDMG = attributes.GetAttribute("Critical Damage");
         knockbackPower = attributes.GetAttribute("Knockback Power");
         CDReduction = attributes.GetAttribute("CD Reduction");
+        armor =  attributes.GetAttribute("Armor");
 
         Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
         Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");

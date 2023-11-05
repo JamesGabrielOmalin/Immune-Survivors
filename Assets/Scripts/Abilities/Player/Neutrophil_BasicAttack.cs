@@ -115,11 +115,12 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
 
         int AC = (int)attackCount.Value;
 
-        WaitForSeconds wait = new(0.25f);
-                                        // Level 2 and higher: Increase DMG by 10
-        float AD = attackDamage.Value + (abilityLevel >= 2 ? 2f : 0f);
-                                            // Level 4 and higher: Increase CRIT Rate by 10%
-        float CRIT_RATE = critRate.Value + (abilityLevel >= 4 ? 0.1f : 0f);
+        float AS = (attackSpeed.Value * (abilityLevel >= 3 ? 1.25f : 1f));
+        WaitForSeconds wait = new(0.25f / AS);
+                                        // Level 4 and higher: Increase DMG by 20
+        float AD = attackDamage.Value + (abilityLevel >= 4 ? 20f : 0f);
+                                           
+        float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
         float KB = knockbackPower.Value;
         float AZ = attackSize.Value;
@@ -155,6 +156,9 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
                 bullet.Type_2_DMG_Bonus = Type_2;
                 bullet.Type_3_DMG_Bonus = Type_3;
 
+                // Piercing at level 2
+                bullet.maxHitCount = (abilityLevel >= 2 ? 2 : 1);
+
                 // Calculate for the direction 
                 Vector3 direction = (newTargetPos - owner.transform.position).normalized;
 
@@ -170,7 +174,7 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
                 // increment angle based on nprojectiles
                 angle = (j - (spread / 2)) * angleSteps;
                 bulletObject.transform.Rotate(new Vector3(0f, angle, 0f));
-                bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
+                //bulletObject.transform.localEulerAngles = new Vector3(0f, MathUtils.WrapAngle(bulletObject.transform.localEulerAngles.y), 0f);
 
             }
 

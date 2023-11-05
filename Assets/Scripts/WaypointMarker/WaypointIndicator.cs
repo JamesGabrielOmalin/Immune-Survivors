@@ -11,9 +11,9 @@ public class WaypointIndicator : MonoBehaviour
     public Transform target; // This is the object we want to point to
     [SerializeField] RectTransform waypointImage;
     private Camera cam;
-    [HideInInspector]
-    public float screenOffset;
-
+    [HideInInspector] public float top;
+    [HideInInspector] public float bot;
+    [HideInInspector] public float sides;
     void Start()
     {
         cam = Camera.main;
@@ -103,8 +103,8 @@ public class WaypointIndicator : MonoBehaviour
 
     Vector3 ClampPosition(Vector3 position)
     {
-        position.x = Mathf.Clamp(position.x, screenOffset, Screen.width - screenOffset);
-        position.y = Mathf.Clamp(position.y, screenOffset, Screen.height - screenOffset);
+        position.x = Mathf.Clamp(position.x, sides, Screen.width - sides);
+        position.y = Mathf.Clamp(position.y, bot, Screen.height - top);
 
         return position;
     }

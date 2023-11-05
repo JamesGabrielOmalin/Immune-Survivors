@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +19,7 @@ public class EquipmentMenu : MonoBehaviour
 
         }
 
+        animator.keepAnimatorStateOnDisable = true;
     }
 
     // Update is called once per frame

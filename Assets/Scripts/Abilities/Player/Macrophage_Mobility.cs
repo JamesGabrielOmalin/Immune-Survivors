@@ -31,12 +31,13 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
     public override IEnumerator ActivateAbility()
     {
+        CurrentCD = MaxCD;
         WaitForSeconds wait = new(mobility.Duration);
 
         Physics.IgnoreLayerCollision(6, 11, true);
 
         SpriteRenderer sprite = owner.GetComponentInChildren<SpriteRenderer>();
-        sprite.material.renderQueue = 3000;
+        //sprite.material.renderQueue = 3000;
         sprite.color = new (1, 1, 1, 0.5f);
 
         AttributeModifier mod = new(mobility.MoveSpeedBonus, AttributeModifierType.Multiply);
@@ -51,10 +52,9 @@ public class Macrophage_MobilitySpec : AbilitySpec
         moveSpeed.RemoveModifier(mod);
         armor.RemoveModifier(armorMod);
 
-        sprite.material.renderQueue = 2450;
+        //sprite.material.renderQueue = 2450;
         sprite.color = Color.white;
 
-        CurrentCD = MaxCD;
         owner.StartCoroutine(UpdateCD());
     }
 

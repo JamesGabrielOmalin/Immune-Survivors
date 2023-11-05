@@ -9,6 +9,11 @@ public class CharacterSelect : MonoBehaviour
 
     private int character = 0;
 
+    private void Start()
+    {
+        Player.toSpawn = PlayerUnitType.Neutrophil;
+    }
+
     private void SelectCharacter()
     {
         Player.toSpawn = (PlayerUnitType)character;

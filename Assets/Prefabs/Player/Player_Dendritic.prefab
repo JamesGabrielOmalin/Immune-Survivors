@@ -302,6 +302,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 487672917330361868, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 3608771058069613242}
+    - target: {fileID: 487672917330361868, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
       propertyPath: <UnitType>k__BackingField
       value: 2
       objectReference: {fileID: 0}
@@ -603,7 +608,12 @@ PrefabInstance:
     - target: {fileID: 1017346715513677961, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
         type: 3}
       propertyPath: m_Name
-      value: Sprite Copy Dendritic
+      value: Outline
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017346715513677961, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1815083173661837585, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
         type: 3}
@@ -612,3 +622,9 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d6f078d46ee4bea4e9e9294b27cd60f4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b80bbeda8e2f1db44b1e6b09c3881d74, type: 3}
+--- !u!1 &3608771058069613242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1017346715513677961, guid: b80bbeda8e2f1db44b1e6b09c3881d74,
+    type: 3}
+  m_PrefabInstance: {fileID: 4326474191066448435}
+  m_PrefabAsset: {fileID: 0}

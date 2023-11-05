@@ -38,6 +38,8 @@ public class PlayerUnit : Unit, IDamageInterface
     //private Coroutine stunCoroutine;
     //private Coroutine dotCoroutine;
 
+    public GameObject outline;
+
     [Header("UI")]
     [SerializeField] private Slider HPBar;
 
@@ -62,6 +64,8 @@ public class PlayerUnit : Unit, IDamageInterface
         if (HPBar)
         {
             MaxHP.OnAttributeModified += delegate { HPBar.maxValue = MaxHP.Value; };
+            // Clamp current HP if Max HP is less
+            MaxHP.OnAttributeModified += delegate { HP.BaseValue = Mathf.Min(HP.BaseValue, MaxHP.Value); };
             HP.OnAttributeModified += delegate { HPBar.value = HP.Value; };
 
             HPBar.maxValue = MaxHP.Value;
@@ -116,6 +120,7 @@ public class PlayerUnit : Unit, IDamageInterface
     {
         HP.ApplyInstantModifier(new(amount, AttributeModifierType.Add));
         HP.BaseValue = Mathf.Clamp(HP.BaseValue, 0f, MaxHP.Value);
+        DamageNumberManager.instance.SpawnHealNumber(transform.position, amount);
     }
 
     public override void ApplyStun(float duration)

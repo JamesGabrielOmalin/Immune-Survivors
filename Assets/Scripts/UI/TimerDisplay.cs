@@ -18,9 +18,14 @@ public class TimerDisplay : MonoBehaviour
 
         while(this)
         {
-            if (660 - GameManager.instance.GameTime.TotalSeconds >= 0)
+            if (420 - GameManager.instance.GameTime.TotalSeconds >= 0)
             {
                 text.text = GameManager.instance.GameTimeDisplay;
+            }
+            else
+            {
+                text.text = "<color=red>LAST STAND</color>";
+                yield break;
             }
             yield return new WaitForSeconds(1f);
         }

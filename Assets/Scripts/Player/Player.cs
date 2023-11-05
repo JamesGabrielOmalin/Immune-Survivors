@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private List<Image> buffIcons = new();
 
-    public static PlayerUnitType toSpawn = PlayerUnitType.Dendritic;
+    public static PlayerUnitType toSpawn = PlayerUnitType.Neutrophil;
 
     private readonly Dictionary<PlayerUnitType, bool> unitRecruited = new()
     {
@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
                 activeHUD = dendriticHUD;       
                 break;
         }
+
+        activeUnit.outline.SetActive(true);
     }
 
     private System.Action<InputAction.CallbackContext> mobilityHandler;

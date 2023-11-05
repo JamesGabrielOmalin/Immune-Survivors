@@ -15,7 +15,10 @@ public class WaypointIndicatorManager : MonoBehaviour
 
 
     [Header("Offset")]
-    [SerializeField] float offset;
+    [SerializeField] float top;
+    [SerializeField] float bot;
+    [SerializeField] float sides;
+
 
     private Coroutine trackingCoroutine;
 
@@ -69,7 +72,10 @@ public class WaypointIndicatorManager : MonoBehaviour
         {
             activeIndicators.Add(indicatorComp);
             indicatorComp.TrackUnit(unit);
-            indicatorComp.screenOffset = offset;
+            indicatorComp.top = top;
+            indicatorComp.bot = bot;
+            indicatorComp.sides = sides;
+
             Debug.Log(" Unit registered");
 
             //indicator.SetActive(true);

@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Gourmet Fury
   <Description>k__BackingField: Protien! Protein! Food Protein!
-  <Descriptions>k__BackingField: []
-  <EffectDescription>k__BackingField: ATK DMG + 10%
+  <EffectDescription>k__BackingField: ATK DMG + 10%, Projectiles +1
   <EffectDescriptions>k__BackingField: []
   <EffectType>k__BackingField: 0
   <Modifiers>k__BackingField:
@@ -23,6 +22,10 @@ MonoBehaviour:
     <Modifier>k__BackingField:
       <Value>k__BackingField: 0.1
       <Type>k__BackingField: 1
+  - <Name>k__BackingField: Projectile Count
+    <Modifier>k__BackingField:
+      <Value>k__BackingField: 1
+      <Type>k__BackingField: 0
   <Sprite>k__BackingField: {fileID: 21300000, guid: 4f0e35e38796c2547866a3c3aff84ef7,
     type: 3}
   <DurationType>k__BackingField: 0

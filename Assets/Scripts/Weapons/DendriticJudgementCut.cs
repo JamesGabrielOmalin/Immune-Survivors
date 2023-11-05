@@ -61,7 +61,7 @@ public class DendriticJudgementCut : MonoBehaviour
                 }
 
                 float ratio = Mathf.SmoothStep(0.25f, 0.75f, (HP / MaxHP));
-                float missingHPBonusDMG = Mathf.Lerp(1f, 0.1f, ratio);
+                float missingHPBonusDMG = Mathf.Lerp(1.1f, 0.1f, ratio);
 
                 float damage = attackDamage * DMGBonus * missingHPBonusDMG;
                 float armor = enemy.Armor.Value;
