@@ -79,17 +79,21 @@ public class Enemy : Unit, IDamageInterface
             AttackDamage = attributes.GetAttribute("Attack Damage");
 
         MaxHP.RemoveAllModifiers();
+        Armor.RemoveAllModifiers();
         AttackDamage.RemoveAllModifiers();
         MoveSpeed.RemoveAllModifiers();
 
         // Increase HP and Move Speed by 20% for every minute that has passed
         if (GameManager.instance)
         {
-            MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.5f, AttributeModifierType.Multiply));
+            var minutes = GameManager.instance.GameTime.Minutes;
+            MaxHP.AddModifier(new(Mathf.Min(minutes * 0.25f, 1.5f), AttributeModifierType.Multiply));
 
-            AttackDamage.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
+            Armor.AddModifier(new(Mathf.Min(minutes * 0.25f, 2.5f), AttributeModifierType.Add));
+
+            AttackDamage.AddModifier(new(minutes * 0.125f, AttributeModifierType.Multiply));
             //MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
-            MoveSpeed.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.15f, AttributeModifierType.Multiply));
+            MoveSpeed.AddModifier(new(minutes * 0.15f, AttributeModifierType.Multiply));
         }
 
         HP.BaseValue = MaxHP.Value;
@@ -189,16 +193,18 @@ public class Enemy : Unit, IDamageInterface
         }
     }
 
+    private readonly WaitForSeconds attackDelay = new(INITIAL_ATTACK_DELAY);
+
     // Attack the target player
     private IEnumerator Attack()
     {
         // Short delay before actually attacking
-        yield return new WaitForSeconds(INITIAL_ATTACK_DELAY);
-        while (targetPlayer)
+        yield return attackDelay;
+        while (targetPlayer && !IsDead)
         {
             yield return new WaitUntil(() => !this.IsStunned);
 
-            if (!targetPlayer)
+            if (!targetPlayer || IsDead)
                 break;
 
             var activeUnit = targetPlayer.GetActiveUnit();
