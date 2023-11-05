@@ -88,7 +88,7 @@ public class WaypointIndicator : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         // Rotate the waypoint image to point towards the target
-        waypointImage.rotation = Quaternion.Euler(0, 0, angle);
+        waypointImage.rotation = Quaternion.Euler(0, 0, angle + 90f);
 
         // Assign the calculated position to the waypoint image
         waypointImage.position = screenPos;
