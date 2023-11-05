@@ -67,14 +67,14 @@ public class Neutrophil_GrenadeSpec : AbilitySpec
     {
         WaitForSeconds wait = new(0.25f);
 
-                                         // Level 2 and higher: Increase DMG by 5
-        float AD = attackDamage.Value + (abilityLevel >= 2 ? 5f : 0f);
+                                         // Level 2 and higher: Increase DMG by 10
+        float AD = attackDamage.Value + (abilityLevel >= 2 ? 10f : 0f);
         // Increase size per level
-        float AZ = attackSize.Value + ((abilityLevel - 1) * 1.1f);
+        float AZ = attackSize.Value + ((abilityLevel - 1) * 1.05f);
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
-                                // Level 3 and higher: Increase slow amount by 25%
-        float SLOW = -0.25f + (abilityLevel >= 3 ? -0.25f : 0f);
+                                // Level 3 and higher: Increase slow amount by 40%
+        float SLOW = -0.3f + (abilityLevel >= 3 ? -0.4f : 0f);
                                 // Level 4 and higher: Increase slow field duration by 2s
         float LIFESPAN = 3f + (abilityLevel >= 4 ? 2f : 0f);
 
