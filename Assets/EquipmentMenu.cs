@@ -49,4 +49,12 @@ public class EquipmentMenu : MonoBehaviour
 
         }
     }
+
+    public void ToggleEquipmentMenu(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+    {
+        if (ctx.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+        {
+            ToggleEquipmentMenu();
+        }
+    }
 }
