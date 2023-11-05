@@ -42,10 +42,16 @@ public class DamageCalculator
         float reduction = DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
         if (armor < 0)
         {
-            reduction = 2 - DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor);
+            reduction = 2 - (DMG_REDUCTION_FACTOR / (DMG_REDUCTION_FACTOR + armor));
         }
 
         float damage = Mathf.Ceil(attackDamage * reduction * (isCrit ? critDMG : 1f));
+        if (isCrit)
+            damage++;
+
+        if (damage <= float.Epsilon)
+            return;
+
         target.TakeDamage(damage);
 
         Vector3 location = (target as MonoBehaviour).transform.position;

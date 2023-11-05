@@ -79,6 +79,7 @@ public class Enemy : Unit, IDamageInterface
             AttackDamage = attributes.GetAttribute("Attack Damage");
 
         MaxHP.RemoveAllModifiers();
+        HP.RemoveAllModifiers();
         Armor.RemoveAllModifiers();
         AttackDamage.RemoveAllModifiers();
         MoveSpeed.RemoveAllModifiers();
@@ -87,9 +88,9 @@ public class Enemy : Unit, IDamageInterface
         if (GameManager.instance)
         {
             var minutes = GameManager.instance.GameTime.Minutes;
-            MaxHP.AddModifier(new(Mathf.Min(minutes * 0.25f, 1.5f), AttributeModifierType.Multiply));
+            MaxHP.AddModifier(new(Mathf.Min(minutes * 1f, 9f), AttributeModifierType.Multiply));
 
-            Armor.AddModifier(new(Mathf.Min(minutes * 0.25f, 2.5f), AttributeModifierType.Add));
+            Armor.AddModifier(new(Mathf.Min(minutes * 0.4f, 4f), AttributeModifierType.Add));
 
             AttackDamage.AddModifier(new(minutes * 0.125f, AttributeModifierType.Multiply));
             //MaxHP.AddModifier(new(GameManager.instance.GameTime.Minutes * 0.1f, AttributeModifierType.Multiply));
@@ -105,6 +106,21 @@ public class Enemy : Unit, IDamageInterface
                 AntigenManager.instance.SpawnAntigen(transform.position, Type);
             RecruitManager.instance.AddKillCount();
         };
+
+        // WHY?
+        StartCoroutine(HPCheck());
+    }
+
+    private IEnumerator HPCheck()
+    {
+        while (true)
+        {
+            yield return new WaitUntil(() => HP.Value > MaxHP.Value);
+            HP.BaseValue = MaxHP.Value;
+
+            // FOUND YOU BITCH
+            Debug.Log($"HP: {HP.Value}");
+        }
     }
 
     private void OnDisable()
