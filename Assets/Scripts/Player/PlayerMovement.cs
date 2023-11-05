@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerInput input;
     [SerializeField] private List<SpriteRenderer> sprites = new();
 
-    private Attribute moveSpeed;
+    //private Attribute moveSpeed;
+    private readonly Dictionary<PlayerUnitType, Attribute> moveSpeedAttributes = new();
 
     private readonly int ANIMATOR_ISMOVING = Animator.StringToHash("IsMoving");
 
@@ -21,10 +22,22 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 inputDir = Vector3.right;
     public Vector3 lastInputDir = Vector3.right;
 
+    public float moveSpeed;
+
     // Start is called before the first frame update
     private void Start()
     {
-        moveSpeed = player.GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        //moveSpeed = player.GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        moveSpeedAttributes[PlayerUnitType.Neutrophil] = player.GetUnit(PlayerUnitType.Neutrophil).GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        moveSpeedAttributes[PlayerUnitType.Macrophage] = player.GetUnit(PlayerUnitType.Macrophage).GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        moveSpeedAttributes[PlayerUnitType.Dendritic] = player.GetUnit(PlayerUnitType.Dendritic).GetComponent<AttributeSet>().GetAttribute("Move Speed");
+
+        moveSpeed = Mathf.Max(new float[]
+        {   moveSpeedAttributes[PlayerUnitType.Neutrophil].Value,
+            moveSpeedAttributes[PlayerUnitType.Macrophage].Value,
+            moveSpeedAttributes[PlayerUnitType.Dendritic].Value }
+        ); 
+        StartCoroutine(UpdateMoveSpeed());
     }
 
     private void OnEnable()
@@ -39,9 +52,19 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.Sleep();
     }
 
-    public void UpdateMoveSpeed()
+    private readonly WaitForSeconds wait = new(1f);
+
+    public IEnumerator UpdateMoveSpeed()
     {
-        //moveSpeed = player.GetActiveUnit().GetComponent<AttributeSet>().GetAttribute("Move Speed");
+        while (this)
+        {
+            yield return wait;
+            moveSpeed = Mathf.Max(new float[] 
+            {   moveSpeedAttributes[PlayerUnitType.Neutrophil].Value, 
+                moveSpeedAttributes[PlayerUnitType.Macrophage].Value, 
+                moveSpeedAttributes[PlayerUnitType.Dendritic].Value }
+            );
+        }
     }
 
     // Update is called once per frame
@@ -83,7 +106,9 @@ public class PlayerMovement : MonoBehaviour
 
         //controller.Move(moveDir * (moveSpeed.Value * Time.deltaTime));
 
-        var deltaPos = moveDir * (moveSpeed.Value * Time.fixedDeltaTime);
+        // Get the greatest movement speed between the units
+
+        var deltaPos = moveDir * (moveSpeed* Time.fixedDeltaTime);
 
         rigidbody.MovePosition(rigidbody.transform.position + deltaPos);
 
