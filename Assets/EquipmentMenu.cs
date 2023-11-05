@@ -35,14 +35,14 @@ public class EquipmentMenu : MonoBehaviour
         if (flag == true)
         {
             animator.SetTrigger("Show");
-            label.text = "HIDE EQUIPMENTS";
+            label.text = "[E] HIDE EQUIPMENT";
             Debug.Log("Toggled equipment menu");
 
         }
         else
         {
             animator.SetTrigger("Hide");
-            label.text = "SHOW EQUIPMENTS";
+            label.text = "[E] SHOW EQUIPMENT";
 
             Debug.Log("Untoggled equipment menu");
 
