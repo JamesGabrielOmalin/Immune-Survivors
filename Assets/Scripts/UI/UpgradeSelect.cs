@@ -17,7 +17,7 @@ public class UpgradeSelect : MonoBehaviour
         for (int i = 0; i < effects.Length; i++)
         {
             buttons[i].SetUpgrade(effects[i]);
-            buttons[i].unitIcon.sprite = buttons[i].unitSprites[(int)type];
+            buttons[i].type = type;
         }
     }
 

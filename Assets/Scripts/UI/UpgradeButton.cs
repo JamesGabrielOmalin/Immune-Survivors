@@ -14,10 +14,16 @@ public class UpgradeButton : MonoBehaviour
     [SerializeField] private Image icon;
     public Image unitIcon;
     public List<Sprite> unitSprites = new();
+    [HideInInspector] public PlayerUnitType type;
 
     private void Start()
     {
 
+    }
+
+    private void OnEnable()
+    {
+        unitIcon.sprite = unitSprites[(int)type];
     }
 
     public void SetUpgrade(in Effect inUpgrade)
@@ -29,7 +35,9 @@ public class UpgradeButton : MonoBehaviour
         {
             if (UpgradeManager.instance.grantedWeapons.ContainsKey(inUpgrade))
             {
-                effectDescriptionText.text = inUpgrade.EffectDescriptions[Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4)];
+                int level = Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4);
+                nameText.text = inUpgrade.Name + $" Lv.{level + 1} <size=18><color=yellow>({inUpgrade.EffectType})</size></color>";
+                effectDescriptionText.text = inUpgrade.EffectDescriptions[level];
             }
             else
             {
@@ -39,6 +47,9 @@ public class UpgradeButton : MonoBehaviour
         }
         else
         {
+            if (!UpgradeManager.instance.grantedEffects[type].ContainsKey(inUpgrade))
+                nameText.text = "<sup><size=24><color=yellow>NEW!</sup></size></color> " + nameText.text;
+                
             effectDescriptionText.text = inUpgrade.EffectDescription;
         }
 
