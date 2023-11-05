@@ -23,17 +23,17 @@ public class UpgradeButton : MonoBehaviour
     public void SetUpgrade(in Effect inUpgrade)
     {
         Upgrade = inUpgrade;
-        nameText.text = inUpgrade.Name + $" <size=24><color=yellow>({inUpgrade.EffectType})</size></color>";
+        nameText.text = inUpgrade.Name + $" <size=18><color=yellow>({inUpgrade.EffectType})</size></color>";
         descriptionText.text = inUpgrade.Description;
         if (inUpgrade.EffectType == EffectType.Weapon)
         {
-
             if (UpgradeManager.instance.grantedWeapons.ContainsKey(inUpgrade))
             {
                 effectDescriptionText.text = inUpgrade.EffectDescriptions[Mathf.Min(UpgradeManager.instance.grantedWeapons[inUpgrade], 4)];
             }
             else
             {
+                nameText.text = "<sup><size=24><color=yellow>NEW!</sup></size></color> " + nameText.text;
                 effectDescriptionText.text = inUpgrade.EffectDescriptions[0];
             }
         }
