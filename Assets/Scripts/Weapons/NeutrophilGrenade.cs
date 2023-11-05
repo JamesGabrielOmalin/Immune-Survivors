@@ -40,7 +40,7 @@ public class NeutrophilGrenade : Projectile
     {
         yield return new WaitForSeconds(1f / projectileSpeed);
 
-        var hits = Physics.OverlapSphere(transform.position, attackSize, layerMask.value);
+        var hits = Physics.OverlapSphere(transform.position, attackSize + 1f, layerMask.value);
 
         foreach (var hit in hits)
         {
