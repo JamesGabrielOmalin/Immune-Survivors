@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7526386431399033522
 Transform:
   m_ObjectHideFlags: 0
@@ -383,17 +383,27 @@ PrefabInstance:
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.data[4].baseValue
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.data[5].baseValue
-      value: 1.125
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
       propertyPath: Attributes.Array.data[6].baseValue
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: Attributes.Array.data[9].baseValue
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
+        type: 3}
+      propertyPath: Attributes.Array.data[10].baseValue
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 487672917330361874, guid: 51ed58f86627e1647b18720f3500d592,
         type: 3}
