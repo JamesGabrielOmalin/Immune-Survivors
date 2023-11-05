@@ -108,7 +108,7 @@ public class Enemy : Unit, IDamageInterface
         };
 
         // WHY?
-        StartCoroutine(HPCheck());
+        //StartCoroutine(HPCheck());
     }
 
     private IEnumerator HPCheck()

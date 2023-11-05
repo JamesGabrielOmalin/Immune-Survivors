@@ -284,7 +284,6 @@ public class EnemyManager : MonoBehaviour
 
     public IEnumerator SpawnEnemy(Vector3 position, string poolName)
     {
-
         yield return new WaitForSeconds(0.25f);
 
         bool canSpawn = false;
@@ -309,12 +308,10 @@ public class EnemyManager : MonoBehaviour
         } while (!canSpawn && nChecks < maxChecks);
 
         GameObject enemy = RequestFromPool(position, poolName);
-        //StartCoroutine(RelocateEnemy(enemy));
-
         if (!enemy)
         {
             Debug.LogWarning("No enemy found in object pool!: " + poolName);
-            yield return null;
+            yield break;
         }
         
         if (enemy.TryGetComponent<Collider>(out Collider cc))
@@ -322,6 +319,7 @@ public class EnemyManager : MonoBehaviour
             cc.enabled = true;
         }
 
+        StartCoroutine(RelocateEnemy(enemy));
 
         //Debug.Log(position);
 
@@ -354,45 +352,51 @@ public class EnemyManager : MonoBehaviour
 
     public IEnumerator RelocateEnemy(GameObject enemy)
     {
-        Vector3 enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
+        //Vector3 enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
 
-        yield return new WaitForSeconds(1.0f);
-        // Translate World to Viewport
-        enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
+        //yield return new WaitForSeconds(1.0f);
+        //// Translate World to Viewport
+        //enemyPos = cam.WorldToViewportPoint(enemy.transform.position);
 
-        Vector3 ViewportToWorldPos = enemyPos;
+        //Vector3 ViewportToWorldPos = enemyPos;
 
-        if (enemyPos.y > maxBounds.y)
-        {
-            // Top side of the screen
-            ViewportToWorldPos.y = 0.6f;
-            ViewportToWorldPos.x = Random.Range(0f, 1f);
-        }
-        else if (enemyPos.y < minBounds.y)
-        {
-            // Bottom side of the screen
-            ViewportToWorldPos.y = 0.6f;
-            ViewportToWorldPos.x = Random.Range(0f, 1f);
-        }
+        //if (enemyPos.y > maxBounds.y)
+        //{
+        //    // Top side of the screen
+        //    ViewportToWorldPos.y = 0.6f;
+        //    ViewportToWorldPos.x = Random.Range(0f, 1f);
+        //}
+        //else if (enemyPos.y < minBounds.y)
+        //{
+        //    // Bottom side of the screen
+        //    ViewportToWorldPos.y = 0.6f;
+        //    ViewportToWorldPos.x = Random.Range(0f, 1f);
+        //}
 
-        else if (enemyPos.x < minBounds.x)
-        {
-            // Left side of the screen
-            ViewportToWorldPos.x = 0f;
-            ViewportToWorldPos.y = Random.Range(0f, 1f);
-        }
-        else if (enemyPos.x > maxBounds.x)
-        {
-            // Right side of the screen
-            ViewportToWorldPos.x = 1f;
-            ViewportToWorldPos.y = Random.Range(0f, 1f);
-        }
+        //else if (enemyPos.x < minBounds.x)
+        //{
+        //    // Left side of the screen
+        //    ViewportToWorldPos.x = 0f;
+        //    ViewportToWorldPos.y = Random.Range(0f, 1f);
+        //}
+        //else if (enemyPos.x > maxBounds.x)
+        //{
+        //    // Right side of the screen
+        //    ViewportToWorldPos.x = 1f;
+        //    ViewportToWorldPos.y = Random.Range(0f, 1f);
+        //}
 
-        Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z));
+        //Vector3 newPos = cam.ViewportToWorldPoint(new Vector3(ViewportToWorldPos.x, ViewportToWorldPos.y, ViewportToWorldPos.z));
 
-        enemy.transform.position = new Vector3(newPos.x, enemy.transform.position.y, newPos.z);
+        //enemy.transform.position = new Vector3(newPos.x, enemy.transform.position.y, newPos.z);
 
         //Debug.Log("Not in range: " + enemyPos + " New pos: " + cam.WorldToViewportPoint(enemy.transform.position));
+
+        while (enemy.activeInHierarchy)
+        {
+            yield return new WaitWhile(() => spawnArea.bounds.Contains(enemy.transform.position));
+            enemy.transform.position = spawnArea.ClosestPointOnBounds(enemy.transform.position);
+        }
     }
 
     public GameObject RequestFromPool(Vector3 position, string poolName)
