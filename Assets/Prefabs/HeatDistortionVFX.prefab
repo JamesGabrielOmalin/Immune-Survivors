@@ -140,6 +140,16 @@ MonoBehaviour:
     particleSize: 10
     particleSpeed: {x: 0, y: 10, z: 0}
     spawnRate: 100
+  - name: Level 6
+    distortionIntensity: 0.02
+    particleSize: 12
+    particleSpeed: {x: 0, y: 10, z: 0}
+    spawnRate: 100
+  - name: Level 7
+    distortionIntensity: 0.02
+    particleSize: 13
+    particleSpeed: {x: 0, y: 10, z: 0}
+    spawnRate: 100
 --- !u!73398921 &3882735579964308150
 VFXRenderer:
   serializedVersion: 1
