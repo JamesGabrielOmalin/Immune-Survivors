@@ -45,6 +45,12 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
     {
+        if (GameManager.instance)
+        {
+            if (GameManager.instance.GamePaused || GameManager.instance.GameTimePaused)
+                return false;
+        }
+
         return level.Value >= 5f && base.CanActivateAbility();
     }
 
@@ -68,17 +74,17 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
-        float AD = attackDamage.Value * (level.Value * 0.5f);
+        float AD = attackDamage.Value * Mathf.Lerp(0.5f, 1.25f, level.Value / 10f);
         float AS = attackSpeed.Value;
         float CRIT_RATE = critRate.Value * 1.5f;
-        float CRIT_DMG = critDMG.Value * 0.5f;
+        float CRIT_DMG = critDMG.Value / 3f;
         float knockBack = knockbackPower.Value;
 
         float Type_1 = Type_1_DMG_Bonus.Value;
         float Type_2 = Type_2_DMG_Bonus.Value;
         float Type_3 = Type_3_DMG_Bonus.Value;
 
-        float attackRadius = 6f + (attackSize.Value * 1.5f);
+        float attackRadius = 5f + (attackSize.Value);
 
         int killCount = 0;
 
@@ -143,10 +149,8 @@ public class Neutrophil_UltimateSpec : AbilitySpec
         }
         armor.RemoveModifier(armorMod);
 
-        CurrentCD = MaxCD - (killCount * 0.02f);
+        CurrentCD = MaxCD - (killCount * 0.025f);
         owner.StartCoroutine(UpdateCD());
-
-        yield return new WaitForSeconds(1f);
     }
 
     public override void EndAbility()

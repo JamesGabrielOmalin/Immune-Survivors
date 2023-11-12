@@ -46,6 +46,8 @@ public class Dendritic_MobilitySpec : AbilitySpec
     private PlayerMovement movement;
     private SpriteRenderer sprite;
     private Animator animator;
+    private PlayerUnit unit;
+    private const float radius = 1.25f;
 
     public override IEnumerator ActivateAbility()
     {
@@ -64,6 +66,7 @@ public class Dendritic_MobilitySpec : AbilitySpec
         Physics.IgnoreLayerCollision(6, 11, true);
         IsDashing = true;
         float AS = attackSpeed.Value;
+        unit.StartIFrames();
         yield return new WaitForSeconds(Mathf.Lerp(0.25f, 0.1f, AS * 0.5f));
 
         Physics.IgnoreLayerCollision(6, 11, false);
@@ -71,7 +74,8 @@ public class Dendritic_MobilitySpec : AbilitySpec
         AudioManager.instance.Play("DentriticMovement", owner.transform.position);
         movement.transform.position = endPos;
 
-        var hits = Physics.SphereCastAll(startPos, 1f, rayDir, rayLength, layerMask);
+        var hits = Physics.SphereCastAll(startPos, radius, rayDir, rayLength, layerMask);
+        hits.Concat(Physics.SphereCastAll(endPos, radius * 2, rayDir, layerMask));
 
         float AD = attackDamage.Value;
         float CRIT_RATE = critRate.Value;
@@ -122,26 +126,27 @@ public class Dendritic_MobilitySpec : AbilitySpec
             if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
             {
                 // If at least 1 enemy was killed, reset cooldown
-                if (!resetCD && enemy.IsDead)
+                if (enemy.IsDead)
                 {
                     // Get bonus Antigen
-                    AntigenManager.instance.AddAntigen(enemy.Type);
+                    AntigenManager.instance.AddBonusAntigen(enemy.Type);
+                    AudioManager.instance.Play("PlayerPickUp", owner.transform.position);
                     resetCD = true;
+                    break;
                 }
             }
         }
 
         // Teleport behind the last enemy hit
-        if (hits.Length > 0)
-        {
-            if (Vector3.Distance(startPos, hits.Last().point) > Vector3.Distance(startPos, endPos))
-                owner.transform.position = hits.Last().point + (rayDir * 1.5f);
-        }
+        //if (hits.Length > 0)
+        //{
+        //    if (Vector3.Distance(startPos, hits.Last().point) > Vector3.Distance(startPos, endPos))
+        //        owner.transform.position = hits.Last().point + (rayDir * 1.5f);
+        //}
 
         // If no enemy was killed, do not reset CD
         if (!resetCD)
         {
-            AudioManager.instance.Play("PlayerPickUp", owner.transform.position);
             CurrentCD = MaxCD;
             owner.StartCoroutine(UpdateCD());
         }
@@ -180,5 +185,6 @@ public class Dendritic_MobilitySpec : AbilitySpec
         movement = owner.GetComponentInParent<PlayerMovement>();
         sprite = owner.GetComponentInChildren<SpriteRenderer>();
         animator = sprite.GetComponent<Animator>();
+        unit = owner.GetComponent<PlayerUnit>();
     }
 }

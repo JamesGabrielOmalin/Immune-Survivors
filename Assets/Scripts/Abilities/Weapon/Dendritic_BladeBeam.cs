@@ -83,7 +83,7 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
 
         float AD = attackDamage.Value;
                                         // Level 3 or higher: Increase range by 100%
-        float AR = attackRange.Value * (abilityLevel >= 3f ? 2f : 1f);
+        float AR = (attackRange.Value * (abilityLevel >= 3f ? 2f : 1f)) + 1f;
         float CRIT_RATE = critRate.Value;
         float CRIT_DMG = critDMG.Value;
                                         // Level 2 or higher: Increase size by 50%
@@ -122,8 +122,8 @@ public class Dendritic_BladeBeamSpec : AbilitySpec
                 GameObject projectile = bladeBeams.RequestPoolable(owner.transform.position);
                 if (projectile == null)
                     continue;
-                AudioManager.instance.Play("DentriticBlade", owner.transform.position);
                 yield return null;
+                AudioManager.instance.Play("DentriticBlade", owner.transform.position);
                 DendriticBladeBeam cut = projectile.GetComponent<DendriticBladeBeam>();
                 cut.transform.forward = dir;
 

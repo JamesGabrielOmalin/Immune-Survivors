@@ -28,6 +28,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
     private AttributeSet attributes;
     private Attribute moveSpeed;
     private Attribute armor;
+    private GameObject outline;
 
     public override IEnumerator ActivateAbility()
     {
@@ -38,7 +39,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
 
         SpriteRenderer sprite = owner.GetComponentInChildren<SpriteRenderer>();
         //sprite.material.renderQueue = 3000;
-        sprite.color = new (1, 1, 1, 0.5f);
+        sprite.color = new (0.75f, 0.375f, 0f, 0.5f); outline.SetActive(false);
 
         AttributeModifier mod = new(mobility.MoveSpeedBonus, AttributeModifierType.Multiply);
         moveSpeed.AddModifier(mod);
@@ -53,7 +54,7 @@ public class Macrophage_MobilitySpec : AbilitySpec
         armor.RemoveModifier(armorMod);
 
         //sprite.material.renderQueue = 2450;
-        sprite.color = Color.white;
+        sprite.color = Color.white; outline.SetActive(true);
 
         owner.StartCoroutine(UpdateCD());
     }
@@ -72,5 +73,6 @@ public class Macrophage_MobilitySpec : AbilitySpec
         CDReduction = attributes.GetAttribute("CD Reduction");
 
         mobility = ability as Macrophage_Mobility;
+        outline = owner.transform.Find("Sprite").Find("Outline").gameObject;
     }
 }

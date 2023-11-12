@@ -40,6 +40,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
     private Rigidbody rigidbody;
     private PlayerInput playerInput;
+    private PlayerUnit unit;
     private readonly WaitForFixedUpdate wait = new();
 
     public override IEnumerator ActivateAbility()
@@ -66,6 +67,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
         AudioManager.instance.Play("NeutrophilMovement", owner.transform.position);
         rigidbody.AddForce(direction * mobility.DashSpeed, ForceMode.VelocityChange);
 
+        unit.StartIFrames();
         while (tick < mobility.MaxDashTime)
         {
             tick += Time.fixedDeltaTime;
@@ -104,6 +106,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
         animator = sprite.GetComponent<Animator>();
         rigidbody = owner.transform.root.GetComponent<Rigidbody>();
         playerInput = owner.transform.root.GetComponent<PlayerInput>();
+        unit = owner.GetComponent<PlayerUnit>();
 
         vfx = owner.transform.Find("Neutrophil Dash VFX").GetComponent<VisualEffect>();
     }

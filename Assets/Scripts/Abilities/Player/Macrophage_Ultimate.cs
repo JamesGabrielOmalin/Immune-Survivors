@@ -36,10 +36,17 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
     private SpriteRenderer sprite;
     private Animator animator;
+    private GameObject outline;
 
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
     {
+        if (GameManager.instance)
+        {
+            if (GameManager.instance.GamePaused || GameManager.instance.GameTimePaused)
+                return false;
+        }
+
         return level.Value >= 5f && base.CanActivateAbility();
     }
 
@@ -50,7 +57,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         var playable = owner.GetComponent<PlayableDirector>();
         playable.Play();
 
-        animator.SetTrigger("Ultimate");
+        animator.SetTrigger("Ultimate"); outline.SetActive(false);
 
         foreach (Transform child in sprite.transform)
         {
@@ -66,7 +73,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         attackSpeed.AddModifier(attackMod);
         attackRange.AddModifier(attackMod);
 
-        AttributeModifier knockbackMod = new(5f, AttributeModifierType.Add);
+        AttributeModifier knockbackMod = new(1f, AttributeModifierType.Add);
         knockbackPower.AddModifier(knockbackMod);
 
         AttributeModifier armorMod = new((level.Value + 1) * 2f, AttributeModifierType.Add);
@@ -75,8 +82,8 @@ public class Macrophage_UltimateSpec : AbilitySpec
         AttributeModifier sizeMod = new(level.Value * 0.1f, AttributeModifierType.Add);
         attackSize.AddModifier(sizeMod);
 
-        // 300% increased DoT
-        AttributeModifier dotMod = new(3f, AttributeModifierType.Multiply);
+        // 500% increased DoT
+        AttributeModifier dotMod = new(5f, AttributeModifierType.Multiply);
         dotAmount.AddModifier(dotMod);
         dotDuration.AddModifier(dotMod);
         
@@ -102,7 +109,7 @@ public class Macrophage_UltimateSpec : AbilitySpec
         dotDuration.RemoveModifier(dotMod);
 
         armor.RemoveModifier(armorMod);
-
+        outline.SetActive(true);
         CurrentCD = MaxCD;
         owner.StartCoroutine(UpdateCD());
 
@@ -128,5 +135,6 @@ public class Macrophage_UltimateSpec : AbilitySpec
 
         sprite = owner.GetComponentInChildren<SpriteRenderer>();
         animator = sprite.GetComponent<Animator>();
+        outline = owner.transform.Find("Sprite").Find("Outline").gameObject;
     }
 }

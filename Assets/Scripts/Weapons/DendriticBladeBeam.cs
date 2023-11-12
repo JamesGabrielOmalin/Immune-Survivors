@@ -22,7 +22,8 @@ public class DendriticBladeBeam : Projectile, IBodyColliderListener
     protected override void OnEnable()
     {
         lifeSpan = attackRange / projectileSpeed;
-        vfx.SetFloat("Lifetime", lifeSpan + 0.25f);
+        vfx.Play();
+        vfx.SetFloat("Lifetime", lifeSpan);
         base.OnEnable();
     }
 

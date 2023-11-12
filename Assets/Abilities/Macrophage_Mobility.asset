@@ -15,5 +15,7 @@ MonoBehaviour:
   <Name>k__BackingField: 
   <Cooldown>k__BackingField: 10
   <AbilityType>k__BackingField: 1
-  <MoveSpeedBonus>k__BackingField: 0.5
+  <HasCharges>k__BackingField: 0
+  <MaxCharges>k__BackingField: 0
+  <MoveSpeedBonus>k__BackingField: 0.6
   <Duration>k__BackingField: 5

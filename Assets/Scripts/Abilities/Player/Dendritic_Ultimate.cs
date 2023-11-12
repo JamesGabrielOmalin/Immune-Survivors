@@ -33,6 +33,12 @@ public class Dendritic_UltimateSpec : AbilitySpec
     // TODO: Make required level visible on ScriptableObject
     public override bool CanActivateAbility()
     {
+        if (GameManager.instance)
+        {
+            if (GameManager.instance.GamePaused || GameManager.instance.GameTimePaused)
+                return false;
+        }    
+
         return level.Value >= 5f && base.CanActivateAbility();
     }
 
@@ -58,7 +64,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
         // PROVOKING
         // BLACK CLOUDS IN ISOLATION
 
-        var hits = Physics.OverlapSphere(owner.transform.position, 25f);
+        var hits = Physics.OverlapSphere(owner.transform.position, 30f);
 
         foreach (var hit in hits)
         {
@@ -67,7 +73,7 @@ public class Dendritic_UltimateSpec : AbilitySpec
                 continue;
 
             enemy.TakeDamage(999999);
-            AntigenManager.instance.AddAntigen(enemy.Type);
+            AntigenManager.instance.AddBonusAntigen(enemy.Type);
         }
 
         GameManager.instance.HUD.SetActive(true);

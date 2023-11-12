@@ -62,7 +62,7 @@ public class DamageNumberManager : MonoBehaviour
         }
 
         DamageNumber text = damageNumber.GetComponent<DamageNumber>();
-        text.text.fontSize = 0.125f;
+        text.text.fontSize = 0.175f;
         text.text.text = $"{Mathf.CeilToInt(amount)}";
         text.text.sortingOrder = 3;
     }

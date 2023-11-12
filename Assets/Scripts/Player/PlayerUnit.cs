@@ -104,10 +104,22 @@ public class PlayerUnit : Unit, IDamageInterface
             OnDeath?.Invoke();
         }
         else
-            StartCoroutine(IFrames());
+            StartIFrames();
     }
 
+    private Coroutine IFrameCoroutine;
     private readonly WaitForSeconds iframeDuration = new (0.25f);
+
+    public void StartIFrames()
+    {
+        if (IFrameCoroutine != null)
+        {
+            StopCoroutine(IFrameCoroutine);
+            isInvulnerable = false;
+        }
+
+        IFrameCoroutine = StartCoroutine(IFrames());
+    }
 
     private IEnumerator IFrames()
     {
