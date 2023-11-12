@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         rigidbody.Sleep();
     }
 
-    private readonly WaitForSeconds wait = new(1f);
+    private readonly WaitForSeconds wait = new(0.25f);
 
     public IEnumerator UpdateMoveSpeed()
     {
@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
         foreach (var sprite in sprites)
         {
-            if (sprite.enabled)
+            if (sprite.enabled && hasInput)
                 sprite.flipX = moveInput.x < 0f;
         }
 
