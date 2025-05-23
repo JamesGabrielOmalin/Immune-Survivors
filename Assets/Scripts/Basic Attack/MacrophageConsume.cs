@@ -15,6 +15,9 @@ public class MacrophageConsume : MonoBehaviour
     [HideInInspector] public float dot;
     [HideInInspector] public float duration;
     [HideInInspector] public int tickRate;
+    [HideInInspector] public float Type_1_DMG_Bonus;
+    [HideInInspector] public float Type_2_DMG_Bonus;
+    [HideInInspector] public float Type_3_DMG_Bonus;
 
     // Start is called before the first frame update
     private void OnEnable()
@@ -35,13 +38,29 @@ public class MacrophageConsume : MonoBehaviour
 
         //float damage = DamageCalculator.CalcDamage(attackDamage, critRate, critDMG);
 
+
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                float armor = enemy.attributes.GetAttribute("Armor").Value;
+                float DMGBonus = Type_1_DMG_Bonus;
+
+                switch (enemy.Type)
+                {
+                    case AntigenType.Type_1:
+                        DMGBonus = Type_1_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_2:
+                        DMGBonus = Type_2_DMG_Bonus;
+                        break;
+                    case AntigenType.Type_3:
+                        DMGBonus = Type_3_DMG_Bonus;
+                        break;
+                }
+
+                float armor = enemy.attributes.GetAttribute(Attribute.ARMOR).Value;
                 //enemy.TakeDamage(damage);
-                DamageCalculator.ApplyDamage(attackDamage, critRate, critDMG, armor, enemy);
+                DamageCalculator.ApplyDamage(attackDamage * DMGBonus, critRate, critDMG, armor, enemy);
                 enemy.ApplyDoT(dot, duration, tickRate);
 
                 // Pull effect

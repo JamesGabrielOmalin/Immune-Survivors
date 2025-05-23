@@ -164,19 +164,19 @@ public class Neutrophil_UltimateSpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
 
-        level = attributes.GetAttribute("Level");
-        attackDamage = attributes.GetAttribute("Attack Damage");
-        attackSpeed = attributes.GetAttribute("Attack Speed");
-        attackSize = attributes.GetAttribute("Attack Size");
-        critRate = attributes.GetAttribute("Critical Rate");
-        critDMG = attributes.GetAttribute("Critical Damage");
-        knockbackPower = attributes.GetAttribute("Knockback Power");
-        CDReduction = attributes.GetAttribute("CD Reduction");
-        armor =  attributes.GetAttribute("Armor");
+        level = attributes.GetAttribute(Attribute.LEVEL);
+        attackDamage = attributes.GetAttribute(Attribute.ATTACK_DAMAGE);
+        attackSpeed = attributes.GetAttribute(Attribute.ATTACK_SPEED);
+        attackSize = attributes.GetAttribute(Attribute.ATTACK_SIZE);
+        critRate = attributes.GetAttribute(Attribute.CRITICAL_RATE);
+        critDMG = attributes.GetAttribute(Attribute.CRITICAL_DAMAGE);
+        knockbackPower = attributes.GetAttribute(Attribute.KNOCKBACK_POWER);
+        CDReduction = attributes.GetAttribute(Attribute.CD_REDUCTION);
+        armor =  attributes.GetAttribute(Attribute.ARMOR);
 
-        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
-        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
-        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
+        Type_1_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_1_DMG_BONUS);
+        Type_2_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_2_DMG_BONUS);
+        Type_3_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_3_DMG_BONUS);
 
         ult = ability as Neutrophil_Ultimate;
     }

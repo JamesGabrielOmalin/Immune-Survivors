@@ -5,6 +5,36 @@ using UnityEngine;
 [System.Serializable]
 public class Attribute
 {
+    public const string LEVEL = "Level";
+    public const string MAX_HP = "Max HP";
+    public const string HP = "HP";
+    public const string HP_REGEN = "HP Regen";
+
+    public const string ATTACK_DAMAGE = "Attack Damage";
+    public const string ATTACK_SPEED = "Attack Speed";
+    public const string ATTACK_RANGE = "Attack Range";
+    public const string ATTACK_COUNT = "Attack Count";
+    public const string ATTACK_SIZE = "Attack Size";
+
+    public const string CRITICAL_RATE = "Critical Rate";
+    public const string CRITICAL_DAMAGE = "Critical Damage";
+
+    public const string KNOCKBACK_POWER = "Knockback Power";
+    public const string CD_REDUCTION = "CD Reduction";
+
+    public const string MOVE_SPEED = "Move Speed";
+    public const string DASH_RANGE = "Dash Range";
+
+    public const string ARMOR = "Armor";
+
+    public const string TYPE_1_DMG_BONUS = "Type_1 DMG Bonus";
+    public const string TYPE_2_DMG_BONUS = "Type_2 DMG Bonus";
+    public const string TYPE_3_DMG_BONUS = "Type_3 DMG Bonus";
+
+    public const string DOT_AMOUNT = "DoT Amount";
+    public const string DOT_DURATION = "DoT Duration";
+    public const string DOT_TICK_RATE = "DoT Tick Rate";
+
     public Attribute(string name, float baseValue)
     {
         this.Name = name;

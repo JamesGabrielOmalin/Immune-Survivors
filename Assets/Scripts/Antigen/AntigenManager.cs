@@ -40,7 +40,7 @@ public class AntigenManager : MonoBehaviour
         { AntigenType.Type_3, null },
     };
 
-    private bool firstTimeAntigenThresholdReached = true;
+    //private bool firstTimeAntigenThresholdReached = true;
 
     private void Awake()
     {

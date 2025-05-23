@@ -15,7 +15,7 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
     [HideInInspector] public float Type_2_DMG_Bonus;
     [HideInInspector] public float Type_3_DMG_Bonus;
 
-    private bool hit = false;
+    //private bool hit = false;
     private int hitCount = 0;
     [HideInInspector] public int maxHitCount = 1;
 
@@ -67,7 +67,7 @@ public class NeutrophilBullet : Projectile, IBodyColliderListener
     {
         yield return new WaitForSeconds(0.25f);
         this.gameObject.SetActive(false);
-        hit = false;
+        //hit = false;
         hitCount = 0;
         vfx.SetBool("Alive", true);
     }

@@ -68,9 +68,9 @@ public class Macrophage_MobilitySpec : AbilitySpec
     private void Init()
     {
         attributes = owner.GetComponent<AttributeSet>();
-        moveSpeed = attributes.GetAttribute("Move Speed");
-        armor = attributes.GetAttribute("Armor");
-        CDReduction = attributes.GetAttribute("CD Reduction");
+        moveSpeed = attributes.GetAttribute(Attribute.MOVE_SPEED);
+        armor = attributes.GetAttribute(Attribute.ARMOR);
+        CDReduction = attributes.GetAttribute(Attribute.CD_REDUCTION);
 
         mobility = ability as Macrophage_Mobility;
         outline = owner.transform.Find("Sprite").Find("Outline").gameObject;

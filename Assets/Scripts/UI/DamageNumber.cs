@@ -8,23 +8,12 @@ using UnityEngine;
 public class DamageNumber : MonoBehaviour
 {
     public TextMeshPro text;
-    [SerializeField] private float speed;
     [SerializeField] private float despawnTime;
 
     private void OnEnable()
     {
         StartCoroutine(Despawn());
     }
-
-    //private void FixedUpdate()
-    //{
-    //    transform.position += Vector3.up *(speed * Time.fixedDeltaTime);
-    //}
-
-    //public void StartDespawnTimer()
-    //{
-    //    StartCoroutine(Despawn());
-    //}
 
     IEnumerator Despawn()
     {

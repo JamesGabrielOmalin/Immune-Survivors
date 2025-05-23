@@ -8,6 +8,8 @@ public class DamageNumberManager : MonoBehaviour
     public static DamageNumberManager instance;
 
     [SerializeField] private ObjectPool damageNumberPool;
+    [SerializeField] private float regularFontSize = 5f;
+    [SerializeField] private float criticalFontSize = 10f;
 
     private void Awake()
     {
@@ -39,13 +41,13 @@ public class DamageNumberManager : MonoBehaviour
 
         if (isCrit)
         {
-            text.text.fontSize = 0.5f;
+            text.text.fontSize = criticalFontSize;
             text.text.text = $"<color=red>{Mathf.CeilToInt(amount)}!</color>";
             text.text.sortingOrder = 5;
         }
         else
         {
-            text.text.fontSize = 0.25f;
+            text.text.fontSize = regularFontSize;
             text.text.text = $"{Mathf.CeilToInt(amount)}";
             text.text.sortingOrder = 4;
         }

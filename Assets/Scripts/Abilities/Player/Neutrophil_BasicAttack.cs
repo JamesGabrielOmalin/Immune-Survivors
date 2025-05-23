@@ -189,19 +189,19 @@ public class Neutrophil_BasicAttackSpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
 
-        level = attributes.GetAttribute("Level");
-        attackDamage = attributes.GetAttribute("Attack Damage");
-        critRate = attributes.GetAttribute("Critical Rate");
-        critDMG = attributes.GetAttribute("Critical Damage");
-        attackSpeed = attributes.GetAttribute("Attack Speed");
-        attackRange = attributes.GetAttribute("Attack Range");
-        attackCount = attributes.GetAttribute("Attack Count");
-        attackSize = attributes.GetAttribute("Attack Size");
-        knockbackPower = attributes.GetAttribute("Knockback Power");
+        level = attributes.GetAttribute(Attribute.LEVEL);
+        attackDamage = attributes.GetAttribute(Attribute.ATTACK_DAMAGE);
+        attackSpeed = attributes.GetAttribute(Attribute.ATTACK_SPEED);
+        attackRange = attributes.GetAttribute(Attribute.ATTACK_RANGE);
+        attackCount = attributes.GetAttribute(Attribute.ATTACK_COUNT);
+        attackSize = attributes.GetAttribute(Attribute.ATTACK_SIZE);
+        critRate = attributes.GetAttribute(Attribute.CRITICAL_RATE);
+        critDMG = attributes.GetAttribute(Attribute.CRITICAL_DAMAGE);
+        knockbackPower = attributes.GetAttribute(Attribute.KNOCKBACK_POWER);
 
-        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
-        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
-        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
+        Type_1_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_1_DMG_BONUS);
+        Type_2_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_2_DMG_BONUS);
+        Type_3_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_3_DMG_BONUS);
 
         basicAttack = ability as Neutrophil_BasicAttack;
         bullets = GameObject.Find("Neutrophil Bullet Pool").GetComponentInChildren<ObjectPool>();

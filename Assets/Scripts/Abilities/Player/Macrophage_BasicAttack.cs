@@ -32,6 +32,10 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
     public Attribute critDMG;
     public Attribute knockbackPower;
 
+    public Attribute Type_1_DMG_Bonus;
+    public Attribute Type_2_DMG_Bonus;
+    public Attribute Type_3_DMG_Bonus;
+
     #endregion Attributes
 
     // constructor
@@ -98,6 +102,9 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
         consumeComp.dot = attackDamage.Value / 4f;
         consumeComp.duration = 5f;
         consumeComp.tickRate = (int)attackCount.Value;
+        consumeComp.Type_1_DMG_Bonus = Type_1_DMG_Bonus.Value;
+        consumeComp.Type_2_DMG_Bonus = Type_2_DMG_Bonus.Value;
+        consumeComp.Type_3_DMG_Bonus = Type_3_DMG_Bonus.Value;
 
         consumeComp.transform.localScale = Vector3.one * attackSize.Value;
     }
@@ -107,15 +114,19 @@ public class Macrophage_BasicAttackSpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
 
-        level = attributes.GetAttribute("Level");
-        attackDamage = attributes.GetAttribute("Attack Damage");
-        critRate = attributes.GetAttribute("Critical Rate");
-        critDMG = attributes.GetAttribute("Critical Damage");
-        attackSpeed = attributes.GetAttribute("Attack Speed");
-        attackRange = attributes.GetAttribute("Attack Range");
-        attackSize = attributes.GetAttribute("Attack Size");
-        attackCount = attributes.GetAttribute("Attack Count");
-        knockbackPower = attributes.GetAttribute("Knockback Power");
+        level = attributes.GetAttribute(Attribute.LEVEL);
+        attackDamage = attributes.GetAttribute(Attribute.ATTACK_DAMAGE);
+        attackSpeed = attributes.GetAttribute(Attribute.ATTACK_SPEED);
+        attackRange = attributes.GetAttribute(Attribute.ATTACK_RANGE);
+        attackCount = attributes.GetAttribute(Attribute.ATTACK_COUNT);
+        attackSize = attributes.GetAttribute(Attribute.ATTACK_SIZE);
+        critRate = attributes.GetAttribute(Attribute.CRITICAL_RATE);
+        critDMG = attributes.GetAttribute(Attribute.CRITICAL_DAMAGE);
+        knockbackPower = attributes.GetAttribute(Attribute.KNOCKBACK_POWER);
+
+        Type_1_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_1_DMG_BONUS);
+        Type_2_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_2_DMG_BONUS);
+        Type_3_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_3_DMG_BONUS);
 
         basicAttack = ability as Macrophage_BasicAttack;
     }

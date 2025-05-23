@@ -35,7 +35,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
 
     public override bool CanActivateAbility()
     {
-        return base.CanActivateAbility() && !IsDashing && rigidbody.velocity.sqrMagnitude > 0f;
+        return base.CanActivateAbility() && !IsDashing && rigidbody.linearVelocity.sqrMagnitude > 0f;
     }
 
     private Rigidbody rigidbody;
@@ -71,7 +71,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
         while (tick < mobility.MaxDashTime)
         {
             tick += Time.fixedDeltaTime;
-            rigidbody.velocity = velocity;
+            rigidbody.linearVelocity = velocity;
             //rigidbody.AddForce(deltaPos, ForceMode.VelocityChange);
             yield return wait;
 
@@ -82,7 +82,7 @@ public class Neutrophil_MobilitySpec : AbilitySpec
             //owner.transform.position = newPos;
         }
         Physics.IgnoreLayerCollision(6, 11, false);
-        rigidbody.velocity = Vector3.zero;
+        rigidbody.linearVelocity = Vector3.zero;
         vfx.Stop();
 
         owner.StartCoroutine(UpdateCD());
@@ -99,8 +99,8 @@ public class Neutrophil_MobilitySpec : AbilitySpec
     private void Init()
     {
         attributes = owner.GetComponent<AttributeSet>();
-        moveSpeed = attributes.GetAttribute("Move Speed");
-        CDReduction = attributes.GetAttribute("CD Reduction");
+        moveSpeed = attributes.GetAttribute(Attribute.MOVE_SPEED);
+        CDReduction = attributes.GetAttribute(Attribute.CD_REDUCTION);
 
         sprite = owner.GetComponentInChildren<SpriteRenderer>();
         animator = sprite.GetComponent<Animator>();

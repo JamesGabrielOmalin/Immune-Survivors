@@ -169,15 +169,15 @@ public class Dendritic_MobilitySpec : AbilitySpec
     private void Init()
     {
         attributes = owner.GetComponent<AttributeSet>();
-        attackDamage = attributes.GetAttribute("Attack Damage");
-        attackSpeed = attributes.GetAttribute("Attack Speed");
-        critRate = attributes.GetAttribute("Critical Rate");
-        critDMG = attributes.GetAttribute("Critical Damage");
-        CDReduction = attributes.GetAttribute("CD Reduction");
+        attackDamage = attributes.GetAttribute(Attribute.ATTACK_DAMAGE);
+        attackSpeed = attributes.GetAttribute(Attribute.ATTACK_SPEED);
+        critRate = attributes.GetAttribute(Attribute.CRITICAL_RATE);
+        critDMG = attributes.GetAttribute(Attribute.CRITICAL_DAMAGE);
+        CDReduction = attributes.GetAttribute(Attribute.CD_REDUCTION);
 
-        Type_1_DMG_Bonus = attributes.GetAttribute("Type_1 DMG Bonus");
-        Type_2_DMG_Bonus = attributes.GetAttribute("Type_2 DMG Bonus");
-        Type_3_DMG_Bonus = attributes.GetAttribute("Type_3 DMG Bonus");
+        Type_1_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_1_DMG_BONUS);
+        Type_2_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_2_DMG_BONUS);
+        Type_3_DMG_Bonus = attributes.GetAttribute(Attribute.TYPE_3_DMG_BONUS);
 
         mobility = ability as Dendritic_Mobility;
 

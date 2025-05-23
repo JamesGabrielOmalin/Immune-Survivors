@@ -11,7 +11,7 @@ public class GraphicsSettingsData
     public int graphicsQuality = 2;
     public int resolution = 0;
     public int displayMode = 0;
-    public int fps = 1;
+    public int fps = 2;
     public int vsync = 0;
 }
 
@@ -25,19 +25,16 @@ public class GraphicsSettings : MonoBehaviour
 
     private static GraphicsSettingsData settings = new();
 
-    private void Awake()
+    private void Start()
     {
         Load();
 
+        SetDisplayMode(settings.displayMode);
         SetGraphicsQuality(settings.graphicsQuality);
         SetResolution(settings.resolution);
-        SetDisplayMode(settings.displayMode);
         SetFPS(settings.fps);
         SetVSync(settings.vsync);
-    }
 
-    private void Start()
-    {
         graphicsQualityDropdown.value = settings.graphicsQuality;
 
         resolutionDropdown.ClearOptions();
@@ -48,14 +45,16 @@ public class GraphicsSettings : MonoBehaviour
         {
             resolutions.Add(new($"{res.width} x {res.height}"));
         }
+        resolutions.Reverse();
 
         resolutionDropdown.AddOptions(resolutions);
         resolutionDropdown.value = settings.resolution;
 
         displayModeDropdown.ClearOptions();
-        List<TMP_Dropdown.OptionData> displayModes = new();
-
-        displayModes.Add(new("Fullscreen"));
+        List<TMP_Dropdown.OptionData> displayModes = new()
+        {
+            new("Fullscreen")
+        };
         switch (Application.platform)
         {
             case RuntimePlatform.WindowsEditor:
@@ -78,50 +77,59 @@ public class GraphicsSettings : MonoBehaviour
 
     public void SetGraphicsQuality(int index)
     {
-        QualitySettings.SetQualityLevel(index);
-
         settings.graphicsQuality = index;
+
+        QualitySettings.SetQualityLevel(index);
     }
 
     public void SetResolution(int index)
     {
         var res = Screen.resolutions;
-        Screen.SetResolution(res[index].width, res[index].height, Screen.fullScreenMode);
-
+        var ind = res.Length - 1 - index;
         settings.resolution = index;
+
+        Screen.SetResolution(res[ind].width, res[ind].height, Screen.fullScreenMode);
     }
 
     public void SetDisplayMode(int index)
     {
+        settings.displayMode = index;
+
         if (settings.displayMode == 0)
             Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow);
         else
             Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.Windowed);
-
-        settings.displayMode = index;
     }
 
     public void SetFPS(int index)
     {
-        switch (index)
+        settings.fps = index;
+
+        switch (settings.fps)
         {
             case 0:
                 Application.targetFrameRate = 30;
                 break;
             case 1:
-                Application.targetFrameRate = 60;
+                Application.targetFrameRate = 45;
                 break;
             case 2:
+                Application.targetFrameRate = 60;
+                break;
+            case 3:
                 Application.targetFrameRate = 120;
                 break;
+            case 4:
+                Application.targetFrameRate = 144;
+                break;
         }
-
-        settings.fps = index;
     }
 
     public void SetVSync(int index)
     {
-        switch (index)
+        settings.vsync = index;
+
+        switch (settings.vsync)
         {
             case 0:
                 QualitySettings.vSyncCount = 0;
@@ -130,8 +138,6 @@ public class GraphicsSettings : MonoBehaviour
                 QualitySettings.vSyncCount = 1;
                 break;
         }
-
-        settings.vsync = index;
     }
 
     private void OnDestroy()

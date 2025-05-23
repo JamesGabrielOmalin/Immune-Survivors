@@ -120,18 +120,18 @@ public class Macrophage_UltimateSpec : AbilitySpec
     {
         attributes = owner.GetComponent<AttributeSet>();
 
-        level = attributes.GetAttribute("Level");
-        hpRegen = attributes.GetAttribute("HP Regen");
-        attackDamage = attributes.GetAttribute("Attack Damage");
-        attackSpeed = attributes.GetAttribute("Attack Speed");
-        attackRange = attributes.GetAttribute("Attack Range");
-        attackSize = attributes.GetAttribute("Attack Size");
-        knockbackPower = attributes.GetAttribute("Knockback Power");
-        armor = attributes.GetAttribute("Armor");
-        dotAmount = attributes.GetAttribute("DoT Amount");
-        dotDuration = attributes.GetAttribute("DoT Duration");
-        dotTickRate = attributes.GetAttribute("DoT Tick Rate");
-        CDReduction = attributes.GetAttribute("CD Reduction");
+        level = attributes.GetAttribute(Attribute.LEVEL);
+        hpRegen = attributes.GetAttribute(Attribute.HP_REGEN);
+        attackDamage = attributes.GetAttribute(Attribute.ATTACK_DAMAGE);
+        attackSpeed = attributes.GetAttribute(Attribute.ATTACK_SPEED);
+        attackRange = attributes.GetAttribute(Attribute.ATTACK_RANGE);
+        attackSize = attributes.GetAttribute(Attribute.ATTACK_SIZE);
+        knockbackPower = attributes.GetAttribute(Attribute.KNOCKBACK_POWER);
+        armor = attributes.GetAttribute(Attribute.ARMOR);
+        dotAmount = attributes.GetAttribute(Attribute.DOT_AMOUNT);
+        dotDuration = attributes.GetAttribute(Attribute.DOT_DURATION);
+        dotTickRate = attributes.GetAttribute(Attribute.DOT_TICK_RATE);
+        CDReduction = attributes.GetAttribute(Attribute.CD_REDUCTION);
 
         sprite = owner.GetComponentInChildren<SpriteRenderer>();
         animator = sprite.GetComponent<Animator>();
